@@ -18,7 +18,7 @@
                 placeholder="请输入"
                 :style="{ minWidth: '134px' }"
                 clearable
-                @change="(e)=>changeName(e)"
+                @change="(e) => changeName(e)"
               />
             </t-form-item>
             <t-form-item label="参考服务单价" name="referencePrice">
@@ -28,15 +28,15 @@
                 placeholder="请输入"
                 :style="{ minWidth: '134px' }"
                 clearable
-                @change="(e)=>changePrice(e)"
+                @change="(e) => changePrice(e)"
               />
             </t-form-item>
             <t-form-item label="排序" name="sortNum">
               <t-input-number
+                v-model="formData.sortNum"
                 theme="column"
                 :min="0"
                 :max="999"
-                v-model="formData.sortNum"
               ></t-input-number>
             </t-form-item>
             <t-form-item label="服务图标" name="serveItemIcon">
@@ -49,12 +49,13 @@
                 theme="image"
                 accept="image/*"
                 :headers="{
-                  Authorization: token
+                  AuthorizationAccessToken: accessToken,
+                  AuthorizationRefreshToken: refreshToken
                 }"
+                :size-limit="10240"
+                :allow-upload-duplicate-file="true"
                 @validate="onValidate"
                 @fail="handleFail"
-                :sizeLimit="10240"
-                :allow-upload-duplicate-file="true"
                 @success="(e) => handleSuccess(e, 1)"
               >
               </t-upload>
@@ -77,25 +78,26 @@
                 :options="UNIT"
                 placeholder="请选择"
                 clearable
-                @change="(e)=>changeUnit(e)"
+                @change="(e) => changeUnit(e)"
               />
             </t-form-item>
             <t-form-item label="服务图片" name="img">
               <t-upload
                 ref="uploadRef1"
-                :action="actions"
                 v-model="formData.img"
+                :action="actions"
                 :is-batch-upload="true"
                 tips="请上传png格式图片，尺寸：750px*620px，在5M以内"
                 theme="image"
                 accept="image/*"
-                @validate="onValidate"
-                @fail="handleFail"
-                :sizeLimit="10240"
+                :size-limit="10240"
                 :headers="{
-                  Authorization: token
+                  AuthorizationAccessToken: accessToken,
+                  AuthorizationRefreshToken: refreshToken
                 }"
                 :allow-upload-duplicate-file="true"
+                @validate="onValidate"
+                @fail="handleFail"
                 @success="(e) => handleSuccess(e, 2)"
               >
               </t-upload>
@@ -114,19 +116,20 @@
           <t-form-item label="服务详情长图" name="detailImg">
             <t-upload
               ref="uploadRef1"
-              :action="actions"
               v-model="formData.detailImg"
+              :action="actions"
               :is-batch-upload="true"
               tips="请上传png格式图片，尺寸：宽750px，高度不限，在20M以内"
               theme="image"
               accept="image/*"
               :size-limit="20480"
               :headers="{
-                Authorization: token
+                AuthorizationAccessToken: accessToken,
+                AuthorizationRefreshToken: refreshToken
               }"
+              :allow-upload-duplicate-file="true"
               @validate="onValidate"
               @fail="handleFail"
-              :allow-upload-duplicate-file="true"
               @success="(e) => handleSuccess(e, 3)"
             >
             </t-upload>
@@ -136,7 +139,11 @@
               <span class="bt bt-grey">取消</span>
             </div>
             <div class="updateInfo">
-              <span :class="isPreview ?'bt' : 'bt-grey bt-dis'" @click="handlePreview">预览</span>
+              <span
+                :class="isPreview ? 'bt' : 'bt-grey bt-dis'"
+                @click="handlePreview"
+                >预览</span
+              >
             </div>
             <button class="bt updateInfo">保存</button>
           </div>
@@ -145,31 +152,36 @@
     </div>
   </div>
   <previewPopup
-  :previewData="previewData"
-  :previewVisible="previewVisible"
-  @handleClose="handleClose"
+    :preview-data="previewData"
+    :preview-visible="previewVisible"
+    @handleClose="handleClose"
   />
 </template>
 <script setup lang="ts">
-import { ref, onMounted, reactive, computed } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { MessagePlugin } from 'tdesign-vue-next'
 import {
-  serviceTypeSimpleList,
   serviceItemAdd,
   serviceItemById,
-  serviceItemEdit
+  serviceItemEdit,
+  serviceTypeSimpleList
 } from '@/api/service'
 import previewPopup from './components/previewPopup.vue'
-import { useRouter, useRoute } from 'vue-router'
 import { UNIT } from '@/constants'
 // 引用正则
 import { validateText5 } from '@/utils/validate'
-import { MessagePlugin } from 'tdesign-vue-next'
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
+
 const previewData = reactive({
   title: '',
-  img:'',
+  img: '',
   detailImg: '',
   price: '',
-  unit: 0,
+  unit: 0
 }) // 预览数据
 const formData = ref({
   serveTypeId: '',
@@ -181,7 +193,7 @@ const formData = ref({
   detailImg: [],
   name: '',
   sortNum: ''
-})//表单数据
+}) // 表单数据
 const router = useRouter()
 const route = useRoute()
 const previewVisible = ref(false) // 预览弹窗
@@ -191,7 +203,9 @@ const typeSelect = ref([]) // 服务类型下拉框数据
 const actions = '/api/publics/storage/upload' // 上传的地址
 // 显示的图片
 // 默认图片
-const token = localStorage.getItem('xzb') // 获取token
+const accessToken = localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN)
+const refreshToken = localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN)
+
 const uploadRef1 = ref() // 上传图片
 // 生命周期
 onMounted(() => {
@@ -200,9 +214,9 @@ onMounted(() => {
   id ? getData(id) : null
 })
 // 获取接口数据
-const getData = async (val) => {
+const getData = async (val: any) => {
   await serviceItemById(val).then((res) => {
-    if (res.code == 200) {
+    if (res.code === 200) {
       formData.value.serveTypeId = res.data.serveTypeId
       formData.value.img = [
         {
@@ -284,7 +298,7 @@ const getServiceTypeSimpleList = async () => {
     activeStatus: 2
   })
     .then((res) => {
-      if (res.code == 200) {
+      if (res.code === 200) {
         typeSelect.value = res.data.map((item) => {
           return {
             label: item.name,
@@ -466,34 +480,43 @@ const rules = ref({
 <style lang="less" scoped>
 .contentBox {
   padding: 81px 105px 101px;
+
   .bodybox {
     display: flex;
+
     .topBox {
       width: 100%;
       display: flex;
+
       .leftBox {
         width: 48%;
         height: 100%;
         background-color: #fff;
         margin-right: 100px;
+
         .upbutton {
           margin-top: 24px;
         }
       }
+
       .rightBox {
         width: 48%;
         height: 100%;
         background-color: #fff;
+
         :deep(.t-button .t-button__text) {
           color: var(--color-bk2);
         }
+
         .unit {
           margin-bottom: 110px;
         }
       }
     }
+
     .bottomBox {
       margin-top: 24px;
+
       .description {
         :deep(.t-textarea__inner) {
           height: 147px;
@@ -501,39 +524,48 @@ const rules = ref({
       }
     }
   }
+
   .footBox {
     margin-top: 30px;
     display: flex;
     justify-content: center;
   }
 }
+
 .t-form {
   width: 100%;
 }
+
 .updateInfo {
   width: 60px;
   margin-right: 16px;
 }
+
 // 提示文字
 :deep(.t-upload) {
   .t-upload__tips {
     color: var(--color-bk4);
   }
 }
+
 :deep(.t-form-item__description) {
   margin-bottom: 24px;
 }
+
 :deep(.t-input-number.t-is-controls-right) {
   width: auto;
+
   .t-input-number__decrease,
   .t-input-number__increase {
     opacity: 1;
     visibility: inherit;
   }
 }
+
 :deep(.t-upload) {
   margin-top: 6.5px;
 }
+
 :deep(.t-upload__tips) {
   margin-top: 10.5px;
 }

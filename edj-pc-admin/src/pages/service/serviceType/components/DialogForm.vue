@@ -28,30 +28,31 @@
         </t-form-item>
         <t-form-item label="排序：" name="sortNum">
           <t-input-number
+            v-model="formData.sortNum"
             theme="column"
             :min="1"
             class="wt-400"
             placeholder="请输入数字"
-            v-model="formData.sortNum"
           ></t-input-number>
         </t-form-item>
         <t-form-item label="服务类型图标：" name="serveTypeIcon">
           <t-upload
             ref="uploadRef1"
+            v-model="formData.serveTypeIcon"
             action="/api/publics/storage/upload"
             :is-batch-upload="true"
-            v-model="formData.serveTypeIcon"
             :tips="`请上传png格式图片，&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  尺寸：126*126px，在400k以内`"
             theme="image"
             accept="image/*"
-            :sizeLimit="10240"
+            :size-limit="10240"
             class="wt-400"
             :headers="{
-              Authorization: token
+              AuthorizationAccessToken: accessToken,
+              AuthorizationRefreshToken: refreshToken
             }"
+            :allow-upload-duplicate-file="true"
             @validate="onValidate"
             @fail="handleFail"
-            :allow-upload-duplicate-file="true"
             @success="(e) => handleSuccess(e, 1)"
           >
           </t-upload>
@@ -59,21 +60,22 @@
         <t-form-item label="服务类型图片：" name="img">
           <t-upload
             ref="uploadRef2"
-            action="/api/publics/storage/upload"
             v-model="formData.img"
+            action="/api/publics/storage/upload"
             :is-batch-upload="true"
             class="wt-400"
             :headers="{
-              Authorization: token
+              AuthorizationAccessToken: accessToken,
+              AuthorizationRefreshToken: refreshToken
             }"
-            :sizeLimit="10240"
+            :size-limit="10240"
             :tips="`请上传png格式图片，&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  尺寸：532*200px，在800k以内`"
             theme="image"
             accept="image/*"
+            :allow-upload-duplicate-file="true"
             @success="(e) => handleSuccess(e, 2)"
             @validate="onValidate"
             @fail="handleFail"
-            :allow-upload-duplicate-file="true"
           >
           </t-upload>
         </t-form-item>
@@ -92,9 +94,13 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { ValidateResultContext } from 'tdesign-vue-next'
+import { ValidateResultContext, MessagePlugin } from 'tdesign-vue-next'
+
 import { validateNum, validateText5 } from '@/utils/validate'
-import { MessagePlugin } from 'tdesign-vue-next'
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
 
 const props = defineProps({
   visible: {
@@ -149,12 +155,15 @@ const onClickCloseBtn = () => {
   formVisible.value = false
   emit('handleClose')
 }
-const token = localStorage.getItem('xzb')
+
+const accessToken = localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN)
+const refreshToken = localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN)
+
 // 监听器，监听父级传递的visible值，控制弹窗显示隐藏
 watch(
   () => props.visible,
   () => {
-    let data = JSON.parse(JSON.stringify(props.data))
+    const data = JSON.parse(JSON.stringify(props.data))
     if (data.img) {
       formData.value.name = data.name
       formData.value.sortNum = data.sortNum
@@ -270,17 +279,17 @@ defineExpose({
 .wt-400 {
   width: 400px;
 }
-:deep(.t-upload){
+:deep(.t-upload) {
   display: flex;
   align-items: center;
-  .t-upload__tips{
+  .t-upload__tips {
     margin-left: 30px;
     width: 227px;
     height: 40px;
     margin-top: 0;
   }
 }
-:deep(.t-upload__card-name){
+:deep(.t-upload__card-name) {
   width: 120px;
 }
 :deep(.t-input-number.t-is-controls-right) {

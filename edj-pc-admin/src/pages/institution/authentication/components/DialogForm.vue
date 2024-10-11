@@ -44,8 +44,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
-import { validateText } from '@/utils/validate'
+import { ValidateResultContext } from 'tdesign-vue-next'
 import { REJECT_REASON } from '@/constants'
 
 const props = defineProps({
@@ -80,7 +79,6 @@ const props = defineProps({
 // 重置表单
 const resetType = ref('empty')
 const formLabel = ref('退款原因：')
-const token = localStorage.getItem('xzb')
 // 表单
 const form = ref()
 // 触发父级事件

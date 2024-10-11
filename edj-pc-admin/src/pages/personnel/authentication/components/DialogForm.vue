@@ -20,13 +20,13 @@
       >
         <t-form-item :label="label" name="selectId">
           <t-select
-            placeholder="请选择"
             v-model="formData.selectId"
+            placeholder="请选择"
             :options="REJECT_REASON"
             :scroll="{ type: 'virtual' }"
             class="wt-400"
-            @change="(e) => onChange(e)"
             :popup-props="{ bufferSize: '100' }"
+            @change="(e) => onChange(e)"
           />
         </t-form-item>
         <t-form-item style="float: right">
@@ -44,8 +44,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
-import { validateText } from '@/utils/validate'
+import { ValidateResultContext } from 'tdesign-vue-next'
 import { REJECT_REASON } from '@/constants'
 
 const props = defineProps({
@@ -75,22 +74,25 @@ const props = defineProps({
     default: () => {
       return []
     }
-  },
+  }
 })
 // 重置表单
 const resetType = ref('empty')
 const formLabel = ref('退款原因：')
-const token = localStorage.getItem('xzb')
 // 表单
 const form = ref()
 // 触发父级事件
-const emit: Function = defineEmits(['handleClose', 'fetchData','handleConfirmCancel'])
+const emit: Function = defineEmits([
+  'handleClose',
+  'fetchData',
+  'handleConfirmCancel'
+])
 // 弹窗
 const formVisible = ref(false)
 // 表单数据
 const formData = ref({
   selectName: null,
-  selectId: null,
+  selectId: null
 })
 // 弹窗标题
 const title = ref()
@@ -109,7 +111,9 @@ const onClickCloseBtn = () => {
   emit('handleClose')
 }
 const onChange = (e) => {
-  formData.value.selectName = REJECT_REASON.find((item) => item.value === e).label
+  formData.value.selectName = REJECT_REASON.find(
+    (item) => item.value === e
+  ).label
 }
 // 监听器，监听父级传递的visible值，控制弹窗显示隐藏
 watch(
