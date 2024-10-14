@@ -1,4 +1,5 @@
 import { formatDateTimeToDateTimeString } from '@/utils/date'
+
 export const COLUMNS = [
   {
     title: '服务编号',
@@ -10,7 +11,7 @@ export const COLUMNS = [
   { title: '服务名称', width: 150, minWidth: '150px', colKey: 'name' },
   {
     title: '服务图标',
-    colKey: 'serveTypeIcon',
+    colKey: 'icon',
     width: 125,
     minWidth: '125px',
     cell: { col: 'status' }
@@ -63,7 +64,7 @@ export const COLUMNS = [
         {
           label: '启用',
           value: 2
-        },
+        }
       ],
       showConfirmAndReset: true
     },
@@ -77,8 +78,8 @@ export const COLUMNS = [
         },
         1: {
           label: '禁用'
-        },
-      }  
+        }
+      }
       // const status = row.activeStatus === 2 ? '1' : 0
       return h(
         'span',
@@ -95,7 +96,8 @@ export const COLUMNS = [
     colKey: 'updateTime',
     sorter: true,
     sortType: 'all',
-    cell:(h, { row }) => h('span', formatDateTimeToDateTimeString(new Date(row.updateTime)))
+    cell: (h, { row }) =>
+      h('span', formatDateTimeToDateTimeString(new Date(row.updateTime)))
   },
   {
     align: 'left',

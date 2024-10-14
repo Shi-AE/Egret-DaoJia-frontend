@@ -35,11 +35,11 @@
             placeholder="请输入数字"
           ></t-input-number>
         </t-form-item>
-        <t-form-item label="服务类型图标：" name="serveTypeIcon">
+        <t-form-item label="服务类型图标：" name="icon">
           <t-upload
             ref="uploadRef1"
-            v-model="formData.serveTypeIcon"
-            action="/api/publics/storage/upload"
+            v-model="formData.icon"
+            action="/api/edj-publics/storage/upload"
             :is-batch-upload="true"
             :tips="`请上传png格式图片，&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  尺寸：126*126px，在400k以内`"
             theme="image"
@@ -61,7 +61,7 @@
           <t-upload
             ref="uploadRef2"
             v-model="formData.img"
-            action="/api/publics/storage/upload"
+            action="/api/edj-publics/storage/upload"
             :is-batch-upload="true"
             class="wt-400"
             :headers="{
@@ -94,7 +94,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { ValidateResultContext, MessagePlugin } from 'tdesign-vue-next'
+import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
 
 import { validateNum, validateText5 } from '@/utils/validate'
 import {
@@ -123,7 +123,7 @@ const resetType = ref('empty')
 // 表单
 const form = ref()
 // 触发父级事件
-const emit: Function = defineEmits(['handleClose', 'fetchData'])
+const emit: Function = defineEmits(['handleClose', 'fetchData', 'handleSubmit'])
 // 弹窗
 const formVisible = ref(false)
 // 表单数据
@@ -131,7 +131,7 @@ const formData = ref<any>({
   name: '',
   sortNum: '',
   img: [],
-  serveTypeIcon: []
+  icon: []
 })
 // 弹窗标题
 const title = ref()
@@ -142,8 +142,12 @@ const onSubmit = (result: ValidateResultContext<FormData>) => {
   }
 }
 const handleSuccess = (params, id) => {
+  if (params.response.code !== 200) {
+    MessagePlugin.warning('上传失败')
+    return
+  }
   if (id === 1) {
-    formData.value.serveTypeIcon[0].url = params.response.data.url
+    formData.value.icon[0].url = params.response.data.url
   } else {
     formData.value.img[0].url = params.response.data.url
   }
@@ -173,9 +177,9 @@ watch(
           url: data.img
         }
       ]
-      formData.value.serveTypeIcon = [
+      formData.value.icon = [
         {
-          url: data.serveTypeIcon
+          url: data.icon
         }
       ]
     }
@@ -185,7 +189,7 @@ watch(
 )
 
 // 上传图片失败
-const handleFail = (file) => {
+const handleFail = () => {
   MessagePlugin.error(`文件上传失败`)
 }
 // 超过大小或者文件格式错误报错提示
@@ -248,7 +252,7 @@ const rules = {
       trigger: 'blur'
     }
   ],
-  serveTypeIcon: [
+  icon: [
     {
       required: true,
       message: '请上传图片',
@@ -272,16 +276,20 @@ defineExpose({
   z-index: 100;
   color: var(--color-bk4);
 }
+
 :deep(.t-textarea__limit) {
   color: var(--color-bk4);
   right: 10px;
 }
+
 .wt-400 {
   width: 400px;
 }
+
 :deep(.t-upload) {
   display: flex;
   align-items: center;
+
   .t-upload__tips {
     margin-left: 30px;
     width: 227px;
@@ -289,9 +297,11 @@ defineExpose({
     margin-top: 0;
   }
 }
+
 :deep(.t-upload__card-name) {
   width: 120px;
 }
+
 :deep(.t-input-number.t-is-controls-right) {
   .t-input-number__decrease,
   .t-input-number__increase {

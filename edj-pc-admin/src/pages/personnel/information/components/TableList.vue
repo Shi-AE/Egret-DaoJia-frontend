@@ -14,7 +14,7 @@
           "
           :disable-data-page="pagination.total <= 10"
           :loading="dataLoading"
-          showSizeChanger
+          show-size-changer
           table-layout="fixed"
           :multiple-sort="true"
           table-content-width="100%"
@@ -25,7 +25,7 @@
             <NoData></NoData>
           </template>
           <!-- 服务类型图标 -->
-          <template #serveTypeIcon="{ row }">
+          <template #icon="{ row }">
             <div class="headPortrait">
               <img
                 :src="row.serveItemIcon"
@@ -54,7 +54,7 @@
           <!-- end -->
           <!-- 服务前照片 -->
           <template #serveBeforeImgs="{ row }">
-            <div class="headPortrait" v-if="row.serveBeforeImgs">
+            <div v-if="row.serveBeforeImgs" class="headPortrait">
               <t-image-viewer :images="row.serveBeforeImgs">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -78,7 +78,7 @@
           <!-- end -->
           <!-- 服务后照片 -->
           <template #serveAfterImgs="{ row }">
-            <div class="headPortrait" v-if="row.serveAfterImgs">
+            <div v-if="row.serveAfterImgs" class="headPortrait">
               <t-image-viewer :images="row.serveAfterImgs">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -191,11 +191,11 @@ const dataLoading = ref(true)
 
 // 点击跳转到详情页
 const handleClickEdit = (val) => {
-  router.push('/personnel/information/informationDetail/' + val.id)
+  router.push(`/personnel/information/informationDetail/${val.id}`)
 }
 // 点击冻结/解冻
 const handleClickFreeze = (row, flag) => {
-    emit('handleClickFreeze', row, flag)
+  emit('handleClickFreeze', row, flag)
 }
 // 点击翻页
 const onPageChange = (val) => {
@@ -208,7 +208,7 @@ const onPageChange = (val) => {
 }
 // 点击查看订单
 const handleClickOrderDetail = (row) => {
-  router.push('/order/orderList/orderDetail/' + row.id)
+  router.push(`/order/orderList/orderDetail/${row.id}`)
 }
 </script>
 <style lang="less" scoped src="../../index.less"></style>

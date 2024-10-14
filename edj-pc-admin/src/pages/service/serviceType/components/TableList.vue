@@ -19,7 +19,7 @@
           :selected-row-keys="selectedRowKeys"
           :loading="dataLoading"
           :sort="sort"
-          showSizeChanger
+          show-size-changer
           :filter-value="filterValue"
           :hide-sort-tips="true"
           :show-sort-column-bg-color="true"
@@ -35,10 +35,10 @@
             <NoData></NoData>
           </template>
           <!-- 服务类型图标 -->
-          <template #serveTypeIcon="{ row }">
+          <template #icon="{ row }">
             <div class="headPortrait">
               <img
-                :src="row.serveTypeIcon"
+                :src="row.icon"
                 alt=""
                 class="tdesign-demo-image-viewer__ui-image--img"
               />
@@ -87,14 +87,17 @@
               >删除</a
             >
             <a
-              :class="
-                  'font-bt btn-split-right line'
-              "
+              :class="'font-bt btn-split-right line'"
               @click="handleViewServices(row)"
               >查看服务项</a
             >
-            <a class="font-bt line"  :class="row.activeStatus === 2 ? 'text-forbidden' : ''" @click="handleEdit(row)">编辑</a>
-            <a class="font-bt btn-split-left"  @click="handleDisable(row)">{{
+            <a
+              class="font-bt line"
+              :class="row.activeStatus === 2 ? 'text-forbidden' : ''"
+              @click="handleEdit(row)"
+              >编辑</a
+            >
+            <a class="font-bt btn-split-left" @click="handleDisable(row)">{{
               row.activeStatus === 2 ? '禁用' : '启用'
             }}</a>
           </template>

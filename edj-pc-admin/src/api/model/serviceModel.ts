@@ -12,7 +12,7 @@ export interface serviceTypeStatus {
 }
 export interface serviceTypeAdd {
   img: string
-  serveTypeIcon: string
+  icon: string
   name: string
   sortNum: number
 }

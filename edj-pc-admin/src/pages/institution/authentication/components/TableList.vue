@@ -20,13 +20,13 @@
           :selected-row-keys="selectedRowKeys"
           :loading="dataLoading"
           :sort="sort"
-          showSizeChanger
+          show-size-changer
           :filter-value="filterValue"
           :hide-sort-tips="true"
           :show-sort-column-bg-color="true"
           table-layout="fixed"
           :multiple-sort="true"
-          :maxHeight="height"
+          :max-height="height"
           :scroll="scroll"
           table-content-width="100%"
           @page-change="onPageChange"
@@ -44,8 +44,8 @@
             </div>
           </template>
           <!-- 服务类型图标 -->
-          <template #serveTypeIcon="{ row }">
-            <div class="headPortrait" v-if="row.serveItemIcon">
+          <template #icon="{ row }">
+            <div v-if="row.serveItemIcon" class="headPortrait">
               <img
                 :src="row.serveItemIcon"
                 alt=""
@@ -57,7 +57,7 @@
           <!-- end -->
           <!-- 服务类型图片 -->
           <template #businessLicense="{ row }">
-            <div class="headPortrait" v-if="row.businessLicense">
+            <div v-if="row.businessLicense" class="headPortrait">
               <t-image-viewer :images="[row.businessLicense]">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -109,7 +109,7 @@
           <!-- 在表格中添加自定义列 -->
           <template #updateTime="{ row }">
             <div class="updateTime">
-              <span>{{ row.updateTime ? row.updateTime :'-' }}</span>
+              <span>{{ row.updateTime ? row.updateTime : '-' }}</span>
             </div>
           </template>
           <!-- end -->
@@ -189,7 +189,10 @@ watch(props, () => {
     pagination.value = props.pagination
     pagination.value.current =
       props.pagination.defaultCurrent == 1 ? 1 : props.pagination.defaultCurrent
-      pagination.value.pageSize = props.pagination.defaultPageSize == 1 ? 1 : props.pagination.defaultPageSize
+    pagination.value.pageSize =
+      props.pagination.defaultPageSize == 1
+        ? 1
+        : props.pagination.defaultPageSize
     dataLoading.value = false
     tableCOLUMNS.value = []
     height.value = 'auto'

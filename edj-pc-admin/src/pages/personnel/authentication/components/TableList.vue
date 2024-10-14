@@ -19,13 +19,13 @@
           :disable-data-page="pagination && pagination.total <= 10"
           :loading="dataLoading"
           :sort="sort"
-          showSizeChanger
+          show-size-changer
           :filter-value="filterValue"
           :hide-sort-tips="true"
           :show-sort-column-bg-color="true"
           table-layout="fixed"
           :multiple-sort="true"
-          :maxHeight="height"
+          :max-height="height"
           :scroll="scroll"
           table-content-width="100%"
           @page-change="onPageChange"
@@ -42,7 +42,7 @@
             </div>
           </template>
           <!-- 服务类型图标 -->
-          <template #serveTypeIcon="{ row }">
+          <template #icon="{ row }">
             <div class="headPortrait">
               <img
                 :src="row.serveItemIcon"
@@ -54,7 +54,7 @@
           <!-- end -->
           <!-- 服务类型图片 -->
           <template #img="{ row }">
-            <div class="headPortrait" v-if="row.img">
+            <div v-if="row.img" class="headPortrait">
               <t-image-viewer :images="[row.img]">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -78,7 +78,7 @@
           <!-- end -->
           <!-- 身份证正面图片 -->
           <template #frontImg="{ row }">
-            <div class="headPortrait" v-if="row.frontImg">
+            <div v-if="row.frontImg" class="headPortrait">
               <t-image-viewer :images="[row.frontImg]">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -102,7 +102,7 @@
           <!-- end -->
           <!-- 身份证反面图片 -->
           <template #backImg="{ row }">
-            <div class="headPortrait" v-if="row.backImg">
+            <div v-if="row.backImg" class="headPortrait">
               <t-image-viewer :images="[row.backImg]">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -126,7 +126,7 @@
           <!-- end -->
           <!-- 证明资料图片 -->
           <template #certificationMaterial="{ row }">
-            <div class="headPortrait" v-if="row.certificationMaterial">
+            <div v-if="row.certificationMaterial" class="headPortrait">
               <t-image-viewer :images="[row.certificationMaterial]">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">

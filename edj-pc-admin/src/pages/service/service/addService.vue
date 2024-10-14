@@ -200,7 +200,7 @@ const previewVisible = ref(false) // 预览弹窗
 const { id } = route.params
 const form = ref(null) // 表单
 const typeSelect = ref([]) // 服务类型下拉框数据
-const actions = '/api/publics/storage/upload' // 上传的地址
+const actions = '/api/edj-publics/storage/upload' // 上传的地址
 // 显示的图片
 // 默认图片
 const accessToken = localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN)

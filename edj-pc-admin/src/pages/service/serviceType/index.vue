@@ -55,6 +55,7 @@
 import { ref, onMounted, watchEffect, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute } from 'vue-router'
+import { forEach } from 'lodash'
 import {
   getServiceTypeList,
   serviceTypeActiveStatus,
@@ -67,7 +68,6 @@ import Confirm from '@/components/Confirm/index.vue' // 确认弹层
 import DialogForm from './components/DialogForm.vue' // 新增,编辑弹窗.
 import tableList from './components/TableList.vue' // 表格
 import Delete from '@/components/Delete/index.vue' // 删除弹层
-import { forEach } from 'lodash'
 
 const visible = ref(false) // 新增，编辑弹窗
 const listData = ref([]) // 列表数据
@@ -111,7 +111,7 @@ const formData = ref({
   img: '',
   name: '',
   sortNum: '',
-  serveTypeIcon: ''
+  icon: ''
 }) // 表单内容
 // 生命周期
 onMounted(() => {
@@ -148,7 +148,7 @@ const handleClose = () => {
   formData.value.img = ''
   formData.value.name = ''
   formData.value.sortNum = ''
-  formData.value.serveTypeIcon = ''
+  formData.value.icon = ''
 }
 // 点击新建
 const handleBuild = () => {
@@ -164,7 +164,7 @@ const handleEdit = (val) => {
   formData.value.img = val.img
   formData.value.name = val.name
   formData.value.sortNum = val.sortNum
-  formData.value.serveTypeIcon = val.serveTypeIcon
+  formData.value.icon = val.icon
   editId.value = val.id
   // 显示新建弹窗
   visible.value = true
@@ -232,13 +232,13 @@ const handleConfirm = async () => {
   }
 }
 // 新增，编辑弹窗提交
-const handleSubmit = async (val) => {
+const handleSubmit = async (val: any) => {
   // 提交的数据
   const data = {
     img: val.img[0].url,
     name: val.name,
     sortNum: val.sortNum,
-    serveTypeIcon: val.serveTypeIcon[0].url
+    icon: val.icon[0].url
   }
   if (edit.value) {
     await serviceTypeEdit(data, editId.value).then((res) => {
@@ -271,12 +271,10 @@ const handleSortChange = (val) => {
       } else {
         requestData.value.isAsc1 = 'true'
       }
+    } else if (item.descending === true) {
+      requestData.value.isAsc2 = 'false'
     } else {
-      if (item.descending === true) {
-        requestData.value.isAsc2 = 'false'
-      } else {
-        requestData.value.isAsc2 = 'true'
-      }
+      requestData.value.isAsc2 = 'true'
     }
   })
   fetchData(requestData.value)

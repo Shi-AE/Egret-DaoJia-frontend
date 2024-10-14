@@ -19,7 +19,7 @@
           :selected-row-keys="selectedRowKeys"
           :loading="dataLoading"
           :sort="sort"
-          showSizeChanger
+          show-size-changer
           :filter-value="filterValue"
           :hide-sort-tips="true"
           :show-sort-column-bg-color="true"
@@ -35,7 +35,7 @@
             <NoData></NoData>
           </template>
           <!-- 服务项图标 -->
-          <template #serveTypeIcon="{ row }">
+          <template #icon="{ row }">
             <div class="headPortrait">
               <img
                 :src="row.serveItemIcon"
@@ -69,11 +69,18 @@
           </template>
           <!-- 描述 -->
           <template #description="{ row, rowIndex }">
-            <div class="description" :class="rowIndex < 3 ? 'shortDescription' : ''">
+            <div
+              class="description"
+              :class="rowIndex < 3 ? 'shortDescription' : ''"
+            >
               <span>{{ row.description }}</span>
-              <span v-if="row.description.length > 36 && row.description.length <= 200" class="hover">{{
-                row.description
-              }}</span>
+              <span
+                v-if="
+                  row.description.length > 36 && row.description.length <= 200
+                "
+                class="hover"
+                >{{ row.description }}</span
+              >
             </div>
           </template>
           <!-- end -->
@@ -144,8 +151,10 @@ const emit = defineEmits([
 watch(props, () => {
   data.value = props.listData
   pagination.value = props.pagination
-  pagination.value.current = props.pagination.defaultCurrent == 1 ? 1 : props.pagination.defaultCurrent
-  pagination.value.pageSize = props.pagination.defaultPageSize == 1 ? 1 : props.pagination.defaultPageSize
+  pagination.value.current =
+    props.pagination.defaultCurrent == 1 ? 1 : props.pagination.defaultCurrent
+  pagination.value.pageSize =
+    props.pagination.defaultPageSize == 1 ? 1 : props.pagination.defaultPageSize
   dataLoading.value = false
 })
 // 路由
@@ -193,7 +202,7 @@ const rehandleSelectChange = (val: number[]) => {
 }
 // 点击跳转到编辑页
 const handleClickEdit = (val) => {
-  router.push('/service/ServiceList/editService/' + val.id)
+  router.push(`/service/ServiceList/editService/${val.id}`)
 }
 
 // 打开上下架弹窗
@@ -225,7 +234,7 @@ const handleBuild = () => {
   :deep(.t-table td) {
     height: 64px !important;
   }
-  .min-h{
+  .min-h {
     min-height: 674px;
   }
 }

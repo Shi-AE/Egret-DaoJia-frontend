@@ -15,7 +15,7 @@
           :disable-data-page="pagination.total <= 10"
           :selected-row-keys="selectedRowKeys"
           :loading="dataLoading"
-          showSizeChanger
+          show-size-changer
           table-layout="fixed"
           :multiple-sort="true"
           table-content-width="100%"
@@ -27,7 +27,7 @@
             <NoData></NoData>
           </template>
           <!-- 服务类型图标 -->
-          <template #serveTypeIcon="{ row }">
+          <template #icon="{ row }">
             <div class="headPortrait">
               <img
                 :src="row.serveItemIcon"
@@ -39,7 +39,7 @@
           <!-- end -->
           <!-- 服务类型图片 -->
           <template #img="{ row }">
-            <div class="headPortrait" v-if="row.img">
+            <div v-if="row.img" class="headPortrait">
               <t-image-viewer :images="[row.img]">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -63,7 +63,7 @@
           <!-- end -->
           <!-- 证明资料 -->
           <template #certificationImgs="{ row }">
-            <div class="headPortrait" v-if="row.certificationImgs?.length > 0">
+            <div v-if="row.certificationImgs?.length > 0" class="headPortrait">
               <t-image-viewer :images="row.certificationImgs">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -104,7 +104,7 @@
           <!-- end -->
           <!-- 服务前照片 -->
           <template #serveBeforeImgs="{ row }">
-            <div class="headPortrait" v-if="row.serveBeforeImgs?.length > 0">
+            <div v-if="row.serveBeforeImgs?.length > 0" class="headPortrait">
               <t-image-viewer :images="row.serveBeforeImgs">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -128,7 +128,7 @@
           <!-- end -->
           <!-- 服务后照片 -->
           <template #serveAfterImgs="{ row }">
-            <div class="headPortrait" v-if="row.serveAfterImgs?.length > 0">
+            <div v-if="row.serveAfterImgs?.length > 0" class="headPortrait">
               <t-image-viewer :images="row.serveAfterImgs">
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
@@ -271,14 +271,13 @@ const rehandleSelectChange = (val: number[]) => {
 }
 // 点击跳转到详情页
 const handleClickEdit = (val) => {
-  router.push('/institution/information/informationDetail/' + val.id)
+  router.push(`/institution/information/informationDetail/${val.id}`)
 }
 //
 // 点击删除
 const handleClickFreeze = (row, flag) => {
   if (flag === 0) {
     emit('handleClickFreeze', row)
-    return
   } else {
     emit('handleClickThaw', row)
   }
@@ -294,7 +293,7 @@ const onPageChange = (val) => {
 }
 // 进入订单详情
 const handleClickOrderDetail = (row) => {
-  router.push('/order/orderList/orderDetail/' + row.id)
+  router.push(`/order/orderList/orderDetail/${row.id}`)
 }
 </script>
 <style lang="less" scoped src="../../index.less"></style>
