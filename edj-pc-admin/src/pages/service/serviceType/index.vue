@@ -52,17 +52,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watchEffect, watch } from 'vue'
+import { onMounted, ref, watch, watchEffect } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute } from 'vue-router'
 import { forEach } from 'lodash'
 import {
   getServiceTypeList,
   serviceTypeActiveStatus,
-  serviceTypeInactiveStatus,
   serviceTypeAdd,
+  serviceTypeDelete,
   serviceTypeEdit,
-  serviceTypeDelete
+  serviceTypeInactiveStatus
 } from '@/api/service'
 import Confirm from '@/components/Confirm/index.vue' // 确认弹层
 import DialogForm from './components/DialogForm.vue' // 新增,编辑弹窗.
@@ -93,10 +93,12 @@ const pagination = ref({
 })
 // 请求数据
 const requestData = ref({
-  isAsc1: 'true',
-  isAsc2: 'false',
-  orderBy1: 'sortNum',
-  orderBy2: 'updateTime',
+  orderByList: [
+    {
+      isAsc: true,
+      orderBy: 'sortNum'
+    }
+  ],
   pageNo: 1,
   pageSize: 10
 })

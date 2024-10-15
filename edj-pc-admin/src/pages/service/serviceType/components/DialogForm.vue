@@ -309,4 +309,7 @@ defineExpose({
     visibility: inherit;
   }
 }
+:deep(.t-dialog__position.t-dialog--top) {
+  padding-top: 10vh;
+}
 </style>

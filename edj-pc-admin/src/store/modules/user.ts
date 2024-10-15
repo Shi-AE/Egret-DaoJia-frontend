@@ -14,9 +14,9 @@ export const useUserStore = defineStore('user', {
   // 定义用户 Store
   state: () => ({
     authorizationAccessToken:
-      localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN) || '111',
+      localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN) || '',
     authorizationRefreshToken:
-      localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN) || '222',
+      localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN) || '',
     userInfo: { ...InitUserInfo }
   }),
   getters: {

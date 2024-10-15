@@ -57,10 +57,7 @@ const transform: AxiosTransform = {
     if (res && !code) {
       return res
     }
-    if (code === 604) {
-      return res
-    }
-    if (code >= 400 && code < 500) {
+    if (code >= 400 && code <= 604) {
       return res
     }
     // throw new Error(`请求接口错误, 错误码: ${code}`)
@@ -160,13 +157,13 @@ const transform: AxiosTransform = {
 
   // 响应拦截器处理
   responseInterceptors: (res) => {
-    const authorizationAccessToken = res.headers[AUTHORIZATION_ACCESS_TOKEN]
-    const authorizationRefreshToken = res.headers[AUTHORIZATION_REFRESH_TOKEN]
+    const authorizationAccessToken =
+      res.headers[AUTHORIZATION_ACCESS_TOKEN.toLowerCase()]
+    const authorizationRefreshToken =
+      res.headers[AUTHORIZATION_REFRESH_TOKEN.toLowerCase()]
+
     if (authorizationRefreshToken && authorizationAccessToken) {
-      localStorage.setItem(
-        AUTHORIZATION_ACCESS_TOKEN,
-        authorizationRefreshToken
-      )
+      localStorage.setItem(AUTHORIZATION_ACCESS_TOKEN, authorizationAccessToken)
       localStorage.setItem(
         AUTHORIZATION_REFRESH_TOKEN,
         authorizationRefreshToken

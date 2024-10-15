@@ -4,7 +4,7 @@ export const COLUMNS = [
   {
     title: '服务类型编号',
     align: 'left',
-    width: 200,
+    width: 300,
     minWidth: '200px',
     colKey: 'code'
   },
