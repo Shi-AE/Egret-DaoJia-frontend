@@ -5,6 +5,7 @@ import type {
   serviceItemTypeAdd,
   serviceListType,
   serviceTypeAdd,
+  serviceTypeEdit,
   serviceTypeItemList,
   serviceTypeResult
 } from '@/api/model/serviceModel'
@@ -20,14 +21,14 @@ export function getServiceTypeList(value: serviceTypeResult) {
 // 服务类型启用
 export function serviceTypeActiveStatus(id) {
   return request.put({
-    url: `/foundations/operation/serve-type/activate/${id}`
+    url: `/edj-foundations/operation/server/type/activate/${id}`
   })
 }
 
 // 服务类型禁用
 export function serviceTypeInactiveStatus(id) {
   return request.put({
-    url: `/foundations/operation/serve-type/deactivate/${id}`
+    url: `/edj-foundations/operation/server/type/deactivate/${id}`
   })
 }
 
@@ -40,9 +41,9 @@ export function serviceTypeAdd(value: serviceTypeAdd) {
 }
 
 // 服务类型编辑
-export function serviceTypeEdit(value: serviceTypeAdd, id: string) {
+export function serviceTypeEdit(value: serviceTypeEdit) {
   return request.put({
-    url: `/foundations/operation/serve-type/${id}`,
+    url: `/edj-foundations/operation/server/type`,
     data: value
   })
 }
@@ -50,7 +51,7 @@ export function serviceTypeEdit(value: serviceTypeAdd, id: string) {
 // 服务类型删除
 export function serviceTypeDelete(id: string) {
   return request.delete({
-    url: `/foundations/operation/serve-type/${id}`
+    url: `/edj-foundations/operation/server/type/${id}`
   })
 }
 

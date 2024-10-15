@@ -16,6 +16,13 @@ export interface serviceTypeAdd {
   name: string
   sortNum: number
 }
+export interface serviceTypeEdit {
+  id: string
+  img: string
+  icon: string
+  name: string
+  sortNum: number
+}
 export interface serviceTypeItemList {
   isAsc1: string
   isAsc2: string

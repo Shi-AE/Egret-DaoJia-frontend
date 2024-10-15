@@ -237,13 +237,14 @@ const handleConfirm = async () => {
 const handleSubmit = async (val: any) => {
   // 提交的数据
   const data = {
+    id: editId.value,
     img: val.img[0].url,
     name: val.name,
     sortNum: val.sortNum,
     icon: val.icon[0].url
   }
   if (edit.value) {
-    await serviceTypeEdit(data, editId.value).then((res) => {
+    await serviceTypeEdit(data).then((res) => {
       if (res.data.code === 200) {
         MessagePlugin.success('编辑成功')
         fetchData(requestData.value)
