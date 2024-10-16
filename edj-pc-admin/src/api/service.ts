@@ -108,9 +108,9 @@ export function serviceItemById(id: string) {
 }
 
 // 服务项编辑
-export function serviceItemEdit(value: serviceItemTypeAdd, id) {
+export function serviceItemEdit(value: serviceItemTypeAdd) {
   return request.put({
-    url: `/foundations/operation/serve-item/${id}`,
+    url: `/edj-foundations/operation/serve/item`,
     data: value
   })
 }

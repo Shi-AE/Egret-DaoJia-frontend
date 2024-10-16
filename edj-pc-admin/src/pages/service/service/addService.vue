@@ -252,6 +252,7 @@ const getData = async (val: any) => {
 const onSubmit = async (result: any) => {
   if (result.validateResult === true) {
     const data = ref({
+      id,
       edjServeTypeId: formData.value.edjServeTypeId,
       img: formData.value.img[0].url,
       description: formData.value.description,
@@ -263,7 +264,7 @@ const onSubmit = async (result: any) => {
       sortNum: formData.value.sortNum
     })
     if (id) {
-      await serviceItemEdit(data.value, id)
+      await serviceItemEdit(data.value)
         .then((res) => {
           if (res.data.code === 200) {
             MessagePlugin.success('修改成功')
