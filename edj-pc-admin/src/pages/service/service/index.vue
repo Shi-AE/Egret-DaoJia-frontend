@@ -253,9 +253,6 @@ const onPageChange = (val) => {
   fetchData(requestData.value)
 }
 watchEffect(() => {
-  pagination.value.defaultCurrent = 1
-  pagination.value.current = 1
-  pagination.value.defaultPageSize = 10
   url.value = route.path
   if (route.path === '/service/ServiceList') {
     if (!initSearch.value && route.query.id) {
