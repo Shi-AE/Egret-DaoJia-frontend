@@ -4,8 +4,8 @@
   <div v-else class="base-up-wapper bgTable min-h">
     <!-- 搜索表单区域 -->
     <searchFormBox
-      :initSearch="initSearch"
-      :typeSelect="typeSelect"
+      :init-search="initSearch"
+      :type-select="typeSelect"
       @handleSearch="handleSearch"
       @handleReset="handleReset"
     ></searchFormBox>
@@ -46,6 +46,7 @@
 import { ref, watch, watchEffect } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute, useRouter } from 'vue-router'
+import { forEach } from 'lodash'
 import {
   serviceTypeSimpleList,
   serviceItemList,
@@ -53,7 +54,6 @@ import {
   serviceItemDeactivateStatus,
   serviceItemDelete
 } from '@/api/service'
-import { forEach } from 'lodash'
 import tableList from './components/TableList.vue' // 表格
 import Delete from '@/components/Delete/index.vue' // 删除弹层
 import Confirm from '@/components/Confirm/index.vue' // 确认弹层
@@ -82,28 +82,20 @@ const pagination = ref({
   defaultCurrent: 1, // 默认当前页
   current: 1
 })
+// 请求参数
 const requestData = ref({
-  isAsc1: true,
-  isAsc2: false,
-  orderBy1: 'sortNum',
-  orderBy2: 'updateTime',
+  orderByList: [
+    {
+      orderBy: 'sortNum',
+      isAsc: true
+    }
+  ],
   pageNo: 1,
   pageSize: 10,
   name: '',
   serveTypeId: '',
   activeStatus: null
-}) // 请求参数
-const resetData = ref({
-  isAsc1: true,
-  isAsc2: false,
-  orderBy1: 'sortNum',
-  orderBy2: 'updateTime',
-  pageNo: 1,
-  pageSize: 10,
-  name: '',
-  serveTypeId: '',
-  activeStatus: null
-}) 
+})
 // 上禁用数据
 const setupContractData = ref({
   id: '',
@@ -246,12 +238,10 @@ const handleSortChange = (val) => {
       } else {
         requestData.value.isAsc1 = true
       }
+    } else if (item.descending === true) {
+      requestData.value.isAsc2 = false
     } else {
-      if (item.descending === true) {
-        requestData.value.isAsc2 = false
-      } else {
-        requestData.value.isAsc2 = true
-      }
+      requestData.value.isAsc2 = true
     }
   })
   fetchData(requestData.value)
@@ -279,17 +269,17 @@ watchEffect(() => {
       fetchData(requestData.value)
     } else if (!initSearch.value) {
       getServiceTypeSimpleList()
-      fetchData(resetData.value)
+      fetchData(requestData.value)
     }
   } else {
-    fetchData(resetData.value)
+    fetchData(requestData.value)
   }
 })
 
 watch(
   () => route.query,
   () => {
-    if(first.value === false){
+    if (first.value === false) {
       fetchData(requestData.value)
     }
   }

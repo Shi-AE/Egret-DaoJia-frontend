@@ -13,7 +13,7 @@ import type {
 // 获取服务类型列表数据
 export function getServiceTypeList(value: serviceTypeResult) {
   return request.post({
-    url: '/edj-foundations/operation/server/type/page',
+    url: '/edj-foundations/operation/serve/type/page',
     data: value
   })
 }
@@ -21,21 +21,21 @@ export function getServiceTypeList(value: serviceTypeResult) {
 // 服务类型启用
 export function serviceTypeActiveStatus(id) {
   return request.put({
-    url: `/edj-foundations/operation/server/type/activate/${id}`
+    url: `/edj-foundations/operation/serve/type/activate/${id}`
   })
 }
 
 // 服务类型禁用
 export function serviceTypeInactiveStatus(id) {
   return request.put({
-    url: `/edj-foundations/operation/server/type/deactivate/${id}`
+    url: `/edj-foundations/operation/serve/type/deactivate/${id}`
   })
 }
 
 // 服务类型新增
 export function serviceTypeAdd(value: serviceTypeAdd) {
   return request.post({
-    url: '/edj-foundations/operation/server/type',
+    url: '/edj-foundations/operation/serve/type',
     data: value
   })
 }
@@ -43,7 +43,7 @@ export function serviceTypeAdd(value: serviceTypeAdd) {
 // 服务类型编辑
 export function serviceTypeEdit(value: serviceTypeEdit) {
   return request.put({
-    url: `/edj-foundations/operation/server/type`,
+    url: `/edj-foundations/operation/serve/type`,
     data: value
   })
 }
@@ -51,23 +51,23 @@ export function serviceTypeEdit(value: serviceTypeEdit) {
 // 服务类型删除
 export function serviceTypeDelete(id: string) {
   return request.delete({
-    url: `/edj-foundations/operation/server/type/${id}`
+    url: `/edj-foundations/operation/serve/type/${id}`
   })
 }
 
 // 服务类型简略列表，用于下拉框
 export function serviceTypeSimpleList(val?) {
   return request.get({
-    url: '/foundations/operation/serve-type/queryServeTypeListByActiveStatus',
+    url: '/edj-foundations/operation/serve/type/status',
     params: val
   })
 }
 
 // 分页查询服务项
 export function serviceItemList(value: serviceTypeItemList) {
-  return request.get({
-    url: '/foundations/operation/serve-item/page',
-    params: value
+  return request.post({
+    url: '/edj-foundations/operation/serve/item/page',
+    data: value
   })
 }
 
