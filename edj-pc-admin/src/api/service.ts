@@ -74,14 +74,14 @@ export function serviceItemList(value: serviceTypeItemList) {
 // 服务项启用
 export function serviceItemActivateStatus(id) {
   return request.put({
-    url: `/foundations/operation/serve-item/activate/${id}`
+    url: `/edj-foundations/operation/serve/item/activate/${id}`
   })
 }
 
 // 服务项禁用
 export function serviceItemDeactivateStatus(id) {
   return request.put({
-    url: `/foundations/operation/serve-item/deactivate/${id}`
+    url: `/edj-foundations/operation/serve/item/deactivate/${id}`
   })
 }
 
