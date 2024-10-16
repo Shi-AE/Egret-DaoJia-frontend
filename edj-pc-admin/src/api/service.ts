@@ -88,7 +88,7 @@ export function serviceItemDeactivateStatus(id) {
 // 服务项新增
 export function serviceItemAdd(value: serviceItemTypeAdd) {
   return request.post({
-    url: '/foundations/operation/serve-item',
+    url: '/edj-foundations/operation/serve/item',
     data: value
   })
 }
@@ -96,14 +96,14 @@ export function serviceItemAdd(value: serviceItemTypeAdd) {
 // 服务项删除
 export function serviceItemDelete(id: string) {
   return request.delete({
-    url: `/foundations/operation/serve-item/${id}`
+    url: `/edj-foundations/operation/serve/item/${id}`
   })
 }
 
 // 根据id查询服务项
 export function serviceItemById(id: string) {
   return request.get({
-    url: `/foundations/operation/serve-item/${id}`
+    url: `/edj-foundations/operation/serve/item/${id}`
   })
 }
 

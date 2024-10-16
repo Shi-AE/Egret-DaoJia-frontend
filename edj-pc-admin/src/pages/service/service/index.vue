@@ -93,7 +93,7 @@ const requestData = ref({
   pageNo: 1,
   pageSize: 10,
   name: '',
-  serveTypeId: '',
+  edjServeTypeId: '',
   activeStatus: null
 })
 // 上禁用数据
@@ -104,7 +104,7 @@ const setupContractData = ref({
 // 搜索功能
 const handleSearch = (val) => {
   requestData.value.name = val.name
-  requestData.value.serveTypeId = val.serveTypeId
+  requestData.value.edjServeTypeId = val.edjServeTypeId
   requestData.value.activeStatus = val.activeStatus
   requestData.value.pageNo = 1
   pagination.value.defaultCurrent = 1
@@ -261,7 +261,7 @@ watchEffect(() => {
     if (!initSearch.value && route.query.id) {
       getServiceTypeSimpleList()
       initSearch.value = route.query.id
-      requestData.value.serveTypeId = initSearch.value
+      requestData.value.edjServeTypeId = initSearch.value
       router.replace({
         path: route.path,
         query: {}

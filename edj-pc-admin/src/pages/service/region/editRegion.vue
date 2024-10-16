@@ -12,7 +12,7 @@
       <regionTableList
         :list-data="listData"
         :pagination="pagination"
-        :isActive="isActive"
+        :is-active="isActive"
         @handleClickSetHot="handleClickSetHot"
         @handleBuild="handleBuild"
         @handleClickDelete="handleClickDelete"
@@ -26,9 +26,9 @@
       <addServiceDialog
         ref="addService"
         :visible="visible"
-        :listData="listData"
-        :serviceTypeData="serviceTypeData"
-        :serviceItemData="serviceItemData"
+        :list-data="listData"
+        :service-type-data="serviceTypeData"
+        :service-item-data="serviceItemData"
         @handleClose="handleClose"
         @handleSubmit="handleSubmit"
         @handleServiceTypeChange="handleServiceTypeChange"
@@ -83,7 +83,7 @@ const confirmText = ref('此操作将永久下架这条信息，是否继续？'
 const confirmTitle = ref('确认设为热门') // 确认弹窗标题
 const listData = ref([]) // 列表数据
 const hotId = ref('') // 设为热门的id
-const flag = ref(0) //是否是热门
+const flag = ref(0) // 是否是热门
 const deleteId = ref('') // 删除的id
 const addService = ref(null) // 新增服务弹窗
 const route = useRoute()
@@ -112,7 +112,7 @@ const serviceItemRequestData = ref({
   pageNo: 1,
   pageSize: 1000,
   name: '',
-  serveTypeId: '',
+  edjServeTypeId: '',
   activeStatus: '2'
 })
 // 用于新建框的服务类型数据
@@ -160,7 +160,7 @@ const fetchServiceTypeData = async () => {
     .then((res) => {
       if (res.code === 200) {
         serviceTypeData.value = res.data
-        serviceItemRequestData.value.serveTypeId = res.data[0].id
+        serviceItemRequestData.value.edjServeTypeId = res.data[0].id
         fetchServiceItemData()
       } else {
         MessagePlugin.error(res.msg)
@@ -172,7 +172,7 @@ const fetchServiceTypeData = async () => {
 }
 // 切换服务类型
 const handleServiceTypeChange = (val) => {
-  serviceItemRequestData.value.serveTypeId = val
+  serviceItemRequestData.value.edjServeTypeId = val
   fetchServiceItemData()
 }
 // 关闭弹窗
@@ -180,7 +180,7 @@ const handleClose = () => {
   visible.value = false
   dialogDeleteVisible.value = false
   dialogConfirmVisible.value = false
-  serviceItemRequestData.value.serveTypeId = serviceTypeData.value[0].id
+  serviceItemRequestData.value.edjServeTypeId = serviceTypeData.value[0].id
 }
 // 添加服务
 const handleBuild = () => {
@@ -318,7 +318,7 @@ const handleEditPrice = async (val) => {
   const price = val.price < 0.01 ? 0.01 : val.price
   const data = {
     id: val.id,
-    price: price
+    price
   }
   await serviceEdit(data)
     .then((res) => {

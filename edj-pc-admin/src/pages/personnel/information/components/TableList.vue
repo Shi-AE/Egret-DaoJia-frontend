@@ -28,7 +28,7 @@
           <template #icon="{ row }">
             <div class="headPortrait">
               <img
-                :src="row.serveItemIcon"
+                :src="row.icon"
                 alt=""
                 class="tdesign-demo-image-viewer__ui-image--img"
               />

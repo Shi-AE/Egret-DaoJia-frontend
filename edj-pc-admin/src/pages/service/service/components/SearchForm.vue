@@ -15,9 +15,9 @@
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="服务类型：" name="serveTypeId">
+          <t-form-item label="服务类型：" name="edjServeTypeId">
             <t-select
-              v-model="formData.serveTypeId"
+              v-model="formData.edjServeTypeId"
               class="form-item-content"
               :options="typeSelectList"
               placeholder="请选择"
@@ -26,7 +26,7 @@
           </t-form-item>
         </t-col>
         <t-col>
-        <t-form-item label="状态：" name="status" :label-width="42">
+          <t-form-item label="状态：" name="status" :label-width="42">
             <t-select
               v-model="formData.activeStatus"
               class="form-item-content"
@@ -48,10 +48,11 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 import { SERVICE_STATUS } from '@/constants'
+
 const props = defineProps({
-  initSearch:{
+  initSearch: {
     type: String || Number,
-    default:0
+    default: 0
   },
   typeSelect: {
     type: Array<{
@@ -66,7 +67,7 @@ const props = defineProps({
 const typeSelectList = ref([])
 // 表单数据
 const formData = ref({
-  serveTypeId: null,
+  edjServeTypeId: null,
   name: '',
   activeStatus: null
 })
@@ -74,7 +75,7 @@ const formData = ref({
 const emit: Function = defineEmits(['handleSearch', 'handleReset'])
 // 表单数据
 const searchForm = {
-  serveTypeId: null,
+  edjServeTypeId: null,
   name: '',
   activeStatus: null
 }
@@ -88,9 +89,9 @@ const handleReset = () => {
 const handleSearch = () => {
   emit('handleSearch', formData.value)
 }
-watchEffect(()=>{
-  if(props.initSearch){
-    formData.value.serveTypeId = props.initSearch
+watchEffect(() => {
+  if (props.initSearch) {
+    formData.value.edjServeTypeId = props.initSearch
   }
   typeSelectList.value = props.typeSelect.map((item) => {
     return {
@@ -100,6 +101,5 @@ watchEffect(()=>{
   })
 })
 </script>
-
 
 <style lang="less" scoped src="../../index.less"></style>

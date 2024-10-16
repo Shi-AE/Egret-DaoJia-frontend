@@ -26,7 +26,7 @@
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="订单状态：" name="serveTypeId">
+          <t-form-item label="订单状态：" name="edjServeTypeId">
             <t-select
               v-model="formData.ordersStatus"
               class="form-item-content"
@@ -46,8 +46,8 @@
                 before: dateRange[0],
                 after: dateRange[1]
               }"
-              @pick="handleCellClick"
               clearable
+              @pick="handleCellClick"
             />
           </t-form-item>
         </t-col>
@@ -62,9 +62,9 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import { ORDER_STATUS } from '@/constants'
 import dayjs from 'dayjs'
 import { forEach } from 'lodash'
+import { ORDER_STATUS } from '@/constants'
 // 表单数据
 const formData = ref({
   ordersCode: '',

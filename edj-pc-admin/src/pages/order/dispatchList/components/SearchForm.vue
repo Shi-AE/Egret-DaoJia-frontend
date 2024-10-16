@@ -6,7 +6,7 @@
         <t-col>
           <t-form-item label="服务类型：" name="name">
             <t-select
-              v-model="formData.serveTypeId"
+              v-model="formData.edjServeTypeId"
               class="form-item-content"
               :options="typeSelectList"
               placeholder="请选择"
@@ -29,7 +29,7 @@
           <button class="bt-grey wt-60" @click="handleReset()">重置</button>
           <button class="bt wt-60" @click="handleSearch()">搜索</button>
         </t-col>
-        <t-col  class="citySelect">
+        <t-col class="citySelect">
           <t-form-item label="" name="name" label-width="0">
             <t-select
               v-model="formData.cityCode"
@@ -47,8 +47,8 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import { ORDER_STATUS } from '@/constants'
 import { forEach } from 'lodash'
+import { ORDER_STATUS } from '@/constants'
 
 const props = defineProps({
   typeSelect: {
@@ -75,7 +75,7 @@ const typeSelectList = ref([]) // 服务类型下拉框数据
 const citySelectList = ref([]) // 城市下拉框数据
 // 表单数据
 const formData = ref({
-  serveTypeId: '',
+  edjServeTypeId: '',
   contactsName: '',
   cityCode: ''
 })
@@ -83,7 +83,7 @@ const formData = ref({
 const emit: Function = defineEmits(['handleSearch', 'handleReset'])
 // 表单数据
 const searchForm = {
-  serveTypeId: '',
+  edjServeTypeId: '',
   contactsName: '',
   cityCode: ''
 }
@@ -116,9 +116,9 @@ watchEffect(() => {
 
 <style lang="less" scoped src="../../index.less"></style>
 <style lang="less" scoped>
-.formBox{
+.formBox {
   position: relative;
-  .citySelect{
+  .citySelect {
     position: absolute;
     right: 8px;
   }

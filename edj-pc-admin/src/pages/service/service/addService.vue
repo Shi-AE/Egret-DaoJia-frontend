@@ -39,10 +39,10 @@
                 :max="999"
               ></t-input-number>
             </t-form-item>
-            <t-form-item label="服务图标" name="serveItemIcon">
+            <t-form-item label="服务图标" name="icon">
               <t-upload
                 ref="uploadRef1"
-                v-model="formData.serveItemIcon"
+                v-model="formData.icon"
                 :action="actions"
                 :is-batch-upload="true"
                 tips="请上传png格式图片，尺寸：114px*114px，在200k以内"
@@ -62,9 +62,9 @@
             </t-form-item>
           </div>
           <div class="rightBox">
-            <t-form-item label="服务类型" name="serveTypeId">
+            <t-form-item label="服务类型" name="edjServeTypeId">
               <t-select
-                v-model="formData.serveTypeId"
+                v-model="formData.edjServeTypeId"
                 class="form-item-content"
                 :options="typeSelect"
                 placeholder="请选择"
@@ -184,12 +184,12 @@ const previewData = reactive({
   unit: 0
 }) // 预览数据
 const formData = ref({
-  serveTypeId: '',
+  edjServeTypeId: '',
   img: [],
   description: '',
   referencePrice: null,
   unit: '',
-  serveItemIcon: [],
+  icon: [],
   detailImg: [],
   name: '',
   sortNum: ''
@@ -217,7 +217,7 @@ onMounted(() => {
 const getData = async (val: any) => {
   await serviceItemById(val).then((res) => {
     if (res.code === 200) {
-      formData.value.serveTypeId = res.data.serveTypeId
+      formData.value.edjServeTypeId = res.data.edjServeTypeId
       formData.value.img = [
         {
           url: res.data.img
@@ -226,9 +226,9 @@ const getData = async (val: any) => {
       formData.value.description = res.data.description
       formData.value.referencePrice = res.data.referencePrice
       formData.value.unit = res.data.unit
-      formData.value.serveItemIcon = [
+      formData.value.icon = [
         {
-          url: res.data.serveItemIcon
+          url: res.data.icon
         }
       ]
       formData.value.detailImg = [
@@ -252,12 +252,12 @@ const getData = async (val: any) => {
 const onSubmit = async (result: any) => {
   if (result.validateResult === true) {
     const data = ref({
-      serveTypeId: formData.value.serveTypeId,
+      edjServeTypeId: formData.value.edjServeTypeId,
       img: formData.value.img[0].url,
       description: formData.value.description,
       referencePrice: formData.value.referencePrice,
       unit: formData.value.unit,
-      serveItemIcon: formData.value.serveItemIcon[0].url,
+      icon: formData.value.icon[0].url,
       detailImg: formData.value.detailImg[0].url,
       name: formData.value.name,
       sortNum: formData.value.sortNum
@@ -337,7 +337,7 @@ const handleBack = () => {
 // 图片上传成功
 const handleSuccess = (params, id) => {
   if (id === 1) {
-    formData.value.serveItemIcon[0].url = params.response.data.url
+    formData.value.icon[0].url = params.response.data.url
   } else if (id === 2) {
     formData.value.img[0].url = params.response.data.url
     previewData.img = params.response.data.url
@@ -446,14 +446,14 @@ const rules = ref({
       trigger: 'blur'
     }
   ],
-  serveItemIcon: [
+  icon: [
     {
       required: true,
       message: '请上传图片',
       trigger: 'blur'
     }
   ],
-  serveTypeId: [
+  edjServeTypeId: [
     {
       required: true,
       message: '请选择服务类型',

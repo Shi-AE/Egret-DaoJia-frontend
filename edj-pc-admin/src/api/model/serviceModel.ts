@@ -31,15 +31,15 @@ export interface serviceTypeItemList {
   pageNo: number
   pageSize: number
   name: string
-  serveTypeId: string
+  edjServeTypeId: string
 }
 export interface serviceItemTypeAdd {
-  serveTypeId: string
+  edjServeTypeId: string
   img: string
   description: string
   referencePrice: string
   unit: string
-  serveItemIcon: string
+  icon: string
   detailImg: string
   name: string
   sortNum: string

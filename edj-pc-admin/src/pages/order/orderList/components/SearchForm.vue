@@ -36,7 +36,7 @@
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="订单状态：" name="serveTypeId">
+          <t-form-item label="订单状态：" name="edjServeTypeId">
             <t-select
               v-model="formData.ordersStatus"
               class="form-item-content"
@@ -79,7 +79,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ORDER_STATUS,TRADE_STATUS , REFUND_STATUS} from '@/constants'
+import { ORDER_STATUS, TRADE_STATUS, REFUND_STATUS } from '@/constants'
 // 表单数据
 const formData = ref({
   id: '',

@@ -45,9 +45,9 @@
           </template>
           <!-- 服务类型图标 -->
           <template #icon="{ row }">
-            <div v-if="row.serveItemIcon" class="headPortrait">
+            <div v-if="row.icon" class="headPortrait">
               <img
-                :src="row.serveItemIcon"
+                :src="row.icon"
                 alt=""
                 class="tdesign-demo-image-viewer__ui-image--img"
               />
