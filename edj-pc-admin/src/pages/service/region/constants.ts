@@ -4,7 +4,7 @@ export const COLUMNS = [
     align: 'left',
     width: 200,
     minWidth: '70px',
-    colKey: 'cityCode'
+    colKey: 'edjCityId'
   },
   { title: '区域名称', width: 150, minWidth: '150px', colKey: 'name' },
   { title: '区域负责人', width: 150, minWidth: '150px', colKey: 'managerName' },
@@ -14,7 +14,7 @@ export const COLUMNS = [
     title: '状态',
     colKey: 'activeStatus',
     minWidth: '120px',
-    width:150,
+    width: 150,
     cell: (h, { row }) => {
       const statusList = {
         0: {
@@ -25,8 +25,8 @@ export const COLUMNS = [
         },
         2: {
           label: '启用'
-        },
-      }  
+        }
+      }
       // const status = row.activeStatus + 1
       return h(
         'span',

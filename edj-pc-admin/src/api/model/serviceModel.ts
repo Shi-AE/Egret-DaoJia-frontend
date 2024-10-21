@@ -45,7 +45,7 @@ export interface serviceItemTypeAdd {
   sortNum: string
 }
 export interface regionTypeAdd {
-  cityCode: string
+  edjCityId: string
   name: string
   managerName: string
   managerPhone: string

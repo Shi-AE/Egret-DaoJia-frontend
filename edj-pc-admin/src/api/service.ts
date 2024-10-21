@@ -126,7 +126,7 @@ export function regionList(value: serviceTypeResult) {
 // 区域新增
 export function regionAdd(value: regionTypeAdd) {
   return request.post({
-    url: '/foundations/operation/region',
+    url: '/edj-foundations/operation/region',
     data: value
   })
 }
@@ -367,5 +367,11 @@ export function servicePersonData(value) {
   return request.get({
     url: '/orders-manager/operation/ordersServe/pageQueryByServeProvider',
     params: value
+  })
+}
+
+export function getCityList() {
+  return request.get({
+    url: '/edj-foundations/open/city'
   })
 }

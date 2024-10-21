@@ -32,8 +32,8 @@
                   </div></span
                 >
                 <t-input
-                  class="form-item-content"
                   v-model.number="requestData.staffReceiveOrderMax"
+                  class="form-item-content"
                   placeholder="请输入"
                   :style="{ minWidth: '134px' }"
                   suffix="单"
@@ -53,8 +53,8 @@
                   </div></span
                 >
                 <t-input
-                  class="form-item-content"
                   v-model.number="requestData.institutionReceiveOrderMax"
+                  class="form-item-content"
                   placeholder="请输入"
                   :style="{ minWidth: '134px' }"
                   suffix="单"
@@ -77,8 +77,8 @@
                   </div></span
                 >
                 <t-input
-                  class="form-item-content"
                   v-model.number="requestData.staffServeRadius"
+                  class="form-item-content"
                   placeholder="请输入"
                   :style="{ minWidth: '134px' }"
                   suffix="公里"
@@ -90,10 +90,10 @@
                   ><span class="star">*</span>抢单超时时间</span
                 >
                 <t-input
+                  v-model.number="requestData.seizeTimeoutInterval"
                   class="form-item-content"
                   placeholder="请输入"
                   suffix="分钟"
-                  v-model.number="requestData.seizeTimeoutInterval"
                   :style="{ minWidth: '134px' }"
                   clearable
                 />
@@ -111,8 +111,8 @@
                   </div></span
                 >
                 <t-input
-                  class="form-item-content"
                   v-model.number="requestData.institutionServeRadius"
+                  class="form-item-content"
                   placeholder="请输入"
                   :style="{ minWidth: '134px' }"
                   suffix="公里"
@@ -135,8 +135,8 @@
                   </div></span
                 >
                 <t-input
-                  class="form-item-content"
                   v-model.number="one"
+                  class="form-item-content"
                   placeholder="请输入"
                   disabled
                   :style="{ minWidth: '134px' }"
@@ -178,8 +178,8 @@
                   </div></span
                 >
                 <t-input
-                  class="form-item-content"
                   v-model.number="one"
+                  class="form-item-content"
                   placeholder="请输入"
                   disabled
                   :style="{ minWidth: '134px' }"
@@ -196,10 +196,10 @@
                   </div></span
                 >
                 <t-input
+                  v-model.number="requestData.dispatchPerRoundInterval"
                   class="form-item-content"
                   placeholder="请输入"
                   suffix="秒"
-                  v-model.number="requestData.dispatchPerRoundInterval"
                   :style="{ minWidth: '134px' }"
                   clearable
                 />
@@ -220,7 +220,7 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
-import { MessagePlugin } from 'tdesign-vue-next'
+import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
 import { useRoute, useRouter } from 'vue-router'
 import { businessConfig } from './model'
 import {
@@ -231,9 +231,10 @@ import {
   validateNumber100s
 } from '@/utils/validate'
 import { cityList } from './city'
-import { ValidateResultContext } from 'tdesign-vue-next'
+
 import { servicePersonItemById, servicePersonItemEdit } from '@/api/service'
 import ruleDialog from './components/ruleDialog.vue'
+
 const route = useRoute()
 const router = useRouter()
 const { id } = route.params
@@ -248,7 +249,7 @@ const formData = ref<businessConfig>({
   id: '1',
   name: null,
   dispatchStrategy: 1,
-  cityCode: null
+  edjCityId: null
 })
 const one = ref(100)
 // 更新调度配置数据
@@ -260,8 +261,8 @@ const requestData = ref({
   staffReceiveOrderMax: 0,
   staffServeRadius: 0,
   dispatchStrategy: 0,
-  id: id,
-  cityCode: null
+  id,
+  edjCityId: null
 })
 
 // 获取接口数据
@@ -272,7 +273,7 @@ const fetchData = async (val) => {
         formData.value = res.data
         cityList.forEach((item) => {
           item.children.find((item2) => {
-            if (item2.value === res.data.cityCode) {
+            if (item2.value === res.data.edjCityId) {
               formData.value.name = item2.label
             }
           })
@@ -290,7 +291,7 @@ const fetchData = async (val) => {
         requestData.value.staffServeRadius = formData.value.staffServeRadius
         requestData.value.id = formData.value.id
         requestData.value.dispatchStrategy = formData.value.dispatchStrategy
-        requestData.value.cityCode = formData.value.cityCode
+        requestData.value.edjCityId = formData.value.edjCityId
       } else {
         MessagePlugin.error(res.msg)
       }
@@ -531,7 +532,7 @@ watch(
     }
 
     &:hover {
-      .beizhu{
+      .beizhu {
         background-image: url('@/assets/icon_beizhu_sel@2x.png');
         background-size: 100% 100%;
       }

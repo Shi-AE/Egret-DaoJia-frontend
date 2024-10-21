@@ -17,17 +17,17 @@
         :reset-type="resetType"
         @submit="onSubmit"
       >
-        <t-form-item label="地区选择：" name="cityCode">
+        <t-form-item label="地区选择：" name="edjCityId">
           <t-cascader
-              v-model="formData.cityCode"
-              class="form-item-content wt-400"
-              placeholder="请选择"
-              :disabled="edit"
-              :style="{ minWidth: '134px' }"
-              clearable
-              @change="(value,context)=>onChangeCity(value,context)"
-              :options="options"
-            />
+            v-model="formData.edjCityId"
+            class="form-item-content wt-400"
+            placeholder="请选择"
+            :disabled="edit"
+            :style="{ minWidth: '134px' }"
+            clearable
+            :options="options"
+            @change="(value, context) => onChangeCity(value, context)"
+          />
         </t-form-item>
         <t-form-item label="区域负责人：" name="managerName">
           <t-input
@@ -62,11 +62,9 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import {  ValidateResultContext } from 'tdesign-vue-next'
-import {
-  validateText10,
-  validatePhone
-} from '@/utils/validate'
+import { ValidateResultContext } from 'tdesign-vue-next'
+import { validateText10, validatePhone } from '@/utils/validate'
+
 const props = defineProps({
   visible: {
     type: Boolean,
@@ -86,9 +84,9 @@ const props = defineProps({
     type: String,
     default: '新建产品'
   },
-  cityList:{
-    type:Array,
-    default:()=>{
+  cityList: {
+    type: Array,
+    default: () => {
       return []
     }
   }
@@ -103,7 +101,7 @@ const emit: Function = defineEmits(['handleClose', 'confirmEdit'])
 const formVisible = ref(false)
 // 表单数据
 const formData = ref({
-  cityCode: '',
+  edjCityId: '',
   name: '',
   managerPhone: '',
   managerName: ''
@@ -125,8 +123,8 @@ const onClickCloseBtn = () => {
   emit('handleClose')
 }
 // 地区选择
-const onChangeCity = (value,context) => {
-  formData.value.cityCode = value
+const onChangeCity = (value, context) => {
+  formData.value.edjCityId = value
   formData.value.name = context.node.label
 }
 // 点击叉号关闭
@@ -134,9 +132,9 @@ const onChangeCity = (value,context) => {
 watch(
   () => props.visible,
   () => {
-    if(props.edit){
+    if (props.edit) {
       formData.value = JSON.parse(JSON.stringify(props.formData))
-    }else{
+    } else {
       form.value.reset()
     }
     formVisible.value = props.visible
@@ -149,14 +147,14 @@ watch(
 
 // 表单校验
 const rules = {
-  cityCode: [
+  edjCityId: [
     // 手机号校验
     {
       required: true,
       message: '请选择区域',
       type: 'error',
       trigger: 'change'
-    },
+    }
   ],
   managerPhone: [
     // 调用次数校验
@@ -193,7 +191,7 @@ const rules = {
       type: 'error',
       trigger: 'blur'
     }
-  ],
+  ]
 }
 // 暴露给父级的方法
 defineExpose({

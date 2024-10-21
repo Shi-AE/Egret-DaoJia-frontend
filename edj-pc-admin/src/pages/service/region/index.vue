@@ -20,9 +20,9 @@
       ref="dialogForm"
       :visible="visible"
       :title="title"
-      :cityList="cityList"
+      :city-list="cityList"
       :edit="edit"
-      :formData="formData"
+      :form-data="formData"
       @handleClose="handleClose"
       @confirmEdit="confirmEdit"
     />
@@ -44,15 +44,15 @@ import { ref, watchEffect } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute } from 'vue-router'
 import {
-  regionList,
-  regionAdd,
-  regionEdit,
-  regionDelete,
-  regionInactiveStatus,
+  getCityList,
   regionActiveStatus,
+  regionAdd,
+  regionDelete,
+  regionEdit,
+  regionInactiveStatus,
+  regionList,
   regionRefreshCache
 } from '@/api/service'
-import { cityList } from './city' // 城市列表
 import DialogForm from './components/DialogForm.vue' // 新增,编辑区域弹窗.
 import tableList from './components/TableList.vue' // 表格
 import Delete from '@/components/Delete/index.vue' // 删除弹层
@@ -68,6 +68,7 @@ const url = ref('') // 当前路由
 const edit = ref(false) // 是否是编辑
 const editStatus = ref(0) // 是否是编辑
 const editId = ref('') // 编辑的id
+const cityList = ref([])
 // 分页
 const pagination = ref({
   defaultPageSize: 10,
@@ -85,7 +86,7 @@ const requestData = ref({
 })
 // 表单内容
 const formData = ref({
-  cityCode: '',
+  edjCityId: '',
   name: '',
   managerPhone: '',
   managerName: ''
@@ -123,7 +124,7 @@ const handleBuild = () => {
 // 点击编辑
 const handleClickEdit = (val) => {
   editId.value = val.id
-  formData.value.cityCode = val.cityCode
+  formData.value.edjCityId = val.edjCityId
   formData.value.name = val.name
   formData.value.managerPhone = val.managerPhone
   formData.value.managerName = val.managerName
@@ -149,7 +150,6 @@ const confirmEdit = async (val) => {
       })
       .catch((err) => {
         console.log(err)
-
       })
   } else {
     // 编辑
@@ -238,8 +238,8 @@ const handleDelete = async () => {
 }
 // 点击排序
 const handleSort = (val) => {
-    requestData.value.isAsc1 = val.descending === true ? 'false' : 'true'
-    fetchData(requestData.value)
+  requestData.value.isAsc1 = val.descending === true ? 'false' : 'true'
+  fetchData(requestData.value)
 }
 // 点击翻页
 const onPageChange = (val) => {
@@ -268,6 +268,9 @@ watchEffect(() => {
   url.value = route.path
   if (route.path === '/service/region') {
     fetchData(requestData.value)
+    getCityList().then((res) => {
+      cityList.value = res.data
+    })
   }
 })
 </script>

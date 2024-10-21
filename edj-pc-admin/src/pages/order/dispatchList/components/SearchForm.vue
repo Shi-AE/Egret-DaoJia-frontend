@@ -32,7 +32,7 @@
         <t-col class="citySelect">
           <t-form-item label="" name="name" label-width="0">
             <t-select
-              v-model="formData.cityCode"
+              v-model="formData.edjCityId"
               class="form-item-content"
               :options="citySelectList"
               placeholder="请选择"
@@ -64,7 +64,7 @@ const props = defineProps({
     type: Array<{
       id: string
       name: string
-      cityCode: string
+      edjCityId: string
     }>,
     default: () => {
       return []
@@ -77,7 +77,7 @@ const citySelectList = ref([]) // 城市下拉框数据
 const formData = ref({
   edjServeTypeId: '',
   contactsName: '',
-  cityCode: ''
+  edjCityId: ''
 })
 // 触发父组件的方法
 const emit: Function = defineEmits(['handleSearch', 'handleReset'])
@@ -85,12 +85,12 @@ const emit: Function = defineEmits(['handleSearch', 'handleReset'])
 const searchForm = {
   edjServeTypeId: '',
   contactsName: '',
-  cityCode: ''
+  edjCityId: ''
 }
 // 重置表单
 const handleReset = () => {
   formData.value = { ...searchForm }
-  formData.value.cityCode = props.cityList[0]?.cityCode
+  formData.value.edjCityId = props.cityList[0]?.edjCityId
   emit('handleSearch', formData.value)
 }
 // 搜索表单
@@ -107,10 +107,10 @@ watchEffect(() => {
   citySelectList.value = props.cityList.map((item) => {
     return {
       label: item.name,
-      value: item.cityCode
+      value: item.edjCityId
     }
   })
-  formData.value.cityCode = props.cityList[0]?.cityCode
+  formData.value.edjCityId = props.cityList[0]?.edjCityId
 })
 </script>
 

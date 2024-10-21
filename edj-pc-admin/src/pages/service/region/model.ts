@@ -3,10 +3,10 @@ export interface businessConfig {
   id: string
   dispatchPerRoundInterval: number
   institutionReceiveOrderMax: number
-  institutionServeRadius:number
+  institutionServeRadius: number
   seizeTimeoutInterval: number
-  staffReceiveOrderMax:number
+  staffReceiveOrderMax: number
   staffServeRadius: number
   dispatchStrategy: number
-  cityCode: number | string
+  edjCityId: number | string
 }
