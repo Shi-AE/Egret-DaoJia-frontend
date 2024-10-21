@@ -77,10 +77,6 @@ const pagination = ref({
 })
 // 请求数据参数
 const requestData = ref({
-  isAsc1: 'false',
-  isAsc2: '',
-  orderBy1: 'updateTime',
-  orderBy2: '',
   pageNo: 1,
   pageSize: 10
 })

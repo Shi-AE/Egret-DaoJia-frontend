@@ -1,8 +1,5 @@
 export interface serviceTypeResult {
-  isAsc1: string
-  isAsc2: string
-  orderBy1: string
-  orderBy2: string
+  orderByList: object[]
   pageNo: number
   pageSize: number
 }

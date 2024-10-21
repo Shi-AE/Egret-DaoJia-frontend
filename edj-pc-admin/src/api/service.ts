@@ -117,8 +117,8 @@ export function serviceItemEdit(value: serviceItemTypeAdd) {
 
 // 区域分页查询
 export function regionList(value: serviceTypeResult) {
-  return request.get({
-    url: '/foundations/operation/region/page',
+  return request.post({
+    url: '/edj-foundations/operation/region/page',
     params: value
   })
 }
