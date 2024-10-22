@@ -149,10 +149,11 @@ const confirmEdit = async (val) => {
       })
   } else {
     // 编辑
-    await regionEdit(
-      { managerName: val.managerName, managerPhone: val.managerPhone },
-      editId.value
-    )
+    await regionEdit({
+      id: editId.value,
+      managerName: val.managerName,
+      managerPhone: val.managerPhone
+    })
       .then((res) => {
         if (res.data.code === 200) {
           MessagePlugin.success('编辑成功')

@@ -48,6 +48,7 @@ export interface regionTypeAdd {
   managerPhone: string
 }
 export interface regionTypeEdit {
+  id: string
   managerName: string
   managerPhone: string
 }

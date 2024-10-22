@@ -132,12 +132,9 @@ export function regionAdd(value: regionTypeAdd) {
 }
 
 // 区域编辑
-export function regionEdit(value: regionTypeEdit, id: string) {
+export function regionEdit(value: regionTypeEdit) {
   return request.put({
-    url:
-      `/foundations/operation/region/${id}?` +
-      `managerName=${value.managerName}&` +
-      `managerPhone=${value.managerPhone}`,
+    url: `/edj-foundations/operation/region`,
     data: value
   })
 }
@@ -145,14 +142,14 @@ export function regionEdit(value: regionTypeEdit, id: string) {
 // 区域删除
 export function regionDelete(id: string) {
   return request.delete({
-    url: `/foundations/operation/region/${id}`
+    url: `/edj-foundations/operation/region/${id}`
   })
 }
 
 // 根据id查询区域
 export function regionById(id) {
   return request.get({
-    url: `/foundations/operation/region/${id}`
+    url: `/edj-foundations/operation/region/${id}`
   })
 }
 
@@ -271,14 +268,14 @@ export function servicePersonItemEdit(value) {
 // 区域启用
 export function regionActiveStatus(id) {
   return request.put({
-    url: `/foundations/operation/region/activate/${id}`
+    url: `/edj-foundations/operation/region/activate/${id}`
   })
 }
 
 // 区域禁用
 export function regionInactiveStatus(id) {
   return request.put({
-    url: `/foundations/operation/region/deactivate/${id}`
+    url: `/edj-foundations/operation/region/deactivate/${id}`
   })
 }
 
