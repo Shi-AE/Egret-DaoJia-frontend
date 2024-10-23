@@ -105,10 +105,12 @@ const regionData = ref({
 })
 // 请求服务项数据的参数
 const serviceItemRequestData = ref({
-  isAsc1: 'true',
-  isAsc2: 'false',
-  orderBy1: 'sortNum',
-  orderBy2: 'updateTime',
+  orderByList: [
+    {
+      orderBy: 'sortNum',
+      isAsc: true
+    }
+  ],
   pageNo: 1,
   pageSize: 1000,
   name: '',

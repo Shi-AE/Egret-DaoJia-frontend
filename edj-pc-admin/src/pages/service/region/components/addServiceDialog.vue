@@ -9,11 +9,11 @@
     <template #body>
       <div class="leftBox">
         <img
+          v-if="currentPage > 1 && typeItems.length > 9"
           src="@/assets/icon_team_guanbi.png"
           alt=""
           class="shanghua"
           @click="scollTop"
-          v-if="currentPage > 1 && typeItems.length > 9"
         />
         <div class="tagBox">
           <div
@@ -26,18 +26,18 @@
           </div>
         </div>
         <img
+          v-if="currentPage * 9 < typeItems.length && typeItems.length > 9"
           src="@/assets/icon_team_guanbi2.png"
           alt=""
           class="xiahua"
           @click="scollBottom"
-          v-if="currentPage * 9 < typeItems.length && typeItems.length > 9"
         />
       </div>
       <div class="middleBox">
         <t-input
+          v-model="searchKeyword"
           class="search"
           placeholder="请输入服务关键字"
-          v-model="searchKeyword"
           @change="handleSearch"
         >
           <template #suffixIcon>
@@ -45,12 +45,12 @@
           </template>
         </t-input>
         <NoData v-if="filteredItems?.length === 0"></NoData>
-        <ul class="serviceBox" v-if="filteredItems?.length > 0">
+        <ul v-if="filteredItems?.length > 0" class="serviceBox">
           <li v-for="item in filteredItems" :key="item.id" class="serviceTag">
             <t-checkbox
-              @change="(e) => onChange(e, item)"
               v-model="item.checked"
               :disabled="item.disabled"
+              @change="(e) => onChange(e, item)"
             >
               {{ item.name }}
             </t-checkbox>
@@ -61,8 +61,8 @@
       <div class="rightBox">
         <div class="title">已选服务（{{ activeItems.length }}）</div>
         <NoData v-if="activeItems.length === 0"></NoData>
-        <div class="cardBox" v-if="activeItems.length > 0">
-          <div class="card" v-for="(item, index) in activeItems" :key="index">
+        <div v-if="activeItems.length > 0" class="cardBox">
+          <div v-for="(item, index) in activeItems" :key="index" class="card">
             <span>{{ item.name }}</span>
             <img
               src="@/assets/btn_clean.png"
@@ -88,8 +88,9 @@
 import { ref, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { SearchIcon } from 'tdesign-icons-vue-next'
-import NoData from '@/components/noData/index.vue'
 import { forEach } from 'lodash'
+import NoData from '@/components/noData/index.vue'
+
 const props = defineProps({
   visible: {
     type: Boolean,
@@ -165,7 +166,7 @@ const onChange = (e, val) => {
 // 输入字符模糊搜索
 const handleSearch = () => {
   filteredItems.value = items.value[activeId.value].filter((item) => {
-    return item.name.includes(searchKeyword.value) //includes() 方法用于判断字符串是否包含指定的子字符串。
+    return item.name.includes(searchKeyword.value) // includes() 方法用于判断字符串是否包含指定的子字符串。
   })
 }
 // 清除已选服务
@@ -209,7 +210,6 @@ const scollBottom = () => {
 const handleSubmit = () => {
   if (activeItems.value.length === 0) {
     MessagePlugin.warning('请选择服务')
-    return
   } else {
     emit('handleSubmit', activeItems.value)
   }
@@ -492,7 +492,7 @@ defineExpose({
 :deep(.noData p) {
   margin-bottom: 9px;
 }
-:deep(.t-checkbox.t-is-disabled.t-is-checked .t-checkbox__input){
+:deep(.t-checkbox.t-is-disabled.t-is-checked .t-checkbox__input) {
   background-color: var(--td-bg-color-component-disabled);
 }
 </style>
