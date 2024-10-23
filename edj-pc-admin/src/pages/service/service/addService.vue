@@ -387,7 +387,7 @@ const rules = ref({
     },
     {
       validator: validateText5,
-      message: '服务名称格式错误，请输入2-5个汉字，请重新输入服务名称',
+      message: '服务名称格式错误，请输入2-5个字符，请重新输入服务名称',
       trigger: 'blur'
     }
   ],
