@@ -155,16 +155,16 @@ export function regionById(id) {
 
 // 服务分页查询
 export function serviceList(value: serviceListType) {
-  return request.get({
-    url: '/foundations/operation/serve/page',
-    params: value
+  return request.post({
+    url: '/edj-foundations/operation/serve/page',
+    data: value
   })
 }
 
 // 服务批量新增
 export function serviceAdd(value) {
   return request.post({
-    url: '/foundations/operation/serve/batch',
+    url: '/edj-foundations/operation/serve',
     data: value
   })
 }
@@ -172,42 +172,42 @@ export function serviceAdd(value) {
 // 服务编辑（只有价格）
 export function serviceEdit(value) {
   return request.put({
-    url: `/foundations/operation/serve/${value.id}?price=${value.price}`
+    url: `/edj-foundations/operation/serve/${value.id}?price=${value.price}`
   })
 }
 
 // 区域服务设置热门
 export function serviceOnHot(id) {
   return request.put({
-    url: `/foundations/operation/serve/onHot/${id}`
+    url: `/edj-foundations/operation/serve/hot/on/${id}`
   })
 }
 
 // 区域服务取消热门
 export function serviceOffHot(id) {
   return request.put({
-    url: `/foundations/operation/serve/offHot/${id}`
+    url: `/edj-foundations/operation/serve/hot/off/${id}`
   })
 }
 
 // 服务启用
 export function serviceActiveStatus(id) {
   return request.put({
-    url: `/foundations/operation/serve/onSale/${id}`
+    url: `/edj-foundations/operation/serve/sale/on/${id}`
   })
 }
 
 // 服务禁用
 export function serviceInactiveStatus(id) {
   return request.put({
-    url: `/foundations/operation/serve/offSale/${id}`
+    url: `/edj-foundations/operation/serve/sale/off/${id}`
   })
 }
 
 // 服务删除
 export function serviceDelete(id) {
   return request.delete({
-    url: `/foundations/operation/serve/${id}`
+    url: `/edj-foundations/operation/serve/${id}`
   })
 }
 

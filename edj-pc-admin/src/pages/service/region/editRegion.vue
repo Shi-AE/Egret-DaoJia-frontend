@@ -55,7 +55,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, watchEffect, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute } from 'vue-router'
 import {
@@ -91,13 +91,9 @@ const { id, isActive } = route.params
 const visible = ref(false) // 新增服务弹窗
 const editStatus = ref(0) // 判断是设置热门还是启用和禁用
 const requestData = ref({
-  isAsc1: 'false',
-  isAsc2: '',
-  orderBy1: 'updateTime',
-  orderBy2: '',
   pageNo: 1,
   pageSize: 10,
-  regionId: id
+  edjRegionId: id
 })
 // 当前区域城市的数据
 const regionData = ref({
@@ -341,8 +337,8 @@ const handleSubmit = async (val) => {
   const data = []
   val.forEach((item) => {
     data.push({
-      regionId: id,
-      serveItemId: item.id,
+      edjRegionId: id,
+      edjServeItemId: item.id,
       price: item.referencePrice
     })
   })

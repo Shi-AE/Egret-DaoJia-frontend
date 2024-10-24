@@ -59,5 +59,5 @@ export interface serviceListType {
   orderBy2: string
   pageNo: number
   pageSize: number
-  regionId: string
+  edjRegionId: string
 }

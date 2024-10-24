@@ -246,7 +246,7 @@ watch(
     forEach(props.listData, (item, i) => {
       originData.value.push(item)
       originData.value[i].name = originData.value[i].serveItemName
-      originData.value[i].id = originData.value[i].serveItemId
+      originData.value[i].id = originData.value[i].edjServeItemId
     })
     // 如果项数大于传入值的项数，说明有重复项,只保留其中的前半部分
     if (originData.value.length > props.listData.length) {
