@@ -1,6 +1,6 @@
 {
     "name" : "xzb-yhd",
-    "appid" : "__UNI__FAC18C5",
+    "appid" : "__UNI__05BB09A",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -231,7 +231,7 @@
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
-        "appid" : "wx8634b2ce0fd609b2",
+        "appid" : "wx11af548351f6f0b3",
         "setting" : {
             "urlCheck" : false,
             "minified" : true

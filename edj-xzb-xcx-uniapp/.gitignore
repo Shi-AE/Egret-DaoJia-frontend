@@ -13,6 +13,7 @@ node_modules/
 # 忽略编辑器自动生成的文件
 .idea/
 .vscode/
+.hbuilderx/
 
 # 忽略日志文件
 /logs/
