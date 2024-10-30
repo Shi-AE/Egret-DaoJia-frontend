@@ -200,7 +200,8 @@ import { onLoad, onReachBottom } from '@dcloudio/uni-app';
 import { formatDateTimeToDateTimeString } from '@/utils/index.js';
 import { getEvaluate } from '../../../pages/api/service';
 const edit = ref(true); //true评价 false评价完成页面
-const token = uni.getStorageSync('token');
+const accessToken = uni.getStorageSync('accessToken');
+const refreshToken = uni.getStorageSync('refreshToken');
 const title = ref('评价');
 const store = useStore();
 const evaluateConfig = ref(); //评价配置
@@ -416,7 +417,8 @@ const uploadImage = (result) => {
       name: 'file', // 与服务器端点的文件字段名称匹配
       formData: formData,
       header: {
-        Authorization: `${token}`, // 在这里将 token 添加到头部
+          AuthorizationAccessToken: `${accessToken}`, // 在这里将 token 添加到头部
+          AuthorizationRefreshToken: `${refreshToken}`, // 在这里将 token 添加到头部
       },
       success: (res) => {
         const data = JSON.parse(res.data);
@@ -490,7 +492,7 @@ const handleEmoji2 = (val) => {
     .btn{
       margin: auto;
     }
-    
+
   }
 }
 .appList .itemCon .tit {

@@ -93,7 +93,7 @@ const onSubmit = async ({ validateResult }) => {
       .then((res: any) => {
         if (res.code === 200) {
           // 获取用户信息 并存入pinia
-          userStore.login(res.data.data.accessToken, res.data.data.refreshToken)
+          userStore.login(res.data.accessToken, res.data.refreshToken)
           loadSt.value = false
           // 登录成功， 转入首页
           MessagePlugin.success('登录成功')
@@ -103,7 +103,7 @@ const onSubmit = async ({ validateResult }) => {
             : '/dashboard'
           router.push(redirectUrl)
         } else {
-          MessagePlugin.error(res.data.msg)
+          MessagePlugin.error(res.msg)
           loadSt.value = false
         }
       })

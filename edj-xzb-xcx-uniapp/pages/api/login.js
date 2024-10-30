@@ -5,7 +5,7 @@ import {
 // 手机号登录
 export const login = (params) =>
 	request({
-		url: `/customer/open/login/common/user`,
+		url: `/edj-user/open/consumer/login`,
 		method: 'post',
 		params
 	})
