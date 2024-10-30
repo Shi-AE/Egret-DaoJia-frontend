@@ -1,5 +1,5 @@
 {
-    "name" : "xzb-yhd",
+    "name" : "edj-xzb-yhd",
     "appid" : "__UNI__05BB09A",
     "description" : "",
     "versionName" : "1.0.0",
@@ -207,7 +207,7 @@
                 "payment" : {
                     "weixin" : {
                         "__platform__" : [ "ios", "android" ],
-                        "appid" : "wx8634b2ce0fd609b2",
+                        "appid" : "wx11af548351f6f0b3",
                         "UniversalLinks" : ""
                     }
                 }
@@ -219,10 +219,10 @@
         },
         "background" : "red", //背景色
         "safearea" : {
-            //安全区域配置，仅iOS平台生效  
+            //安全区域配置，仅iOS平台生效
             "bottom" : {
-                // 底部安全区域配置  
-                "offset" : "none" // 底部安全区域偏移，"none"表示不空出安全区域，"auto"自动计算空出安全区域，默认值为"none"  
+                // 底部安全区域配置
+                "offset" : "none" // 底部安全区域偏移，"none"表示不空出安全区域，"auto"自动计算空出安全区域，默认值为"none"
             }
         }
     },
@@ -230,7 +230,6 @@
     "quickapp" : {},
     /* 快应用特有相关 */
     "mp-weixin" : {
-        /* 小程序特有相关 */
         "appid" : "wx11af548351f6f0b3",
         "setting" : {
             "urlCheck" : false,
