@@ -14,22 +14,22 @@
         <span v-if="setting.layout.value === 'side'" class="splitLine"></span>
         <div class="logoutBox btn-hover-active" @click="handleLogout">
           <span class="header-user-logout"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 29 29"
-              class="design-iconfont"
-              width="28px"
-              height="28px"
-              style="vertical-align: sub"
-              fill="#595959"
-            >
+          ><svg
+            class="design-iconfont"
+            fill="#595959"
+            height="28px"
+            style="vertical-align: sub"
+            viewBox="0 0 29 29"
+            width="28px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
               <g
-                stroke="#595959"
-                stroke-width="1.3"
                 fill="none"
                 fill-rule="evenodd"
+                stroke="#595959"
                 stroke-linecap="round"
                 stroke-linejoin="round"
+                stroke-width="1.3"
               >
                 <path
                   d="M7.5,11.5 L2,11.5 C0.8954305,11.5 1.3527075e-16,10.6045695 0,9.5 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 L7.5,0 L7.5,0"
@@ -40,34 +40,34 @@
                   transform="translate(7.665307 8.103679)"
                 />
                 <path
-                  transform="rotate(45 4.44580863 18.99846656)"
                   d="M8.3877241 3.60684445L12.4025977 3.60684445 12.4025977 7.78072245"
+                  transform="rotate(45 4.44580863 18.99846656)"
                 />
               </g>
             </svg>
           </span>
           <span v-if="setting.layout.value === 'top'" class="topLogout"
-            >退出</span
+          >退出</span
           >
         </div>
       </div>
       <div class="header-user-list btn-hover-active">
         <span @click="changeCollapsed">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 29 29"
             class="design-iconfont"
-            width="28px"
             height="28px"
             style="vertical-align: sub"
+            viewBox="0 0 29 29"
+            width="28px"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <g
               fill="#595959"
-              stroke="#595959"
-              stroke-width="1.3"
               fill-rule="evenodd"
+              stroke="#595959"
               stroke-linecap="round"
               stroke-linejoin="round"
+              stroke-width="1.3"
             >
               <path
                 d="M0.53826904 0.5L12.380188 0.5"
@@ -98,20 +98,20 @@
       </div> -->
       <div class="header-user-logout btn-hover-active" @click="handleLogout">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 29 29"
           class="design-iconfont"
-          width="28px"
           height="28px"
           style="vertical-align: sub"
+          viewBox="0 0 29 29"
+          width="28px"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <g
-            stroke="#595959"
-            stroke-width="1.3"
             fill="none"
             fill-rule="evenodd"
+            stroke="#595959"
             stroke-linecap="round"
             stroke-linejoin="round"
+            stroke-width="1.3"
           >
             <path
               d="M7.5,11.5 L2,11.5 C0.8954305,11.5 1.3527075e-16,10.6045695 0,9.5 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 L7.5,0 L7.5,0"
@@ -122,8 +122,8 @@
               transform="translate(7.665307 8.103679)"
             />
             <path
-              transform="rotate(45 4.44580863 18.99846656)"
               d="M8.3877241 3.60684445L12.4025977 3.60684445 12.4025977 7.78072245"
+              transform="rotate(45 4.44580863 18.99846656)"
             />
           </g>
         </svg>
@@ -131,20 +131,20 @@
       <div class="header-user-list btn-hover-active">
         <span @click="changeCollapsed">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 29 29"
             class="design-iconfont"
-            width="28px"
             height="28px"
             style="vertical-align: sub"
+            viewBox="0 0 29 29"
+            width="28px"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <g
               fill="#595959"
-              stroke="#595959"
-              stroke-width="1.3"
               fill-rule="evenodd"
+              stroke="#595959"
               stroke-linecap="round"
               stroke-linejoin="round"
+              stroke-width="1.3"
             >
               <path
                 d="M0.53826904 0.5L12.380188 0.5"
@@ -166,7 +166,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import type { PropType } from 'vue'
 import { useRouter } from 'vue-router'
@@ -227,7 +227,7 @@ const changeCollapsed = () => {
 const handleLogout = () => {
   router.push({
     path: '/login',
-    query: { redirect: encodeURIComponent(router.currentRoute.value.fullPath) }
+    query: {redirect: encodeURIComponent(router.currentRoute.value.fullPath)}
   })
 }
 </script>

@@ -2,6 +2,7 @@ export interface ListResult {
   data: any[]
   list: Array<ListModel>
 }
+
 export interface ListModel {
   adminName: string
   amount: string
@@ -16,9 +17,11 @@ export interface ListModel {
 
 export interface CardListResult {
   data: any
-  [x: string]: any
   list: Array<CardList>
+
+  [x: string]: any
 }
+
 export interface CardList {
   banner: string
   description: string
@@ -27,6 +30,7 @@ export interface CardList {
   name: string
   type: number
 }
+
 // 新增和编辑基础列表的数据
 export interface addListParams {
   index: number
@@ -35,15 +39,18 @@ export interface addListParams {
   status: number
   updateTime: Date
 }
+
 // 删除基础列表的数据
 export interface deleteListParams {
   index: number
 }
+
 // 折叠树列表
 export interface ListCollapseResult {
   data: any[]
   list: Array<ListCollapseModel>
 }
+
 export interface ListCollapseModel {
   index: number
   canUpdate: boolean
@@ -67,15 +74,18 @@ export interface ListTransferResult {
   data: any[]
   list: Array<ListTransferModel>
 }
+
 export interface ListTransferModel {
   name: string
   id: string
 }
+
 // 卡片带排序
 export interface ListCardsortResult {
   data: any[]
   list: Array<ListCardsortModel>
 }
+
 export interface ListCardsortModel {
   name: string
   id: string

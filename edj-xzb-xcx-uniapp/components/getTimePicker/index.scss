@@ -15,24 +15,30 @@
     font-family: PingFangSC-Regular;
     font-weight: 400;
     font-size: 32rpx;
-    view{
+
+    view {
       color: #f74145;
     }
   }
+
   .time-select {
     display: flex;
     justify-content: space-between;
+
     .select-day {
       width: 296rpx;
+
       .select-day-item {
         height: 108rpx;
         line-height: 108rpx;
         text-align: center;
         font-size: 32rpx;
       }
+
       .select-day-item.active {
         color: #f74145;
       }
+
       ::v-deep scroll-view {
         height: 500rpx;
       }
@@ -42,6 +48,7 @@
         display: none;
       }
     }
+
     .select-time {
       .time-item {
         display: flex;
@@ -49,9 +56,11 @@
         line-height: 108rpx;
         text-align: center;
         font-size: 32rpx;
+
         .time-value {
           padding-right: 108rpx;
         }
+
         .time-select {
           width: 40rpx;
           height: 40rpx;
@@ -60,11 +69,13 @@
           background-image: url('../../../static/gouxuan.png');
         }
       }
+
       .active.time-item {
-        .time-value{
+        .time-value {
           color: #f74145;
         }
       }
+
       ::v-deep scroll-view {
         height: 500rpx;
       }

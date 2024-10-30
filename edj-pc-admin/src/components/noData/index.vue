@@ -1,20 +1,20 @@
 <template>
   <div class="noData">
     <img
-      src="@/assets/default/zwnr@2x.png"
       :style="{
         width: props.photoWidth + 'px',
         height: props.photoHeight + 'px',
         marginTop: props.PhotoMt + 'px',
         marginBottom: props.PhotoMb + 'px'
       }"
+      src="@/assets/default/zwnr@2x.png"
     />
     <p :style="{
       marginBottom: props.pMb + 'px'
     }">{{content}}</p>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = defineProps({
   // 是否显示
   photoWidth: {
@@ -37,7 +37,7 @@ const props = defineProps({
     type: Number,
     default: 75
   },
-  content:{
+  content: {
     type: String,
     default: '暂无内容哦～'
   }
@@ -46,12 +46,14 @@ const props = defineProps({
 <style lang="less" scoped>
 .noData {
   text-align: center;
+
   img {
     width: 220px;
     height: 200px;
     margin-top: 60px;
     margin-bottom: 30px;
   }
+
   p {
     text-align: center;
     color: var(--color-black);

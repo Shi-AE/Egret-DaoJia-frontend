@@ -11,55 +11,53 @@
     <div class="division"></div>
     <!-- 搜索表单 -->
     <searchFormBox
-      :reply-type="replyType"
       :init-search-id="initSearchId"
-      @handleSearch="handleSearch"
+      :reply-type="replyType"
       @handleReset="handleReset"
+      @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
+      :data-loading="dataLoading"
       :list-data="listData"
       :pagination="pagination"
       :reply-type="replyType"
-      :data-loading="dataLoading"
-      @handleSetupContract="handleSetupContract"
-      @handleBuild="handleBuild"
-      @handleClickDelete="handleClickDelete"
       @fetchData="fetchData"
       @getActiveId="getActiveId"
+      @handleBuild="handleBuild"
+      @handleClickDelete="handleClickDelete"
       @handlePageChange="handlePageChange"
+      @handleSetupContract="handleSetupContract"
     ></tableList>
     <!-- end -->
     <!-- 新增，编辑弹窗 -->
     <dialog-form
       ref="edit"
-      :visible="visible"
-      :title="title"
-      :target-type="replyType"
       :data="DialogFormData"
       :form-data="formData"
-      @handleClose="handleClose"
+      :target-type="replyType"
+      :title="title"
+      :visible="visible"
       @fetchData="fetchData"
+      @handleClose="handleClose"
       @replayComment="replayComment"
     />
     <!-- end -->
     <!-- 删除弹层 -->
     <Delete
-      :dialog-delete-visible="dialogDeleteVisible"
       :delete-text="deleteText"
+      :dialog-delete-visible="dialogDeleteVisible"
       @handle-delete="handleDelete"
       @handle-close="handleClose"
     ></Delete>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router'
-import { ref, reactive, watchEffect } from 'vue'
-import { MessagePlugin } from 'tdesign-vue-next'
+import { reactive, ref, watchEffect } from 'vue'
 import moment from 'moment'
-import { getList } from '@/api/list'
 import DialogForm from '@/components/editDialog/index.vue' // 新增,编辑弹窗.
 import Delete from '@/components/Delete/index.vue' // 删除弹层
 import tableList from './components/TableList.vue' // 表格
@@ -168,7 +166,7 @@ const changeId = (val) => {
   fetchData(resetData.value)
 }
 // 表单内容
-const formData = ref({ ...searchForm }) // 表单内容
+const formData = ref({...searchForm}) // 表单内容
 
 // 获取近三个月的起始时间和结束时间，精确到秒
 const getThreeMonth = () => {
@@ -334,47 +332,48 @@ const handlePageChange = (val) => {
 }
 // 监听赋值
 watchEffect(() => {
-    getThreeMonth()
-    if (route.path === '/reply/index') {
-      url.value = '/reply/index'
+  getThreeMonth()
+  if (route.path === '/reply/index') {
+    url.value = '/reply/index'
+  } else {
+    url.value = route.path
+  }
+  if (replyType.value === '0') {
+    getTableBar()
+    if (localStorage.getItem('targetId')) {
+      replyType.value = localStorage.getItem('targetTypeId').toString()
+      requestData.value.targetTypeId = localStorage
+        .getItem('targetTypeId')
+        .toString()
+      requestData.value.targetId = localStorage.getItem('targetId').toString()
+      initSearchId.value = localStorage.getItem('targetId').toString()
+      fetchData(requestData.value)
+      // 清除localStorage中的targetId
+      localStorage.removeItem('targetId')
+      localStorage.removeItem('targetTypeId')
+    }
+    if (route.query.targetId) {
+      replyType.value = route.query.targetTypeId.toString()
+      requestData.value.targetTypeId = route.query.targetTypeId.toString()
+      requestData.value.targetId = route.query.targetId.toString()
+      initSearchId.value = route.query.targetId.toString()
+      fetchData(requestData.value)
+      // 清除query中的name
+      router.replace({
+        path: route.path,
+        query: {}
+      })
     } else {
-      url.value = route.path
+      fetchData(requestData.value)
     }
-    if (replyType.value === '0') {
-      getTableBar()
-      if (localStorage.getItem('targetId')) {
-        replyType.value = localStorage.getItem('targetTypeId').toString()
-        requestData.value.targetTypeId = localStorage
-          .getItem('targetTypeId')
-          .toString()
-        requestData.value.targetId = localStorage.getItem('targetId').toString()
-        initSearchId.value = localStorage.getItem('targetId').toString()
-        fetchData(requestData.value)
-        // 清除localStorage中的targetId
-        localStorage.removeItem('targetId')
-        localStorage.removeItem('targetTypeId')
-      }
-      if (route.query.targetId) {
-        replyType.value = route.query.targetTypeId.toString()
-        requestData.value.targetTypeId = route.query.targetTypeId.toString()
-        requestData.value.targetId = route.query.targetId.toString()
-        initSearchId.value = route.query.targetId.toString()
-        fetchData(requestData.value)
-        // 清除query中的name
-        router.replace({
-          path: route.path,
-          query: {}
-        })
-      } else {
-        fetchData(requestData.value)
-      }
-    }
+  }
 })
 </script>
 <style lang="less" scoped>
 .headBox {
   background-color: #fafafa;
 }
+
 .division {
   height: 24.5px;
   width: 100%;

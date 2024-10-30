@@ -1,12 +1,12 @@
 import { request } from '@/utils/request'
 import type {
-  CardListResult,
-  ListResult,
   addListParams,
+  CardListResult,
   deleteListParams,
+  ListCardsortResult,
   ListCollapseResult,
-  ListTransferModel,
-  ListCardsortResult
+  ListResult,
+  ListTransferModel
 } from '@/api/model/listModel'
 
 export function getList() {
@@ -20,6 +20,7 @@ export function getCardList() {
     url: '/get-card-list'
   })
 }
+
 // 新增和编辑基础列表的数据
 export function addList(params: addListParams) {
   return request.post<addListParams>({
@@ -27,6 +28,7 @@ export function addList(params: addListParams) {
     data: params
   })
 }
+
 // 删除基础列表的数据
 export function deleteList(params: deleteListParams) {
   return request.post<deleteListParams>({
@@ -34,6 +36,7 @@ export function deleteList(params: deleteListParams) {
     data: params
   })
 }
+
 // 折叠列表数据
 export function getCollapseList() {
   return request.get<ListCollapseResult>({
@@ -47,30 +50,35 @@ export function getTransferList() {
     url: '/get-transfer-list'
   })
 }
+
 // 卡片数据
 export function getcardSortList() {
   return request.get<ListCardsortResult>({
     url: '/get-cardsort-list'
   })
 }
+
 // 列表弹层例表数据
 export function getDialogList() {
   return request.get<ListCardsortResult>({
     url: '/get-dialog-list'
   })
 }
+
 // 树形列表数据
 export function getTreeList() {
   return request.get<ListCardsortResult>({
     url: '/get-tree-list'
   })
 }
+
 // 下拉列表数据
 export function getSelectList() {
   return request.get<ListCardsortResult>({
     url: '/get-select'
   })
 }
+
 // 带tab的列表
 export function getTabList() {
   return request.get<ListCardsortResult>({

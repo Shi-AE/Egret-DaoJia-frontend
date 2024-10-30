@@ -2,28 +2,29 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    :header="title"
-    :width="628"
     :footer="false"
+    :header="title"
     :on-close="onClickCloseBtn"
+    :width="628"
   >
     <template #body>
       <!-- 表单内容 -->
       <t-form
         ref="form"
         :data="formData"
-        :rules="rules"
         :label-width="80"
-        on-cancel="onClickCloseBtn"
         :reset-type="resetType"
+        :rules="rules"
+        on-cancel="onClickCloseBtn"
         @submit="onSubmit"
       >
         <t-form-item :label="formLabel" name="description"
-          ><t-textarea
+        >
+          <t-textarea
             v-model="formData.description"
+            :maxlength="100"
             class="wt-400"
             placeholder="请输入至少5个字符"
-            :maxlength="100"
           >
           </t-textarea>
         </t-form-item>
@@ -31,7 +32,7 @@
           <div class="bt bt-grey btn-submit" @click="onClickCloseBtn">
             <span>取消</span>
           </div>
-          <button theme="primary" type="submit" class="bt btn-submit">
+          <button class="bt btn-submit" theme="primary" type="submit">
             <span>确定</span>
           </button>
         </t-form-item>
@@ -40,12 +41,10 @@
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
-import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
-import {
-  validateText,
-} from '@/utils/validate'
+import { ValidateResultContext } from 'tdesign-vue-next'
+import { validateText, } from '@/utils/validate'
 
 const props = defineProps({
   visible: {
@@ -58,7 +57,7 @@ const props = defineProps({
       return {}
     }
   },
-  label:{
+  label: {
     type: String,
     default: '退款原因：'
   },
@@ -73,7 +72,7 @@ const formLabel = ref('退款原因：')
 // 表单
 const form = ref()
 // 触发父级事件
-const emit: Function = defineEmits(['handleClose', 'fetchData','handleSubmit'])
+const emit: Function = defineEmits(['handleClose', 'fetchData', 'handleSubmit'])
 // 弹窗
 const formVisible = ref(false)
 // 表单数据
@@ -151,6 +150,7 @@ const rules = {
   z-index: 100;
   color: var(--color-bk4);
 }
+
 :deep(.t-textarea__limit) {
   color: var(--color-bk4);
   right: 10px;

@@ -7,15 +7,15 @@
         :key="index"
         :class="{ title: true, line: currentId == item.id }"
         @click="changeId(item.id)"
-        >{{ item.name
+      >{{ item.name
         }}<span v-if="item.value" class="value">{{ item.value }}</span></span
       >
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref,watch } from 'vue'
+<script lang="ts" setup>
+import { ref, watch } from 'vue'
 import Type from './type'
 
 // 父组件传值
@@ -49,11 +49,13 @@ watch(
 .headBox {
   padding-bottom: 9.5px;
   border-bottom: 1px solid #e8e8e8;
+
   .sw-box {
     font-family: PingFangSC-SNaNpxibold;
     font-weight: 400;
     font-size: 16px;
     color: var(--color-bk3);
+
     .title {
       color: var(--color-bk2);
       font-size: 14px;
@@ -63,15 +65,18 @@ watch(
       //  文字左右居中
       text-align: center;
       cursor: pointer;
+
       &:hover {
         color: var(--color-main);
       }
     }
+
     .line {
       color: var(--color-main);
       font-weight: 500;
       position: relative;
       cursor: pointer;
+
       &::before {
         position: absolute;
         left: 50%;
@@ -86,6 +91,7 @@ watch(
     }
   }
 }
+
 .value {
   margin-left: 5px;
 }

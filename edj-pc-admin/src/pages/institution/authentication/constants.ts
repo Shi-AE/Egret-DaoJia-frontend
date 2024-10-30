@@ -15,7 +15,7 @@ export const COLUMNS = [
     minWidth: '200px',
     colKey: 'idNumber'
   },
-  { title: '法定代表人姓名', width: 150, minWidth: '150px', colKey: 'legalPersonName' },
+  {title: '法定代表人姓名', width: 150, minWidth: '150px', colKey: 'legalPersonName'},
   {
     title: '身份证号',
     width: 250,
@@ -33,7 +33,7 @@ export const COLUMNS = [
     title: '审核状态',
     colKey: 'auditStatus',
     minWidth: '120px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '待审核'
@@ -57,7 +57,7 @@ export const COLUMNS = [
     colKey: 'certificationStatus',
     width: 120,
     minWidth: '120px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         1: {
           label: '待认证'
@@ -85,7 +85,7 @@ export const COLUMNS = [
     width: 250,
     minWidth: '200px',
     colKey: 'rejectReason',
-    cell: (h, { row }) => h('span', row.rejectReason ? row.rejectReason : '-')
+    cell: (h, {row}) => h('span', row.rejectReason ? row.rejectReason : '-')
   },
   {
     title: '申请时间',
@@ -94,7 +94,7 @@ export const COLUMNS = [
     colKey: 'createTime',
     sorter: true,
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.createTime)))
   },
   {
@@ -103,7 +103,7 @@ export const COLUMNS = [
     width: 150,
     minWidth: '150px',
     colKey: 'auditorName',
-    cell: (h, { row }) => h('span', row.auditorName ? row.auditorName : '-')
+    cell: (h, {row}) => h('span', row.auditorName ? row.auditorName : '-')
   },
   {
     title: '审核时间',
@@ -112,7 +112,7 @@ export const COLUMNS = [
     colKey: 'auditTime',
     sorter: true,
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', row.auditTime ? formatDateTimeToDateTimeString(new Date(row.auditTime)) : '-')
   },
   {
@@ -157,7 +157,7 @@ export const Apply_DATA = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '-'
@@ -187,14 +187,14 @@ export const Apply_DATA = [
     width: 184,
     minWidth: '184px',
     colKey: 'nam',
-    cell: (h, { row }) => h('span', row.nam ? row.nam : '-')
+    cell: (h, {row}) => h('span', row.nam ? row.nam : '-')
   },
   {
     title: '申请时间',
     minWidth: '155px',
     colKey: 'updateTime',
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.updateTime)))
   },
   {
@@ -202,7 +202,7 @@ export const Apply_DATA = [
     minWidth: '155px',
     colKey: 'auditTime',
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', row.auditTime ? formatDateTimeToDateTimeString(new Date(row.auditTime)) : '-')
   }
 ]

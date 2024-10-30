@@ -26,6 +26,7 @@ export interface loadDataType {
     id: string
   }>
 }
+
 // 定义一个对象的类型，第一层是对象，第二层是数组，第三层是对象，第一层的对象名字不确定可以是任意的字符串，第二层没有名字
 export interface MoreReplayDataType {
   [key: string]: Array<{
@@ -54,6 +55,7 @@ export interface MoreReplayDataType {
     }
   }>
 }
+
 // 定义详情数据的类型
 export interface DetailDataType {
   appendArray: Array<{}> // 追加评价
@@ -88,6 +90,7 @@ export interface DetailDataType {
   totalScore: number // 评价评分
   updateTime: string // 评价更新时间
 }
+
 // 分页
 export interface paginationType {
   pageSizeOptions?: Array<number>
@@ -97,8 +100,10 @@ export interface paginationType {
   infoType?: number
   targetType?: any
 }
+
 export interface dataType {
   [x: string]: any
+
   [key: number]: {
     appendArray: Array<{}> // 追加评价
     scoreArray: Array<{

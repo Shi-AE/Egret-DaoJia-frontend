@@ -3,11 +3,11 @@
     <view class="myPage">
         <!-- 标题 -->>
         <!-- end -->
-        <view class="main" :style="{ paddingTop: capsuleBottom + 'px' }">
+        <view :style="{ paddingTop: capsuleBottom + 'px' }" class="main">
             <view class="head" @click="handleClick">
                 <image src="https://yjy-oss-videos.oss-accelerate.aliyuncs.com/tx.png"></image>
                 <view class="text">{{
-                        accessToken && nickName ? nickName : '立即登录'
+                    accessToken && nickName ? nickName : '立即登录'
                     }}
                 </view>
             </view>
@@ -147,4 +147,4 @@ const handlePhone = () => {
 // 暴露给父组件
 defineExpose({});
 </script>
-<style src="./index.scss" lang="scss" scoped></style>
+<style lang="scss" scoped src="./index.scss"></style>

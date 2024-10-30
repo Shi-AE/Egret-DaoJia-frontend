@@ -8,9 +8,9 @@
             <t-input
               v-model="formData.id"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -19,9 +19,9 @@
             <t-input
               v-model="formData.contactsPhone"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -29,9 +29,9 @@
           <t-form-item label="下单时间：" name="status">
             <t-date-range-picker
               v-model="formData.createTime"
-              placeholder="日期"
               :presets="presets"
               clearable
+              placeholder="日期"
             />
           </t-form-item>
         </t-col>
@@ -39,10 +39,10 @@
           <t-form-item label="订单状态：" name="edjServeTypeId">
             <t-select
               v-model="formData.ordersStatus"
-              class="form-item-content"
               :options="ORDER_STATUS"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -50,10 +50,10 @@
           <t-form-item label="支付状态：" name="payStatus">
             <t-select
               v-model="formData.payStatus"
-              class="form-item-content"
               :options="TRADE_STATUS"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -61,10 +61,10 @@
           <t-form-item label="退款状态：" name="refundStatus">
             <t-select
               v-model="formData.refundStatus"
-              class="form-item-content"
               :options="REFUND_STATUS"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -77,9 +77,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
-import { ORDER_STATUS, TRADE_STATUS, REFUND_STATUS } from '@/constants'
+import { ORDER_STATUS, REFUND_STATUS, TRADE_STATUS } from '@/constants'
 // 表单数据
 const formData = ref({
   id: '',
@@ -102,7 +102,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleSearch', formData.value)
 }
 // 搜索表单

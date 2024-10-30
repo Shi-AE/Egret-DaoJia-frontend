@@ -1,12 +1,12 @@
 <template>
   <div class="detailBox">
-    <t-card :bordered="false" v-if="stepsData">
-      <t-steps class="step-container" :current="activeStep" status="process">
+    <t-card v-if="stepsData" :bordered="false">
+      <t-steps :current="activeStep" class="step-container" status="process">
         <t-step-item
-          :title="item.status"
-          :content="item.dateTime"
           v-for="(item, key) in stepsData"
           :key="key"
+          :content="item.dateTime"
+          :title="item.status"
         />
       </t-steps>
     </t-card>
@@ -23,44 +23,44 @@
             <div class="tag">订单状态</div>
             <div class="content">
               <span
-                class="status-dot status-dot-0"
                 v-if="detailData.orderInfo?.ordersStatus === 0"
-                >待支付</span
+                class="status-dot status-dot-0"
+              >待支付</span
               >
               <span
-                class="status-dot status-dot-0"
                 v-if="detailData.orderInfo?.ordersStatus === 100"
-                >派单中</span
+                class="status-dot status-dot-0"
+              >派单中</span
               >
               <span
-                class="status-dot status-dot-0"
                 v-if="detailData.orderInfo?.ordersStatus === 200"
-                >待服务</span
+                class="status-dot status-dot-0"
+              >待服务</span
               >
               <span
-                class="status-dot status-dot-0"
                 v-if="detailData.orderInfo?.ordersStatus === 300"
-                >服务中</span
-              >
-              <span
                 class="status-dot status-dot-0"
+              >服务中</span
+              >
+              <span
                 v-if="detailData.orderInfo?.ordersStatus === 400"
-                >待评价</span
+                class="status-dot status-dot-0"
+              >待评价</span
               >
               <span
-                class="status-dot status-dot-2"
                 v-if="detailData.orderInfo?.ordersStatus === 500"
-                >已完成</span
-              >
-              <span
                 class="status-dot status-dot-2"
-                v-if="detailData.orderInfo?.ordersStatus === 600"
-                >已取消</span
+              >已完成</span
               >
               <span
-                class="status-dot status-dot-1"
+                v-if="detailData.orderInfo?.ordersStatus === 600"
+                class="status-dot status-dot-2"
+              >已取消</span
+              >
+              <span
                 v-if="detailData.orderInfo?.ordersStatus === 700"
-                >已关闭</span
+                class="status-dot status-dot-1"
+              >已关闭</span
               >
             </div>
           </div>
@@ -108,8 +108,8 @@
           </div>
         </div>
         <div
-          class="tagBox"
           v-if="detailData.orderInfo?.serveProviderType !== null"
+          class="tagBox"
         >
           <div class="leftBox">
             <div class="tag">服务人员电话</div>
@@ -140,8 +140,8 @@
           </div>
         </div>
         <div
-          class="tagBox"
           v-if="detailData.orderInfo?.serveProviderType === 3"
+          class="tagBox"
         >
           <div class="leftBox">
             <div class="tag">企业电话</div>
@@ -173,8 +173,8 @@
             <div class="content">
               {{ detailData.orderInfo?.purNum }}
               <span v-if="detailData.orderInfo?.unit">{{
-                UNIT[detailData.orderInfo?.unit - 1].label
-              }}</span>
+                  UNIT[detailData.orderInfo?.unit - 1].label
+                }}</span>
             </div>
           </div>
         </div>
@@ -183,10 +183,10 @@
     <!-- end -->
     <!-- 支付记录 -->
     <div
-      class="Card bg-wt"
       v-if="
         detailData.orderInfo?.ordersStatus !== 0 && detailData.payInfo !== null
       "
+      class="Card bg-wt"
     >
       <div class="title">支付记录</div>
       <div class="bodyBox">
@@ -195,26 +195,26 @@
             <div class="tag">支付状态</div>
             <div class="content">
               <span
-                class="status-dot status-dot-2"
                 v-if="detailData.payInfo?.payStatus === 4"
-                >已支付</span
+                class="status-dot status-dot-2"
+              >已支付</span
               >
               <span
-                class="status-dot status-dot-1"
                 v-if="detailData.payInfo?.payStatus === 2"
-                >未支付</span
+                class="status-dot status-dot-1"
+              >未支付</span
               >
             </div>
           </div>
           <div
-            class="rightBox"
             v-if="detailData.orderInfo?.ordersStatus !== 600"
+            class="rightBox"
           >
             <div class="tag">支付渠道</div>
             <div class="content">线上支付</div>
           </div>
         </div>
-        <div class="tagBox" v-if="detailData.orderInfo?.ordersStatus !== 600">
+        <div v-if="detailData.orderInfo?.ordersStatus !== 600" class="tagBox">
           <div class="leftBox">
             <div class="tag">支付方式</div>
             <div class="content">
@@ -236,7 +236,7 @@
             <div class="content">{{ detailData.payInfo?.thirdOrderId }}</div>
           </div>
         </div>
-        <div class="tagBox" v-if="detailData.orderInfo?.ordersStatus !== 600">
+        <div v-if="detailData.orderInfo?.ordersStatus !== 600" class="tagBox">
           <div class="leftBox">
             <div class="tag">支付金额</div>
             <div class="content">￥{{ detailData.payInfo?.totalAmount }}</div>
@@ -251,10 +251,10 @@
     <!-- end -->
     <!-- 服务记录 -->
     <div
-      class="Card bg-wt"
       v-if="
         detailData.serveInfo?.realServeStartTime !== null
       "
+      class="Card bg-wt"
     >
       <div class="title">服务记录</div>
       <div class="bodyBox">
@@ -265,31 +265,31 @@
         <div class="tagBox">
           <div class="leftBox">
             <div class="tag">服务前照片</div>
-            <div class="content" v-if="detailData.serveInfo?.serveBeforeImgs">
+            <div v-if="detailData.serveInfo?.serveBeforeImgs" class="content">
               <t-image-viewer
-                :images="detailData.serveInfo?.serveBeforeImgs"
                 v-for="(item, index) in detailData.serveInfo?.serveBeforeImgs"
                 :key="index"
                 :default-index="index"
+                :images="detailData.serveInfo?.serveBeforeImgs"
               >
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
                     <img
-                      alt="test"
                       :src="item"
+                      alt="test"
                       class="tdesign-demo-image-viewer__ui-image--img"
                     />
                     <div
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em" /> </span>
+                      <span><ZoomInIcon size="1.8em"/> </span>
                     </div>
                   </div>
                 </template>
               </t-image-viewer>
             </div>
-            <div class="content" v-else>-</div>
+            <div v-else class="content">-</div>
           </div>
           <div class="rightBox">
             <div class="tag">开始服务时间</div>
@@ -313,40 +313,40 @@
           </div>
         </div>
         <div
-          class="serviceSplit"
           v-if="detailData.orderInfo?.ordersStatus > 300"
+          class="serviceSplit"
         >
           <span>服务后</span>
           <span class="line"></span>
         </div>
-        <div class="tagBox" v-if="detailData.orderInfo?.ordersStatus > 300">
-          <div class="leftBox" v-if="detailData.orderInfo?.ordersStatus > 300">
+        <div v-if="detailData.orderInfo?.ordersStatus > 300" class="tagBox">
+          <div v-if="detailData.orderInfo?.ordersStatus > 300" class="leftBox">
             <div class="tag">服务后照片</div>
-            <div class="content" v-if="detailData.serveInfo?.serveAfterImgs">
+            <div v-if="detailData.serveInfo?.serveAfterImgs" class="content">
               <t-image-viewer
-                :images="detailData.serveInfo?.serveAfterImgs"
                 v-for="(item, index) in detailData.serveInfo?.serveAfterImgs"
                 :key="index"
                 :default-index="index"
+                :images="detailData.serveInfo?.serveAfterImgs"
               >
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
                     <img
-                      alt="test"
                       :src="item"
+                      alt="test"
                       class="tdesign-demo-image-viewer__ui-image--img"
                     />
                     <div
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em" /> </span>
+                      <span><ZoomInIcon size="1.8em"/> </span>
                     </div>
                   </div>
                 </template>
               </t-image-viewer>
             </div>
-            <div class="content" v-else>-</div>
+            <div v-else class="content">-</div>
           </div>
           <div class="rightBox">
             <div class="tag">结束服务时间</div>
@@ -359,7 +359,7 @@
             </div>
           </div>
         </div>
-        <div class="tagBox" v-if="detailData.orderInfo?.ordersStatus > 300">
+        <div v-if="detailData.orderInfo?.ordersStatus > 300" class="tagBox">
           <div class="tag">补充说明</div>
           <div class="content">
             {{
@@ -373,7 +373,7 @@
     </div>
     <!-- end -->
     <!-- 收益记录 -->
-    <div class="Card bg-wt" v-if="detailData.payStatus === 3">
+    <div v-if="detailData.payStatus === 3" class="Card bg-wt">
       <div class="title">收益记录</div>
       <div class="bodyBox">
         <div class="tagBox">
@@ -411,12 +411,12 @@
     <!-- end -->
     <!-- 退款记录 -->
     <div
-      class="Card bg-wt"
       v-if="
         detailData.refundInfo?.refundStatus !== null &&
         detailData.payInfo?.payStatus === 4 &&
         detailData.refundInfo !== null
       "
+      class="Card bg-wt"
     >
       <div class="title">退款记录</div>
       <div class="bodyBox">
@@ -424,33 +424,36 @@
           <div class="leftBox">
             <div class="tag">退款状态</div>
             <div
-              class="content"
               v-if="detailData.refundInfo?.refundStatus === 0"
+              class="content"
             >
               发起退款
             </div>
             <div
-              class="content"
               v-if="detailData.refundInfo?.refundStatus === 1"
+              class="content"
             >
               退款中
             </div>
             <div
-              class="content"
               v-if="detailData.refundInfo?.refundStatus === 2"
+              class="content"
             >
               退款成功
             </div>
             <div
-              class="content"
               v-if="detailData.refundInfo?.refundStatus === 3"
+              class="content"
             >
               退款失败
             </div>
           </div>
           <div class="rightBox">
             <div class="tag">申请人</div>
-            <div class="content">{{ detailData.refundInfo?.cancelerName ? detailData.refundInfo?.cancelerName : '-' }}</div>
+            <div class="content">{{
+                detailData.refundInfo?.cancelerName ? detailData.refundInfo?.cancelerName : '-'
+              }}
+            </div>
           </div>
         </div>
         <div class="tagBox">
@@ -486,8 +489,8 @@
           </div>
         </div>
         <div
-          class="tagBox"
           v-if="detailData.refundInfo?.thirdRefundOrderId !== null"
+          class="tagBox"
         >
           <div class="leftBox">
             <div class="tag">
@@ -512,7 +515,7 @@
     </div>
     <!-- end -->
     <!-- 评价状态 -->
-    <div class="Card bg-wt" v-if="detailData.payStatus === 3">
+    <div v-if="detailData.payStatus === 3" class="Card bg-wt">
       <div class="title">评价记录</div>
       <div class="bodyBox">
         <div class="tagBox">
@@ -536,13 +539,13 @@
     <!-- END -->
     <!-- 取消记录 -->
     <div
-      class="Card bg-wt"
       v-if="
         detailData.orderInfo?.ordersStatus === 600 ||
         (detailData.orderInfo?.ordersStatus === 700 &&
           detailData.cancelInfo?.cancelerName !== null &&
           detailData.payStatus === 2)
       "
+      class="Card bg-wt"
     >
       <div class="title">取消记录</div>
       <div class="bodyBox">
@@ -582,7 +585,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { formatNumber } from '@/utils/index'
@@ -591,6 +594,7 @@ import { ZoomInIcon } from 'tdesign-icons-vue-next'
 import { formatDateTimeToDateTimeString } from '@/utils/date'
 import { UNIT } from '@/constants'
 import { forEach } from 'lodash'
+
 const route = useRoute()
 const orderId = route.params.id
 const detailData = ref<any>({})
@@ -707,9 +711,11 @@ watch(
   :deep(.t-card__body) {
     padding: 20px 36px;
   }
+
   .Card {
     margin-top: 25px;
     padding: 36px 49px;
+
     .title {
       color: var(--color-bk1);
       font-weight: 600;
@@ -717,14 +723,17 @@ watch(
       color: #191919;
       padding-bottom: 10px;
     }
+
     .bodyBox {
       .serviceSplit {
         display: flex;
         margin-top: 25px;
         align-items: center;
+
         &:last-child {
           margin-top: 35px;
         }
+
         span {
           min-width: 42px;
           font-family: PingFangSC-SNaNpxibold;
@@ -736,46 +745,52 @@ watch(
           width: auto;
           box-sizing: border-box;
         }
+
         .line {
           height: 1px;
           width: 100%;
-          background: linear-gradient(
-            to left,
-            transparent 0%,
-            transparent 50%,
-            #e8e8e8 50%,
-            #e8e8e8 100%
-          );
+          background: linear-gradient(to left,
+          transparent 0%,
+          transparent 50%,
+          #e8e8e8 50%,
+          #e8e8e8 100%);
           background-size: 12px 1px;
           background-repeat: repeat-x;
         }
       }
+
       .tagBox {
         display: flex;
         margin-top: 30px;
         font-size: 14px;
         width: 100%;
+
         .leftBox,
         .rightBox {
           width: 50%;
           display: flex;
         }
+
         .rightBox {
           padding-left: 50px;
         }
+
         .tag {
           width: 172px;
           color: var(--color-bk3);
         }
+
         .content {
           color: var(--color-bk1);
           width: 54%;
+
           :deep(.tdesign-demo-image-viewer__ui-image) {
             width: 100px;
             height: 100px;
             margin-right: 16px;
           }
         }
+
         .company {
           padding: 0 3.5px;
           background: #ffe8e8;

@@ -3,16 +3,19 @@ export interface serviceTypeResult {
   pageNo: number
   pageSize: number
 }
+
 export interface serviceTypeStatus {
   id: string
   flag: number
 }
+
 export interface serviceTypeAdd {
   img: string
   icon: string
   name: string
   sortNum: number
 }
+
 export interface serviceTypeEdit {
   id: string
   img: string
@@ -20,6 +23,7 @@ export interface serviceTypeEdit {
   name: string
   sortNum: number
 }
+
 export interface serviceTypeItemList {
   isAsc1: string
   isAsc2: string
@@ -30,6 +34,7 @@ export interface serviceTypeItemList {
   name: string
   edjServeTypeId: string
 }
+
 export interface serviceItemTypeAdd {
   edjServeTypeId: string
   img: string
@@ -41,17 +46,20 @@ export interface serviceItemTypeAdd {
   name: string
   sortNum: string
 }
+
 export interface regionTypeAdd {
   edjCityId: string
   name: string
   managerName: string
   managerPhone: string
 }
+
 export interface regionTypeEdit {
   id: string
   managerName: string
   managerPhone: string
 }
+
 export interface serviceListType {
   isAsc1: string
   isAsc2: string

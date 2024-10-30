@@ -9,25 +9,25 @@
       </div>
       <!-- 表格 -->
       <t-table
-        :data="data"
-        :columns="COLUMNS"
-        :row-key="data.id"
-        vertical-align="middle"
-        :hover="true"
-        :pagination="
-          pagination.total <= 10 || !pagination.total ? null : pagination
-        "
-        :disable-data-page="pagination.total <= 10"
-        :selected-row-keys="selectedRowKeys"
-        :loading="dataLoading"
         :column-controller="{
           hideTriggerButton: true
         }"
-        :sort="sort"
+        :columns="COLUMNS"
+        :data="data"
+        :disable-data-page="pagination.total <= 10"
         :hide-sort-tips="true"
+        :hover="true"
+        :loading="dataLoading"
+        :pagination="
+          pagination.total <= 10 || !pagination.total ? null : pagination
+        "
+        :row-key="data.id"
+        :selected-row-keys="selectedRowKeys"
         :show-sort-column-bg-color="true"
-        table-layout="fixed"
+        :sort="sort"
         table-content-width="100%"
+        table-layout="fixed"
+        vertical-align="middle"
         @filter-change="FilterChange"
         @sort-change="sortChange"
         @select-change="rehandleSelectChange"
@@ -66,8 +66,8 @@
         <template #targetName="{ row }">
           <div class="name">
             <a class="font-bt" @click="handleClickObject(row)">{{
-              row.targetName
-            }}</a>
+                row.targetName
+              }}</a>
           </div>
         </template>
         <!-- 添加图片 -->
@@ -82,8 +82,8 @@
                   <template #trigger="{ open }">
                     <div class="tdesign-demo-image-viewer__ui-image">
                       <img
-                        alt="test"
                         :src="row.pictureArray[0]"
+                        alt="test"
                         class="tdesign-demo-image-viewer__ui-image--img"
                       />
                       <div
@@ -108,10 +108,10 @@
                'btn-dl line btn-split-right text-forbidden'
             "
             @click="handleClickDelete(row)"
-            >删除</a
+          >删除</a
           >
           <a class="font-bt" @click="handleClickDetail(row)"
-            >详情</a
+          >详情</a
           >
         </template>
         <!-- end -->
@@ -127,7 +127,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { COLUMNS } from '../constants'
@@ -277,6 +277,7 @@ watchEffect(() => {
 .newBox {
   margin-bottom: 16px;
   display: flex;
+
   .newBoxbutton {
     // 右对齐
     margin-left: auto;

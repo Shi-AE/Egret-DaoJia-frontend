@@ -4,24 +4,24 @@
     <t-form ref="form" :data="formData" :label-width="70">
       <t-row>
         <t-col>
-          <t-form-item label="订单编号：" name="name" :label-width="70">
+          <t-form-item :label-width="70" label="订单编号：" name="name">
             <t-input
               v-model="formData.ordersCode"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="服务人员电话：" name="name" :label-width="98">
+          <t-form-item :label-width="98" label="服务人员电话：" name="name">
             <t-input
               v-model="formData.contactsName"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -29,24 +29,24 @@
           <t-form-item label="订单状态：" name="edjServeTypeId">
             <t-select
               v-model="formData.ordersStatus"
-              class="form-item-content"
               :options="ORDER_STATUS"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="交易完成时间：" name="status" :label-width="98">
+          <t-form-item :label-width="98" label="交易完成时间：" name="status">
             <t-date-range-picker
               v-model="formData.createTime"
-              placeholder="日期"
-              :presets="presets"
               :disable-date="{
                 before: dateRange[0],
                 after: dateRange[1]
               }"
+              :presets="presets"
               clearable
+              placeholder="日期"
               @pick="handleCellClick"
             />
           </t-form-item>
@@ -60,10 +60,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+<script lang="ts" setup>
+import { ref } from 'vue'
 import dayjs from 'dayjs'
-import { forEach } from 'lodash'
 import { ORDER_STATUS } from '@/constants'
 // 表单数据
 const formData = ref({
@@ -84,13 +83,14 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleSearch', formData.value)
 }
 // 搜索表单
 const handleSearch = () => {
   emit('handleSearch', formData.value)
 }
+
 function handleCellClick(value) {
   // 确定传递的日期前一年的12月31日和今年的12月31日，放入数组中
   dateRange.value = [
@@ -98,6 +98,7 @@ function handleCellClick(value) {
     dayjs(value).endOf('year').toDate()
   ]
 }
+
 // 时间选择器tag
 const presets = ref({
   近一周: [

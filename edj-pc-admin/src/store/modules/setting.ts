@@ -54,7 +54,7 @@ export const useSettingStore = defineStore('setting', {
     },
     // 添加颜色
     addColor(payload: any) {
-      this.colorList = { ...this.colorList, ...payload }
+      this.colorList = {...this.colorList, ...payload}
     },
     // 更新配置
     updateConfig(payload: Partial<TState>) {

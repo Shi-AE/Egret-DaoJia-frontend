@@ -8,25 +8,25 @@
             <t-input
               v-model="formData.name"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="法定代表人姓名：" name="legalPersonName" :label-width="115">
+          <t-form-item :label-width="115" label="法定代表人姓名：" name="legalPersonName">
             <t-input
               v-model="formData.legalPersonName"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="审核状态：" name="auditStatus" :label-width="70">
+          <t-form-item :label-width="70" label="审核状态：" name="auditStatus">
             <t-radio-group v-model="formData.auditStatus">
               <t-radio :value="2">全部</t-radio>
               <t-radio :value="1">已审核</t-radio>
@@ -35,7 +35,7 @@
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="认证状态：" name="certificationStatus" :label-width="70">
+          <t-form-item :label-width="70" label="认证状态：" name="certificationStatus">
             <t-radio-group v-model="formData.certificationStatus">
               <t-radio :value="1">全部</t-radio>
               <t-radio :value="2">认证通过</t-radio>
@@ -52,9 +52,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
-import { AUTH_STATUS , AUDIT_STATUS } from '@/constants'
+import { AUTH_STATUS, AUDIT_STATUS } from '@/constants'
+
 const props = defineProps({
   initSearch: {
     type: Number,
@@ -88,7 +89,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleSearch', formData.value)
 }
 // 搜索表单

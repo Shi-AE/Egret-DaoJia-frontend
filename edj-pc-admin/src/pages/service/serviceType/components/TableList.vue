@@ -7,25 +7,25 @@
       </div>
       <t-config-provider :global-config="globalLocale">
         <t-table
-          :data="data"
           :columns="COLUMNS"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
+          :filter-value="filterValue"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
+          :multiple-sort="true"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          :disable-data-page="pagination.total <= 10"
+          :row-key="rowKey"
           :selected-row-keys="selectedRowKeys"
-          :loading="dataLoading"
+          :show-sort-column-bg-color="true"
           :sort="sort"
           show-size-changer
-          :filter-value="filterValue"
-          :hide-sort-tips="true"
-          :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          :multiple-sort="true"
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
           @page-change="onPageChange"
           @sort-change="sortChange"
           @select-change="rehandleSelectChange"
@@ -52,15 +52,15 @@
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
                     <img
-                      alt="test"
                       :src="row.img"
+                      alt="test"
                       class="tdesign-demo-image-viewer__ui-image--img"
                     />
                     <div
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em" /></span>
+                      <span><ZoomInIcon size="1.8em"/></span>
                     </div>
                   </div>
                 </template>
@@ -84,22 +84,22 @@
                   : 'btn-dl btn-split-right'
               "
               @click="handleClickDelete(row)"
-              >删除</a
+            >删除</a
             >
             <a
               :class="'font-bt btn-split-right line'"
               @click="handleViewServices(row)"
-              >查看服务项</a
+            >查看服务项</a
             >
             <a
-              class="font-bt line"
               :class="row.activeStatus === 2 ? 'text-forbidden' : ''"
+              class="font-bt line"
               @click="handleEdit(row)"
-              >编辑</a
+            >编辑</a
             >
             <a class="font-bt btn-split-left" @click="handleDisable(row)">{{
-              row.activeStatus === 2 ? '禁用' : '启用'
-            }}</a>
+                row.activeStatus === 2 ? '禁用' : '启用'
+              }}</a>
           </template>
           <!-- end -->
         </t-table>
@@ -114,7 +114,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { CaretDownSmallIcon, ZoomInIcon } from 'tdesign-icons-vue-next'
@@ -238,13 +238,16 @@ const handleViewServices = (val) => {
     min-height: 674px;
   }
 }
+
 .headPortrait {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }
+
 :deep(.t-table--column-fixed .t-table__cell--fixed-right) {
   width: 157px !important;
 }

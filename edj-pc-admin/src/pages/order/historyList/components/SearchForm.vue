@@ -8,24 +8,24 @@
             <t-input
               v-model="formData.id"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
         <t-col>
           <t-form-item
+            :label-width="98"
             label="服务人员电话："
             name="serveProviderStaffPhone"
-            :label-width="98"
           >
             <t-input
               v-model="formData.serveProviderStaffPhone"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -33,7 +33,6 @@
           <t-form-item label="订单状态：" name="ordersStatus">
             <t-select
               v-model="formData.ordersStatus"
-              class="form-item-content"
               :options="[
                 {
                   label: '订单完成',
@@ -48,22 +47,23 @@
                   value: '700'
                 }
               ]"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="交易结束时间：" name="status" :label-width="98">
+          <t-form-item :label-width="98" label="交易结束时间：" name="status">
             <t-date-range-picker
               v-model="formData.createTime"
-              placeholder="日期"
-              :presets="presets"
-              clearable
-              allow-input
               :disable-date="{
                 after: props.initSearch[1]
               }"
+              :presets="presets"
+              allow-input
+              clearable
+              placeholder="日期"
               @change="onCurrencyChange"
             />
           </t-form-item>
@@ -72,10 +72,10 @@
           <t-form-item label="支付状态：" name="payStatus">
             <t-select
               v-model="formData.payStatus"
-              class="form-item-content"
               :options="TRADE_STATUS"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -83,13 +83,13 @@
           <t-form-item label="退款状态：" name="refundStatus">
             <t-select
               v-model="formData.refundStatus"
-              class="form-item-content"
               :options="[
                 { value: 2, label: '退款成功' },
                 { value: 3, label: '退款失败' }
               ]"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -102,7 +102,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { TRADE_STATUS } from '@/constants'
 import { MessagePlugin } from 'tdesign-vue-next'
@@ -138,7 +138,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleSearch', formData.value)
 }
 // 搜索表单

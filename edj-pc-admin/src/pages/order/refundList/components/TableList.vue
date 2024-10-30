@@ -9,25 +9,25 @@
       </div>
       <t-config-provider :global-config="globalLocale">
         <t-table
-          :data="data"
           :columns="COLUMNS"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
+          :multiple-sort="true"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          select-on-row-click
+          :row-key="rowKey"
           :selected-row-keys="selectedRowKeys"
-          :disable-data-page="pagination.total <= 10"
-          :loading="dataLoading"
-          :sort="sort"
-          showSizeChanger
-          :hide-sort-tips="true"
           :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          :multiple-sort="true"
+          :sort="sort"
+          select-on-row-click
+          showSizeChanger
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
           @page-change="onPageChange"
           @sort-change="sortChange"
         >
@@ -39,8 +39,8 @@
           <template #updateTime="{ row }">
             <div class="updateTime">
               <span>{{
-                row.updateTime ? formatDateTimeToDateTimeString(new Date(row.updateTime)) : '-'
-              }}</span
+                  row.updateTime ? formatDateTimeToDateTimeString(new Date(row.updateTime)) : '-'
+                }}</span
               >
               <!-- <span class="linjin"></span> -->
             </div>
@@ -64,7 +64,7 @@
                 row.saleStatus === 2 ? 'text-forbidden font-bt' : 'font-bt'
               "
               @click="handleClickDetail(row)"
-              >查看</a
+            >查看</a
             >
           </template>
           <!-- end -->
@@ -72,8 +72,8 @@
             <div class="description">
               <span>{{ row.serveAddress }}</span>
               <span v-if="row.serveAddress.length > 36" class="hover">{{
-                row.serveAddress
-              }}</span>
+                  row.serveAddress
+                }}</span>
             </div>
           </template>
         </t-table>
@@ -82,7 +82,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { CaretDownSmallIcon } from 'tdesign-icons-vue-next'
 import { COLUMNS } from '../constants'
@@ -167,7 +167,7 @@ const onPageChange = (val) => {
 }
 // tab数据
 const tableBar = ref([
-{
+  {
     name: '全部',
     id: null,
     value: undefined
@@ -199,16 +199,20 @@ const changeId = (val: number) => {
     height: 64px !important;
   }
 }
+
 .headPortrait {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }
+
 .updateTime {
   display: flex;
   align-items: center;
+
   .linjin {
     margin-left: 6px;
     width: 17px;

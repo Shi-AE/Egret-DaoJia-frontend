@@ -9,7 +9,7 @@
     "picker",
     "三级联动",
     "选择器"
-],
+  ],
   "repository": "",
   "engines": {
     "HBuilderX": "^3.7.0"

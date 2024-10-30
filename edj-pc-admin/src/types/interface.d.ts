@@ -9,8 +9,8 @@ export interface MenuRoute {
   icon?:
     | string
     | {
-        render: () => void
-      }
+    render: () => void
+  }
   redirect?: string
   children: MenuRoute[]
   meta: any

@@ -6,16 +6,16 @@ export const COLUMNS = [
     minWidth: '70px',
     colKey: 'edjCityId'
   },
-  { title: '区域名称', width: 150, minWidth: '150px', colKey: 'name' },
-  { title: '区域负责人', width: 150, minWidth: '150px', colKey: 'managerName' },
-  { title: '手机号码', minWidth: '200px', colKey: 'managerPhone' },
+  {title: '区域名称', width: 150, minWidth: '150px', colKey: 'name'},
+  {title: '区域负责人', width: 150, minWidth: '150px', colKey: 'managerName'},
+  {title: '手机号码', minWidth: '200px', colKey: 'managerPhone'},
   // { title: '服务范围', width: 250, minWidth: '250px', colKey: 'name' },
   {
     title: '状态',
     colKey: 'activeStatus',
     minWidth: '120px',
     width: 150,
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '草稿'

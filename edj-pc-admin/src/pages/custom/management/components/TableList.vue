@@ -4,23 +4,23 @@
     <div class="tableBoxs">
       <t-config-provider :global-config="globalLocale">
         <t-table
-          :data="data"
           :columns="COLUMNS"
-          row-key="index"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
+          :multiple-sort="true"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          :disable-data-page="pagination.total <= 10"
-          :loading="dataLoading"
-          :sort="sort"
-          showSizeChanger
-          :hide-sort-tips="true"
           :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          :multiple-sort="true"
+          :sort="sort"
+          row-key="index"
+          showSizeChanger
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
           @page-change="onPageChange"
           @sort-change="sortChange"
         >
@@ -32,8 +32,8 @@
           <!-- 在操作栏添加删除、编辑、查看三种操作 -->
           <template #op="{ row }">
             <a class="font-bt" @click="handleClickFreeze(row, row.status)">{{
-              row.status === 0 ? '冻结' : '解冻'
-            }}</a>
+                row.status === 0 ? '冻结' : '解冻'
+              }}</a>
           </template>
           <!-- end -->
         </t-table>
@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { CaretDownSmallIcon } from 'tdesign-icons-vue-next'
 import { COLUMNS } from '../constants'
@@ -118,7 +118,7 @@ const sortChange = (val) => {
 
 // 点击冻结
 const handleClickFreeze = (row, flag) => {
-    emit('handleClickFreeze', row, flag)
+  emit('handleClickFreeze', row, flag)
 }
 // 点击翻页
 const onPageChange = (val) => {
@@ -136,6 +136,7 @@ const onPageChange = (val) => {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }

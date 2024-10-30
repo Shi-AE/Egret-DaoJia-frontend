@@ -6,6 +6,7 @@ export interface customListRequest {
   nickName?: string
   phone?: string
 }
+
 // 冻结/解冻
 export interface customFreezeRequest {
   id: string

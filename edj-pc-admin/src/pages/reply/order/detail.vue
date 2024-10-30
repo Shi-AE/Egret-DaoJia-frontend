@@ -56,7 +56,7 @@
             :src="detailData.evaluatorInfo?.avatar"
             alt=""
           />
-          <img v-else src="../../../assets/head@3x.png" alt="" />
+          <img v-else alt="" src="../../../assets/head@3x.png"/>
           <div>{{ detailData.evaluatorInfo?.nickName }}</div>
         </div>
         <div class="op">
@@ -67,12 +67,12 @@
                   ? Math.floor(detailData.totalScore) + 0.5
                   : detailData.totalScore
               "
+              :gap="6"
               allow-half
+              class="stars"
+              color="#FF4C4C"
               disabled
               size="16px"
-              :gap="6"
-              color="#FF4C4C"
-              class="stars"
             />
             <span>{{ detailData.totalScore }}分</span>
           </div>
@@ -90,8 +90,8 @@
             <template #trigger="{ open }">
               <div class="tdesign-demo-image-viewer__ui-image">
                 <img
-                  alt="test"
                   :src="detailData.pictureArray[0]"
+                  alt="test"
                   class="tdesign-demo-image-viewer__ui-image--img"
                 />
                 <div
@@ -127,7 +127,7 @@
                 :src="content.replierInfo?.avatar"
                 alt=""
               />
-              <img v-else src="../../../assets/head@3x.png" alt="" />
+              <img v-else alt="" src="../../../assets/head@3x.png"/>
             </div>
             <div class="right2">
               <div v-if="content.parentId == 0" class="user">
@@ -167,7 +167,7 @@
           >
             <div class="bt-more btfx fx-ct" @click="handleLoadMoreReply()">
               展开全部回复
-              <img src="@/assets/test-img/icon_more@3x.png" alt="" />
+              <img alt="" src="@/assets/test-img/icon_more@3x.png"/>
             </div>
           </div>
           <div
@@ -180,9 +180,9 @@
             <div class="bt-more btfx fx-ct" @click="handleRetractMoreReply()">
               收起全部回复
               <img
-                src="@/assets/test-img/icon_more.png"
                 alt=""
                 class="retract"
+                src="@/assets/test-img/icon_more.png"
               />
             </div>
           </div>
@@ -195,13 +195,14 @@
         <t-form
           ref="form"
           :data="formData"
-          :rules="rules"
           :label-width="0"
+          :rules="rules"
           on-cancel="onClickCloseBtn"
           @submit="onSubmit"
         >
           <t-form-item name="content"
-            ><t-textarea
+          >
+            <t-textarea
               v-model="formData.content"
               class="word"
               placeholder="请输入至少5个字符"
@@ -212,15 +213,15 @@
             <span class="fastReply">快速回复:</span>
             <div class="tip">
               <span @click="transferText('您的认可是我们最大的欣慰')"
-                >您的认可是我们最大的欣慰</span
+              >您的认可是我们最大的欣慰</span
               >
               <span @click="transferText('对于您的反馈，我们会认真考虑')"
-                >对于您的反馈，我们会认真考虑</span
+              >对于您的反馈，我们会认真考虑</span
               >
             </div>
           </t-form-item>
           <t-form-item class="submit">
-            <button type="submit" :class="`bt btn-submit bt-disabled`">
+            <button :class="`bt btn-submit bt-disabled`" type="submit">
               <span>回复</span>
             </button>
             <span class="bt-tip">注意：管理员回复内容会在前台显示</span>
@@ -235,24 +236,24 @@
   </div>
   <!-- 删除弹层 -->
   <Delete
-    :dialog-delete-visible="dialogDeleteVisible"
     :delete-text="deleteText"
+    :dialog-delete-visible="dialogDeleteVisible"
     @handle-delete="handleDelete"
     @handle-close="handleClose"
   ></Delete>
   <!-- 确认置顶弹层 -->
   <Confirm
-    :title="confirmTitle"
-    :dialog-confirm-visible="dialogConfirmVisible"
     :confirm-text="confirmText"
+    :dialog-confirm-visible="dialogConfirmVisible"
+    :title="confirmTitle"
     @handle-confirm="handleConfirm"
     @handle-close="handleClose"
   ></Confirm>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
+import { ValidateResultContext } from 'tdesign-vue-next'
 import { useRoute, useRouter } from 'vue-router'
 // import {
 //   getCommentsDetail,
@@ -280,8 +281,8 @@ const confirmTitle = ref('') // 确认的标题
 const dialogConfirmVisible = ref(false) // 控制确认弹层显示隐藏
 
 // 请求参数
-const { id } = route.params
-const { targetType } = route.params
+const {id} = route.params
+const {targetType} = route.params
 const targetTypeId = ref({
   targetTypeId: targetType
 })
@@ -374,7 +375,8 @@ const rules = {
       trigger: 'blur'
     },
     {
-      validator: (val) => {},
+      validator: (val) => {
+      },
       message: `请输入至少2个字符,至多个字符`,
       type: 'error',
       trigger: 'blur'
@@ -668,10 +670,12 @@ const transferText = (text) => {
 
       .op {
         display: flex;
+
         .orderStar {
           display: flex;
           align-items: center;
           color: var(--color-bk3);
+
           span {
             font-weight: 400;
             font-size: 14px;
@@ -689,6 +693,7 @@ const transferText = (text) => {
               height: 16px;
             }
           }
+
           .time {
             height: 20px;
             line-height: 20px;
@@ -711,6 +716,7 @@ const transferText = (text) => {
           display: flex;
           align-items: center;
           color: var(--color-bk3);
+
           span {
             font-weight: 400;
             font-size: 14px;
@@ -729,17 +735,21 @@ const transferText = (text) => {
               height: 16px;
             }
           }
+
           .time {
             height: 20px;
             line-height: 20px;
           }
         }
+
         .op {
           display: flex;
+
           div {
             display: flex;
             cursor: pointer;
             color: var(--color-bk3);
+
             &:hover {
               color: var(--color-main);
             }
@@ -753,6 +763,7 @@ const transferText = (text) => {
               margin-right: 33.3px;
             }
           }
+
           .setTop {
             div {
               width: 20px;
@@ -769,6 +780,7 @@ const transferText = (text) => {
               }
             }
           }
+
           .delete {
             div {
               width: 20px;
@@ -787,29 +799,36 @@ const transferText = (text) => {
           }
         }
       }
+
       .card2 {
         .box {
           display: flex;
+
           &:first-child {
             padding-top: 14.4px;
           }
+
           .left2 {
             margin-left: 11.1px;
             margin-right: 7.5px;
+
             img {
               width: 30px;
               height: 30px;
               border-radius: 50%;
             }
           }
+
           .right2 {
             width: 100%;
+
             .user {
               font-family: PingFangSC-SNaNpxibold;
               font-weight: 600;
               font-size: 14px;
               color: var(--color-bk1);
             }
+
             .content {
               margin-left: 0;
               margin-top: 5.2px;
@@ -818,24 +837,30 @@ const transferText = (text) => {
               color: var(--color-bk3);
             }
           }
+
           .foot2 {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
             margin-bottom: 30px;
             color: var(--color-bk3);
+
             &:last-child {
               margin-bottom: 10px;
             }
+
             span {
               font-family: PingFangSC-Regular;
               font-weight: 400;
               font-size: 12px;
             }
+
             .operation {
               display: flex;
+
               .like {
                 pointer-events: none;
+
                 div {
                   width: 20px;
                   height: 20px;
@@ -844,17 +869,21 @@ const transferText = (text) => {
                   background-repeat: no-repeat;
                   background-size: 100% 100%;
                 }
+
                 margin-right: 34.3px;
               }
+
               div {
                 display: flex;
                 cursor: pointer;
                 color: var(--color-bk3);
+
                 span {
                   height: 20px;
                   line-height: 20px;
                 }
               }
+
               .reply {
                 div {
                   width: 20px;
@@ -864,20 +893,25 @@ const transferText = (text) => {
                   background-repeat: no-repeat;
                   background-size: 100% 100%;
                 }
+
                 &:hover {
                   div {
                     background-image: url('@/assets/btn_pinglun_hover.png');
                   }
+
                   span {
                     color: var(--color-main);
                   }
                 }
+
                 margin-right: 34.3px;
               }
+
               .delete {
                 span {
                   font-size: 14px;
                 }
+
                 div {
                   width: 20px;
                   height: 20px;
@@ -886,10 +920,12 @@ const transferText = (text) => {
                   background-repeat: no-repeat;
                   background-size: 100% 100%;
                 }
+
                 &:hover {
                   div {
                     background-image: url('@/assets/btn_delete_hover.png');
                   }
+
                   span {
                     color: var(--color-main);
                   }
@@ -899,22 +935,27 @@ const transferText = (text) => {
           }
         }
       }
+
       .replyBoxBottom {
         margin-left: 48.6px;
+
         .bt-more {
           color: var(--color-main);
           cursor: pointer;
+
           img {
             width: 10px;
             height: 10px;
             margin-left: 4px;
             margin-bottom: 2px;
           }
+
           .retract {
             margin-top: 3px;
           }
         }
       }
+
       .body {
         margin-bottom: 22px;
         font-size: 14px;
@@ -954,9 +995,11 @@ const transferText = (text) => {
     }
   }
 }
+
 .fastReply {
   margin-right: 10px;
 }
+
 .disabled {
   span {
     // 不可点击变，鼠标变箭头
@@ -964,6 +1007,7 @@ const transferText = (text) => {
     pointer-events: none;
   }
 }
+
 .tip {
   display: flex;
   width: 400px;
@@ -1026,13 +1070,16 @@ const transferText = (text) => {
 :deep(.t-form__controls-content) {
   min-height: 0;
 }
+
 :deep(.t-textarea__limit) {
   background: transparent;
 }
+
 :deep(.t-rate__item) {
   // hover不变化大小
   transform: scale(1);
 }
+
 .picture {
   margin-bottom: 22px;
 }

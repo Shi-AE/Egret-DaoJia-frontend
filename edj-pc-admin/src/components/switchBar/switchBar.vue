@@ -6,12 +6,12 @@
       :key="index"
       :class="{ title: true, line: currentId == item.id }"
       @click="changeId(item.id)"
-      >{{ item.name }}<span v-if="item.value" class="value">{{ item.value }}</span></span
+    >{{ item.name }}<span v-if="item.value" class="value">{{ item.value }}</span></span
     >
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import Type from './type'
 
@@ -57,6 +57,7 @@ watch(
   border-radius: 2px;
   padding-left: 5px;
   padding-right: 5px;
+
   .title {
     margin-right: 40px;
     position: relative;
@@ -69,10 +70,12 @@ watch(
     display: flex;
     align-items: center;
     justify-content: center;
+
     &:hover {
       color: var(--color-main);
     }
   }
+
   .line {
     color: var(--color-main);
     height: 28px;
@@ -84,6 +87,7 @@ watch(
     color: var(--color-bk2) !important;
   }
 }
+
 .value {
   margin-left: 5px;
 }

@@ -1,22 +1,22 @@
 <template>
   <div class="operate">经营分析</div>
   <div class="statistics">
-<!--    <div class="tips">
-      <span></span
-      >此数据统计的订单为统计时间内，已结束订单15个自然日之后的数据（已结束订单包含已取消、已关闭、已完成订单）
-    </div>-->
+    <!--    <div class="tips">
+          <span></span
+          >此数据统计的订单为统计时间内，已结束订单15个自然日之后的数据（已结束订单包含已取消、已关闭、已完成订单）
+        </div>-->
     <div class="export">
       <t-date-range-picker
         ref="datePicker"
         v-model="dateRange"
-        class="card-date-picker-container"
-        theme="primary"
-        mode="date"
-        allow-input
         :disable-date="{
           after: endTime
         }"
+        allow-input
+        class="card-date-picker-container"
         clearable
+        mode="date"
+        theme="primary"
         @change="onCurrencyChange"
       />
       <div class="bt" @click="exportStatistics">导出明细</div>
@@ -24,7 +24,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import dayjs from 'dayjs'

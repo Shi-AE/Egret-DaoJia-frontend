@@ -4,36 +4,36 @@
     <!-- 搜索表单区域 -->
     <searchFormBox
       :initSearch="initSearch"
-      @handleSearch="handleSearch"
       @handleReset="handleReset"
+      @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
+      :isActive="0"
       :list-data="listData"
       :pagination="pagination"
-      :isActive="0"
-      @handleClickFreeze="handleClickFreeze"
       @fetchData="fetchData"
-      @onPageChange="onPageChange"
+      @handleClickFreeze="handleClickFreeze"
       @handleSortChange="handleSortChange"
+      @onPageChange="onPageChange"
     ></tableList>
     <!-- end -->
     <!-- 新增，编辑弹窗 -->
     <DialogForm
-      :visible="visible"
-      :title="title"
       ref="dialogForm"
       :data="DialogFormData"
-      @handleClose="handleClose"
+      :title="title"
+      :visible="visible"
       @fetchData="fetchData"
+      @handleClose="handleClose"
       @handleSubmit="handleFreeze"
     />
     <!-- end -->
     <!-- 删除弹窗 -->
     <Delete
-      :dialog-delete-visible="dialogFreezeVisible"
       :delete-text="deleteText"
+      :dialog-delete-visible="dialogFreezeVisible"
       :title="title"
       @handle-delete="handleThaw"
       @handle-close="handleClose"
@@ -42,10 +42,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+<script lang="ts" setup>
+import { onMounted, ref, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
-import { getCustomList, customFreeze } from '@/api/custom'
+import { customFreeze, getCustomList } from '@/api/custom'
 import { useRoute } from 'vue-router'
 import DialogForm from '../../institution/information/components/DialogForm.vue' // 新增,编辑弹窗.
 import tableList from './components/TableList.vue' // 表格
@@ -152,7 +152,7 @@ const handleClickFreeze = (row, flag) => {
   if (flag === 0) {
     visible.value = true
     title.value = '冻结原因'
-  }else{
+  } else {
     dialogFreezeVisible.value = true
     title.value = '解冻确认'
   }

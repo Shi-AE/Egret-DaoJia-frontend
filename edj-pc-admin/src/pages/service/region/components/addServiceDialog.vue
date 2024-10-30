@@ -3,16 +3,16 @@
   <t-dialog
     v-model:visible="formVisible"
     :header="title"
-    :width="791"
     :on-close="onClickCloseBtn"
+    :width="791"
   >
     <template #body>
       <div class="leftBox">
         <img
           v-if="currentPage > 1 && typeItems.length > 9"
-          src="@/assets/icon_team_guanbi.png"
           alt=""
           class="shanghua"
+          src="@/assets/icon_team_guanbi.png"
           @click="scollTop"
         />
         <div class="tagBox">
@@ -27,9 +27,9 @@
         </div>
         <img
           v-if="currentPage * 9 < typeItems.length && typeItems.length > 9"
-          src="@/assets/icon_team_guanbi2.png"
           alt=""
           class="xiahua"
+          src="@/assets/icon_team_guanbi2.png"
           @click="scollBottom"
         />
       </div>
@@ -41,7 +41,7 @@
           @change="handleSearch"
         >
           <template #suffixIcon>
-            <search-icon />
+            <search-icon/>
           </template>
         </t-input>
         <NoData v-if="filteredItems?.length === 0"></NoData>
@@ -65,8 +65,8 @@
           <div v-for="(item, index) in activeItems" :key="index" class="card">
             <span>{{ item.name }}</span>
             <img
-              src="@/assets/btn_clean.png"
               alt=""
+              src="@/assets/btn_clean.png"
               @click="removeCard(item)"
             />
           </div>
@@ -77,14 +77,14 @@
       <div class="bt bt-grey btn-submit" @click="onClickCloseBtn">
         <span>取消</span>
       </div>
-      <div type="submit" class="bt btn-submit" @click="handleSubmit">
+      <div class="bt btn-submit" type="submit" @click="handleSubmit">
         <span>添加</span>
       </div>
     </template>
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { SearchIcon } from 'tdesign-icons-vue-next'
@@ -270,8 +270,10 @@ defineExpose({
   margin-left: 15.5px;
   width: 60px;
 }
+
 .leftBox {
   position: relative;
+
   .shanghua {
     width: 14px;
     position: absolute;
@@ -279,6 +281,7 @@ defineExpose({
     top: 18px;
     cursor: pointer;
   }
+
   .xiahua {
     width: 14px;
     position: absolute;
@@ -286,6 +289,7 @@ defineExpose({
     bottom: 18px;
     cursor: pointer;
   }
+
   .tagBox {
     margin: 25px 0;
     height: 302px;
@@ -307,6 +311,7 @@ defineExpose({
       text-align: center;
       width: 71px;
     }
+
     .activeTypeTag {
       color: var(--color-main);
       position: relative;
@@ -324,17 +329,21 @@ defineExpose({
     }
   }
 }
+
 .middleBox {
   padding: 25px 32px 25px;
   width: 315px;
   border-right: 1px solid #e4e7ed;
+
   :deep(.noData) {
     margin: 0 auto;
   }
+
   .search {
     width: 240px;
     height: 32px;
   }
+
   .serviceBox {
     height: 252px;
     width: 250px;
@@ -345,17 +354,21 @@ defineExpose({
     &::-webkit-scrollbar {
       width: 4px;
     }
+
     &::-webkit-scrollbar-track {
       background-color: transparent; /* 设置滚动条轨道背景色 */
     }
+
     &::-webkit-scrollbar-thumb {
       width: 4px;
       background-color: #d8d8d8; /* 设置滚动条滑块颜色 */
       border-radius: 2px; /* 设置滚动条滑块的圆角 */
+
       &:hover {
         background-color: #555; /* 设置滑块的背景色 */
       }
     }
+
     .serviceTag {
       width: 240px;
       height: 50px;
@@ -366,12 +379,14 @@ defineExpose({
       padding-right: 26px;
       align-items: center;
       justify-content: space-between;
+
       span {
         color: var(--color-bk3);
         font-size: 13px;
         font-family: PingFangSC-Regular;
         font-weight: 400;
       }
+
       // :deep(.t-checkbox__input) {
       //   width: 14px;
       //   height: 14px;
@@ -388,20 +403,24 @@ defineExpose({
         letter-spacing: 0;
         line-height: 14px;
       }
+
       &:first-child {
         border-top: 1px solid #ebeef5;
       }
     }
   }
 }
+
 .rightBox {
   padding-top: 24.5px;
 
   width: 328.5px;
+
   :deep(.noData) {
     width: 291.5px;
     margin-left: 37px;
   }
+
   .title {
     font-family: PingFangSC-Medium;
     font-weight: 500;
@@ -411,6 +430,7 @@ defineExpose({
     letter-spacing: 0.16px;
     height: 34px;
   }
+
   .cardBox {
     width: 303px;
     height: 278px;
@@ -426,17 +446,21 @@ defineExpose({
     &::-webkit-scrollbar {
       width: 4px;
     }
+
     &::-webkit-scrollbar-track {
       background-color: transparent; /* 设置滚动条轨道背景色 */
     }
+
     &::-webkit-scrollbar-thumb {
       width: 4px;
       background-color: #d8d8d8; /* 设置滚动条滑块颜色 */
       border-radius: 2px; /* 设置滚动条滑块的圆角 */
+
       &:hover {
         background-color: #555; /* 设置滑块的背景色 */
       }
     }
+
     // 一行显示两个
     .card {
       padding-left: 13px;
@@ -451,9 +475,11 @@ defineExpose({
       justify-content: space-between;
       margin-right: 22px;
       margin-bottom: 15px;
+
       &:nth-child(2n) {
         margin-right: 0;
       }
+
       span {
         font-family: PingFangSC-Regular;
         font-weight: 400;
@@ -461,6 +487,7 @@ defineExpose({
         line-height: 14px;
         color: var(--color-bk1);
       }
+
       img {
         width: 16px;
         height: 16px;
@@ -469,29 +496,35 @@ defineExpose({
     }
   }
 }
+
 :deep(.t-textarea__limit) {
   color: var(--color-bk4);
   right: 10px;
 }
+
 :deep(.t-dialog__footer) {
   display: flex;
   justify-content: flex-end;
   padding: 22px 32px 24px;
 }
+
 :deep(.t-dialog__body) {
   border-bottom: 1px solid #e4e7ed;
   padding: 0 37px 0 17.5px;
   display: flex;
 }
+
 :deep(.noData img) {
   width: 157.3px;
   height: 143px;
   margin-top: 55.5px;
   margin-bottom: 9px;
 }
+
 :deep(.noData p) {
   margin-bottom: 9px;
 }
+
 :deep(.t-checkbox.t-is-disabled.t-is-checked .t-checkbox__input) {
   background-color: var(--td-bg-color-component-disabled);
 }

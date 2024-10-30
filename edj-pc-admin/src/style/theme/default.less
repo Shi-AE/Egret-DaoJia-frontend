@@ -1,4 +1,4 @@
-:root, :root[theme-color='defult']  {
+:root, :root[theme-color='defult'] {
   // 主题色板
   --color-main: #F74346;
   --color-aux1: #0398FF;
@@ -24,31 +24,30 @@
   --color-bk8: #DCDCDC;
   --color-bk9: #ABABAB;
   --color-bk10: #FAFAFA; // 背景色
-  --color-bk11:#d9e1eb;
-  --color-bk12:#FFEFEC;
+  --color-bk11: #d9e1eb;
+  --color-bk12: #FFEFEC;
   --color-white: #ffffff; // 中性色
   --color-bk: #979797;
   --color-border: #E8E8E8; // 边框颜色，用于分割线
   // --color-border: #d9d9d9;
-  --color-border2:#CCD2D9;
+  --color-border2: #CCD2D9;
   --color-active: #CB2633;
   --color-hover: #3280FD;
   --color-active-blue: #1C55CF;
   --color-disable: #F0A5AB;
 
-  --color-font1:#737373;
-  --color-font2:#727272;
-  --color-font3:#6F6F6F;
+  --color-font1: #737373;
+  --color-font2: #727272;
+  --color-font3: #6F6F6F;
   //列表表头颜色
-  --color-tableHeader-bg:#F7F7F7;
+  --color-tableHeader-bg: #F7F7F7;
   //列表行hover颜色
-  --color-tableTr-hover:#FAFCFF;
+  --color-tableTr-hover: #FAFCFF;
   // 分割线颜色
-  --td-component-border:#E8E8E8;
-  ;
+  --td-component-border: #E8E8E8;;
   // 间距
-  --space-main-min:0px;
-  --space-main:20px;
+  --space-main-min: 0px;
+  --space-main: 20px;
 }
 
 a {
@@ -92,8 +91,9 @@ a {
   text-align: center;
   cursor: pointer;
   user-select: none;
-  &:focus{
-    outline:none
+
+  &:focus {
+    outline: none
   }
 
   &:hover {
@@ -103,6 +103,7 @@ a {
   &:active {
     background-color: var(--color-error2);
   }
+
   &:disabled {
     background-color: var(--color-error3);
   }
@@ -120,6 +121,7 @@ a {
   &:active {
     background-color: var(--color-bk9);
   }
+
   &:disabled {
     background-color: var(--color-bk9);
   }
@@ -136,6 +138,7 @@ a {
   &:active {
     background-color: var(--color-error2);
   }
+
   &:disabled {
     background-color: var(--color-error3);
   }
@@ -281,12 +284,15 @@ a {
 .marg-24 {
   margin: 24px;
 }
-.marg-main{
+
+.marg-main {
   margin: 0 20px;
 }
-.pd-main{
+
+.pd-main {
   padding: 0 20px;
 }
+
 .marg-24 {
   margin: 32px;
 }
@@ -298,19 +304,24 @@ a {
 .pd-32 {
   padding: 32px;
 }
-.mb-24{
+
+.mb-24 {
   margin-bottom: 24px;
 }
-.mt-24{
+
+.mt-24 {
   margin-top: 24px;
 }
+
 // 文字
 .ft-ct {
   text-align: center;
 }
+
 .ft-rt {
   text-align: right;
 }
+
 .ft-wt-400 {
   font-weight: 400;
 }
@@ -385,43 +396,52 @@ a {
 .wt-60 {
   width: 60px;
 }
+
 // 用于常见input宽度或者其他
-.wt-240{
+.wt-240 {
   width: 240px;
 }
+
 // 定义右侧内容自动高度
 .ht {
   height: calc(100% - 20px);
 }
+
 // 宽度400
 .wt-400 {
   width: 400px;
 }
+
 // 最小宽度480
-.mw-480{
+.mw-480 {
   min-width: 480px;
 }
+
 // 圆角2px
 .br-2 {
   border-radius: 2px;
 }
-// 
-.t-checkbox__label{
+
+//
+.t-checkbox__label {
   color: var(--color-bk3);
 }
+
 // 右面白色背景最小高度
 .min-h {
   // min-height: calc(100vh - 90px);
   min-height: 674px;
 }
+
 // 禁用按钮
 .bt-dis {
   color: var(--color-bk4);
   cursor: no-drop;
   pointer-events: none;
 }
+
 // hover框列表数量较少时
-.shortDescription{
+.shortDescription {
   .hover {
     bottom: auto !important;
     top: 60px !important;

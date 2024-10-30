@@ -8,9 +8,9 @@
             <t-input
               v-model="formData.id"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -19,20 +19,20 @@
             <t-input
               v-model="formData.name"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="优惠券类型：" name="name" :label-width="84">
+          <t-form-item :label-width="84" label="优惠券类型：" name="name">
             <t-select
               v-model="formData.type"
-              class="form-item-content"
               :options="COUPON_TYPE"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -40,10 +40,10 @@
           <t-form-item label="发放状态：" name="name">
             <t-select
               v-model="formData.status"
-              class="form-item-content"
               :options="GRANT_STATUS"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -56,7 +56,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { COUPON_TYPE, GRANT_STATUS } from '@/constants'
 // 表单数据
@@ -77,7 +77,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleSearch', formData.value)
 }
 // 搜索表单

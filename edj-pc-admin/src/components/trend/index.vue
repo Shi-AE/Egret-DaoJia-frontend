@@ -3,10 +3,10 @@
     <span :class="iconCls">
       <svg
         v-if="type === 'down'"
-        width="16"
+        fill="none"
         height="16"
         viewBox="0 0 16 16"
-        fill="none"
+        width="16"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -14,14 +14,14 @@
           stroke="currentColor"
           stroke-width="1.5"
         />
-        <path d="M8 11L8 4" stroke="currentColor" stroke-width="1.5" />
+        <path d="M8 11L8 4" stroke="currentColor" stroke-width="1.5"/>
       </svg>
       <svg
         v-else
-        width="16"
+        fill="none"
         height="16"
         viewBox="0 0 16 16"
-        fill="none"
+        width="16"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -29,13 +29,13 @@
           stroke="currentColor"
           stroke-width="1.5"
         />
-        <path d="M8 5V12" stroke="currentColor" stroke-width="1.5" />
+        <path d="M8 5V12" stroke="currentColor" stroke-width="1.5"/>
       </svg>
     </span>
     <span>{{ describe }}</span>
   </span>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -48,7 +48,7 @@ const props = defineProps({
 })
 
 const containerCls = computed(() => {
-  const { isReverseColor, type } = props
+  const {isReverseColor, type} = props
   return [
     'trend-container',
     {

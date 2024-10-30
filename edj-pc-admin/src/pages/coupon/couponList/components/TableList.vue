@@ -3,35 +3,36 @@
   <div class="baseList bg-wt min-h">
     <div class="tableBoxs">
       <div class="newBox">
-        <button class="bt newBoxbutton" @click="handleBuild" v-if="activeStatus !== 1">新增优惠券</button>
+        <button v-if="activeStatus !== 1" class="bt newBoxbutton" @click="handleBuild">新增优惠券</button>
       </div>
       <t-config-provider :global-config="globalLocale">
         <t-table
-          :data="data"
           :columns="tableColumns"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
+          :maxHeight="height"
+          :multiple-sort="true"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          select-on-row-click
-          :disable-data-page="pagination.total <= 10"
-          :loading="dataLoading"
-          :sort="sort"
-          :maxHeight="height"
-          showSizeChanger
-          :hide-sort-tips="true"
+          :row-key="rowKey"
           :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          :multiple-sort="true"
+          :sort="sort"
+          select-on-row-click
+          showSizeChanger
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
           @page-change="onPageChange"
           @sort-change="sortChange"
         >
           <!-- 空页面 -->
           <template #empty>
-            <NoData :PhotoMt="props.activeStatus == 1 ? 0 : 60" :PhotoMb="props.activeStatus == 1 ? 0 : 30" :pMb="props.activeStatus == 1 ? 50 : 75" :content="'暂无领取记录哦~'"></NoData>
+            <NoData :PhotoMb="props.activeStatus == 1 ? 0 : 30" :PhotoMt="props.activeStatus == 1 ? 0 : 60"
+                    :content="'暂无领取记录哦~'" :pMb="props.activeStatus == 1 ? 50 : 75"></NoData>
           </template>
           <!-- 在操作栏添加删除、编辑、查看三种操作 -->
           <template #op="{ row }">
@@ -42,7 +43,7 @@
                   : 'font-bt btn-split-right'
               "
               @click="handleClickCancel(row)"
-              >撤销</a
+            >撤销</a
             >
             <a
               :class="
@@ -51,10 +52,10 @@
                   : 'font-bt line'
               "
               @click="handleDetail(row)"
-              >编辑</a
+            >编辑</a
             >
             <a class="font-bt btn-split-left" @click="handleClickAssign(row)"
-              >领取记录</a
+            >领取记录</a
             >
           </template>
           <!-- end -->
@@ -63,8 +64,8 @@
             <div class="description">
               <span>{{ row.serveAddress }}</span>
               <span v-if="row.serveAddress.length > 36" class="hover">{{
-                row.serveAddress
-              }}</span>
+                  row.serveAddress
+                }}</span>
             </div>
           </template>
         </t-table>
@@ -79,7 +80,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { CaretDownSmallIcon } from 'tdesign-icons-vue-next' //排序图表
@@ -211,16 +212,20 @@ const handleBuild = () => {
     height: 64px !important;
   }
 }
+
 .headPortrait {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }
+
 .updateTime {
   display: flex;
   align-items: center;
+
   .linjin {
     margin-left: 6px;
     width: 17px;

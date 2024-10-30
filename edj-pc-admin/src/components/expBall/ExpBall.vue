@@ -3,28 +3,28 @@
   <div>
     <div
       ref="exp"
-      class="exp"
       :style="{ top: `${expTop}px`, left: `${expLeft}px` }"
+      class="exp"
       @mousedown="downExp"
     ></div>
     <t-dialog
       v-model:visible="visible"
-      placement="top"
       :footer="false"
+      placement="top"
       top="10vh"
       width="70%"
     >
       <div class="expCont">
         <img
-          src="https://yjy-oss-videos.oss-accelerate.aliyuncs.com/ObjectExplain/xiaozhibang.png"
           alt=""
+          src="https://yjy-oss-videos.oss-accelerate.aliyuncs.com/ObjectExplain/xiaozhibang.png"
         />
       </div>
     </t-dialog>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 
 // 小球拖走 - start
@@ -68,14 +68,13 @@ const moveExp = (e) => {
   height: 50px;
   border-radius: 50px;
   color: #fff;
-  background: -webkit-radial-gradient(
-    50% 120%,
-    circle cover,
-    #81e8f6,
-    #76deef 10%,
-    #0f03f2 80%,
-    #062745 100%
-  );
+  background: -webkit-radial-gradient(50% 120%,
+  circle cover,
+  #81e8f6,
+  #76deef 10%,
+  #0f03f2 80%,
+  #062745 100%);
+
   &:before {
     content: '';
     position: absolute;
@@ -84,48 +83,53 @@ const moveExp = (e) => {
     width: 90%;
     height: 90%;
     border-radius: 50%;
-    background: -webkit-radial-gradient(
-      50% 0px,
-      circle,
-      #ffffff,
-      rgba(255, 255, 255, 0) 58%
-    );
+    background: -webkit-radial-gradient(50% 0px,
+    circle,
+    #ffffff,
+    rgba(255, 255, 255, 0) 58%);
     filter: blur(5px);
     z-index: 2;
   }
 }
+
 :deep(.t-dialog__body) {
   width: 100%;
   height: 80vh;
+
   .expCont {
     display: flex;
     justify-content: center;
+
     img {
       width: 100%;
     }
   }
 }
+
 :deep(.t-dialog) {
   width: auto;
   border: none;
   // background: transparent;
   position: initial;
 }
+
 :deep(.t-dialog__ctx .t-dialog__position.t-dialog--top) {
   padding-top: 10vh;
 }
+
 // :deep(.t-dialog__ctx .t-dialog__mask){
 //   background-color: transparent;
 // }
-:deep(.t-dialog__header){
+:deep(.t-dialog__header) {
   position: absolute;
-    top: 30px;
-    right: 30px;
-    height: auto;
-    background: transparent;
-    padding: 0;
+  top: 30px;
+  right: 30px;
+  height: auto;
+  background: transparent;
+  padding: 0;
 }
-:deep(.t-dialog__header .t-dialog__close){
+
+:deep(.t-dialog__header .t-dialog__close) {
   color: aliceblue;
 }
 </style>

@@ -1,48 +1,57 @@
 @import url('@/styles/theme.scss');
 
-.main{
-  .headBox{
+.main {
+  .headBox {
     background: #fff;
     margin-bottom: 20rpx;
-    .time{
+
+    .time {
       background-color: #F9F2BF;
       height: 100rpx;
       line-height: 100rpx;
       text-align: center;
       color: #8E714F;
       font-size: 28rpx;
-      text{
+
+      text {
         color: var(--essential-color-red);
       }
     }
-    .tag{
+
+    .tag {
       padding: 19.5rpx 28rpx;
       display: flex;
       justify-content: space-between;
-      view{
+
+      view {
         display: flow-root;
       }
     }
   }
-  .payBox{
+
+  .payBox {
     background-color: #fff;
     display: flex;
     padding: 34rpx;
     justify-content: space-between;
-    .wxImg{
+
+    .wxImg {
       display: flex;
       align-items: center;
-      image{
+
+      image {
         width: 52rpx;
         height: 52rpx;
         margin-right: 15rpx;
       }
     }
-    .check{
+
+    .check {
       width: 40rpx;
       height: 40rpx;
     }
   }
+
   .pageFoot {
     padding-left: 44rpx;
     padding-right: 16rpx;
@@ -53,15 +62,18 @@
     bottom: 0;
     left: 0;
     display: flex;
-    .btn{
+
+    .btn {
       width: 268rpx;
       margin-right: 60rpx;
     }
-    view{
+
+    view {
       font-size: 28rpx;
       height: 88rpx;
       line-height: 88rpx;
-      text{
+
+      text {
         color: var(--essential-color-red);
         font-size: 36rpx;
       }

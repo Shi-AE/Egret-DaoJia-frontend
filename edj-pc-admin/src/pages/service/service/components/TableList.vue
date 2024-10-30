@@ -7,25 +7,25 @@
       </div>
       <t-config-provider :global-config="globalLocale">
         <t-table
-          :data="data"
           :columns="COLUMNS"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
+          :filter-value="filterValue"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
+          :multiple-sort="true"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          :disable-data-page="pagination.total <= 10"
+          :row-key="rowKey"
           :selected-row-keys="selectedRowKeys"
-          :loading="dataLoading"
+          :show-sort-column-bg-color="true"
           :sort="sort"
           show-size-changer
-          :filter-value="filterValue"
-          :hide-sort-tips="true"
-          :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          :multiple-sort="true"
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
           @page-change="onPageChange"
           @sort-change="sortChange"
           @select-change="rehandleSelectChange"
@@ -52,15 +52,15 @@
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
                     <img
-                      alt="test"
                       :src="row.img"
+                      alt="test"
                       class="tdesign-demo-image-viewer__ui-image--img"
                     />
                     <div
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em" /></span>
+                      <span><ZoomInIcon size="1.8em"/></span>
                     </div>
                   </div>
                 </template>
@@ -70,8 +70,8 @@
           <!-- 描述 -->
           <template #description="{ row, rowIndex }">
             <div
-              class="description"
               :class="rowIndex < 3 ? 'shortDescription' : ''"
+              class="description"
             >
               <span>{{ row.description }}</span>
               <span
@@ -79,7 +79,7 @@
                   row.description.length > 36 && row.description.length <= 200
                 "
                 class="hover"
-                >{{ row.description }}</span
+              >{{ row.description }}</span
               >
             </div>
           </template>
@@ -93,7 +93,7 @@
                   : 'btn-dl btn-split-right'
               "
               @click="handleClickDelete(row)"
-              >删除</a
+            >删除</a
             >
             <a
               :class="
@@ -102,12 +102,12 @@
                   : 'font-bt line'
               "
               @click="handleClickEdit(row)"
-              >编辑</a
+            >编辑</a
             >
             <a
               class="font-bt btn-split-left"
               @click="handleSetupContract(row, row.activeStatus)"
-              >{{ row.activeStatus !== 2 ? '启用' : '禁用' }}</a
+            >{{ row.activeStatus !== 2 ? '启用' : '禁用' }}</a
             >
           </template>
           <!-- end -->
@@ -117,7 +117,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { CaretDownSmallIcon, ZoomInIcon } from 'tdesign-icons-vue-next'
@@ -234,14 +234,17 @@ const handleBuild = () => {
   :deep(.t-table td) {
     height: 64px !important;
   }
+
   .min-h {
     min-height: 674px;
   }
 }
+
 .headPortrait {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }

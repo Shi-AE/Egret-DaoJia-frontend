@@ -1,4 +1,5 @@
 import { formatDateTimeToDateTimeString } from '@/utils/date'
+
 export const COLUMNS = [
   {
     title: '订单编号',
@@ -7,13 +8,13 @@ export const COLUMNS = [
     minWidth: '200px',
     colKey: 'id'
   },
-  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
+  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
   {
     title: '下单时间',
     minWidth: '180px',
     colKey: 'placeOrderTime',
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', row.placeOrderTime ? formatDateTimeToDateTimeString(new Date(row.placeOrderTime)) : '-')
   },
   {
@@ -27,7 +28,7 @@ export const COLUMNS = [
     colKey: 'ordersStatus',
     width: 120,
     minWidth: '120px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '待支付'
@@ -74,7 +75,7 @@ export const COLUMNS = [
     minWidth: '180px',
     colKey: 'sortTime',
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', row.sortTime ? formatDateTimeToDateTimeString(new Date(row.sortTime)) : '-')
   },
   {
@@ -106,19 +107,19 @@ export const COLUMNS = [
     colKey: 'payStatus',
     width: 120,
     minWidth: '120px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         2: {
           label: '未支付',
-          },
+        },
         4: {
           label: '已支付',
-          },
-      }  
+        },
+      }
       let status = 1
-      if(row.payStatus === 4) {
+      if (row.payStatus === 4) {
         status = 2
-        }
+      }
       return h(
         'span',
         {
@@ -133,41 +134,41 @@ export const COLUMNS = [
     colKey: 'refundStatus',
     width: 120,
     minWidth: '120px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         2: {
           label: '退款成功',
-          },
+        },
         3: {
           label: '退款失败',
-          },
+        },
         1: {
           label: '退款中',
-          },
-      }  
+        },
+      }
       let status = 0
-      if(row.refundStatus === 2) {
+      if (row.refundStatus === 2) {
         status = 2
-        }else if(row.refundStatus === 3){
+      } else if (row.refundStatus === 3) {
         status = 1
-        }else{
+      } else {
         status = 0
-        }
-        if (row.refundStatus) {
-          // const status = row.isActive + 1
-          return h(
-            'span',
-            {
-              class: `status-dot status-dot-${status}`
-            },
-            statusList[row.refundStatus].label
-          )
-        } else {
-          return h(
-            'span',
-            '-'
-          )
-        }
+      }
+      if (row.refundStatus) {
+        // const status = row.isActive + 1
+        return h(
+          'span',
+          {
+            class: `status-dot status-dot-${status}`
+          },
+          statusList[row.refundStatus].label
+        )
+      } else {
+        return h(
+          'span',
+          '-'
+        )
+      }
     }
   },
   {

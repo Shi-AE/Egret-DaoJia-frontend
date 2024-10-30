@@ -13,11 +13,11 @@
         <t-input
           v-model="formData.phone"
           :maxlength="11"
-          size="large"
           placeholder="请输入您的手机号"
+          size="large"
         >
           <template #prefix-icon>
-            <t-icon name="user" />
+            <t-icon name="user"/>
           </template>
         </t-input>
       </t-form-item>
@@ -27,12 +27,12 @@
       <t-form-item name="email">
         <t-input
           v-model="formData.email"
-          type="text"
-          size="large"
           placeholder="请输入您的邮箱"
+          size="large"
+          type="text"
         >
           <template #prefix-icon>
-            <t-icon name="mail" />
+            <t-icon name="mail"/>
           </template>
         </t-input>
       </t-form-item>
@@ -41,13 +41,13 @@
     <t-form-item name="password">
       <t-input
         v-model="formData.password"
-        size="large"
         :type="showPsw ? 'text' : 'password'"
         clearable
         placeholder="请输入登录密码"
+        size="large"
       >
         <template #prefix-icon>
-          <t-icon name="lock-on" />
+          <t-icon name="lock-on"/>
         </template>
         <template #suffix-icon>
           <t-icon
@@ -62,12 +62,12 @@
       <t-form-item class="verification-code" name="verifyCode">
         <t-input
           v-model="formData.verifyCode"
-          size="large"
           placeholder="请输入验证码"
+          size="large"
         />
         <t-button
-          variant="outline"
           :disabled="countDown > 0"
+          variant="outline"
           @click="handleCounter"
         >
           {{ countDown == 0 ? '发送验证码' : `${countDown}秒后可重发` }}
@@ -76,26 +76,26 @@
     </template>
 
     <t-form-item class="check-container" name="checked">
-      <t-checkbox v-model="formData.checked">我已阅读并同意 </t-checkbox>
+      <t-checkbox v-model="formData.checked">我已阅读并同意</t-checkbox>
       <span>TDesign服务协议</span> 和
       <span>TDesign 隐私声明</span>
     </t-form-item>
 
     <t-form-item>
-      <div class="bt" block size="large" type="submit">注册</div>
+      <div block class="bt" size="large" type="submit">注册</div>
     </t-form-item>
 
     <div class="switch-container">
       <span
         class="tip"
         @click="switchType(type == 'phone' ? 'email' : 'phone')"
-        >{{ type == 'phone' ? '使用邮箱注册' : '使用手机号注册' }}</span
+      >{{ type == 'phone' ? '使用邮箱注册' : '使用手机号注册' }}</span
       >
     </div>
   </t-form>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useCounter } from '@/hooks'
@@ -109,19 +109,19 @@ const INITIAL_DATA = {
 }
 
 const FORM_RULES = {
-  phone: [{ required: true, message: '手机号必填', type: 'error' }],
+  phone: [{required: true, message: '手机号必填', type: 'error'}],
   email: [
-    { required: true, message: '邮箱必填', type: 'error' },
-    { email: true, message: '请输入正确的邮箱', type: 'warning' }
+    {required: true, message: '邮箱必填', type: 'error'},
+    {email: true, message: '请输入正确的邮箱', type: 'warning'}
   ],
-  password: [{ required: true, message: '密码必填', type: 'error' }],
-  verifyCode: [{ required: true, message: '验证码必填', type: 'error' }]
+  password: [{required: true, message: '密码必填', type: 'error'}],
+  verifyCode: [{required: true, message: '验证码必填', type: 'error'}]
 }
 
 const type = ref('phone')
 
 const form = ref()
-const formData = ref({ ...INITIAL_DATA })
+const formData = ref({...INITIAL_DATA})
 
 const showPsw = ref(false)
 
@@ -129,7 +129,7 @@ const [countDown, handleCounter] = useCounter()
 
 const emit = defineEmits(['registerSuccess'])
 
-const onSubmit = ({ validateResult }) => {
+const onSubmit = ({validateResult}) => {
   if (validateResult === true) {
     if (!formData.value.checked) {
       MessagePlugin.error('请同意TDesign服务协议和TDesign 隐私声明')

@@ -2,10 +2,10 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    :header="title"
-    :width="628"
     :footer="false"
+    :header="title"
     :on-close="onClickCloseBtn"
+    :width="628"
   >
     <template #body>
       <div class="tips">
@@ -17,18 +17,19 @@
         <t-form
           ref="form"
           :data="formData"
-          :rules="rules"
           :label-width="80"
-          on-cancel="onClickCloseBtn"
           :reset-type="resetType"
+          :rules="rules"
+          on-cancel="onClickCloseBtn"
           @submit="onSubmit"
         >
           <t-form-item label="冻结原因：" name="accountLockReason"
-            ><t-textarea
+          >
+            <t-textarea
               v-model="formData.accountLockReason"
+              :maxlength="140"
               class="wt-400 h-100"
               placeholder="请输入"
-              :maxlength="140"
             >
             </t-textarea>
           </t-form-item>
@@ -37,7 +38,7 @@
             <div class="bt bt-grey btn-submit" @click="onClickCloseBtn">
               <span>取消</span>
             </div>
-            <button theme="primary" type="submit" class="bt btn-submit">
+            <button class="bt btn-submit" theme="primary" type="submit">
               <span>确定</span>
             </button>
           </t-form-item>
@@ -47,7 +48,7 @@
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { ValidateResultContext } from 'tdesign-vue-next'
 import { validateText140 } from '@/utils/validate'
@@ -144,42 +145,49 @@ defineExpose({
   margin-left: 15.5px;
   width: 60px;
 }
+
 :deep(.t-textarea__limit) {
   color: var(--color-bk4);
   right: 6px;
   bottom: -25px;
 }
+
 :deep(.t-form__item) {
   margin-bottom: 56px;
 }
+
 .tips {
   height: 40px;
-    background: #e8f6ff;
-    line-height: 40px;
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
-    border-radius: 2px;
-    margin-bottom: 20px;
-    color: var(--color-bk1);
-    font-size: 14px;
-    span {
-      background-image: url('../../../../assets/icon_zhuyi@2x.png');
-      display: inline-block;
-      background-size: 100% 100%;
-      width: 19px;
-      height: 19px;
-      margin-right: 10px;
-    }
+  background: #e8f6ff;
+  line-height: 40px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  color: var(--color-bk1);
+  font-size: 14px;
+
+  span {
+    background-image: url('../../../../assets/icon_zhuyi@2x.png');
+    display: inline-block;
+    background-size: 100% 100%;
+    width: 19px;
+    height: 19px;
+    margin-right: 10px;
+  }
 }
+
 .h-100 {
   :deep(.t-textarea__inner) {
     height: 100px;
   }
 }
-:deep(.t-dialog__body){
+
+:deep(.t-dialog__body) {
   padding: 0;
-  .body{
+
+  .body {
     padding: 32px;
     padding-top: 24px;
   }

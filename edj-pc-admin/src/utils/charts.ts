@@ -44,6 +44,7 @@ export function getRandomArray(num = 100): number {
 
   return resultNum;
 }
+
 export const dateTag = [
   {
     tag: '7天',

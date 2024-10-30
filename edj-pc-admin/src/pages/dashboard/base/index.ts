@@ -2,14 +2,13 @@ import dayjs from 'dayjs'
 // import { TChartColor } from '@/config/color'
 import { getChartListColor } from '@/utils/color'
 import { getRandomArray } from '@/utils/charts'
-import { floor } from 'lodash'
 
 /** 柱状图数据源 */
 export function constructInitDataset({
-  dateTime = [],
-  placeholderColor,
-  borderColor
-}: { dateTime: Array<string> } & any) {
+                                       dateTime = [],
+                                       placeholderColor,
+                                       borderColor
+                                     }: { dateTime: Array<string> } & any) {
   const divideNum = 10
   const timeArray = []
   const outArray = []
@@ -119,10 +118,10 @@ export function constructInitDataset({
  * @returns {*}
  */
 export function getLineChartDataSet({
-  count = [],
-  countDate = [],
-  placeholderColor
-}: { count?: Array<string>; countDate?: Array<string> } & any) {
+                                      count = [],
+                                      countDate = [],
+                                      placeholderColor
+                                    }: { count?: Array<string>; countDate?: Array<string> } & any) {
   let intervalNum = 0
   intervalNum = Math.ceil(countDate.length / 15)
   // if (countDate.length <= 15) {
@@ -234,8 +233,8 @@ export function getLineChartDataSet({
               x2: 0, // 渐变色结束点 x 坐标
               y2: 1, // 渐变色结束点 y 坐标
               colorStops: [
-                { offset: 0, color: 'rgba(247, 67, 70, 0.6)' }, // 渐变色起始颜色和透明度
-                { offset: 1, color: 'rgba(247, 119, 112, 0.0)' } // 渐变色结束颜色和透明度
+                {offset: 0, color: 'rgba(247, 67, 70, 0.6)'}, // 渐变色起始颜色和透明度
+                {offset: 1, color: 'rgba(247, 119, 112, 0.0)'} // 渐变色结束颜色和透明度
               ]
             }
           }
@@ -255,13 +254,14 @@ export function getLineChartDataSet({
   }
   return dataSet
 }
+
 // 双折线图
 export function getDoubleLineChartDataSet({
-  count = [],
-  count2 = [],
-  countDate = [],
-  placeholderColor
-}: {
+                                            count = [],
+                                            count2 = [],
+                                            countDate = [],
+                                            placeholderColor
+                                          }: {
   count?: Array<string>
   count2?: Array<string>
   countDate?: Array<string>
@@ -318,7 +318,7 @@ export function getDoubleLineChartDataSet({
             '</span>' +
             '<span style="color:#20232A">' +
             params[1].value +
-          '笔' + '</span>' + '</div>'
+            '笔' + '</span>' + '</div>'
         } else {
           data2 = ''
         }
@@ -328,7 +328,7 @@ export function getDoubleLineChartDataSet({
         var content =
           '<div style="padding:0px 5px;max-height:30px;font-size:12px;color:#999">' +
           data1 + data2 +
-        '</div>'
+          '</div>'
         return content
       }
     },
@@ -407,13 +407,14 @@ export function getDoubleLineChartDataSet({
   }
   return dataSet
 }
+
 // 漏斗图数据
 export function getFunnelDataSet({
-  count = [],
-  count2 = [],
-  countDate = [],
-  placeholderColor
-}: {
+                                   count = [],
+                                   count2 = [],
+                                   countDate = [],
+                                   placeholderColor
+                                 }: {
   count?: Array<string>
   count2?: Array<string>
   countDate?: Array<string>
@@ -449,17 +450,17 @@ export function getFunnelDataSet({
           {
             value: count[0].value,
             name: count[0].name,
-            itemStyle: { color: '#F74346' }
+            itemStyle: {color: '#F74346'}
           },
           {
             value: count[1].value,
             name: count[1].name,
-            itemStyle: { color: '#FFAB2D' }
+            itemStyle: {color: '#FFAB2D'}
           },
           {
             value: count[2].value,
             name: count[2].name,
-            itemStyle: { color: '#0398FF' }
+            itemStyle: {color: '#0398FF'}
           }
         ],
         z: 100
@@ -509,18 +510,18 @@ export function getFunnelDataSet({
           {
             value: count[0].value,
             name: '',
-            itemStyle: { color: '#F74346' },
-            label: { show: false }
+            itemStyle: {color: '#F74346'},
+            label: {show: false}
           },
           {
             value: count[1].value,
             name: '下单转换率',
-            itemStyle: { color: '#FFAB2D' }
+            itemStyle: {color: '#FFAB2D'}
           },
           {
             value: count[2].value,
             name: '付款转换率',
-            itemStyle: { color: '#0398FF' }
+            itemStyle: {color: '#0398FF'}
           }
         ]
       }

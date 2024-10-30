@@ -8,9 +8,9 @@
             <t-input
               v-model="formData.name"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -19,15 +19,15 @@
             <t-input
               v-model="formData.phone"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
         <t-col>
           <t-form-item label="接单状态：" name="canPickUp	">
-            <t-radio-group  v-model="formData.canPickUp">
+            <t-radio-group v-model="formData.canPickUp">
               <t-radio :value="2">全部</t-radio>
               <t-radio :value="1">接单中</t-radio>
               <t-radio :value="0">休息中</t-radio>
@@ -36,7 +36,7 @@
         </t-col>
         <t-col>
           <t-form-item label="账号状态：" name="status">
-            <t-radio-group  v-model="formData.status">
+            <t-radio-group v-model="formData.status">
               <t-radio :value="2">全部</t-radio>
               <t-radio :value="0">正常</t-radio>
               <t-radio :value="1">冻结</t-radio>
@@ -52,8 +52,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
+
 const props = defineProps({
   initSearch: {
     type: Number,
@@ -73,7 +74,7 @@ const props = defineProps({
 const formData = ref({
   phone: '',
   status: 2,
-  canPickUp:2,
+  canPickUp: 2,
   name: ''
 })
 // 触发父组件的方法
@@ -82,16 +83,16 @@ const emit: Function = defineEmits(['handleSearch'])
 const searchForm = {
   phone: '',
   status: 2,
-  canPickUp:2,
+  canPickUp: 2,
   name: ''
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleSearch', formData.value)
 }
 // 搜索表单
-const handleSearch = () => {  
+const handleSearch = () => {
   emit('handleSearch', formData.value)
 }
 </script>

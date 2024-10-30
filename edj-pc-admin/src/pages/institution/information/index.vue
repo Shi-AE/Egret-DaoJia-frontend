@@ -6,38 +6,38 @@
     <searchFormBox
       :initSearch="initSearch"
       :typeSelect="typeSelect"
-      @handleSearch="handleSearch"
       @handleReset="handleReset"
+      @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
+      :isActive="0"
       :list-data="listData"
       :pagination="pagination"
-      :isActive="0"
+      @fetchData="fetchData"
       @handleBuild="handleBuild"
       @handleClickFreeze="handleClickFreeze"
-      @fetchData="fetchData"
       @handleClickThaw="handleClickThaw"
       @onPageChange="onPageChange"
     ></tableList>
     <!-- end -->
     <!-- 新增，编辑弹窗 -->
     <DialogForm
-      :visible="visible"
-      :title="title"
-      :data="DialogFormData"
       ref="dialogForm"
-      @handleClose="handleClose"
+      :data="DialogFormData"
+      :title="title"
+      :visible="visible"
       @fetchData="fetchData"
+      @handleClose="handleClose"
       @handleSubmit="handleFreeze"
     />
     <!-- end -->
     <!-- 解冻弹窗 -->
     <Delete
-      :title="title"
-      :dialog-delete-visible="dialogFreezeVisible"
       :delete-text="deleteText"
+      :dialog-delete-visible="dialogFreezeVisible"
+      :title="title"
       @handle-delete="handleThaw"
       @handle-close="handleClose"
     ></Delete>
@@ -45,7 +45,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, onMounted, watchEffect, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute, useRouter } from 'vue-router'

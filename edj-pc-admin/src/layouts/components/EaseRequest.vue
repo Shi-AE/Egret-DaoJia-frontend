@@ -3,10 +3,10 @@
   <div class="easeRequest" @click="openApiModal">REQ</div>
 
   <t-dialog
+    :footer="null"
+    :on-close="closeModal"
     :visible="visible"
     close-on-overlay-click
-    :on-close="closeModal"
-    :footer="null"
     width="60%"
   >
     <t-form
@@ -17,16 +17,16 @@
     >
       <t-tabs
         v-model="defaultValue"
-        theme="card"
         :addable="false"
         :on-change="changeReq"
+        theme="card"
       >
         <t-tab-panel
           v-for="data in requestData.list"
           :key="data.uuid"
-          :value="data.uuid"
           :label="data.label"
           :removable="false"
+          :value="data.uuid"
         >
           <div class="formBox">
             <t-form-item name="type">
@@ -39,8 +39,8 @@
                 <t-option
                   v-for="(item, index) in reqTypeList"
                   :key="index"
-                  :value="item.label"
                   :label="item.label"
+                  :value="item.label"
                 >
                   {{ item.label }}
                 </t-option>
@@ -64,10 +64,10 @@
             <t-tab-panel
               v-for="item in reqSettingList"
               :key="item.key"
-              :value="item.key"
               :label="item.value"
+              :value="item.key"
             >
-              <table border="1px" cellspacing="0" cellpadding="0" class="table">
+              <table border="1px" cellpadding="0" cellspacing="0" class="table">
                 <tr>
                   <th></th>
                   <th>Key</th>
@@ -114,11 +114,11 @@
         ></div>
       </div>
     </t-form>
-    <t-loading attach="#alice" :loading="loading"></t-loading>
+    <t-loading :loading="loading" attach="#alice"></t-loading>
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 import { MessagePlugin } from 'tdesign-vue-next'
@@ -315,15 +315,15 @@ const changeValue = (e, index) => {
     currentKeyList[deafultReqSetting.value][index] &&
     currentValueList[deafultReqSetting.value][index] &&
     currentKeyList[deafultReqSetting.value][
-      currentKeyList[deafultReqSetting.value].length - 1
-    ] &&
+    currentKeyList[deafultReqSetting.value].length - 1
+      ] &&
     currentValueList[deafultReqSetting.value][
-      currentValueList[deafultReqSetting.value].length - 1
-    ]
+    currentValueList[deafultReqSetting.value].length - 1
+      ]
   ) {
     currentKeyList[deafultReqSetting.value] = currentKeyList[
       deafultReqSetting.value
-    ].concat([''])
+      ].concat([''])
   }
   InputchangeUrl()
 }
@@ -335,15 +335,15 @@ const changeKey = (e, index) => {
     currentKeyList[deafultReqSetting.value][index] &&
     currentValueList[deafultReqSetting.value][index] &&
     currentKeyList[deafultReqSetting.value][
-      currentKeyList[deafultReqSetting.value].length - 1
-    ] &&
+    currentKeyList[deafultReqSetting.value].length - 1
+      ] &&
     currentValueList[deafultReqSetting.value][
-      currentValueList[deafultReqSetting.value].length - 1
-    ]
+    currentValueList[deafultReqSetting.value].length - 1
+      ]
   ) {
     currentKeyList[deafultReqSetting.value] = currentKeyList[
       deafultReqSetting.value
-    ].concat([''])
+      ].concat([''])
   }
   InputchangeUrl()
 }
@@ -399,18 +399,21 @@ const closeModal = () => {
   visible.value = false
 }
 </script>
-<style scoped lang="less">
+<style lang="less" scoped>
 :deep(.t-dialog__position.t-dialog--top) {
   padding-top: 5vh;
+
   .t-dialog {
     max-height: 80vh;
     overflow-y: scroll;
   }
+
   .t-dialog::-webkit-scrollbar {
     width: 8px;
     background: var(--color-bk10);
     border-radius: 0 12px 12px 12px;
   }
+
   .t-dialog::-webkit-scrollbar-thumb {
     border-radius: 4px;
     border: 2px solid transparent;
@@ -418,6 +421,7 @@ const closeModal = () => {
     background-color: #d9d9d9;
   }
 }
+
 .easeRequest {
   position: fixed;
   right: 10px;
@@ -434,46 +438,58 @@ const closeModal = () => {
   line-height: 100px;
   text-align: center;
   cursor: pointer;
+
   &:hover {
     opacity: 1;
   }
 }
+
 .t-form {
   width: 100%;
   display: block !important;
+
   :deep(.t-form__controls) {
     margin-left: 0px !important;
   }
+
   .table {
     border-color: #ccc;
     border-collapse: collapse;
     width: 100%;
     margin-top: 20px;
+
     td {
       padding: 3px 6px;
     }
   }
+
   .t-tabs {
     .t-tabs__content {
       .formBox {
         padding: 0px;
         display: flex;
         margin-top: 20px;
+
         .t-button {
           margin-left: 10px;
+
           :deep(.t-button__text) {
             color: var(--color-white);
           }
         }
+
         .t-form-item__type,
         .t-form-item__url {
           display: inline-block;
         }
+
         .t-form-item__url {
           right: 0px !important;
         }
+
         .t-form-item__type {
           width: 90px;
+
           :deep(.t-form__controls) {
             width: 90px;
           }
@@ -481,6 +497,7 @@ const closeModal = () => {
       }
     }
   }
+
   .responseData {
     label {
       display: block;

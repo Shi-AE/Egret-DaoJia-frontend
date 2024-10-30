@@ -3,12 +3,12 @@
     <t-form ref="form" :data="formData" :label-width="70">
       <t-row>
         <t-col>
-          <t-form-item :label="targetId" name="targetId" :label-width="100">
+          <t-form-item :label="targetId" :label-width="100" name="targetId">
             <t-input
               v-model="formData.targetId"
               class="form-item-content"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
             />
           </t-form-item>
         </t-col>
@@ -16,10 +16,10 @@
           <t-form-item label="评分等级：" name="scoreLevel">
             <t-select
               v-model="formData.scoreLevel"
-              class="form-item-content"
               :options="Score"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -28,9 +28,9 @@
           <t-form-item label="评价时间：" name="type">
             <t-date-range-picker
               v-model="formData.updateTime"
-              placeholder="日期"
               :presets="presets"
               clearable
+              placeholder="日期"
             />
           </t-form-item>
         </t-col>
@@ -43,8 +43,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+<script lang="ts" setup>
+import { onMounted, ref, watch } from 'vue'
 // import { forEach } from 'lodash'
 import { Score } from '@/constants'
 
@@ -71,7 +71,7 @@ onMounted(() => {
 watch(
   () => props.replyType,
   () => {
-    formData.value = { ...searchForm }
+    formData.value = {...searchForm}
   }
 )
 // 触发父组件的方法
@@ -86,7 +86,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleReset')
 }
 // 搜索表单

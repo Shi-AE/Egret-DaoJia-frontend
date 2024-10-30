@@ -4,23 +4,23 @@
     <div class="tableBoxs">
       <t-config-provider :global-config="globalLocale">
         <t-table
-          :data="data"
           :columns="COLUMNS"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
+          :multiple-sort="true"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          :disable-data-page="pagination.total <= 10"
-          :loading="dataLoading"
+          :row-key="rowKey"
+          :show-sort-column-bg-color="true"
           :sort="sort"
           showSizeChanger
-          :hide-sort-tips="true"
-          :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          :multiple-sort="true"
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
           @page-change="onPageChange"
           @sort-change="sortChange"
         >
@@ -44,12 +44,12 @@
                   : 'font-bt btn-split-right'
               "
               @click="handleClickRefund(row)"
-              >退款</a
+            >退款</a
             >
             <a
               class="font-bt btn-split-left"
               @click="handleDetail(row)"
-              >查看</a
+            >查看</a
             >
           </template>
           <!-- end -->
@@ -57,8 +57,8 @@
             <div class="description">
               <span>{{ row.serveAddress }}</span>
               <span v-if="row.serveAddress.length > 36" class="hover">{{
-                row.serveAddress
-              }}</span>
+                  row.serveAddress
+                }}</span>
             </div>
           </template>
         </t-table>
@@ -73,7 +73,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { CaretDownSmallIcon } from 'tdesign-icons-vue-next'
@@ -171,17 +171,21 @@ const onPageChange = (val) => {
     height: 64px !important;
   }
 }
+
 .headPortrait {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }
-.updateTime{
+
+.updateTime {
   display: flex;
   align-items: center;
-  .linjin{
+
+  .linjin {
     margin-left: 6px;
     width: 17px;
     height: 17px;
@@ -189,15 +193,17 @@ const onPageChange = (val) => {
     background-size: 100% 100%;
   }
 }
-:deep(.t-table--column-fixed ){
-  .t-table__header{
-    .t-table__cell--fixed-right{
+
+:deep(.t-table--column-fixed ) {
+  .t-table__header {
+    .t-table__cell--fixed-right {
       padding-left: 20px;
       text-align: left;
     }
   }
-  .t-table__cell--fixed-right{
-      text-align: right;
-    }
+
+  .t-table__cell--fixed-right {
+    text-align: right;
+  }
 }
 </style>

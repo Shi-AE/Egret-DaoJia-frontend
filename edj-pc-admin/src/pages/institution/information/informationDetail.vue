@@ -65,15 +65,15 @@
           <div class="tag">
             <div class="label">接单状态</div>
             <div
-              class="content status-dot"
               :class="`status-dot-${formData.canPickUp + 1}`"
+              class="content status-dot"
             >
               {{
-                formData.canPickUp === -1
-                  ? '未设置'
-                  : formData.canPickUp === 0
-                  ? '休息中'
-                  : '接单中'
+              formData.canPickUp === -1
+              ? '未设置'
+              : formData.canPickUp === 0
+              ? '休息中'
+              : '接单中'
               }}
             </div>
           </div>
@@ -92,8 +92,8 @@
           <div class="tag">
             <div class="label">账号状态</div>
             <div
-              class="content status-dot"
               :class="`status-dot-${formData.status === 0 ? 2 : 1}`"
+              class="content status-dot"
             >
               {{ formData.status === 1 ? '冻结' : '正常' }}
             </div>
@@ -104,9 +104,9 @@
             <div class="label">认证时间</div>
             <div class="content">
               {{
-                formData.certificationTime ? formatDateTimeToDateTimeString(
-                  new Date(formData.certificationTime)
-                ) : '-'
+              formData.certificationTime ? formatDateTimeToDateTimeString(
+              new Date(formData.certificationTime)
+              ) : '-'
               }}
             </div>
           </div>
@@ -116,12 +116,12 @@
   </div>
   <div class="bodyBox bg-wt">
     <switchBar
-      :data="tableBar"
       :currentId="currentId"
+      :data="tableBar"
       @changeId="changeId"
     ></switchBar>
     <!-- 认证信息 -->
-    <div class="authentication" v-if="isActive === 1">
+    <div v-if="isActive === 1" class="authentication">
       <div class="leftBox">
         <div class="authTag">
           <div class="authLabel">企业名称</div>
@@ -138,19 +138,19 @@
         <div class="authImgBox">
           <div class="authImgTag">
             <div class="authLabel">营业执照</div>
-            <t-image-viewer :images="[authData.businessLicense]" v-if="authData.businessLicense">
+            <t-image-viewer v-if="authData.businessLicense" :images="[authData.businessLicense]">
               <template #trigger="{ open }">
                 <div class="tdesign-demo-image-viewer__ui-image">
                   <img
-                    alt="test"
                     :src="authData.businessLicense"
+                    alt="test"
                     class="tdesign-demo-image-viewer__ui-image--img"
                   />
                   <div
                     class="tdesign-demo-image-viewer__ui-image--hover"
                     @click="open"
                   >
-                    <span><ZoomInIcon size="1.8em" /></span>
+                    <span><ZoomInIcon size="1.8em"/></span>
                   </div>
                 </div>
               </template>
@@ -170,13 +170,13 @@
           <div class="authLabel">身份证号</div>
           <div class="authContent">
             {{
-              authData.legalPersonIdCardNo ? authData.legalPersonIdCardNo : '-'
+            authData.legalPersonIdCardNo ? authData.legalPersonIdCardNo : '-'
             }}
           </div>
         </div>
       </div>
     </div>
-    <div class="authentication" v-if="isActive === 2">
+    <div v-if="isActive === 2" class="authentication">
       <div class="leftBox">
         <div class="authTag">
           <div class="authLabel">户名</div>
@@ -186,15 +186,15 @@
         </div>
         <div class="authTag">
           <div class="authLabel">开户行</div>
-          <div class="authContent" v-if="accountData.district || accountData.city || accountData.province">
+          <div v-if="accountData.district || accountData.city || accountData.province" class="authContent">
             {{
-              accountData.province === accountData.city
-                ? ''
-                : accountData.province
+            accountData.province === accountData.city
+            ? ''
+            : accountData.province
             }}
             {{ accountData.city }} {{ accountData.district }}
           </div>
-          <div class="authContent" v-else>-</div>
+          <div v-else class="authContent">-</div>
         </div>
         <div class="authTag">
           <div class="authLabel">银行账号</div>
@@ -219,19 +219,19 @@
         <div class="authImgBox">
           <div class="authImgTag">
             <div class="authLabel">开户证明</div>
-            <t-image-viewer :images="[accountData.accountCertification]" v-if="accountData.accountCertification">
+            <t-image-viewer v-if="accountData.accountCertification" :images="[accountData.accountCertification]">
               <template #trigger="{ open }">
                 <div class="tdesign-demo-image-viewer__ui-image">
                   <img
-                    alt="test"
                     :src="accountData.accountCertification"
+                    alt="test"
                     class="tdesign-demo-image-viewer__ui-image--img"
                   />
                   <div
                     class="tdesign-demo-image-viewer__ui-image--hover"
                     @click="open"
                   >
-                    <span><ZoomInIcon size="1.8em" /></span>
+                    <span><ZoomInIcon size="1.8em"/></span>
                   </div>
                 </div>
               </template>
@@ -244,16 +244,16 @@
     <!-- 表格 -->
     <tableList
       v-show="isActive !== 1 && isActive !== 2"
+      :isActive="isActive"
       :list-data="listData"
       :pagination="pagination"
-      :isActive="isActive"
       @handleSortChange="handleSortChange"
       @onPageChange="onPageChange"
     ></tableList>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, onMounted, reactive, watch } from 'vue'
 import switchBar from '@/components/switchBar/switchBartop.vue'
 import { formatDateTimeToDateTimeString } from '@/utils/date'
@@ -271,9 +271,10 @@ import tableList from './components/TableList.vue' // 表格
 import { MessagePlugin } from 'tdesign-vue-next'
 import { forEach } from 'lodash'
 import { Score } from '@/constants'
+
 const isActive = ref() // 当前选中的tab
 const route = useRoute()
-const { id } = route.params
+const {id} = route.params
 const formData = ref({
   name: '',
   serveTypes: '',
@@ -462,7 +463,7 @@ const changeId = (val) => {
 }
 const serviceData = async () => {
   await servicePersonData(requestServiceData.value).then((res) => {
-    
+
     if (res.code == 200) {
       listData.value = res.data.list
       pagination.total = res.data.total
@@ -477,28 +478,35 @@ const serviceData = async () => {
 .topBox {
   padding: 36px 49px;
   margin-bottom: 25px;
+
   .title {
     font-size: 18px;
     font-weight: 600;
     color: var(--color-bk1);
     margin-bottom: 30px;
   }
+
   .body {
     // display: flex;
     width: 100%;
+
     .card {
       display: flex;
       margin-bottom: 30px;
+
       &:last-child {
         margin-bottom: 6px;
       }
     }
+
     .right {
       padding-left: 50px;
     }
+
     .left,
     .right {
       width: 50%;
+
       .tag {
         display: flex;
 
@@ -513,6 +521,7 @@ const serviceData = async () => {
           letter-spacing: 0;
           text-align: justify;
         }
+
         .content {
           font-family: PingFangSC-Regular;
           font-weight: 400;
@@ -525,9 +534,11 @@ const serviceData = async () => {
     }
   }
 }
+
 .bodyBox {
   padding: 24px 20px 30px 23px;
   min-height: 56vh;
+
   :deep(.headBox) {
     padding-bottom: 12px;
     margin-bottom: 19.5px;
@@ -538,15 +549,18 @@ const serviceData = async () => {
         padding-right: 3px;
         margin-right: 36px;
       }
+
       .line {
         padding-left: 3px;
         padding-right: 3px;
+
         &::before {
           bottom: -12px;
         }
       }
     }
   }
+
   .authentication {
     padding-top: 20px;
     display: flex;
@@ -556,32 +570,39 @@ const serviceData = async () => {
     .rightBox {
       width: 50%;
     }
+
     .authTag {
       display: flex;
       margin-bottom: 30px;
+
       .authLabel {
         width: 112px;
         margin-right: 36px;
         color: var(--color-bk3);
       }
+
       .authContent {
         color: var(--color-bk1);
       }
     }
+
     .authImgBox {
       .authImgTag {
         width: 48%;
         margin-bottom: 27.5px;
         display: flex;
+
         &:last-child {
           margin-bottom: 0;
         }
+
         .authLabel {
           margin-bottom: 25px;
           width: 122px;
           margin-right: 25px;
           color: var(--color-bk3);
         }
+
         :deep(.tdesign-demo-image-viewer__ui-image) {
           width: 60px;
           height: 60px;
@@ -591,6 +612,7 @@ const serviceData = async () => {
       }
     }
   }
+
   :deep(.tableBoxs) {
     margin: 0;
   }

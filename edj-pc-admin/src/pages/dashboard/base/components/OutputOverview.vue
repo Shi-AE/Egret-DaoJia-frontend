@@ -9,8 +9,8 @@
       <div
         id="funnelContainer"
         ref="funnelContainer"
-        class="dashboard-chart-container"
         :style="{ width: '99.6%', height: `${resizeTime * 400}px` }"
+        class="dashboard-chart-container"
       />
     </div>
     <div class="rightCard">
@@ -18,8 +18,8 @@
       <div
         id="DoubleMonitorContainer"
         ref="DoubleMonitorContainer"
-        class="dashboard-chart-container"
         :style="{ width: '99.6%', height: `${resizeTime * 400}px` }"
+        class="dashboard-chart-container"
       />
     </div>
   </div>
@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, onUnmounted, nextTick, computed, watch } from 'vue'
 
 import * as echarts from 'echarts/core'
@@ -100,7 +100,7 @@ const renderMonitorChart = () => {
   }
   funnelChart = echarts.init(funnelContainer)
   funnelChart.setOption(
-    getFunnelDataSet({ count: funnelData[0], ...chartColors.value })
+    getFunnelDataSet({count: funnelData[0], ...chartColors.value})
   )
 }
 
@@ -135,13 +135,13 @@ const updateContainer = () => {
 watch(
   () => props.middleChartData,
   () => {
-    onCurrencyChange([],[],[])
+    onCurrencyChange([], [], [])
   }
 )
 onMounted(() => {
   // 初始化图表
   renderMonitorChart()
-  onCurrencyChange([],[],[])
+  onCurrencyChange([], [], [])
   nextTick(() => {
     // 初始化图表大小
     updateContainer()
@@ -194,17 +194,17 @@ const changeId = (id: number) => {
   switch (id) {
     case 0:
       funnelChart.setOption(
-        getFunnelDataSet({ count: funnelData[0], ...chartColors.value })
+        getFunnelDataSet({count: funnelData[0], ...chartColors.value})
       )
       break
     case 1:
       funnelChart.setOption(
-        getFunnelDataSet({ count: funnelData[1], ...chartColors.value })
+        getFunnelDataSet({count: funnelData[1], ...chartColors.value})
       )
       break
     case 2:
       funnelChart.setOption(
-        getFunnelDataSet({ count: funnelData[2], ...chartColors.value })
+        getFunnelDataSet({count: funnelData[2], ...chartColors.value})
       )
       break
     default:
@@ -240,6 +240,7 @@ const onCurrencyChange = (
   background-color: #fff;
   width: calc((100% - 20px) * 0.5);
   height: calc(((100% - 20px) * 0.5) * 0.651);
+
   .title {
     margin-bottom: 25px;
     font-family: PingFangSC-Regular;
@@ -251,14 +252,17 @@ const onCurrencyChange = (
     align-items: center;
     position: relative;
     justify-content: space-between;
+
     :deep(.sw-box) {
       min-width: auto;
+
       .title {
         width: 58px;
       }
     }
   }
 }
+
 .leftCard {
   margin-right: 20px;
 }

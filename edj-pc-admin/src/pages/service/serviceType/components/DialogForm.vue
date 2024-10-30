@@ -2,58 +2,58 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    :header="title"
-    :width="628"
     :footer="false"
+    :header="title"
     :on-close="onClickCloseBtn"
+    :width="628"
   >
     <template #body>
       <!-- 表单内容 -->
       <t-form
         ref="form"
         :data="formData"
+        :reset-type="resetType"
         :rules="rules"
         label-width="110px"
         on-cancel="onClickCloseBtn"
-        :reset-type="resetType"
         @submit="onSubmit"
       >
         <t-form-item label="服务类型：" name="name">
           <t-input
             v-model="formData.name"
             class="wt-400"
-            placeholder="请输入类型名称"
             clearable
+            placeholder="请输入类型名称"
           />
         </t-form-item>
         <t-form-item label="排序：" name="sortNum">
           <t-input-number
             v-model="formData.sortNum"
-            theme="column"
             :min="1"
             class="wt-400"
             placeholder="请输入数字"
+            theme="column"
           ></t-input-number>
         </t-form-item>
         <t-form-item label="服务类型图标：" name="icon">
           <t-upload
             ref="uploadRef1"
             v-model="formData.icon"
-            action="/api/edj-publics/storage/upload"
-            :is-batch-upload="true"
-            :tips="`请上传png格式图片，&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  尺寸：126*126px，在400k以内`"
-            theme="image"
-            accept="image/*"
-            :size-limit="10240"
-            class="wt-400"
+            :allow-upload-duplicate-file="true"
             :headers="{
               AuthorizationAccessToken: accessToken,
               AuthorizationRefreshToken: refreshToken
             }"
-            :allow-upload-duplicate-file="true"
-            @validate="onValidate"
+            :is-batch-upload="true"
+            :size-limit="10240"
+            :tips="`请上传png格式图片，&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  尺寸：126*126px，在400k以内`"
+            accept="image/*"
+            action="/api/edj-publics/storage/upload"
+            class="wt-400"
+            theme="image"
             @fail="handleFail"
             @success="(e) => handleSuccess(e, 1)"
+            @validate="onValidate"
           >
           </t-upload>
         </t-form-item>
@@ -61,21 +61,21 @@
           <t-upload
             ref="uploadRef2"
             v-model="formData.img"
-            action="/api/edj-publics/storage/upload"
-            :is-batch-upload="true"
-            class="wt-400"
+            :allow-upload-duplicate-file="true"
             :headers="{
               AuthorizationAccessToken: accessToken,
               AuthorizationRefreshToken: refreshToken
             }"
+            :is-batch-upload="true"
             :size-limit="10240"
             :tips="`请上传png格式图片，&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  尺寸：532*200px，在800k以内`"
-            theme="image"
             accept="image/*"
-            :allow-upload-duplicate-file="true"
+            action="/api/edj-publics/storage/upload"
+            class="wt-400"
+            theme="image"
+            @fail="handleFail"
             @success="(e) => handleSuccess(e, 2)"
             @validate="onValidate"
-            @fail="handleFail"
           >
           </t-upload>
         </t-form-item>
@@ -83,7 +83,7 @@
           <div class="bt bt-grey btn-submit" @click="onClickCloseBtn">
             <span>取消</span>
           </div>
-          <button theme="primary" type="submit" class="bt btn-submit">
+          <button class="bt btn-submit" theme="primary" type="submit">
             <span>保存</span>
           </button>
         </t-form-item>
@@ -92,15 +92,12 @@
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
 
 import { validateNum, validateText5 } from '@/utils/validate'
-import {
-  AUTHORIZATION_ACCESS_TOKEN,
-  AUTHORIZATION_REFRESH_TOKEN
-} from '@/config/global'
+import { AUTHORIZATION_ACCESS_TOKEN, AUTHORIZATION_REFRESH_TOKEN } from '@/config/global'
 
 const props = defineProps({
   visible: {
@@ -194,7 +191,7 @@ const handleFail = () => {
 }
 // 超过大小或者文件格式错误报错提示
 const onValidate = (params) => {
-  const { files, type } = params
+  const {files, type} = params
   const messageMap = {
     FILE_OVER_SIZE_LIMIT: files[0].response.error,
     FILES_OVER_LENGTH_LIMIT: '文件数量超出限制，仅上传未超出数量的文件',
@@ -309,6 +306,7 @@ defineExpose({
     visibility: inherit;
   }
 }
+
 :deep(.t-dialog__position.t-dialog--top) {
   padding-top: 10vh;
 }

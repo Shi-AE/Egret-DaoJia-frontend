@@ -185,12 +185,12 @@ const normalRouter = [
             }
           },
           {
-            path:'setBusiness/:id',
-            name:'setBusiness',
+            path: 'setBusiness/:id',
+            name: 'setBusiness',
             component: () => import('@/pages/service/region/setBusiness.vue'),
             meta: {
               title: '调度配置'
-              }
+            }
           }
         ]
       }

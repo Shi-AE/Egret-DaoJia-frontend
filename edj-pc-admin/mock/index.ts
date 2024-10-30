@@ -225,7 +225,7 @@ export default [
   {
     url: `${BaseTag}/update-personal`,
     method: 'post',
-    response: ({ body }) => {
+    response: ({body}) => {
       const {
         account,
         nickname,
@@ -254,8 +254,8 @@ export default [
     url: `${BaseTag}list-basic/add`,
     method: 'post',
     // 接收的数据类型
-    response: ({ body }) => {
-      const { index, description, serviceCallNumber, status, updateTime } = body
+    response: ({body}) => {
+      const {index, description, serviceCallNumber, status, updateTime} = body
       return {
         code: 200,
         data: {
@@ -273,8 +273,8 @@ export default [
     url: `${BaseTag}list-basic/delete`,
     method: 'post',
     // 接收的数据类型
-    response: ({ body }) => {
-      const { index } = body
+    response: ({body}) => {
+      const {index} = body
       return {
         code: 200,
         data: {
@@ -396,8 +396,8 @@ export default [
   {
     url: `${BaseTag}/validate-password`,
     method: 'post',
-    response: ({ body }) => {
-      const { password } = body
+    response: ({body}) => {
+      const {password} = body
       if (password === '123456') {
         return {
           code: 200,
@@ -417,8 +417,8 @@ export default [
     url: `${BaseTag}/form/step`,
     method: 'post',
     // 接收的数据类型
-    response: ({ body }) => {
-      const { name, type, account, payAccount, amount } = body
+    response: ({body}) => {
+      const {name, type, account, payAccount, amount} = body
       return {
         code: 200,
         data: {

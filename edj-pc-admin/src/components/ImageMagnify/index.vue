@@ -3,11 +3,11 @@
   <div class="picBox">
     <t-dialog v-model:visible="dialogPicVisible" :on-close="handleClose">
       <div class="close" @click="handleClose"></div>
-      <div class="pic"><img :src="pic" /></div>
+      <div class="pic"><img :src="pic"/></div>
     </t-dialog>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 // 获取父组件值、方法
 const props = defineProps({

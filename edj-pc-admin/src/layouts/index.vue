@@ -1,14 +1,18 @@
 <!-- 架构首页 -->
 <template>
-  <div class="appBox" :class="settingStore.isSidebarCompact ? 'compact' : ''">
+  <div :class="settingStore.isSidebarCompact ? 'compact' : ''" class="appBox">
     <EaseRequest v-if="settingStore.showApiModal"></EaseRequest>
     <div :class="`${setting.style.value} ${setting.layout.value}`">
       <!-- 左右 -->
       <template v-if="setting.layout.value === 'side'">
         <t-layout key="side" :class="mainLayoutCls">
-          <t-aside><layout-side-nav /></t-aside>
+          <t-aside>
+            <layout-side-nav/>
+          </t-aside>
           <t-layout>
-            <t-content><layout-content-side /></t-content>
+            <t-content>
+              <layout-content-side/>
+            </t-content>
           </t-layout>
         </t-layout>
       </template>
@@ -16,7 +20,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
@@ -43,7 +47,7 @@ const appendNewRoute = () => {
   const {
     path,
     query,
-    meta: { title },
+    meta: {title},
     name
   } = route
   tabsRouterStore.appendTabRouterList({
@@ -67,7 +71,7 @@ watch(
     appendNewRoute()
     document
       .querySelector(`.${prefix}-layout`)
-      .scrollTo({ top: 0, behavior: 'smooth' })
+      .scrollTo({top: 0, behavior: 'smooth'})
   }
 )
 </script>
@@ -82,11 +86,13 @@ watch(
   padding: 3px 7px;
   z-index: 1002;
   padding-bottom: 5px;
+
   .t-icon {
     width: 16px;
     height: 16px;
   }
 }
+
 .special {
   top: 12px;
 }

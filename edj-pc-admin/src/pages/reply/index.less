@@ -21,6 +21,7 @@
       }
     }
   }
+
   .formBox {
     .btn-search,
     .btn-reset {
@@ -29,15 +30,18 @@
       height: 32px;
     }
   }
+
   .tableBox {
     padding: 24px 32px;
     height: 136px;
     margin-bottom: 24px;
     border-bottom: 1px solid #e8e8e8;
   }
+
   .t-col-2 {
     display: flex;
   }
+
   .baseList {
 
 
@@ -71,7 +75,6 @@
     .updateTime {
       font-family: HelveticaNeue;
     }
-
 
 
     .btn-search {
@@ -143,8 +146,8 @@
       bottom: 0;
       color: var(--td-text-color-anti);
       background-image: linear-gradient(0deg,
-          rgba(0, 0, 0, 0.4) 0%,
-          rgba(0, 0, 0, 0) 100%);
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0) 100%);
       display: flex;
       box-sizing: border-box;
     }
@@ -192,7 +195,7 @@
         display: none;
         position: absolute;
         // 位于div上方中间位置
-            top: 60px;
+        top: 60px;
         width: 334px;
         max-height: 163px;
         font-size: 12px;
@@ -224,6 +227,7 @@
         }
       }
     }
+
     :deep(.t-table__body) {
       tr {
 
@@ -236,7 +240,7 @@
             top: auto;
 
             &::after {
-              top:auto;
+              top: auto;
               bottom: -5px;
             }
           }
@@ -244,7 +248,8 @@
       }
     }
   }
-  .t-tree__line::before{
+
+  .t-tree__line::before {
     height: 37px;
   }
 }

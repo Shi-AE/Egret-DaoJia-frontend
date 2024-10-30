@@ -6,31 +6,31 @@
     <tableList
       :list-data="listData"
       :pagination="pagination"
+      @fetchData="fetchData"
       @handleBuild="handleBuild"
       @handleClickDelete="handleClickDelete"
       @handleClickEdit="handleClickEdit"
-      @fetchData="fetchData"
-      @handleSort="handleSort"
       @handleRefreshCache="handleRefreshCache"
+      @handleSort="handleSort"
       @onPageChange="onPageChange"
     ></tableList>
     <!-- end -->
     <!-- 新增，编辑弹窗 -->
     <DialogForm
       ref="dialogForm"
-      :visible="visible"
-      :title="title"
       :city-list="cityList"
       :edit="edit"
       :form-data="formData"
-      @handleClose="handleClose"
+      :title="title"
+      :visible="visible"
       @confirmEdit="confirmEdit"
+      @handleClose="handleClose"
     />
     <!-- end -->
     <!-- 删除弹窗 -->
     <Delete
-      :dialog-delete-visible="dialogDeleteVisible"
       :delete-text="deleteText"
+      :dialog-delete-visible="dialogDeleteVisible"
       :title="title"
       @handle-delete="handleDelete"
       @handle-close="handleClose"
@@ -39,7 +39,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watchEffect } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute } from 'vue-router'

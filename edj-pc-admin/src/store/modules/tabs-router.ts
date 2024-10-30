@@ -49,24 +49,24 @@ export const useTabsRouterStore = defineStore('tabsRouter', {
     },
     // 处理关闭当前
     subtractCurrentTabRouter(newRoute: TRouterInfo) {
-      const { routeIdx } = newRoute
+      const {routeIdx} = newRoute
       this.tabRouterList = this.tabRouterList
         .slice(0, routeIdx)
         .concat(this.tabRouterList.slice(routeIdx + 1))
     },
     // 处理关闭右侧
     subtractTabRouterBehind(newRoute: TRouterInfo) {
-      const { routeIdx } = newRoute
+      const {routeIdx} = newRoute
       this.tabRouterList = this.tabRouterList.slice(0, routeIdx + 1)
     },
     // 处理关闭左侧
     subtractTabRouterAhead(newRoute: TRouterInfo) {
-      const { routeIdx } = newRoute
+      const {routeIdx} = newRoute
       this.tabRouterList = homeRoute.concat(this.tabRouterList.slice(routeIdx))
     },
     // 处理关闭其他
     subtractTabRouterOther(newRoute: TRouterInfo) {
-      const { routeIdx } = newRoute
+      const {routeIdx} = newRoute
       this.tabRouterList =
         routeIdx === 0
           ? homeRoute

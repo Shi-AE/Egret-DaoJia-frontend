@@ -1,4 +1,5 @@
 import { formatDateTimeToDateTimeString } from '@/utils/date'
+
 export const COLUMNS = [
   {
     title: '订单编号',
@@ -7,13 +8,13 @@ export const COLUMNS = [
     minWidth: '200px',
     colKey: 'ordersCode'
   },
-  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
+  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
   {
     title: '下单时间',
     minWidth: '180px',
     colKey: 'createTime',
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', row.createTime ? formatDateTimeToDateTimeString(new Date(row.createTime)) : '-')
   },
   {
@@ -27,7 +28,7 @@ export const COLUMNS = [
     colKey: 'ordersStatus',
     width: 76,
     minWidth: '130px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '待支付'
@@ -74,7 +75,7 @@ export const COLUMNS = [
     minWidth: '180px',
     colKey: 'updateTime',
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', row.updateTime ? formatDateTimeToDateTimeString(new Date(row.updateTime)) : '-')
   },
   {
@@ -97,7 +98,7 @@ export const COLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '是'
@@ -152,7 +153,7 @@ export const COLUMNS = [
     colKey: 'ordersStatus',
     width: 76,
     minWidth: '130px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '待支付'
@@ -210,7 +211,7 @@ export const PERSON_COLUMNS = [
     colKey: 'row-select',
     type: 'single',
     // 允许单选(Radio)取消行选中
-    checkProps: { allowUncheck: true },
+    checkProps: {allowUncheck: true},
 
     // 禁用行选中方式一：使用 disabled 禁用行（示例代码有效，勿删，随时需要测试）。disabled 参数：{row: RowData; rowIndex: number })
     // 这种方式禁用行选中，当前行会添加行类名 t-table__row--disabled，禁用行文字变灰
@@ -239,7 +240,7 @@ export const PERSON_COLUMNS = [
     minWidth: '188px',
     colKey: 'createTime',
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', row.createTime ? formatDateTimeToDateTimeString(new Date(row.createTime)) : '-')
   },
   {
@@ -253,7 +254,7 @@ export const PERSON_COLUMNS = [
     colKey: 'ordersStatus',
     width: 76,
     minWidth: '76px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '待支付'
@@ -300,7 +301,7 @@ export const PERSON_COLUMNS = [
     colKey: 'ordersStatus',
     width: 76,
     minWidth: '76px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '接单中'

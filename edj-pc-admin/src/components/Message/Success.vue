@@ -2,16 +2,16 @@
 <template>
   <t-dialog
     v-model:visible="confirmVisible"
-    theme="success"
-    header="成功通知"
     :body="confirmBody"
-    :on-close="onClickCloseBtn"
     :footer="false"
+    :on-close="onClickCloseBtn"
+    header="成功通知"
+    theme="success"
     @confirm="onConfirmDelete"
   />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 
@@ -68,6 +68,7 @@ const selectedRowKeys = ref([1, 2])
 :deep(.t-dialog__ctx .t-dialog) {
   width: 400px;
 }
+
 :deep(.t-dialog__header) {
   height: 52px;
   background-color: #fff;
@@ -76,6 +77,7 @@ const selectedRowKeys = ref([1, 2])
   padding-top: 20px;
   padding-bottom: 0;
 }
+
 :deep(.t-dialog__body__icon) {
   padding-top: 2px;
 }

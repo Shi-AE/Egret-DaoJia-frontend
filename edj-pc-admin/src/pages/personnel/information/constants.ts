@@ -3,7 +3,7 @@
 import { formatDateTimeToDateTimeString } from '@/utils/date'
 // 服务人员信息列表
 export const COLUMNS = [
-  { title: '真实姓名', width: 250, minWidth: '150px', colKey: 'name' },
+  {title: '真实姓名', width: 250, minWidth: '150px', colKey: 'name'},
   {
     title: '登录账号',
     width: 250,
@@ -19,12 +19,12 @@ export const COLUMNS = [
     colKey: 'idNumber'
   },
   // { title: '服务分类', width: 250, minWidth: '150px', colKey: 'name' },
-  { title: '服务城市', width: 250, minWidth: '150px', colKey: 'cityName' },
+  {title: '服务城市', width: 250, minWidth: '150px', colKey: 'cityName'},
   {
     title: '接单状态',
     colKey: 'canPickUp',
     minWidth: '120px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '休息中'
@@ -65,7 +65,7 @@ export const COLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '正常'
@@ -89,7 +89,7 @@ export const COLUMNS = [
     width: 250,
     minWidth: '180px',
     colKey: 'certificationTime',
-    cell: (h, { row }) => h('span',row.certificationTime ? formatDateTimeToDateTimeString(new Date(row.certificationTime)) : '-')
+    cell: (h, {row}) => h('span', row.certificationTime ? formatDateTimeToDateTimeString(new Date(row.certificationTime)) : '-')
   },
   {
     align: 'left',
@@ -109,14 +109,14 @@ export const SERVE_DATA = [
     minWidth: '200px',
     colKey: 'id'
   },
-  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
-  { title: '评价评分（分）', width: 150, minWidth: '150px', colKey: 'score' },
-  { title: '实付金额（元）', width: 150, minWidth: '150px', colKey: 'ordersAmount' },
+  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
+  {title: '评价评分（分）', width: 150, minWidth: '150px', colKey: 'score'},
+  {title: '实付金额（元）', width: 150, minWidth: '150px', colKey: 'ordersAmount'},
   {
     title: '服务完成时间',
     minWidth: '180px',
     colKey: 'realServeEndTime',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h('span', row.realServeEndTime ? formatDateTimeToDateTimeString(new Date(row.realServeEndTime)) : '-')
   },
   {
@@ -126,7 +126,7 @@ export const SERVE_DATA = [
     minWidth: '120px',
     colKey: 'serveBeforeImgs',
     title: '服务前照片'
-  },  {
+  }, {
     align: 'left',
     // fixed: 'right',
     width: 120,

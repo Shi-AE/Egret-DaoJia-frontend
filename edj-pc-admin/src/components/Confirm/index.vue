@@ -3,25 +3,25 @@
   <div class="confirmDialog baseDialog">
     <t-dialog
       v-model:visible="dialogVisible"
-      :header="title"
       :footer="false"
+      :header="title"
       :on-close="handleClose"
       :on-confirm="handleSubmit"
     >
       {{ confirmText }}
       <div class="dialog-footer">
         <button
+          class="bt-grey wt-60"
           theme="primary"
           type="submit"
-          class="bt-grey wt-60"
           @click="handleClose"
         >
           <span>取消</span>
         </button>
         <button
+          class="bt wt-60"
           theme="primary"
           type="submit"
-          class="bt wt-60"
           @click="handleSubmit"
         >
           <span>确定</span>
@@ -30,7 +30,7 @@
     </t-dialog>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 // 获取父组件值、方法
 const props = defineProps({

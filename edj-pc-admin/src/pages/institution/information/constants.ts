@@ -1,4 +1,4 @@
-import {formatDateTimeToDateTimeString } from '@/utils/date'
+import { formatDateTimeToDateTimeString } from '@/utils/date'
 // 服务人员信息列表
 export const COLUMNS = [
   {
@@ -25,7 +25,7 @@ export const COLUMNS = [
   // { title: '服务分类',width:250, minWidth: '150px', colKey: 'name' },
   {
     title: '服务城市',
-    width:250,
+    width: 250,
     minWidth: '170px',
     sortType: 'all',
     colKey: 'cityName'
@@ -35,7 +35,7 @@ export const COLUMNS = [
     colKey: 'canPickUp',
     minWidth: '120px',
     // 添加筛选
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '休息中'
@@ -46,7 +46,7 @@ export const COLUMNS = [
         '-1': {
           label: '未设置'
         },
-      }  
+      }
       // const status = row.canPickUp === -1 ? 2 : row.canPickUp
       return h(
         'span',
@@ -76,7 +76,7 @@ export const COLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '正常'
@@ -84,7 +84,7 @@ export const COLUMNS = [
         1: {
           label: '冻结'
         },
-      }  
+      }
       const status = row.status === 0 ? '2' : 1
       return h(
         'span',
@@ -100,8 +100,8 @@ export const COLUMNS = [
     width: 250,
     minWidth: '180px',
     colKey: 'certificationTime',
-    cell: (h, { row }) => h('span',row.certificationTime ? formatDateTimeToDateTimeString(new Date(row.certificationTime)) : '-')
-  },  
+    cell: (h, {row}) => h('span', row.certificationTime ? formatDateTimeToDateTimeString(new Date(row.certificationTime)) : '-')
+  },
   {
     align: 'left',
     fixed: 'right',
@@ -112,7 +112,7 @@ export const COLUMNS = [
   }
 ]
 // 服务数据
-export const SERVE_DATA =  [
+export const SERVE_DATA = [
   {
     title: '订单编号',
     align: 'left',
@@ -120,40 +120,40 @@ export const SERVE_DATA =  [
     minWidth: '200px',
     colKey: 'id'
   },
-  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
-  { title: '评价评分（分）', width: 150, minWidth: '150px', colKey: 'score' },
+  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
+  {title: '评价评分（分）', width: 150, minWidth: '150px', colKey: 'score'},
   {
     title: '实付金额（元）',
     minWidth: '288px',
     sortType: 'all',
     colKey: 'ordersAmount'
   },
-  { title: '服务人员', width: 150, minWidth: '150px', colKey: 'institutionStaffName' },
+  {title: '服务人员', width: 150, minWidth: '150px', colKey: 'institutionStaffName'},
   {
     title: '服务完成时间',
     minWidth: '180px',
     colKey: 'realServeEndTime',
     sortType: 'all',
-    cell: (h, { row }) => {
-      if(row.realServeEndTime){
-        return h('span',formatDateTimeToDateTimeString(new Date(row.realServeEndTime)))
-      }else{
-        return h('span','--')
+    cell: (h, {row}) => {
+      if (row.realServeEndTime) {
+        return h('span', formatDateTimeToDateTimeString(new Date(row.realServeEndTime)))
+      } else {
+        return h('span', '--')
       }
     }
-  }, 
+  },
   {
     title: '服务前照片',
     minWidth: '180px',
     colKey: 'serveBeforeImgs',
     sortType: 'all'
-  }, 
+  },
   {
     title: '服务后照片',
     minWidth: '180px',
     colKey: 'serveAfterImgs',
     sortType: 'all'
-  }, 
+  },
   {
     align: 'left',
     // fixed: 'right',
@@ -164,8 +164,8 @@ export const SERVE_DATA =  [
   }
 ]
 // 服务人员信息
-export const SERVE_COLUMNS =  [
-  { title: '服务人员姓名', width: 150, minWidth: '150px', colKey: 'name' },
+export const SERVE_COLUMNS = [
+  {title: '服务人员姓名', width: 150, minWidth: '150px', colKey: 'name'},
   {
     title: '服务人员手机',
     minWidth: '170px',
@@ -176,27 +176,27 @@ export const SERVE_COLUMNS =  [
     title: '身份证号',
     minWidth: '185px',
     colKey: 'idCardNo',
-  }, 
+  },
   {
     title: '证明资料',
     minWidth: '180px',
     colKey: 'certificationImgs',
-  }, 
+  },
   {
     title: '创建时间',
     minWidth: '180px',
     colKey: 'createTime',
     sortType: 'all',
-    cell: (h, { row }) => {
-      if(row.createTime){
-        return h('span',formatDateTimeToDateTimeString(new Date(row.createTime)))
-      }else{
-        return h('span','--')
+    cell: (h, {row}) => {
+      if (row.createTime) {
+        return h('span', formatDateTimeToDateTimeString(new Date(row.createTime)))
+      } else {
+        return h('span', '--')
       }
     }
   },
 ]
-  
+
 
 
 

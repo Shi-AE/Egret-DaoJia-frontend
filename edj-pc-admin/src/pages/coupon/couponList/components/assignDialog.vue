@@ -2,11 +2,11 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    :header="title"
-    :width="920"
     :footer="false"
-    top="10vh"
+    :header="title"
     :on-close="onClickCloseBtn"
+    :width="920"
+    top="10vh"
   >
     <template #body>
       <div class="statistics">
@@ -61,17 +61,17 @@
       </div>
       <div class="tableBox">
         <TableList
-          :DialogFormData="listData"
           :AssignPagination="pagination"
-          @onPageChange="onPageChange"
+          :DialogFormData="listData"
           :activeStatus="1"
+          @onPageChange="onPageChange"
         ></TableList>
       </div>
     </template>
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import TableList from './TableList.vue'
 
@@ -157,37 +157,47 @@ defineExpose({
   z-index: 100;
   color: var(--color-bk4);
 }
+
 :deep(.t-textarea__limit) {
   color: var(--color-bk4);
   right: 10px;
 }
+
 :deep(.t-form__item) {
   margin-bottom: 56px;
 }
+
 :deep(.min-h) {
   min-height: 300px;
+
   .tableBoxs {
     margin: 0;
   }
 }
+
 :deep(.t-dialog__body) {
   padding: 0;
   position: relative;
+
   .baseList {
     padding-top: 0;
     border-radius: 7px;
 
     .t-table {
       border-radius: 7px;
+
       th {
         // background-color: #fff !important;
         border-bottom: none;
+
         &:first-child {
           border-radius: 8px 0 0 0;
         }
+
         &:last-child {
           border-radius: 0 8px 0 0;
         }
+
         &::after {
           position: absolute;
           right: 0;
@@ -208,6 +218,7 @@ defineExpose({
       }
     }
   }
+
   .op {
     position: absolute;
     display: flex;
@@ -215,18 +226,22 @@ defineExpose({
     right: 32px;
   }
 }
+
 :deep(.t-table) {
   th {
     padding-left: 24px;
     padding-right: 0;
   }
+
   td {
     padding-left: 24px;
     padding-right: 0;
   }
 }
+
 :deep(.t-pagination) {
   justify-content: flex-start;
+
   .t-pagination__total {
     display: inline-block;
     flex: initial;
@@ -234,23 +249,29 @@ defineExpose({
     color: var(--color-bk1);
   }
 }
+
 :deep(.t-row--start) {
   display: block;
 }
+
 .t-form:not(.t-form-inline) .t-form__item:last-of-type {
   padding: 0 !important;
 }
+
 .statistics {
   padding: 31px 21px;
   display: flex;
+
   .card {
     width: 20%;
     position: relative;
+
     .body {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
       .num {
         font-family: PingFangSC-SNaNpxibold;
         font-weight: 600;
@@ -259,6 +280,7 @@ defineExpose({
         line-height: 42px;
         color: var(--color-bk1);
       }
+
       .title {
         font-family: PingFangSC-Regular;
         font-weight: 400;
@@ -268,6 +290,7 @@ defineExpose({
         color: var(--color-bk4);
       }
     }
+
     .line {
       width: 1px;
       height: 40px;
@@ -275,6 +298,7 @@ defineExpose({
       position: absolute;
       top: 13px;
     }
+
     &:first-child {
       .line {
         display: none;
@@ -282,17 +306,21 @@ defineExpose({
     }
   }
 }
-.tableBox{
+
+.tableBox {
   padding: 0 16px 0 21px;
-  :deep(.t-table__content){
+
+  :deep(.t-table__content) {
     padding-right: 9px;
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
       width: 4px;
       height: 4px;
       border-radius: 2px;
       // background-color: #D8D8D8;
     }
-    &::-webkit-scrollbar-thumb{
+
+    &::-webkit-scrollbar-thumb {
       background-color: #D8D8D8;
     }
   }

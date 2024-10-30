@@ -4,9 +4,9 @@
     <div class="bodybox">
       <t-form
         ref="form"
-        label-align="top"
-        :rules="rules"
         :data="formData"
+        :rules="rules"
+        label-align="top"
         @submit="onSubmit"
       >
         <div class="topBox">
@@ -14,29 +14,29 @@
             <t-form-item label="服务名称" name="name">
               <t-input
                 v-model="formData.name"
-                class="form-item-content"
-                placeholder="请输入"
                 :style="{ minWidth: '134px' }"
+                class="form-item-content"
                 clearable
+                placeholder="请输入"
                 @change="(e) => changeName(e)"
               />
             </t-form-item>
             <t-form-item label="参考服务单价" name="referencePrice">
               <t-input
                 v-model="formData.referencePrice"
-                class="form-item-content"
-                placeholder="请输入"
                 :style="{ minWidth: '134px' }"
+                class="form-item-content"
                 clearable
+                placeholder="请输入"
                 @change="(e) => changePrice(e)"
               />
             </t-form-item>
             <t-form-item label="排序" name="sortNum">
               <t-input-number
                 v-model="formData.sortNum"
-                theme="column"
-                :min="0"
                 :max="999"
+                :min="0"
+                theme="column"
               ></t-input-number>
             </t-form-item>
             <t-form-item label="服务图标" name="icon">
@@ -44,19 +44,19 @@
                 ref="uploadRef1"
                 v-model="formData.icon"
                 :action="actions"
-                :is-batch-upload="true"
-                tips="请上传png格式图片，尺寸：114px*114px，在200k以内"
-                theme="image"
-                accept="image/*"
+                :allow-upload-duplicate-file="true"
                 :headers="{
                   AuthorizationAccessToken: accessToken,
                   AuthorizationRefreshToken: refreshToken
                 }"
+                :is-batch-upload="true"
                 :size-limit="10240"
-                :allow-upload-duplicate-file="true"
-                @validate="onValidate"
+                accept="image/*"
+                theme="image"
+                tips="请上传png格式图片，尺寸：114px*114px，在200k以内"
                 @fail="handleFail"
                 @success="(e) => handleSuccess(e, 1)"
+                @validate="onValidate"
               >
               </t-upload>
             </t-form-item>
@@ -65,19 +65,19 @@
             <t-form-item label="服务类型" name="edjServeTypeId">
               <t-select
                 v-model="formData.edjServeTypeId"
-                class="form-item-content"
                 :options="typeSelect"
-                placeholder="请选择"
+                class="form-item-content"
                 clearable
+                placeholder="请选择"
               />
             </t-form-item>
-            <t-form-item label="服务单位" name="unit" class="unit">
+            <t-form-item class="unit" label="服务单位" name="unit">
               <t-select
                 v-model="formData.unit"
-                class="form-item-content"
                 :options="UNIT"
-                placeholder="请选择"
+                class="form-item-content"
                 clearable
+                placeholder="请选择"
                 @change="(e) => changeUnit(e)"
               />
             </t-form-item>
@@ -86,19 +86,19 @@
                 ref="uploadRef1"
                 v-model="formData.img"
                 :action="actions"
-                :is-batch-upload="true"
-                tips="请上传png格式图片，尺寸：750px*620px，在5M以内"
-                theme="image"
-                accept="image/*"
-                :size-limit="10240"
+                :allow-upload-duplicate-file="true"
                 :headers="{
                   AuthorizationAccessToken: accessToken,
                   AuthorizationRefreshToken: refreshToken
                 }"
-                :allow-upload-duplicate-file="true"
-                @validate="onValidate"
+                :is-batch-upload="true"
+                :size-limit="10240"
+                accept="image/*"
+                theme="image"
+                tips="请上传png格式图片，尺寸：750px*620px，在5M以内"
                 @fail="handleFail"
                 @success="(e) => handleSuccess(e, 2)"
+                @validate="onValidate"
               >
               </t-upload>
             </t-form-item>
@@ -108,9 +108,9 @@
           <t-form-item label="服务描述" name="description">
             <t-textarea
               v-model="formData.description"
+              :maxlength="200"
               class="form-item-content description"
               placeholder="请输入"
-              :maxlength="200"
             />
           </t-form-item>
           <t-form-item label="服务详情长图" name="detailImg">
@@ -118,19 +118,19 @@
               ref="uploadRef1"
               v-model="formData.detailImg"
               :action="actions"
-              :is-batch-upload="true"
-              tips="请上传png格式图片，尺寸：宽750px，高度不限，在20M以内"
-              theme="image"
-              accept="image/*"
-              :size-limit="20480"
+              :allow-upload-duplicate-file="true"
               :headers="{
                 AuthorizationAccessToken: accessToken,
                 AuthorizationRefreshToken: refreshToken
               }"
-              :allow-upload-duplicate-file="true"
-              @validate="onValidate"
+              :is-batch-upload="true"
+              :size-limit="20480"
+              accept="image/*"
+              theme="image"
+              tips="请上传png格式图片，尺寸：宽750px，高度不限，在20M以内"
               @fail="handleFail"
               @success="(e) => handleSuccess(e, 3)"
+              @validate="onValidate"
             >
             </t-upload>
           </t-form-item>
@@ -142,7 +142,7 @@
               <span
                 :class="isPreview ? 'bt' : 'bt-grey bt-dis'"
                 @click="handlePreview"
-                >预览</span
+              >预览</span
               >
             </div>
             <button class="bt updateInfo">保存</button>
@@ -157,24 +157,16 @@
     @handleClose="handleClose"
   />
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, onMounted, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { MessagePlugin } from 'tdesign-vue-next'
-import {
-  serviceItemAdd,
-  serviceItemById,
-  serviceItemEdit,
-  serviceTypeSimpleList
-} from '@/api/service'
+import { serviceItemAdd, serviceItemById, serviceItemEdit, serviceTypeSimpleList } from '@/api/service'
 import previewPopup from './components/previewPopup.vue'
 import { UNIT } from '@/constants'
 // 引用正则
 import { validateText5 } from '@/utils/validate'
-import {
-  AUTHORIZATION_ACCESS_TOKEN,
-  AUTHORIZATION_REFRESH_TOKEN
-} from '@/config/global'
+import { AUTHORIZATION_ACCESS_TOKEN, AUTHORIZATION_REFRESH_TOKEN } from '@/config/global'
 
 const previewData = reactive({
   title: '',
@@ -197,7 +189,7 @@ const formData = ref({
 const router = useRouter()
 const route = useRoute()
 const previewVisible = ref(false) // 预览弹窗
-const { id } = route.params
+const {id} = route.params
 const form = ref(null) // 表单
 const typeSelect = ref([]) // 服务类型下拉框数据
 const actions = '/api/edj-publics/storage/upload' // 上传的地址
@@ -320,7 +312,7 @@ const handleFail = (file) => {
 }
 // 超过大小或者文件格式错误报错提示
 const onValidate = (params) => {
-  const { files, type } = params
+  const {files, type} = params
   const messageMap = {
     FILE_OVER_SIZE_LIMIT: files[0].response.error,
     FILES_OVER_LENGTH_LIMIT: '文件数量超出限制，仅上传未超出数量的文件',

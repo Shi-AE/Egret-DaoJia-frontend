@@ -1,5 +1,5 @@
 import { request } from '@/utils/request'
-import type { customListRequest, customFreezeRequest } from '@/api/model/customModel'
+import type { customFreezeRequest, customListRequest } from '@/api/model/customModel'
 
 // 普通用户分页查询
 export function getCustomList(data: customListRequest) {
@@ -8,6 +8,7 @@ export function getCustomList(data: customListRequest) {
     params: data
   })
 }
+
 // 冻结/解冻
 export function customFreeze(data: customFreezeRequest) {
   return request.put({

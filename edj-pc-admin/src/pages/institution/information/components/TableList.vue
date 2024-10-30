@@ -4,21 +4,21 @@
     <div class="tableBoxs">
       <t-config-provider>
         <t-table
-          :data="data"
           :columns="tableCOLUMNS"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
           :hover="true"
+          :loading="dataLoading"
+          :multiple-sort="true"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          :disable-data-page="pagination.total <= 10"
+          :row-key="rowKey"
           :selected-row-keys="selectedRowKeys"
-          :loading="dataLoading"
           show-size-changer
-          table-layout="fixed"
-          :multiple-sort="true"
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
           @page-change="onPageChange"
           @select-change="rehandleSelectChange"
         >
@@ -44,15 +44,15 @@
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
                     <img
-                      alt="test"
                       :src="row.img"
+                      alt="test"
                       class="tdesign-demo-image-viewer__ui-image--img"
                     />
                     <div
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em" /></span>
+                      <span><ZoomInIcon size="1.8em"/></span>
                     </div>
                   </div>
                 </template>
@@ -68,15 +68,15 @@
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
                     <img
-                      alt="test"
                       :src="row.certificationImgs[0]"
+                      alt="test"
                       class="tdesign-demo-image-viewer__ui-image--img"
                     />
                     <div
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em" /></span>
+                      <span><ZoomInIcon size="1.8em"/></span>
                     </div>
                   </div>
                 </template>
@@ -88,8 +88,8 @@
           <!-- 描述 -->
           <template #description="{ row, rowIndex }">
             <div
-              class="description"
               :class="rowIndex < 3 ? 'shortDescription' : ''"
+              class="description"
             >
               <span>{{ row.description }}</span>
               <span
@@ -97,7 +97,7 @@
                   row.description.length > 36 && row.description.length <= 200
                 "
                 class="hover"
-                >{{ row.description }}</span
+              >{{ row.description }}</span
               >
             </div>
           </template>
@@ -109,15 +109,15 @@
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
                     <img
-                      alt="test"
                       :src="row.serveBeforeImgs[0]"
+                      alt="test"
                       class="tdesign-demo-image-viewer__ui-image--img"
                     />
                     <div
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em" /></span>
+                      <span><ZoomInIcon size="1.8em"/></span>
                     </div>
                   </div>
                 </template>
@@ -133,15 +133,15 @@
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
                     <img
-                      alt="test"
                       :src="row.serveAfterImgs[0]"
+                      alt="test"
                       class="tdesign-demo-image-viewer__ui-image--img"
                     />
                     <div
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em" /></span>
+                      <span><ZoomInIcon size="1.8em"/></span>
                     </div>
                   </div>
                 </template>
@@ -154,7 +154,7 @@
             <a
               class="font-bt btn-split-right"
               @click="handleClickFreeze(row, row.status)"
-              >{{ row.status === 0 ? '冻结' : '解冻' }}</a
+            >{{ row.status === 0 ? '冻结' : '解冻' }}</a
             >
             <a
               :class="
@@ -163,7 +163,7 @@
                   : 'font-bt line'
               "
               @click="handleClickEdit(row)"
-              >查看</a
+            >查看</a
             >
           </template>
           <!-- end -->
@@ -175,7 +175,7 @@
           <!-- 在操作栏添加删除、编辑、查看三种操作 -->
           <template #op2="{ row }">
             <a class="font-bt line" @click="handleClickOrderDetail(row)"
-              >查看订单</a
+            >查看订单</a
             >
           </template>
           <!-- end -->
@@ -185,7 +185,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { ZoomInIcon } from 'tdesign-icons-vue-next'
@@ -302,6 +302,7 @@ const handleClickOrderDetail = (row) => {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }

@@ -1,14 +1,17 @@
 .fsmall {
   font-size: 26rpx;
 }
+
 .fmiddle {
   font-size: 28rpx;
 }
+
 .flex {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .mask {
   position: fixed;
   z-index: 3;
@@ -88,6 +91,7 @@
   font-size: 30rpx;
   color: white;
 }
+
 .letters {
   position: absolute;
   right: 0;
@@ -103,9 +107,11 @@
 .position {
   margin-top: 60rpx;
   box-sizing: border-box;
-  .hot{
+
+  .hot {
     margin-bottom: 32rpx !important;
   }
+
   .grey {
     margin-bottom: 40rpx;
     margin-left: 37rpx;
@@ -114,6 +120,7 @@
     font-size: 28rpx;
     color: #888888;
   }
+
   .position_city {
     width: 100%;
     height: 44rpx;
@@ -124,6 +131,7 @@
     background: #fff;
     padding-left: 47rpx;
     padding-right: 48rpx;
+
     .position_city_one {
       font-size: 14px;
       font-weight: 500;
@@ -131,15 +139,18 @@
       justify-content: center;
       align-items: center;
     }
+
     .WarpWeft {
       display: flex;
       align-items: center;
       margin-right: 15rpx;
+
       image {
         width: 36rpx;
         height: 36rpx;
         margin-right: 9rpx;
       }
+
       text {
         font-family: PingFangSC-Regular;
         font-weight: 400;
@@ -147,6 +158,7 @@
         color: #151515;
       }
     }
+
     .position_city_tag {
       width: 148rpx;
       height: 64rpx;
@@ -158,23 +170,28 @@
       margin-right: 24rpx;
       font-size: 28rpx;
       box-sizing: border-box;
+
       &:last-child {
         margin-right: 0;
       }
     }
+
     .position_city_tag_active {
       background-color: #fff;
       border: 2rpx solid #f74145;
     }
   }
+
   .position_city_hot {
     height: auto;
     line-height: auto;
     justify-content: start;
   }
 }
+
 .cityList {
   display: flex;
+
   .letter-header {
     font-size: 28rpx;
     padding-left: 37rpx;
@@ -182,6 +199,7 @@
     color: #888888;
     padding-top: 38rpx;
   }
+
   .contents {
     /* display: flex; */
     width: 100%;
@@ -193,6 +211,7 @@
       padding: 32rpx 0;
       align-items: center;
       border-bottom: 2rpx solid #f4f4f4;
+
       .city {
         font-size: 28rpx;
         color: #000000;
@@ -205,6 +224,7 @@
 :deep(.NavBar) {
   background-color: #fff !important;
 }
+
 :deep(scroll-view) {
   background-color: #fff;
 }

@@ -1,4 +1,5 @@
 import { formatDateTimeToDateTimeString } from '@/utils/date'
+
 export const COLUMNS = [
   {
     title: '订单编号',
@@ -7,14 +8,14 @@ export const COLUMNS = [
     minWidth: '200px',
     colKey: 'id'
   },
-  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
+  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
   {
     title: '下单时间',
     minWidth: '180px',
     colKey: 'createTime',
     sortType: 'all',
-    cell: (h, { row }) => h('span',row.createTime ? formatDateTimeToDateTimeString(new Date(row.createTime)) : '-')
-  },  
+    cell: (h, {row}) => h('span', row.createTime ? formatDateTimeToDateTimeString(new Date(row.createTime)) : '-')
+  },
   {
     title: '服务地址',
     colKey: 'serveAddress',
@@ -26,7 +27,7 @@ export const COLUMNS = [
     minWidth: '180px',
     colKey: 'updateTime',
     sortType: 'all',
-  },  
+  },
   {
     title: '指派超时',
     colKey: 'ordersStatus',
@@ -47,23 +48,23 @@ export const COLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '是',
-          },
+        },
         1: {
           label: '否',
-          },
-      }  
+        },
+      }
       let status = 0
-      if(row.ordersStatus === 100 || row.ordersStatus === 200 || row.ordersStatus === 300 || row.ordersStatus === 400 || row.ordersStatus === 500) {
+      if (row.ordersStatus === 100 || row.ordersStatus === 200 || row.ordersStatus === 300 || row.ordersStatus === 400 || row.ordersStatus === 500) {
         status = 0
-        }else if(row.ordersStatus === 700){
+      } else if (row.ordersStatus === 700) {
         status = 2
-        }else{
-          status = 1
-        }
+      } else {
+        status = 1
+      }
       return h(
         'span',
         {
@@ -89,7 +90,7 @@ export const PERSON_COLUMNS = [
     colKey: 'row-select',
     type: 'single',
     // 允许单选(Radio)取消行选中
-    checkProps: { allowUncheck: true },
+    checkProps: {allowUncheck: true},
 
     // 禁用行选中方式一：使用 disabled 禁用行（示例代码有效，勿删，随时需要测试）。disabled 参数：{row: RowData; rowIndex: number })
     // 这种方式禁用行选中，当前行会添加行类名 t-table__row--disabled，禁用行文字变灰
@@ -107,14 +108,14 @@ export const PERSON_COLUMNS = [
     minWidth: '147px',
     colKey: 'id'
   },
-  { title: '服务人员姓名（个体）', width: 160, minWidth: '160px', colKey: 'serveItemName' },
+  {title: '服务人员姓名（个体）', width: 160, minWidth: '160px', colKey: 'serveItemName'},
   {
     title: '企业名称',
     minWidth: '188px',
     colKey: 'createTime',
     sortType: 'all',
-    cell: (h, { row }) => h('span',formatDateTimeToDateTimeString(new Date(row.createTime)))
-  },  
+    cell: (h, {row}) => h('span', formatDateTimeToDateTimeString(new Date(row.createTime)))
+  },
   {
     title: '电话号码',
     colKey: 'contactsPhone',
@@ -126,39 +127,39 @@ export const PERSON_COLUMNS = [
     colKey: 'ordersStatus',
     width: 76,
     minWidth: '76px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '待支付',
-          },
+        },
         100: {
           label: '派单中',
-          },
+        },
         200: {
           label: '待服务',
-          },
+        },
         300: {
           label: '服务中',
-          },
+        },
         400: {
           label: '待评价',
-          },
+        },
         500: {
           label: '订单完成',
-          },
+        },
         600: {
           label: '订单取消',
-          },
+        },
         700: {
           label: '已关闭',
-          },
-      }  
+        },
+      }
       let status = 0
-      if(row.ordersStatus === 500 || row.ordersStatus === 600) {
+      if (row.ordersStatus === 500 || row.ordersStatus === 600) {
         status = 2
-        }else{
+      } else {
         status = 0
-        }
+      }
       return h(
         'span',
         {
@@ -173,23 +174,23 @@ export const PERSON_COLUMNS = [
     colKey: 'ordersStatus',
     width: 76,
     minWidth: '76px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '接单中',
-          },
+        },
         1: {
           label: '休息中',
-          },
-      }  
+        },
+      }
       let status = 0
-      if(row.ordersStatus === 100 || row.ordersStatus === 200 || row.ordersStatus === 300 || row.ordersStatus === 400 || row.ordersStatus === 500) {
+      if (row.ordersStatus === 100 || row.ordersStatus === 200 || row.ordersStatus === 300 || row.ordersStatus === 400 || row.ordersStatus === 500) {
         status = 0
-        }else if(row.ordersStatus === 700){
+      } else if (row.ordersStatus === 700) {
         status = 2
-        }else{
-          status = 1
-        }
+      } else {
+        status = 1
+      }
       return h(
         'span',
         {
@@ -205,7 +206,7 @@ export const PERSON_COLUMNS = [
     width: 104,
     colKey: 'ordersStatus',
     sortType: 'all',
-  },  
+  },
   {
     width: 48,
     minWidth: '48px',

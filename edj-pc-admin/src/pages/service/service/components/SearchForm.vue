@@ -8,9 +8,9 @@
             <t-input
               v-model="formData.name"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -18,21 +18,21 @@
           <t-form-item label="服务类型：" name="edjServeTypeId">
             <t-select
               v-model="formData.edjServeTypeId"
-              class="form-item-content"
               :options="typeSelectList"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="状态：" name="status" :label-width="42">
+          <t-form-item :label-width="42" label="状态：" name="status">
             <t-select
               v-model="formData.activeStatus"
-              class="form-item-content"
               :options="SERVICE_STATUS"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -45,7 +45,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watchEffect } from 'vue'
 import { SERVICE_STATUS } from '@/constants'
 
@@ -81,7 +81,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleReset')
   emit('handleSearch', formData.value)
 }

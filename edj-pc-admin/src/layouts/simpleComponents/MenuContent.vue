@@ -18,7 +18,7 @@
           @click="openHref(getHref(item)[0])"
         >
           <template #icon>
-            <t-icon v-if="beIcon(item)" :name="item.icon" />
+            <t-icon v-if="beIcon(item)" :name="item.icon"/>
             <component
               :is="beRender(item).render"
               v-else-if="beRender(item).can"
@@ -30,12 +30,12 @@
         <t-menu-item
           v-else
           :name="item.path"
-          :value="getPath(item)"
           :to="item.path == '/reply' ? '' : item.path"
+          :value="getPath(item)"
           @click="handleClick(item.path)"
         >
           <template #icon>
-            <t-icon v-if="beIcon(item)" :name="item.icon" />
+            <t-icon v-if="beIcon(item)" :name="item.icon"/>
             <component
               :is="beRender(item).render"
               v-else-if="beRender(item).can"
@@ -48,31 +48,31 @@
       <t-submenu
         v-else
         :name="item.path"
-        :value="item.path"
         :title="item.title"
+        :value="item.path"
       >
         <template #icon>
-          <t-icon v-if="beIcon(item)" :name="item.icon" />
+          <t-icon v-if="beIcon(item)" :name="item.icon"/>
           <component
             :is="beRender(item).render"
             v-else-if="beRender(item).can"
             class="t-icon"
           />
         </template>
-        <menu-content v-if="item.children" :nav-data="item.children" />
+        <menu-content v-if="item.children" :nav-data="item.children"/>
       </t-submenu>
     </template>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from 'vue'
 import type { PropType } from 'vue'
 import isObject from 'lodash/isObject'
 import { serviceToken } from '@/api/service'
 import type { MenuRoute } from '@/types/interface'
 import { getActive } from '@/router'
-import { evaluationBaseUrl , evaluationBackUrl , evaluationUrlPrefix } from '@/config/configuration' // 评价系统的配置
+import { evaluationBaseUrl, evaluationBackUrl, evaluationUrlPrefix } from '@/config/configuration' // 评价系统的配置
 const props = defineProps({
   navData: {
     type: Array as PropType<MenuRoute[]>,
@@ -83,7 +83,7 @@ const props = defineProps({
 const active = computed(() => getActive())
 // 菜单列表
 const list = computed(() => {
-  const { navData } = props
+  const {navData} = props
   return getMenuList(navData)
 })
 // getMenuList是一个递归函数，用于将路由转换为菜单列表
@@ -114,7 +114,7 @@ const getMenuList = (list: MenuRoute[], basePath?: string): MenuRoute[] => {
 }
 // getHref是一个函数，用于判断是否是外链
 const getHref = (item: MenuRoute) => {
-  const { frameSrc, frameBlank } = item.meta
+  const {frameSrc, frameBlank} = item.meta
   if (frameSrc && frameBlank) {
     return frameSrc.match(/(http|https):\/\/([\w.]+\/?)\S*/)
   }
@@ -146,7 +146,7 @@ const beRender = (item: MenuRoute) => {
 }
 
 const handleClick = (e) => {
-  if(e === '/reply') {
+  if (e === '/reply') {
     handleToReply()
   }
 }
@@ -156,7 +156,7 @@ const handleToReply = async () => {
   const backUrl = evaluationBackUrl
   const urlPrefix = evaluationUrlPrefix
   await serviceToken().then((res) => {
-    if(res.code === 200){
+    if (res.code === 200) {
       const newUrl = `${baseUrl}?token=${res.data.token}&backUrl=${backUrl}&urlPrefix=${urlPrefix}`
       window.open(newUrl)
     }

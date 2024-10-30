@@ -2,12 +2,12 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    :header="title"
-    :width="640"
     :footer="false"
+    :header="title"
     :on-close="onClickCloseBtn"
+    :width="640"
   >
-    <template #body v-if="formData">
+    <template v-if="formData" #body>
       <div class="body">
         <!-- 客户信息 -->
         <div class="card">
@@ -67,11 +67,9 @@
   </t-dialog>
 </template>
 
-<script setup lang="ts">
-import { ref, watch, computed } from 'vue'
-import { ZoomInIcon } from 'tdesign-icons-vue-next'
-import { formatDateTimeToDateTimeString } from '@/utils/date'
-import { UNIT } from '@/constants'
+<script lang="ts" setup>
+import { ref, watch } from 'vue'
+
 const props = defineProps({
   visible: {
     type: Boolean,
@@ -83,7 +81,7 @@ const props = defineProps({
       return {}
     }
   },
-  title:{
+  title: {
     type: String,
     default: '查看退款记录'
   }
@@ -119,11 +117,14 @@ watch(
 <style lang="less" scoped>
 :deep(.t-dialog) {
   border: none;
+
   .t-dialog__body {
     padding: 0;
+
     .pd {
       padding: 12px 32px;
     }
+
     .body {
       padding: 0 32px;
       padding-right: 22px;
@@ -139,51 +140,65 @@ watch(
         // 滚动条左移10px
         margin-left: -10px;
       }
+
       &::-webkit-scrollbar-track {
         background-color: transparent; /* 设置滚动条轨道背景色 */
       }
+
       &::-webkit-scrollbar-thumb {
         width: 4px;
         background-color: #d8d8d8; /* 设置滚动条滑块颜色 */
         border-radius: 2px; /* 设置滚动条滑块的圆角 */
+
         &:hover {
           background-color: #555; /* 设置滑块的背景色 */
         }
       }
+
       .card {
         padding: 20px 0;
         background: #ffffff;
         border-bottom: 1px solid #e8e8e8;
         display: flex;
+
         &:first-child {
           padding-top: 0;
         }
+
         &:last-child {
           padding-bottom: 0;
           border-bottom: none;
         }
+
         .lineBox {
           width: 100%;
           display: flex;
           margin-bottom: 11px;
+
           &:last-child {
             margin-bottom: 0;
           }
+
           .left,
           .right {
             width: 50%;
           }
+
           .left {
             border-right: 1px solid #e8e8e8;
           }
+
           .right {
             margin-left: 31.5px;
           }
+
           .tag {
             margin-bottom: 30px;
-            &:nth-child(6){
+
+            &:nth-child(6) {
               margin-bottom: 0;
             }
+
             .label {
               width: 56px;
               display: inline-block;
@@ -196,6 +211,7 @@ watch(
               text-align: justify;
               margin-right: 20px;
             }
+
             .item {
               font-family: PingFangSC-Regular;
               font-weight: 400;
@@ -207,14 +223,17 @@ watch(
         }
       }
     }
+
     .footBox {
       padding: 20px 32px;
       display: flex;
       justify-content: flex-end;
+
       .bt {
         width: 80px;
         height: 32px;
         margin-right: 15.5px;
+
         &:last-child {
           margin-right: 0;
         }
@@ -222,6 +241,7 @@ watch(
     }
   }
 }
+
 :deep(.tdesign-demo-image-viewer__ui-image) {
   width: 78.7px;
   height: 78.7px;
@@ -229,27 +249,30 @@ watch(
   max-height: 78.7px;
   margin-right: 10.5px;
 }
+
 :deep(.tdesign-demo-image-viewer__ui-image--img) {
   width: 78.7px;
   height: 78.7px;
   max-width: 78.7px;
   max-height: 78.7px;
 }
+
 .mb-10 {
   margin-bottom: 10px;
 }
+
 .mb-5 {
   margin-bottom: 5px;
 }
+
 :deep(.t-form:not(.t-form-inline) .t-form__item:last-of-type) {
   position: relative;
   right: -155px;
 }
+
 .grey {
-  background-image: linear-gradient(
-    269deg,
-    #d6d6d6 22%,
-    #ebebeb 72%
-  ) !important;
+  background-image: linear-gradient(269deg,
+  #d6d6d6 22%,
+  #ebebeb 72%) !important;
 }
 </style>

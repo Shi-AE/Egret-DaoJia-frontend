@@ -1,4 +1,5 @@
-import {formatDateTimeToDateTimeString } from '@/utils/date'
+import { formatDateTimeToDateTimeString } from '@/utils/date'
+
 export const COLUMNS = [
   {
     title: '评价内容',
@@ -12,7 +13,7 @@ export const COLUMNS = [
     colKey: 'content',
     width: 300,
     minWidth: '300px',
-    cell: { col: 'status' }
+    cell: {col: 'status'}
   },
   {
     title: '服务名称',
@@ -25,7 +26,7 @@ export const COLUMNS = [
     colKey: 'targetName',
     width: 200,
     minWidth: '150px',
-    cell: { col: 'status' }
+    cell: {col: 'status'}
   },
   {
     title: '评价图片',
@@ -38,7 +39,7 @@ export const COLUMNS = [
     width: 280,
     minWidth: '180px',
     colKey: 'createTime',
-    cell:(h, { row }) => h('span',row.createTime ? formatDateTimeToDateTimeString(new Date(row.createTime)) : '-')
+    cell: (h, {row}) => h('span', row.createTime ? formatDateTimeToDateTimeString(new Date(row.createTime)) : '-')
   },
   {
     align: 'left',

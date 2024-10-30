@@ -3,9 +3,9 @@
     <div class="title">快捷入口</div>
     <div class="content">
       <div
-        class="card"
         v-for="(item, index) in listData"
         :key="index"
+        class="card"
         @click="handleToPath(item.path)"
       >
         <div class="icon" v-html="item.url"></div>
@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, onUnmounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { DashboardPanel } from '../constants'
@@ -172,21 +172,26 @@ const handleToPath = (url) => {
       justify-content: center;
       font-size: 14px;
       cursor: pointer;
+
       &:last-child {
         margin-right: 0;
       }
+
       .icon {
         width: 18px;
         height: 18px;
         margin-right: 2px;
       }
+
       &:hover {
         border-color: var(--color-main);
         background-color: #ffefec;
         color: var(--color-main);
+
         .icon {
           .design-iconfont {
             font-size: 9px;
+
             g {
               stroke: var(--color-main);
             }
@@ -210,6 +215,7 @@ const handleToPath = (url) => {
           }
         }
       }
+
       &:nth-child(2) {
         &:hover {
           .icon {

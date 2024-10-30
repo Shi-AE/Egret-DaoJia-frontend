@@ -5,10 +5,10 @@
     </div>
     <div class="result-title">{{ title }}</div>
     <div class="result-tip">{{ tip }}</div>
-    <slot />
+    <slot/>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from 'vue'
 import Result403Icon from '@/assets/test-img/assets-result-403.svg?component'
 import Result404Icon from '@/assets/test-img/assets-result-404.svg?component'

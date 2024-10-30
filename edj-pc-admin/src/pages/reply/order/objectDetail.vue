@@ -17,7 +17,7 @@
               :src="item.evaluatorInfo.avatar"
               alt=""
             />
-            <img v-else src="../../../assets/head@3x.png" alt="" />
+            <img v-else alt="" src="../../../assets/head@3x.png"/>
           </div>
           <!-- 右边内容 -->
           <div class="right1">
@@ -39,10 +39,10 @@
                 <div class="like">
                   <div>点赞数：</div>
                   <span>{{
-                    item.statistics?.likeNumber
-                      ? item.statistics?.likeNumber
-                      : 0
-                  }}</span>
+                      item.statistics?.likeNumber
+                        ? item.statistics?.likeNumber
+                        : 0
+                    }}</span>
                 </div>
                 <div
                   class="reply"
@@ -64,27 +64,28 @@
             <div :id="item.id" class="Contract">
               <t-form
                 :data="replayValue"
-                :rules="evaluationRules"
                 :label-width="0"
+                :rules="evaluationRules"
                 @submit="onSubmit"
               >
                 <t-form-item name="content"
-                  ><t-textarea
+                >
+                  <t-textarea
                     v-model="replayValue.content"
-                    placeholder="｜积极回复可以吸引更多人评论"
                     :maxlength="50"
                     class="commentText"
+                    placeholder="｜积极回复可以吸引更多人评论"
                     @blur="transferData(item)"
                   >
                   </t-textarea>
                   <button
                     v-if="replayValue.content.length >= 1"
-                    type="submit"
                     class="bt btn-submit"
+                    type="submit"
                   >
                     <span>发送</span>
                   </button>
-                  <button v-else type="submit" class="bt btn-disabled">
+                  <button v-else class="bt btn-disabled" type="submit">
                     <span>发送</span>
                   </button>
                 </t-form-item>
@@ -105,7 +106,7 @@
                     :src="items.replierInfo.avatar"
                     alt=""
                   />
-                  <img v-else src="../../../assets/head@3x.png" alt="" />
+                  <img v-else alt="" src="../../../assets/head@3x.png"/>
                 </div>
                 <div class="right2">
                   <div
@@ -141,27 +142,28 @@
                   <div :id="`${items.id?.toString()}`" class="Contract">
                     <t-form
                       :data="replayValue"
-                      :rules="replyRules"
                       :label-width="0"
+                      :rules="replyRules"
                       @submit="onSubmits"
                     >
                       <t-form-item name="content"
-                        ><t-textarea
+                      >
+                        <t-textarea
                           v-model="replayValue.content"
-                          placeholder="｜积极回复可以吸引更多人评论"
                           :maxlength="50"
                           class="commentText"
+                          placeholder="｜积极回复可以吸引更多人评论"
                           @blur="transferData(items, item.id, item.ownerId)"
                         >
                         </t-textarea>
                         <button
                           v-if="replayValue.content.length >= 1"
-                          type="submit"
                           class="bt btn-submit"
+                          type="submit"
                         >
                           <span>发送</span>
                         </button>
-                        <button v-else type="submit" class="bt btn-disabled">
+                        <button v-else class="bt btn-disabled" type="submit">
                           <span>发送</span>
                         </button>
                       </t-form-item>
@@ -185,7 +187,7 @@
                     :src="content.replierInfo.avatar"
                     alt=""
                   />
-                  <img v-else src="../../../assets/head@3x.png" alt="" />
+                  <img v-else alt="" src="../../../assets/head@3x.png"/>
                 </div>
                 <div class="right2">
                   <div v-if="content.parentId == 0" class="user">
@@ -206,10 +208,10 @@
                       <div class="like">
                         <div>点赞数：</div>
                         <span>{{
-                          item.statistics?.likeNumber
-                            ? item.statistics?.likeNumber
-                            : 0
-                        }}</span>
+                            item.statistics?.likeNumber
+                              ? item.statistics?.likeNumber
+                              : 0
+                          }}</span>
                       </div>
                       <div class="reply" @click="handleContract(content.id)">
                         <div></div>
@@ -227,27 +229,28 @@
                   <div :id="`${content.id.toString()}`" class="Contract">
                     <t-form
                       :data="replayValue"
-                      :rules="replyRules"
                       :label-width="0"
+                      :rules="replyRules"
                       @submit="onSubmits"
                     >
                       <t-form-item name="content"
-                        ><t-textarea
+                      >
+                        <t-textarea
                           v-model="replayValue.content"
-                          placeholder="｜积极回复可以吸引更多人评论"
                           :maxlength="50"
                           class="commentText"
+                          placeholder="｜积极回复可以吸引更多人评论"
                           @blur="transferData(content)"
                         >
                         </t-textarea>
                         <button
                           v-if="replayValue.content.length >= 1"
-                          type="submit"
                           class="bt btn-submit"
+                          type="submit"
                         >
                           <span>发送</span>
                         </button>
-                        <button v-else type="submit" class="bt btn-disabled">
+                        <button v-else class="bt btn-disabled" type="submit">
                           <span>发送</span>
                         </button>
                       </t-form-item>
@@ -268,7 +271,7 @@
                 @click="handleLoadMoreReply(item)"
               >
                 展开全部回复
-                <img src="@/assets/test-img/icon_more@3x.png" alt="" />
+                <img alt="" src="@/assets/test-img/icon_more@3x.png"/>
               </div>
             </div>
             <div
@@ -283,9 +286,9 @@
               >
                 收起全部回复
                 <img
-                  src="@/assets/test-img/icon_more.png"
                   alt=""
                   class="retract"
+                  src="@/assets/test-img/icon_more.png"
                 />
               </div>
             </div>
@@ -299,25 +302,25 @@
   </div>
   <!-- 删除弹层 -->
   <Delete
-    :dialog-delete-visible="dialogDeleteVisible"
     :delete-text="deleteText"
+    :dialog-delete-visible="dialogDeleteVisible"
     @handle-delete="handleDelete"
     @handle-close="handleClose"
   ></Delete>
   <!-- 确认弹层 -->
   <Confirm
-    :title="confirmTitle"
-    :dialog-confirm-visible="dialogConfirmVisible"
     :confirm-text="confirmText"
+    :dialog-confirm-visible="dialogConfirmVisible"
+    :title="confirmTitle"
     @handle-confirm="handleConfirm"
     @handle-close="handleClose"
   ></Confirm>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
+import { ValidateResultContext } from 'tdesign-vue-next'
 import Delete from '@/components/Delete/index.vue' // 删除弹层
 import Confirm from '@/components/Confirm/index.vue' // 确认弹层
 // import { getEvaluationsList } from '@/api/list'
@@ -353,8 +356,8 @@ const requestListData = ref({})
 const list = ref({})
 const showId = ref() // 当前显示的回复框的Id
 // 请求参数
-const { id } = route.params
-const { targetType } = route.params
+const {id} = route.params
+const {targetType} = route.params
 const evaluateCount = ref(0) // 评论总数
 const targetTypeId = ref({
   targetTypeId: targetType
@@ -457,7 +460,7 @@ const rules = {
     // {
     //   validator: (val) => {
     //     return (
-        
+
     //     )
     //   },
     //   message: `请输入至少2个字符,至多个字符`,
@@ -803,15 +806,18 @@ const confirmComments = async () => {
 .detail-comment {
   padding: 38.2px 48px 32.3px 36px;
   border-radius: 2px 2px 0 0;
+
   .name {
     font-family: PingFangSC-Semibold;
     font-weight: 600;
     font-size: 15px;
   }
+
   .title {
     display: flex;
     justify-content: space-between;
     margin-left: 6.3px;
+
     .name {
       font-family: PingFangSC-SNaNpxibold;
       font-weight: 600;
@@ -819,12 +825,15 @@ const confirmComments = async () => {
       color: var(--color-bk2);
     }
   }
+
   .allReply {
     margin-top: 20px;
   }
+
   .comment {
     margin-top: 35.7px;
     padding-bottom: 10px;
+
     .title {
       font-size: 16px;
       color: var(--color-bk3);
@@ -832,6 +841,7 @@ const confirmComments = async () => {
       padding-left: 20px;
       padding-right: 20px;
     }
+
     .body {
       .card1 {
         padding-left: 20px;
@@ -841,28 +851,34 @@ const confirmComments = async () => {
         border-bottom: 1px solid #ebeef5;
         margin-bottom: 31.3px;
         padding-bottom: 13.5px;
+
         &:last-child {
           border: none;
           margin-bottom: 0;
           padding-bottom: 0;
         }
+
         .left1 {
           img {
             width: 42px;
             height: 42px;
             border-radius: 50%;
           }
+
           margin-right: 9.3px;
         }
+
         .right1 {
           width: 100%;
         }
+
         .user {
           font-size: 14px;
           color: var(--color-bk3);
           font-family: PingFangSC-SNaNpxibold;
           font-weight: 600;
           height: 20px;
+
           span {
             margin-right: 5px;
             margin-left: 5px;
@@ -871,11 +887,13 @@ const confirmComments = async () => {
             color: var(--color-bk4);
           }
         }
+
         .content {
           margin-top: 5.2px;
           font-size: 14px;
           line-height: 24px;
           color: var(--color-bk3);
+
           .Top {
             background: #39d395;
             border-radius: 2px;
@@ -888,29 +906,36 @@ const confirmComments = async () => {
             margin-right: 3px;
           }
         }
+
         .foot1 {
           display: flex;
           justify-content: space-between;
           margin-top: 21px;
           margin-bottom: 15px;
+
           span {
             font-family: PingFangSC-Regular;
             font-weight: 400;
             font-size: 12px;
             color: #58637d;
           }
+
           .operation {
             display: flex;
+
             div {
               display: flex;
               cursor: pointer;
               color: var(--color-bk3);
+
               span {
                 height: 20px;
               }
             }
+
             .like {
               pointer-events: none;
+
               div {
                 height: 20px;
                 margin-right: 3.5px;
@@ -918,8 +943,10 @@ const confirmComments = async () => {
                 // background-repeat: no-repeat;
                 // background-size: 100% 100%;
               }
+
               margin-right: 34.3px;
             }
+
             .reply {
               div {
                 width: 20px;
@@ -929,18 +956,23 @@ const confirmComments = async () => {
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
               }
+
               &:hover {
                 div {
                   background-image: url('@/assets/btn_pinglun_hover.png');
                 }
+
                 span {
                   color: var(--color-main);
                 }
               }
+
               margin-right: 34.3px;
             }
+
             .setTop {
               margin-right: 34.3px;
+
               div {
                 width: 20px;
                 height: 20px;
@@ -949,17 +981,21 @@ const confirmComments = async () => {
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
               }
+
               &:hover {
                 div {
                   background-image: url('@/assets/btn_zhiding_nor.png');
                 }
+
                 span {
                   color: var(--color-main);
                 }
               }
             }
+
             .delete {
               margin-right: 16px;
+
               div {
                 width: 20px;
                 height: 20px;
@@ -968,10 +1004,12 @@ const confirmComments = async () => {
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
               }
+
               &:hover {
                 div {
                   background-image: url('@/assets/btn_delete_hover.png');
                 }
+
                 span {
                   color: var(--color-main);
                 }
@@ -979,12 +1017,14 @@ const confirmComments = async () => {
             }
           }
         }
+
         .Contract {
           padding-top: 7px;
           padding-right: 17px;
           padding-bottom: 15px;
           overflow: auto;
           display: none;
+
           .btn-submit {
             height: 36px;
             text-align: center;
@@ -994,6 +1034,7 @@ const confirmComments = async () => {
             width: 80px;
             top: 91px;
           }
+
           .btn-disabled {
             height: 36px;
             text-align: center;
@@ -1012,39 +1053,49 @@ const confirmComments = async () => {
             color: var(--color-bk4);
           }
         }
+
         .card2 {
           .box {
             display: flex;
+
             &:first-child {
               padding-top: 14.4px;
             }
+
             .left2 {
               margin-left: 11.1px;
               margin-right: 7.5px;
+
               img {
                 width: 30px;
                 height: 30px;
                 border-radius: 50%;
               }
             }
+
             .right2 {
               width: 100%;
             }
+
             .foot2 {
               display: flex;
               justify-content: space-between;
               margin-top: 20px;
               margin-bottom: 30px;
+
               span {
                 font-family: PingFangSC-Regular;
                 font-weight: 400;
                 font-size: 12px;
                 color: #58637d;
               }
+
               .operation {
                 display: flex;
+
                 .like {
                   pointer-events: none;
+
                   div {
                     height: 20px;
                     margin-right: 3.5px;
@@ -1052,16 +1103,20 @@ const confirmComments = async () => {
                     // background-repeat: no-repeat;
                     // background-size: 100% 100%;
                   }
+
                   margin-right: 34.3px;
                 }
+
                 div {
                   display: flex;
                   cursor: pointer;
                   color: var(--color-bk3);
+
                   span {
                     height: 20px;
                   }
                 }
+
                 .reply {
                   div {
                     width: 20px;
@@ -1071,18 +1126,23 @@ const confirmComments = async () => {
                     background-repeat: no-repeat;
                     background-size: 100% 100%;
                   }
+
                   &:hover {
                     div {
                       background-image: url('@/assets/btn_pinglun_hover.png');
                     }
+
                     span {
                       color: var(--color-main);
                     }
                   }
+
                   margin-right: 34.3px;
                 }
+
                 .delete {
                   margin-right: 16px;
+
                   div {
                     width: 20px;
                     height: 20px;
@@ -1091,10 +1151,12 @@ const confirmComments = async () => {
                     background-repeat: no-repeat;
                     background-size: 100% 100%;
                   }
+
                   &:hover {
                     div {
                       background-image: url('@/assets/btn_delete_hover.png');
                     }
+
                     span {
                       color: var(--color-main);
                     }
@@ -1104,20 +1166,24 @@ const confirmComments = async () => {
             }
           }
         }
+
         .replyBoxBottom {
           // margin-left: 48.6px;
           .bt-more {
             color: var(--color-main);
             cursor: pointer;
+
             img {
               width: 10px;
               height: 10px;
               margin-left: 4px;
               margin-bottom: 2px;
             }
+
             .retract {
               margin-top: 3px;
             }
+
             &:hover {
               color: var(--color-main);
             }
@@ -1127,44 +1193,54 @@ const confirmComments = async () => {
     }
   }
 }
+
 .bt {
   width: 88px;
   height: 32px;
 }
+
 .line {
   padding: 0 7.5px;
 }
+
 .boxBottom {
   padding-top: 32px;
   padding-bottom: 32px;
   border-top: 1px solid var(--color-border);
   border-radius: 0 0 2px 2px;
+
   .bt-more {
     background: transparent;
     color: var(--color-main);
+
     &:hover {
       background: transparent;
     }
   }
 }
+
 .commentText {
   border: 1px solid #d8dde3;
   border-radius: 4px;
   height: 142px;
   position: relative;
+
   :deep(.t-textarea__inner) {
     border: 0;
     box-shadow: none;
     padding-left: 15px;
     padding-top: 15px;
+
     &:focus {
       box-shadow: none;
     }
   }
 }
+
 :deep(.t-input__extra) {
   position: initial;
 }
+
 :deep(.t-textarea__limit) {
   display: none;
 }

@@ -8,20 +8,20 @@ export const COLUMNS = [
     minWidth: '200px',
     colKey: 'code'
   },
-  { title: '服务类型', width: 150, minWidth: '150px', colKey: 'name' },
+  {title: '服务类型', width: 150, minWidth: '150px', colKey: 'name'},
   {
     title: '服务类型图标',
     colKey: 'icon',
     width: 125,
     minWidth: '125px',
-    cell: { col: 'status' }
+    cell: {col: 'status'}
   },
   {
     title: '服务类型图片',
     colKey: 'img',
     width: 125,
     minWidth: '125px',
-    cell: { col: 'status' }
+    cell: {col: 'status'}
   },
   {
     title: '排序',
@@ -55,7 +55,7 @@ export const COLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '草稿'
@@ -83,7 +83,7 @@ export const COLUMNS = [
     colKey: 'updateTime',
     sorter: true,
     sortType: 'all',
-    cell: (h, { row }) =>
+    cell: (h, {row}) =>
       h(
         'span',
         row.updateTime

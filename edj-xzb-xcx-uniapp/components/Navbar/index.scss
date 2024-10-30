@@ -1,16 +1,18 @@
-.NavBar{
-	position: relative;
-	background-color: transparent;
+.NavBar {
+  position: relative;
+  background-color: transparent;
   z-index: 10;
-	.title{
-		font-weight: bold;
-		font-size: 36rpx;
-		text-align: center;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-  .back{
+
+  .title {
+    font-weight: bold;
+    font-size: 36rpx;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .back {
     width: 90rpx;
     height: 64rpx;
     display: flex;
@@ -19,12 +21,14 @@
     align-items: center;
     justify-content: center;
     left: 0;
-    image{
+
+    image {
       width: 18rpx;
       height: 36rpx;
     }
   }
-  .history{
+
+  .history {
     width: 90rpx;
     height: 64rpx;
     display: flex;
@@ -33,7 +37,8 @@
     align-items: center;
     justify-content: center;
     right: 200rpx;
-    image{
+
+    image {
       width: 42rpx;
       height: 44rpx;
     }

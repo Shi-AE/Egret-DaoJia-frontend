@@ -2,27 +2,30 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    header="调度规则说明"
-    :width="628"
     :footer="false"
     :on-close="onClickCloseBtn"
+    :width="628"
+    header="调度规则说明"
   >
-    <template #body v-if="formData">
-      <div class="body scollHeight" :class="isShowShadow ? 'shadow' : ''">
-        (1)周转时间短。通常把周转时间的长短作为评价批处理系统的性能、选择作业调度方式与算法的重要准则之一。所谓周转时间，是指从作业被提交给系统开始，到作业完成为止的这段时间间隔(称为作业周转时间)。它包括四部分时间：作业在外存后备队列上等待(作业)调度的时间，进程在就绪队列上等待进程调度的时间，进程在CPU 上执行的时间，以及进程等待 I/O 操作完成的时间。其中的后三项在一个作业的整个处理过程中可能会发生多次。对每个用户而言，都希望自己作业的周转时间最短。但作为计算机系统的管理者，则总是希望能使平均周转时间最短，这不仅会有效地提高系统资源的利用率，而且还可使大多数用户都感到满意。
-        <br /><br />
+    <template v-if="formData" #body>
+      <div :class="isShowShadow ? 'shadow' : ''" class="body scollHeight">
+        (1)周转时间短。通常把周转时间的长短作为评价批处理系统的性能、选择作业调度方式与算法的重要准则之一。所谓周转时间，是指从作业被提交给系统开始，到作业完成为止的这段时间间隔(称为作业周转时间)。它包括四部分时间：作业在外存后备队列上等待(作业)调度的时间，进程在就绪队列上等待进程调度的时间，进程在CPU
+        上执行的时间，以及进程等待 I/O
+        操作完成的时间。其中的后三项在一个作业的整个处理过程中可能会发生多次。对每个用户而言，都希望自己作业的周转时间最短。但作为计算机系统的管理者，则总是希望能使平均周转时间最短，这不仅会有效地提高系统资源的利用率，而且还可使大多数用户都感到满意。
+        <br/><br/>
         (2)响应时间快。常把响应时间的长短用来评价分时系统的性能，这是选择分时系统中进程调度算法的重要准则之一。所谓响应时间，是从用户通过键盘提交一个请求开始，直至系统首次产生响应为止的时间，或者说，直到屏幕上显示出结果为止的一段时间间隔。它包括三部分时间：从键盘输入的请求信息传送到处理机的时间，处理机对请求信息进行处理的时间，以及将所形成的响应信息回送到终端显示器的时间。
-        <br /><br />
+        <br/><br/>
         (3)截止时间的保证。这是评价实时系统性能的重要指标，因而是选择实时调度算法的重要准则。所谓截止时间，是指某任务必须开始执行的最迟时间，或必须完成的最迟时间。对于严格的实时系统，其调度方式和调度算法必须能保证这一点，否则将可能造成难以预料的后果。
-        <br /><br />
+        <br/><br/>
         (4) 优先权准则。 在批处理、 分时和实时系统中选择调度算法时，都可遵循优先权准则，以便让某些紧急的作业能得到及时处理。在要求较严格的场合，往往还须选择抢占式调度方式，才能保证紧急作业得到及时处理。
       </div>
     </template>
   </t-dialog>
 </template>
 
-<script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+<script lang="ts" setup>
+import { computed, ref, watch } from 'vue'
+
 const isShowShadow = ref(false)
 const props = defineProps({
   visible: {
@@ -85,14 +88,18 @@ watch(
 <style lang="less" scoped>
 :deep(.t-dialog) {
   border: none;
+
   .t-dialog__body {
     padding: 0;
+
     .pd {
       padding: 12px 32px;
     }
+
     .status {
       height: 50px;
       background-image: linear-gradient(269deg, #f75e43 22%, #f74346 72%);
+
       .tag {
         font-family: PingFangSC-Medium;
         font-weight: 500;
@@ -101,6 +108,7 @@ watch(
         letter-spacing: 0.21px;
         margin-right: 10px;
       }
+
       .content {
         font-family: PingFangSC-Regular;
         font-weight: 400;
@@ -109,6 +117,7 @@ watch(
         letter-spacing: 0.16px;
       }
     }
+
     .shadow {
       &::after {
         content: '';
@@ -121,6 +130,7 @@ watch(
         background: linear-gradient(to top, #6361601a, transparent);
       }
     }
+
     .body {
       padding: 0 20px;
       padding-right: 5px;
@@ -136,29 +146,36 @@ watch(
         // 滚动条左移10px
         margin-left: -10px;
       }
+
       &::-webkit-scrollbar-track {
         background-color: transparent; /* 设置滚动条轨道背景色 */
       }
+
       &::-webkit-scrollbar-thumb {
         width: 4px;
         background-color: #d8d8d8; /* 设置滚动条滑块颜色 */
         border-radius: 2px; /* 设置滚动条滑块的圆角 */
+
         &:hover {
           background-color: #555; /* 设置滑块的背景色 */
         }
       }
+
       .card {
         padding: 20px 0;
         background: #ffffff;
         border-bottom: 1px solid #e8e8e8;
         display: flex;
+
         &:first-child {
           padding-top: 0;
         }
+
         &:last-child {
           padding-bottom: 0;
           border-bottom: none;
         }
+
         .leftBox {
           width: 57px;
           height: 20px;
@@ -170,32 +187,40 @@ watch(
           margin-right: 48px;
           flex-shrink: 0;
         }
+
         .rightBox {
           width: 100%;
+
           .lineBox {
             width: 100%;
             display: flex;
             margin-bottom: 11px;
+
             &:last-child {
               margin-bottom: 0;
             }
+
             .left,
             .right {
               width: 50%;
             }
+
             .serviceBox {
               display: flex;
               width: 100%;
+
               .itemBox {
                 .imgBox {
                   display: flex;
                 }
+
                 .time {
                   font-size: 14px;
                   color: #999999;
                 }
               }
             }
+
             .label {
               width: 70px;
               display: inline-block;
@@ -208,6 +233,7 @@ watch(
               text-align: justify;
               margin-right: 20px;
             }
+
             .item {
               font-family: PingFangSC-Regular;
               font-weight: 400;
@@ -219,17 +245,21 @@ watch(
         }
       }
     }
+
     .scollHeight {
       max-height: 540px;
     }
+
     .footBox {
       padding: 20px 32px;
       display: flex;
       justify-content: flex-end;
+
       .bt {
         width: 80px;
         height: 32px;
         margin-right: 15.5px;
+
         &:last-child {
           margin-right: 0;
         }
@@ -237,6 +267,7 @@ watch(
     }
   }
 }
+
 :deep(.tdesign-demo-image-viewer__ui-image) {
   width: 78.7px;
   height: 78.7px;
@@ -244,27 +275,30 @@ watch(
   max-height: 78.7px;
   margin-right: 10.5px;
 }
+
 :deep(.tdesign-demo-image-viewer__ui-image--img) {
   width: 78.7px;
   height: 78.7px;
   max-width: 78.7px;
   max-height: 78.7px;
 }
+
 .mb-10 {
   margin-bottom: 10px;
 }
+
 .mb-5 {
   margin-bottom: 5px;
 }
+
 :deep(.t-form:not(.t-form-inline) .t-form__item:last-of-type) {
   position: relative;
   right: -155px;
 }
+
 .grey {
-  background-image: linear-gradient(
-    269deg,
-    #d6d6d6 22%,
-    #ebebeb 72%
-  ) !important;
+  background-image: linear-gradient(269deg,
+  #d6d6d6 22%,
+  #ebebeb 72%) !important;
 }
 </style>

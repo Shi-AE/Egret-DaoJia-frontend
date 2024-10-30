@@ -2,23 +2,24 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    :header="title"
-    :width="628"
     :footer="false"
+    :header="title"
     :on-close="onClickCloseBtn"
+    :width="628"
   >
     <template #body>
       <!-- 表单内容 -->
       <t-form
         ref="form"
         :data="formData"
-        :rules="rules"
         :label-width="80"
+        :rules="rules"
         on-cancel="onClickCloseBtn"
         @submit="onSubmit"
       >
         <t-form-item :label="labelTitle" name="description"
-          ><t-textarea
+        >
+          <t-textarea
             v-model="formData.description"
             class="wt-400"
             placeholder="您的认可是我们最大的欣慰"
@@ -28,10 +29,10 @@
         <t-form-item>
           <div class="tips">
             <span @click="transferText('您的认可是我们最大的欣慰')"
-              >您的认可是我们最大的欣慰</span
+            >您的认可是我们最大的欣慰</span
             >
             <span @click="transferText('对于您的反馈，我们会认真考虑')"
-              >对于您的反馈，我们会认真考虑</span
+            >对于您的反馈，我们会认真考虑</span
             >
           </div>
         </t-form-item>
@@ -39,7 +40,7 @@
           <div class="bt bt-grey btn-submit" @click="onClickCloseBtn">
             <span>取消</span>
           </div>
-          <button theme="primary" type="submit" class="bt btn-submit">
+          <button class="bt btn-submit" theme="primary" type="submit">
             <span>确定</span>
           </button>
         </t-form-item>
@@ -48,7 +49,7 @@
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { ValidateResultContext } from 'tdesign-vue-next'
 // const resetType = ref('empty')
@@ -155,6 +156,7 @@ defineExpose({
   z-index: 100;
   color: var(--color-bk4);
 }
+
 :deep(.t-textarea__limit) {
   color: var(--color-bk4);
   right: 10px;
@@ -164,6 +166,7 @@ defineExpose({
   display: flex;
   width: 400px;
   font-size: 12px;
+
   span {
     margin-right: 10px;
     background-color: #e7e7e7;
@@ -174,9 +177,11 @@ defineExpose({
     cursor: pointer;
   }
 }
+
 :deep(.t-form-item__description) {
   margin-bottom: 10px;
 }
+
 :deep(.t-form) {
   margin-left: 41px;
 }

@@ -3,57 +3,57 @@
   <div class="base-up-wapper bgTable min-h">
     <!-- 搜索表单区域 -->
     <searchFormBox
+      :cityList="cityList"
       :initSearch="initSearch"
       :typeSelect="typeSelect"
-      :cityList="cityList"
-      @handleSearch="handleSearch"
       @handleReset="handleReset"
+      @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
+      :isActive="0"
       :list-data="listData"
       :pagination="pagination"
-      :isActive="0"
+      @fetchData="fetchData"
       @handleClickAssign="handleClickAssign"
       @handleClickCancel="handleClickCancel"
-      @fetchData="fetchData"
-      @onPageChange="onPageChange"
       @handleClickRefund="handleClickRefund"
       @handleSortChange="handleSortChange"
+      @onPageChange="onPageChange"
     ></tableList>
     <!-- end -->
     <!-- 退款-->
     <DialogForm
-      :visible="visible"
-      :title="title"
-      :label="label"
       :data="DialogFormData"
-      @handleSubmit="handleSubmit"
-      @handleClose="handleClose"
+      :label="label"
+      :title="title"
+      :visible="visible"
       @fetchData="fetchData"
+      @handleClose="handleClose"
+      @handleSubmit="handleSubmit"
     />
     <!-- end -->
   </div>
   <!-- 指派弹窗 -->
   <assignDialog
-    :visible="assignDialogVisible"
-    :title="title"
-    :pagination="pagination"
     :data="DialogFormData"
-    @onPageChange="onAssignPageChange"
-    @handleClose="handleClose"
+    :pagination="pagination"
+    :title="title"
+    :visible="assignDialogVisible"
     @fetchData="fetchData"
+    @handleClose="handleClose"
+    @onPageChange="onAssignPageChange"
   />
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+<script lang="ts" setup>
+import { onMounted, ref, watch } from 'vue'
 import { getOrderList, refundOrder } from '@/api/order'
 import { forEach } from 'lodash'
 import { useRoute } from 'vue-router'
 import { MessagePlugin } from 'tdesign-vue-next'
-import { serviceTypeSimpleList,regionOpenList } from '@/api/service'
+import { regionOpenList, serviceTypeSimpleList } from '@/api/service'
 import DialogForm from './components/DialogForm.vue' // 新增,编辑弹窗.
 import tableList from './components/TableList.vue' // 表格
 import searchFormBox from './components/SearchForm.vue' // 搜索框表单
@@ -224,7 +224,7 @@ const handleSubmit = async (val) => {
         MessagePlugin.success('退款成功')
         visible.value = false
         fetchData(requestData.value)
-      }else{
+      } else {
         MessagePlugin.error(res.data.msg)
       }
     })

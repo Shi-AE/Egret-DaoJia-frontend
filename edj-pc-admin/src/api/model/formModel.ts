@@ -6,6 +6,7 @@ export interface FormStep {
   payAccount: string
   amount: string
 }
+
 // 密码验证
 export interface FormSteppassword {
   password: string

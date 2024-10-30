@@ -6,35 +6,35 @@
     <searchFormBox
       :init-search="initSearch"
       :type-select="typeSelect"
-      @handleSearch="handleSearch"
       @handleReset="handleReset"
+      @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
       :list-data="listData"
       :pagination="pagination"
-      @handleSetupContract="handleSetupContract"
+      @fetchData="fetchData"
       @handleBuild="handleBuild"
       @handleClickDelete="handleClickDelete"
-      @fetchData="fetchData"
-      @onPageChange="onPageChange"
+      @handleSetupContract="handleSetupContract"
       @handleSortChange="handleSortChange"
+      @onPageChange="onPageChange"
     ></tableList>
     <!-- end -->
     <!-- 删除弹窗 -->
     <Delete
-      :dialog-delete-visible="dialogDeleteVisible"
       :delete-text="deleteText"
+      :dialog-delete-visible="dialogDeleteVisible"
       @handle-delete="handleDelete"
       @handle-close="handleClose"
     ></Delete>
     <!-- end -->
     <!-- 启用/禁用弹窗 -->
     <Confirm
-      :title="confirmTitle"
-      :dialog-confirm-visible="dialogConfirmVisible"
       :confirm-text="confirmText"
+      :dialog-confirm-visible="dialogConfirmVisible"
+      :title="confirmTitle"
       @handle-confirm="handleConfirm"
       @handle-close="handleClose"
     ></Confirm>
@@ -42,17 +42,17 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch, watchEffect } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute, useRouter } from 'vue-router'
 import { forEach } from 'lodash'
 import {
-  serviceTypeSimpleList,
-  serviceItemList,
   serviceItemActivateStatus,
   serviceItemDeactivateStatus,
-  serviceItemDelete
+  serviceItemDelete,
+  serviceItemList,
+  serviceTypeSimpleList
 } from '@/api/service'
 import tableList from './components/TableList.vue' // 表格
 import Delete from '@/components/Delete/index.vue' // 删除弹层

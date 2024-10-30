@@ -193,10 +193,11 @@ export const formatJson = (jsonObj, callback) => {
     .replace(new RegExp('^\\' + '<br />' + '+|\\' + '<br />' + '+$', 'g'), '')
 }
 // 时间格式换行以空格为界限分隔开
-export const timeSplit = (val)=> {
+export const timeSplit = (val) => {
   const arr = val.split(' ')
   return arr
 }
+
 // 服务费用保留两位小数
 export function formatNumber(number) {
   if (number >= 0.1) {
@@ -205,7 +206,7 @@ export function formatNumber(number) {
   } else if (number < 0.1 && number > 0.01) {
     const fixedNumber = parseFloat(number.toFixed(3));
     return fixedNumber.toFixed(3);
-  } else{
+  } else {
     // 只舍不入
     const fixedNumber = parseFloat(number.toFixed(4));
     return fixedNumber.toFixed(4);

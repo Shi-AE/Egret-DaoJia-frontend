@@ -8,20 +8,20 @@
             <t-input
               v-model="formData.index"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item label="状态：" name="status" :label-width="42">
+          <t-form-item :label-width="42" label="状态：" name="status">
             <t-select
               v-model="formData.status"
-              class="form-item-content"
               :options="STATUS"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -30,8 +30,8 @@
             <t-input
               v-model="formData.serviceCallNumber"
               class="form-item-content"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
             />
           </t-form-item>
         </t-col>
@@ -40,9 +40,9 @@
           <t-form-item label="创建时间：" name="type">
             <t-date-range-picker
               v-model="formData.updateTime"
-              placeholder="日期"
               :presets="presets"
               clearable
+              placeholder="日期"
             />
           </t-form-item>
         </t-col>
@@ -55,7 +55,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { STATUS } from '@/constants'
 // 表单数据
@@ -76,7 +76,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
 }
 // 搜索表单
 const handleSearch = () => {

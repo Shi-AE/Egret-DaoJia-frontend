@@ -5,66 +5,66 @@
       <div class="bodyBox">
         <t-form
           ref="form"
-          :rules="rules"
           :data="formData"
-          @submit="onSubmit"
           :label-width="96"
+          :rules="rules"
+          @submit="onSubmit"
         >
           <div class="box bg-wt">
             <div class="title">基本信息</div>
             <div class="cardBox">
               <div class="left">
-                <t-form-item name="name" label="活动名称：">
+                <t-form-item label="活动名称：" name="name">
                   <t-input
-                    class="form-item-content"
                     v-model="formData.name"
-                    placeholder="请输入"
                     :maxlength="20"
-                    show-limit-number
+                    class="form-item-content"
                     clearable
+                    placeholder="请输入"
+                    show-limit-number
                   />
                 </t-form-item>
-                <t-form-item name="amountCondition" label="满额限制：">
+                <t-form-item label="满额限制：" name="amountCondition">
                   <t-input
-                    class="form-item-content"
                     v-model.number="formData.amountCondition"
+                    class="form-item-content"
+                    clearable
                     placeholder="请输入"
                     suffix="元"
-                    clearable
                   />
                 </t-form-item>
               </div>
               <div class="right">
-                <t-form-item name="type" label="优惠券类型：">
+                <t-form-item label="优惠券类型：" name="type">
                   <t-radio-group v-model="formData.type">
                     <t-radio :value="1">满减</t-radio>
                     <t-radio :value="2">折扣</t-radio>
                   </t-radio-group>
                 </t-form-item>
                 <t-form-item
-                  name="discountAmount"
-                  label="抵扣金额："
                   v-if="formData.type === 1"
+                  label="抵扣金额："
+                  name="discountAmount"
                 >
                   <t-input
-                    class="form-item-content"
                     v-model.number="formData.discountAmount"
+                    class="form-item-content"
+                    clearable
                     placeholder="请输入"
                     suffix="元"
-                    clearable
                   />
                 </t-form-item>
                 <t-form-item
-                  name="discountRate"
-                  label="抵扣比例："
                   v-if="formData.type === 2"
+                  label="抵扣比例："
+                  name="discountRate"
                 >
                   <t-input
-                    class="form-item-content"
                     v-model.number="formData.discountRate"
+                    class="form-item-content"
+                    clearable
                     placeholder="请输入"
                     suffix="%"
-                    clearable
                   />
                 </t-form-item>
               </div>
@@ -74,32 +74,32 @@
             <div class="title">发放规则</div>
             <div class="cardBox mb-0">
               <div class="left">
-                <t-form-item name="distributeTime" label="发放时间：">
+                <t-form-item label="发放时间：" name="distributeTime">
                   <t-date-range-picker
                     v-model="formData.distributeTime"
-                    placeholder="日期"
                     clearable
                     enable-time-picker
+                    placeholder="日期"
                   />
                 </t-form-item>
-                <t-form-item name="totalNum" label="发放数量：">
+                <t-form-item label="发放数量：" name="totalNum">
                   <t-input
+                    v-model.number="formData.totalNum"
                     class="form-item-content"
+                    clearable
                     placeholder="请输入"
                     suffix="张"
-                    v-model.number="formData.totalNum"
-                    clearable
                   />
                 </t-form-item>
               </div>
               <div class="right">
-                <t-form-item name="validityDays" label="使用期限：">
+                <t-form-item label="使用期限：" name="validityDays">
                   <t-input
+                    v-model.number="formData.validityDays"
                     class="form-item-content"
+                    clearable
                     placeholder="请输入"
                     suffix="日内有效"
-                    v-model.number="formData.validityDays"
-                    clearable
                   />
                 </t-form-item>
               </div>
@@ -116,19 +116,16 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
-import { MessagePlugin } from 'tdesign-vue-next'
+<script lang="ts" setup>
+import { onMounted, ref, watch } from 'vue'
+import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
 import { useRoute, useRouter } from 'vue-router'
-import {
-  validateNumber100,
-  validateNumber1440,
-} from '@/utils/validate'
-import { ValidateResultContext } from 'tdesign-vue-next'
-import { saveCoupon, getCouponDetail } from '@/api/coupon'
+import { validateNumber100, validateNumber1440, } from '@/utils/validate'
+import { getCouponDetail, saveCoupon } from '@/api/coupon'
+
 const route = useRoute()
 const router = useRouter()
-const { id } = route.params
+const {id} = route.params
 // 表单数据
 const formData = ref({
   discountRate: null,
@@ -213,15 +210,15 @@ const updateData = async (val) => {
     })
 }
 const rules = {
-  name: [{ required: true, message: '请输入活动名称', trigger: 'blur' }],
+  name: [{required: true, message: '请输入活动名称', trigger: 'blur'}],
   amountCondition: [
-    { required: true, message: '请输入满额限制', trigger: 'blur' }
+    {required: true, message: '请输入满额限制', trigger: 'blur'}
   ],
   discountAmount: [
-    { required: true, message: '请输入抵扣金额', trigger: 'blur' }
+    {required: true, message: '请输入抵扣金额', trigger: 'blur'}
   ],
   discountRate: [
-    { required: true, message: '请输入折扣率', trigger: 'blur' },
+    {required: true, message: '请输入折扣率', trigger: 'blur'},
     {
       validator: validateNumber100,
       trigger: 'blur',
@@ -229,17 +226,17 @@ const rules = {
     }
   ],
   distributeTime: [
-    { required: true, message: '请选择发放时间', trigger: 'change' }
+    {required: true, message: '请选择发放时间', trigger: 'change'}
   ],
   validityDays: [
-    { required: true, message: '请输入使用期限', trigger: 'blur' },
+    {required: true, message: '请输入使用期限', trigger: 'blur'},
     {
       validator: validateNumber1440,
       trigger: 'blur',
       message: '请输入1-1440之间整数'
     }
   ],
-  totalNum: [{ required: true, message: '请输入发放数量', trigger: 'blur' }]
+  totalNum: [{required: true, message: '请输入发放数量', trigger: 'blur'}]
 }
 
 // 返回上一级
@@ -267,16 +264,20 @@ watch(
 .contentBox {
   // padding: 80px 100px 50px;
   min-height: 674px;
+
   .bodybox {
     .bodyBox {
       margin-top: 23px;
+
       .box {
         &:first-child {
           margin-bottom: 0;
         }
+
         padding-left: 53px;
         padding-right: 53px;
         padding-top: 37px;
+
         .title {
           height: 22px;
           font-family: PingFangSC-Medium;
@@ -286,40 +287,49 @@ watch(
           line-height: 22px;
           margin-bottom: 30px;
         }
+
         .cardBox {
           display: flex;
           margin-bottom: 20px;
+
           .left {
             margin-right: 25px;
           }
+
           .right {
             margin-left: 25px;
           }
+
           .left,
           .right {
             width: calc(50% - 50px);
             height: 100%;
             background-color: #fff;
+
             .upbutton {
               margin-top: 24px;
             }
           }
         }
       }
+
       .footBox {
         padding-top: 37px;
         padding-bottom: 37px;
         display: flex;
         justify-content: center;
+
         .updateInfo {
           width: 60px;
           margin-right: 16px;
         }
       }
     }
+
     :deep(.t-form__item) {
       margin-bottom: 40px;
     }
+
     .regionService {
       margin-top: 26px;
     }
@@ -329,16 +339,20 @@ watch(
 :deep(.t-form__controls-content) {
   display: block;
 }
+
 :deep(.t-radio-group .t-radio) {
   margin-right: 30px;
+
   &:last-child {
     margin-right: 0;
   }
 }
+
 :deep(.t-radio-group.t-radio-group__outline) {
   line-height: 32px;
   height: 32px;
 }
+
 :deep(.t-input .t-input__suffix:not(:empty)) {
   height: 22px;
   font-family: PingFangSC-Regular;
@@ -347,6 +361,7 @@ watch(
   color: #595959;
   line-height: 22px;
 }
+
 .mb-0 {
   margin-bottom: 0 !important;
 }

@@ -1,28 +1,29 @@
 <!-- 底部按钮 -->
 <template>
-  <view class="BtnFooter">
-    <view class="btn" :class="isActive ? 'active' : ''" @click="handleClick">{{
-      btnText
-    }}</view>
-  </view>
+    <view class="BtnFooter">
+        <view :class="isActive ? 'active' : ''" class="btn" @click="handleClick">{{
+            btnText
+            }}
+        </view>
+    </view>
 </template>
 
 <script setup>
 defineProps({
-  btnText: {
-    type: String,
-    default: '确定',
-  },
-  isActive: {
-    type: Boolean,
-    default: false,
-  },
+    btnText: {
+        type: String,
+        default: '确定',
+    },
+    isActive: {
+        type: Boolean,
+        default: false,
+    },
 });
 const emits = defineEmits(['@confirm']);
 
 const handleClick = () => {
-  emits('confirm');
+    emits('confirm');
 };
 </script>
 
-<style src="./index.scss" lang="scss" scoped></style>
+<style lang="scss" scoped src="./index.scss"></style>

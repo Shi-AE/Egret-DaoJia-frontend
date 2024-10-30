@@ -2,12 +2,12 @@
 <template>
   <t-dialog
     v-model:visible="confirmVisible"
-    theme="success"
-    header="禁用提示"
-    :footer="true"
     :cancel-btn="null"
-    :close-btn="null"
     :class="props.type !== 'incomplete' ? 'twoLine' : ''"
+    :close-btn="null"
+    :footer="true"
+    header="禁用提示"
+    theme="success"
   >
     <template #body>
       <p v-if="props.type === 'incomplete'">
@@ -24,7 +24,7 @@
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 
 const confirmBody = ref()
@@ -59,9 +59,11 @@ const handleClose = () => {
 :deep(.t-dialog) {
   width: 400px;
 }
+
 :deep(.t-icon) {
   display: none !important;
 }
+
 :deep(.t-dialog__header) {
   height: 52px;
   background-color: #fff;
@@ -70,23 +72,28 @@ const handleClose = () => {
   padding-top: 23px;
   padding-bottom: 0;
 }
+
 :deep(.t-dialog__header-content) {
   text-align: center;
   display: block;
 }
+
 :deep(.t-dialog__body__icon) {
   padding-top: 22px;
   text-align: center;
   padding-left: 0px;
   padding-right: 0px;
 }
+
 :deep(.t-dialog__close) {
   display: none;
 }
+
 :deep(.t-dialog__footer) {
   text-align: center;
   padding-bottom: 30px;
 }
+
 :deep(.bt) {
   width: 60px;
   margin: 0 auto;
@@ -107,11 +114,13 @@ const handleClose = () => {
   height: 159px;
   z-index: 9999;
 }
+
 .twoLine {
   :deep(.t-dialog::before) {
     top: -58%;
   }
 }
+
 .adjust {
   padding-left: 10px;
 }

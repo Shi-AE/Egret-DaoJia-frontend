@@ -6,8 +6,8 @@
     <searchFormBox
       :initSearch="initSearch"
       :typeSelect="typeSelect"
-      @handleSearch="handleSearch"
       @handleReset="handleReset"
+      @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
@@ -15,27 +15,27 @@
       :list-data="listData"
       :pagination="pagination"
       @fetchData="fetchData"
-      @onPageChange="onPageChange"
       @handleClickRefund="handleClickRefund"
       @handleSortChange="handleSortChange"
+      @onPageChange="onPageChange"
     ></tableList>
     <!-- end -->
     <!-- 新增，编辑弹窗 -->
     <DialogForm
-      :visible="visible"
-      :title="title"
-      :label="label"
       :data="DialogFormData"
-      @handleSubmit="handleSubmit"
-      @handleClose="handleClose"
+      :label="label"
+      :title="title"
+      :visible="visible"
       @fetchData="fetchData"
+      @handleClose="handleClose"
+      @handleSubmit="handleSubmit"
     />
     <!-- end -->
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, watchEffect } from 'vue'
+<script lang="ts" setup>
+import { onMounted, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { getOrderList, refundOrder } from '@/api/order'
 import { forEach } from 'lodash'

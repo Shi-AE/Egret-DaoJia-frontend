@@ -2,7 +2,7 @@
 <template>
     <view class="loginBox">
         <!-- 头部导航栏 -->
-        <NavBar title="登录" :isShowBack="false"></NavBar>
+        <NavBar :isShowBack="false" title="登录"></NavBar>
         <view class="logo-box">
             <image src="../../static/logo.png"></image>
         </view>
@@ -12,10 +12,10 @@
         <!-- 服务条款及隐私政策弹窗 -->
         <uni-popup
             ref="popup"
-            type="bottom"
             :safe-area="false"
             class="servicePop"
             mask-background-color="rgba(0,0,0,0.6)"
+            type="bottom"
         >
             <view class="header">
                 <view class="title">服务条款及隐私政策</view>
@@ -42,9 +42,9 @@
         <!-- 提示窗示例 -->
         <uni-popup
             ref="alertDialog"
-            type="dialog"
             :is-mask-click="false"
             class="freeze"
+            type="dialog"
         >
             <view class="dialog">
                 <view class="content">该手机号已被冻结</view>
@@ -188,4 +188,4 @@ const handleClose = () => {
     alertDialog.value.close();
 };
 </script>
-<style src="./index.scss" lang="scss" scoped></style>
+<style lang="scss" scoped src="./index.scss"></style>

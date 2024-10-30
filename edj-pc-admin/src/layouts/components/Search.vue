@@ -8,7 +8,7 @@
       @focus="changeSearchFocus(true)"
     >
       <template #prefix-icon>
-        <t-icon class="icon" name="search" size="16" />
+        <t-icon class="icon" name="search" size="16"/>
       </template>
     </t-input>
   </div>
@@ -16,28 +16,28 @@
   <div v-else class="header-menu-search-left">
     <t-button
       :class="{ 'search-icon-hide': isSearchFocus }"
-      theme="default"
       shape="square"
+      theme="default"
       variant="text"
       @click="changeSearchFocus(true)"
     >
-      <t-icon name="search" />
+      <t-icon name="search"/>
     </t-button>
     <t-input
       v-model="searchData"
+      :autofocus="isSearchFocus"
       :class="['header-search', { 'width-zero': !isSearchFocus }]"
       placeholder="输入要搜索内容"
-      :autofocus="isSearchFocus"
       @blur="changeSearchFocus(false)"
     >
       <template #prefix-icon>
-        <t-icon name="search" size="16" />
+        <t-icon name="search" size="16"/>
       </template>
     </t-input>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 
 defineProps({
@@ -57,10 +57,12 @@ const changeSearchFocus = (value: boolean) => {
 .header-menu-search {
   display: flex;
   margin-left: 16px;
+
   .hover-active {
     .t-input__inner {
       background: var(--td-bg-color-secondarycontainer);
     }
+
     .t-icon {
       color: var(--td-brand-color) !important;
     }
@@ -70,20 +72,25 @@ const changeSearchFocus = (value: boolean) => {
     font-size: 20px !important;
     color: var(--td-text-color-primary) !important;
   }
+
   .header-search {
     :deep(.t-input) {
       border: none;
       outline: none;
       box-shadow: none;
       transition: background @anim-duration-base linear;
+
       .t-input__inner {
         transition: background @anim-duration-base linear;
       }
+
       .t-input__inner {
         background: none;
       }
+
       &:hover {
         background: var(--td-bg-color-secondarycontainer);
+
         .t-input__inner {
           background: var(--td-bg-color-secondarycontainer);
         }
@@ -98,14 +105,17 @@ const changeSearchFocus = (value: boolean) => {
 
   .t-icon {
     font-size: 20px;
+
     &.general {
       margin-right: 16px;
     }
   }
 }
+
 .search-icon-hide {
   opacity: 0;
 }
+
 .header-menu-search-left {
   display: flex;
   align-items: center;
@@ -113,12 +123,15 @@ const changeSearchFocus = (value: boolean) => {
   .header-search {
     width: 200px;
     transition: width @anim-duration-base @anim-time-fn-easing;
+
     :deep(.t-input) {
       border: 0;
+
       &:focus {
         box-shadow: none;
       }
     }
+
     &.width-zero {
       width: 0;
       opacity: 0;

@@ -78,7 +78,6 @@
     }
 
 
-
     .btn-search {
       margin-left: 9px;
     }
@@ -148,8 +147,8 @@
       bottom: 0;
       color: var(--td-text-color-anti);
       background-image: linear-gradient(0deg,
-          rgba(0, 0, 0, 0.4) 0%,
-          rgba(0, 0, 0, 0) 100%);
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0) 100%);
       display: flex;
       box-sizing: border-box;
     }
@@ -192,17 +191,20 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       width: 252px;
+
       &:nth-last-child(3) &:nth-last-child(2),
       &:last-child {
         .hover {
           top: auto;
           bottom: 63px;
+
           &::after {
             top: auto;
             bottom: -5px;
           }
         }
       }
+
       .hover {
         display: none;
         position: absolute;
@@ -247,8 +249,7 @@
         &:last-child {
           .hover {
             top: auto;
-            bottom: 63px;
-            ;
+            bottom: 63px;;
 
             &::after {
               top: auto;

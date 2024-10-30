@@ -2,19 +2,19 @@
     <!-- 公用底部tabbar，自定义 -->
     <view class="footBox">
         <view class="uni-tabbar">
-            <view class="tabbar-item" :class="activePage === item.pagePath ? 'active' : ''"
-                  v-for="(item, index) in tabbar"
-                  :key="index" @tap="changeTab(item, index)">
+            <view v-for="(item, index) in tabbar" :key="index"
+                  :class="activePage === item.pagePath ? 'active' : ''"
+                  class="tabbar-item" @tap="changeTab(item, index)">
                 <view v-if="true" class="uni-tabbar__bd">
-                    <view class="uni-tabbar__icon" v-if="item.pagePath !== ''">
-                        <image v-if="activePage === item.pagePath" class="item-img" :src="item.selectedIconPath"/>
-                        <image v-else class="item-img" :src="item.iconPath"/>
+                    <view v-if="item.pagePath !== ''" class="uni-tabbar__icon">
+                        <image v-if="activePage === item.pagePath" :src="item.selectedIconPath" class="item-img"/>
+                        <image v-else :src="item.iconPath" class="item-img"/>
                     </view>
                     <view v-else class="qrCode">
                         <image :src="item.iconPath"/>
                     </view>
                 </view>
-                <view class="uni-tabbar__label" v-if="item.text !== ''">{{ item.text }}</view>
+                <view v-if="item.text !== ''" class="uni-tabbar__label">{{ item.text }}</view>
             </view>
         </view>
     </view>

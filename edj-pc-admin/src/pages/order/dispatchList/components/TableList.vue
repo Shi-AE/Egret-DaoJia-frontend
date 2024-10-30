@@ -4,26 +4,26 @@
     <div class="tableBoxs">
       <t-config-provider :global-config="globalLocale">
         <t-table
-          :data="data"
           :columns="tableColumns"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
+          :maxHeight="height"
+          :multiple-sort="true"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          select-on-row-click
+          :row-key="rowKey"
           :selected-row-keys="selectedRowKeys"
-          :disable-data-page="pagination.total <= 10"
-          :loading="dataLoading"
-          :sort="sort"
-          :maxHeight="height"
-          showSizeChanger
-          :hide-sort-tips="true"
           :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          :multiple-sort="true"
+          :sort="sort"
+          select-on-row-click
+          showSizeChanger
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
           @select-change="rehandleSelectChange"
           @page-change="onPageChange"
           @sort-change="sortChange"
@@ -36,8 +36,8 @@
           <template #updateTime="{ row }">
             <div class="updateTime">
               <span>{{
-                formatDateTimeToDateTimeString(new Date(row.updateTime))
-              }}</span
+                  formatDateTimeToDateTimeString(new Date(row.updateTime))
+                }}</span
               >
               <!-- <span class="linjin"></span> -->
             </div>
@@ -65,7 +65,7 @@
                   : 'font-bt btn-split-right'
               "
               @click="handleClickAssign(row)"
-              >指派</a
+            >指派</a
             >
             <a
               :class="
@@ -74,10 +74,10 @@
                   : 'font-bt line'
               "
               @click="handleClickRefund(row)"
-              >退款</a
+            >退款</a
             >
             <a class="font-bt btn-split-left" @click="handleDetail(row)"
-              >查看</a
+            >查看</a
             >
           </template>
           <!-- end -->
@@ -87,7 +87,7 @@
                 row.saleStatus === 2 ? 'text-forbidden font-bt' : 'font-bt'
               "
               @click="handleClickAssign(row)"
-              >查看</a
+            >查看</a
             >
           </template>
           <!-- end -->
@@ -95,8 +95,8 @@
             <div class="description">
               <span>{{ row.serveAddress }}</span>
               <span v-if="row.serveAddress.length > 36" class="hover">{{
-                row.serveAddress
-              }}</span>
+                  row.serveAddress
+                }}</span>
             </div>
           </template>
         </t-table>
@@ -111,7 +111,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { CaretDownSmallIcon } from 'tdesign-icons-vue-next'
@@ -234,7 +234,7 @@ const onPageChange = (val) => {
   })
 }
 // 选中的行
-const rehandleSelectChange = (value, { selectedRowData }) => {
+const rehandleSelectChange = (value, {selectedRowData}) => {
   selectedRowKeys.value = value
   emit('handleSelectChange', value)
 }
@@ -246,16 +246,20 @@ const rehandleSelectChange = (value, { selectedRowData }) => {
     height: 64px !important;
   }
 }
+
 .headPortrait {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }
+
 .updateTime {
   display: flex;
   align-items: center;
+
   .linjin {
     margin-left: 6px;
     width: 17px;

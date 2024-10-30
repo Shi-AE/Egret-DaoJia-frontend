@@ -5,44 +5,44 @@
     <searchFormBox
       :initSearch="initSearch"
       :typeSelect="typeSelect"
-      @handleSearch="handleSearch"
       @handleReset="handleReset"
+      @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
       :list-data="listData"
       :pagination="pagination"
-      @handleClickDetail="handleClickDetail"
-      @fetchData="fetchData"
       @changeTab="changeTab"
-      @onPageChange="onPageChange"
+      @fetchData="fetchData"
+      @handleClickDetail="handleClickDetail"
       @handleSortChange="handleSortChange"
+      @onPageChange="onPageChange"
     ></tableList>
     <!-- end -->
     <!-- 新增，编辑弹窗 -->
     <DialogForm
-      :visible="visible"
-      :title="title"
-      :label="label"
       :data="DialogFormData"
-      @handleClose="handleClose"
+      :label="label"
+      :title="title"
+      :visible="visible"
       @fetchData="fetchData"
+      @handleClose="handleClose"
     />
     <!-- end -->
   </div>
   <!-- 指派弹窗 -->
   <detailDialog
-    :visible="detailDialogVisible"
-    :title="title"
-    :pagination="pagination"
     :data="DialogFormData"
+    :pagination="pagination"
+    :title="title"
+    :visible="detailDialogVisible"
     @handleClose="handleClose"
   />
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+<script lang="ts" setup>
+import { onMounted, ref, watch } from 'vue'
 import { getOrderList } from '@/api/order'
 import { forEach } from 'lodash'
 import { useRoute } from 'vue-router'
@@ -170,7 +170,7 @@ const handleClickDetail = (row) => {
   DialogFormData.value = row
 }
 // 切换tab时请求接口
-const changeTab =(val)=>{
+const changeTab = (val) => {
   // 重置pagination
   pagination.value = {
     defaultCurrent: 1,

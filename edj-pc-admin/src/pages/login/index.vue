@@ -6,10 +6,10 @@
         <div class="login-container">
           <div class="title-container">
             <h1 class="title">
-              <img src="@/assets/test-img/logofull.png" alt="" class="logo" />
+              <img alt="" class="logo" src="@/assets/test-img/logofull.png"/>
             </h1>
           </div>
-          <login v-if="type === 'login'" />
+          <login v-if="type === 'login'"/>
         </div>
         <footer class="copyright">
           Copyright @ 2021-2022 czri. All Rights Reserved
@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import Login from './components/Login.vue'
 

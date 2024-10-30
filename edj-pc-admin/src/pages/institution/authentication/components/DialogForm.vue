@@ -2,30 +2,30 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    :header="title"
-    :width="628"
     :footer="false"
+    :header="title"
     :on-close="onClickCloseBtn"
+    :width="628"
   >
     <template #body>
       <!-- 表单内容 -->
       <t-form
         ref="form"
         :data="formData"
-        :rules="rules"
         :label-width="70"
-        on-cancel="onClickCloseBtn"
         :reset-type="resetType"
+        :rules="rules"
+        on-cancel="onClickCloseBtn"
         @submit="onSubmit"
       >
         <t-form-item :label="label" name="selectId">
           <t-select
             v-model="formData.selectId"
-            placeholder="请选择"
             :options="REJECT_REASON"
+            :popup-props="{ bufferSize: '100' }"
             :scroll="{ type: 'virtual' }"
             class="wt-400"
-            :popup-props="{ bufferSize: '100' }"
+            placeholder="请选择"
             @change="(e) => onChange(e)"
           />
         </t-form-item>
@@ -33,7 +33,7 @@
           <div class="bt bt-grey btn-submit" @click="onClickCloseBtn">
             <span>取消</span>
           </div>
-          <button theme="primary" type="submit" class="bt btn-submit">
+          <button class="bt btn-submit" theme="primary" type="submit">
             <span>确定</span>
           </button>
         </t-form-item>
@@ -42,7 +42,7 @@
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { ValidateResultContext } from 'tdesign-vue-next'
 import { REJECT_REASON } from '@/constants'
@@ -157,10 +157,12 @@ defineExpose({
   z-index: 100;
   color: var(--color-bk4);
 }
+
 :deep(.t-textarea__limit) {
   color: var(--color-bk4);
   right: 10px;
 }
+
 :deep(.t-form:not(.t-form-inline) .t-form__item:last-of-type) {
   position: relative;
   right: -155px;

@@ -1,6 +1,7 @@
 export interface PurchaseListResult {
   list: Array<PurchaseInfo>
 }
+
 export interface PurchaseInfo {
   adminName: string
   index: string
@@ -14,6 +15,7 @@ export interface PurchaseInfo {
 export interface ProjectListResult {
   list: Array<ProjectInfo>
 }
+
 export interface ProjectInfo {
   adminName: string
   adminPhone: string

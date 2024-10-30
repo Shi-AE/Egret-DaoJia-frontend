@@ -2,22 +2,22 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    :header="title"
-    :width="728"
     :footer="false"
+    :header="title"
     :on-close="onClickCloseBtn"
+    :width="728"
   >
     <template #body>
       <TableList
+        :isActive="1"
         :list-data="formData"
         :pagination="undefined"
-        :isActive="1"
       ></TableList>
     </template>
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import TableList from './TableList.vue'
 
@@ -86,30 +86,38 @@ defineExpose({
   z-index: 100;
   color: var(--color-bk4);
 }
+
 :deep(.t-textarea__limit) {
   color: var(--color-bk4);
   right: 10px;
 }
+
 :deep(.t-form__item) {
   margin-bottom: 56px;
 }
+
 :deep(.min-h) {
   min-height: 300px;
+
   .tableBoxs {
     margin: 0;
   }
 }
+
 :deep(.t-dialog__body) {
   padding: 0;
+
   .baseList {
     padding-top: 0;
     border-radius: 7px;
 
     .t-table {
       border-radius: 7px;
+
       th {
         background-color: #fff !important;
         border-bottom: none;
+
         &::after {
           position: absolute;
           right: 0;
@@ -119,11 +127,9 @@ defineExpose({
           width: 100%;
           height: 10px;
           transform: scaleY(-1); // 水平翻转
-          background-image: linear-gradient(
-            180deg,
-            #ffffff00 0%,
-            #6361601a 100%
-          );
+          background-image: linear-gradient(180deg,
+          #ffffff00 0%,
+          #6361601a 100%);
         }
       }
     }

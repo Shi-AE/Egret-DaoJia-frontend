@@ -3,10 +3,10 @@
   <div :class="sideNavCls">
     <t-menu
       :class="menuCls"
-      :theme="theme"
-      :value="active"
       :collapsed="collapsed"
       :default-expanded="defaultExpanded"
+      :theme="theme"
+      :value="active"
     >
       <template #logo>
         <span
@@ -19,7 +19,7 @@
             class="logofull"
             src="@/assets/test-img/logofull.png"
           />
-          <img v-if="collapsed" class="logo" src="@/assets/test-img/logo.png" />
+          <img v-if="collapsed" class="logo" src="@/assets/test-img/logo.png"/>
         </span>
         <span
           v-if="showLogo && setting.mode.value === 'black'"
@@ -31,12 +31,12 @@
             class="logofull"
             src="@/assets/logBlackTemFull.png"
           />
-          <img v-if="collapsed" class="logo" src="@/assets/logBlackTem.png" />
+          <img v-if="collapsed" class="logo" src="@/assets/logBlackTem.png"/>
         </span>
       </template>
-      <menu-content :nav-data="menu" />
+      <menu-content :nav-data="menu"/>
       <template #operations>
-        <log-info />
+        <log-info/>
       </template>
     </t-menu>
     <div
@@ -45,7 +45,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, onMounted } from 'vue'
 import type { PropType } from 'vue'
 import { useRouter } from 'vue-router'
@@ -113,7 +113,7 @@ const defaultExpanded = computed(() => {
 })
 // sideNavCls是计算侧边栏的样式
 const sideNavCls = computed(() => {
-  const { isCompact } = props
+  const {isCompact} = props
   return [
     `${prefix}-sidebar-layout`,
     {
@@ -124,7 +124,7 @@ const sideNavCls = computed(() => {
 })
 // menuCls是计算侧边栏的样式
 const menuCls = computed(() => {
-  const { showLogo } = props
+  const {showLogo} = props
   return [
     `${prefix}-side-nav`,
     {
@@ -157,22 +157,27 @@ const goHome = () => {
   padding: 0;
   border-top: 0;
 }
+
 :deep(.t-default-menu__inner .t-menu__logo:not(:empty)) {
   border-bottom: 0;
   margin-top: 32px;
   height: auto;
 }
-:deep(.yldj-side-nav-logo-wrapper){
+
+:deep(.yldj-side-nav-logo-wrapper) {
   height: auto;
 }
+
 .logofull {
   width: 150px;
   height: 70px;
 }
+
 .logo {
   width: 40px;
   height: 40px;
 }
+
 .t-default-menu__inner .t-menu--scroll {
   padding-top: 24px;
 }

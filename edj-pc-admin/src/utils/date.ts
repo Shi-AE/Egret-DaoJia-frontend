@@ -11,7 +11,7 @@ export const LAST_30_DAYS = [
   dayjs().subtract(1, "day").format("YYYY-MM-DD"),
 ];
 // 将时间转化为时分格式
-export const formatDateTimeToDateTimeString = (dateTime) =>{
+export const formatDateTimeToDateTimeString = (dateTime) => {
   // 检查参数是否是有效的日期格式
   if (!(dateTime instanceof Date)) {
     throw new Error('Invalid date format.');
@@ -27,7 +27,7 @@ export const formatDateTimeToDateTimeString = (dateTime) =>{
   return dateTimeString;
 }
 // 将时间转化为年月日格式
-export const formatDateTimeToDateString = (dateTime) =>{
+export const formatDateTimeToDateString = (dateTime) => {
   // 检查参数是否是有效的日期格式
   if (!(dateTime instanceof Date)) {
     throw new Error('Invalid date format.');

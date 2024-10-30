@@ -4,11 +4,15 @@
     <div class="tableBoxs">
       <t-config-provider :global-config="globalLocale">
         <t-table
-          :data="data"
           :columns="tableCOLUMNS"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination && pagination.total <= 10"
+          :filter-value="filterValue"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
+          :max-height="height"
+          :multiple-sort="true"
           :pagination="
             pagination
               ? pagination.total <= 10 || (!pagination.total && pagination)
@@ -16,19 +20,15 @@
                 : pagination
               : null
           "
-          :disable-data-page="pagination && pagination.total <= 10"
+          :row-key="rowKey"
+          :scroll="scroll"
           :selected-row-keys="selectedRowKeys"
-          :loading="dataLoading"
+          :show-sort-column-bg-color="true"
           :sort="sort"
           show-size-changer
-          :filter-value="filterValue"
-          :hide-sort-tips="true"
-          :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          :multiple-sort="true"
-          :max-height="height"
-          :scroll="scroll"
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
           @page-change="onPageChange"
           @sort-change="sortChange"
           @select-change="rehandleSelectChange"
@@ -62,15 +62,15 @@
                 <template #trigger="{ open }">
                   <div class="tdesign-demo-image-viewer__ui-image">
                     <img
-                      alt="test"
                       :src="row.businessLicense"
+                      alt="test"
                       class="tdesign-demo-image-viewer__ui-image--img"
                     />
                     <div
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em" /></span>
+                      <span><ZoomInIcon size="1.8em"/></span>
                     </div>
                   </div>
                 </template>
@@ -81,8 +81,8 @@
           <!-- 描述 -->
           <template #rejectReason="{ row, rowIndex }">
             <div
-              class="description"
               :class="rowIndex < 3 ? 'shortDescription' : ''"
+              class="description"
             >
               <span>{{ row.rejectReason ? row.rejectReason : '-' }}</span>
               <span
@@ -90,7 +90,7 @@
                   row.rejectReason.length > 36 && row.rejectReason.length <= 200
                 "
                 class="hover"
-                >{{ row.rejectReason }}</span
+              >{{ row.rejectReason }}</span
               >
             </div>
           </template>
@@ -125,16 +125,16 @@
               >申请记录</a
             > -->
             <a
-              class="font-bt btn-split-right"
               :class="row.certificationStatus !== 1 ? 'text-forbidden' : ''"
+              class="font-bt btn-split-right"
               @click="handleReject(row)"
-              >通过</a
+            >通过</a
             >
             <a
-              class="font-bt line"
               :class="row.certificationStatus !== 1 ? 'text-forbidden' : ''"
+              class="font-bt line"
               @click="handleClickFreeze(row)"
-              >驳回</a
+            >驳回</a
             >
           </template>
           <!-- end -->
@@ -144,7 +144,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { CaretDownSmallIcon, ZoomInIcon } from 'tdesign-icons-vue-next'
@@ -286,10 +286,12 @@ const onPageChange = (val) => {
     height: 64px !important;
   }
 }
+
 .headPortrait {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }

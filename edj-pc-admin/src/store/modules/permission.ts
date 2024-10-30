@@ -24,7 +24,7 @@ function filterPermissionsRouters(
       res.push(route)
     }
   })
-  return { accessedRouters: res, removeRoutes }
+  return {accessedRouters: res, removeRoutes}
 }
 
 export const usePermissionStore = defineStore('permission', {

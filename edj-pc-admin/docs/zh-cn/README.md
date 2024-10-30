@@ -1,12 +1,15 @@
 # RDesign
 
 #### 链条式组件库
+
 - 平时项目开发中，遇到已有组件库中没有涉及的组件但又经常用到，每次都得重新开发很浪费时间，针对这个问题我们进行了二次组件封装或者是重新开发，用的时候直接引入
 
 #### 技术栈
+
 - Vue 3 + TypeScript +Tdesign + Vite + pinia
 
 #### 运行环境 - 初始开发环境及工具
+
 - Mac
 - node v17.8.0
 - pnpm 6.32.8
@@ -139,32 +142,37 @@ npm run build
 ```
 
 #### 插件
-- [nprogress 进度条 ](https://madewith.cn/23)  
+
+- [nprogress 进度条 ](https://madewith.cn/23)
 - [viteMockServe vite 的数据模拟插件](https://www.csdn.net/tags/MtTaMg1sODE4ODA3LWJsb2cO0O0O.html)
 - [vueJsx ](https://zhuanlan.zhihu.com/p/460328418)
+
 > 使用jsx 语法 jsx语法可以更好地跟Typescript结合 在阅读UI框架源码时，发现在知名UI组件库Ant Design Vue跟Naive UI皆使用tsx语法开发
+
 - [vite-svg-loader](https://www.jianshu.com/p/bd3835d17ad1)
 
 #### 参考
+
 - [vite](https://vitejs.cn/guide/#index-html-and-project-root)
 - [vue3](https://v3.cn.vuejs.org/guide/introduction.html)
-- [pinia 中文文档 :类vuex](https://pinia.web3doc.top/introduction.html#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8-pinia%EF%BC%9F) 
+- [pinia 中文文档 :类vuex](https://pinia.web3doc.top/introduction.html#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8-pinia%EF%BC%9F)
 - [vue-router](https://router.vuejs.org/zh/guide/)
 - [Tdesign](https://tdesign.tencent.com/vue-next/getting-started)
 - [Tdesign-cli](https://tdesign.tencent.com/starter/docs/vue-next/get-started)
 - [pnpm](https://zhuanlan.zhihu.com/p/404784010)
+
 #### 配置文件
+
 - [.prettierrc vscode自动格式化插件配置](https://github.com/prettier/prettier)
 - [.eslintrc eslint配置文件](https://cn.eslint.org/docs/rules/)
 - [tsconfig.json 配置整理](https://wenku.baidu.com/view/1fc27fe29dc3d5bbfd0a79563c1ec5da50e2d6bd.html)
 - [vite.config.js vite配置文件](https://vitejs.cn/config/)
 
-
 #### 兼容性
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br> IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Edge >=84                                                                                                                                                                                                        | Firefox >=83                                                                                                                                                                                                      | Chrome >=84                                                                                                                                                                                                   | Safari >=14.1                                                                                                                                                                                                  |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Edge >=84                                                                                                                                                                                                        | Firefox >=83                                                                                                                                                                                                      | Chrome >=84                                                                                                                                                                                                   | Safari >=14.1                                                                                                                                                                                                 |
 
 ### 组件概览
 

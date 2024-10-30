@@ -2,55 +2,55 @@
 <template>
   <div class="baseList bg-wt min-h">
     <div class="tableBoxs">
-        <t-table
-          :data="data"
-          :columns="COLUMNS"
-          :row-key="rowKey"
-          vertical-align="middle"
-          :hover="true"
-          :pagination="
+      <t-table
+        :columns="COLUMNS"
+        :data="data"
+        :disable-data-page="pagination.total <= 10"
+        :hide-sort-tips="true"
+        :hover="true"
+        :loading="dataLoading"
+        :multiple-sort="true"
+        :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          :disable-data-page="pagination.total <= 10"
-          :loading="dataLoading"
-          showSizeChanger
-          :hide-sort-tips="true"
-          :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          :multiple-sort="true"
-          table-content-width="100%"
-          @page-change="onPageChange"
-        >
-          <!-- 空页面 -->
-          <template #empty>
-            <NoData></NoData>
-          </template>
-          <!-- 在表格中添加自定义列 -->
-          <template #updateTime="{ row }">
-            <div class="updateTime">
-              <span>{{ row.updateTime ? formatDateTimeToDateTimeString(new Date(row.updateTime)) : '-' }}</span>
-              <!-- <span class="linjin"></span> -->
-            </div>
-          </template>
-          <!-- end -->
-          <!-- 在操作栏添加删除、编辑、查看三种操作 -->
-          <template #op="{ row }">
-            <a
-              class="font-bt"
-              @click="handleDetail(row)"
-              >查看</a
-            >
-          </template>
-          <!-- end -->
-          <template #serveAddress="{ row }">
-            <div class="description">
-              <span>{{ row.serveAddress }}</span>
-              <span v-if="row.serveAddress.length > 36" class="hover">{{
+        :row-key="rowKey"
+        :show-sort-column-bg-color="true"
+        showSizeChanger
+        table-content-width="100%"
+        table-layout="fixed"
+        vertical-align="middle"
+        @page-change="onPageChange"
+      >
+        <!-- 空页面 -->
+        <template #empty>
+          <NoData></NoData>
+        </template>
+        <!-- 在表格中添加自定义列 -->
+        <template #updateTime="{ row }">
+          <div class="updateTime">
+            <span>{{ row.updateTime ? formatDateTimeToDateTimeString(new Date(row.updateTime)) : '-' }}</span>
+            <!-- <span class="linjin"></span> -->
+          </div>
+        </template>
+        <!-- end -->
+        <!-- 在操作栏添加删除、编辑、查看三种操作 -->
+        <template #op="{ row }">
+          <a
+            class="font-bt"
+            @click="handleDetail(row)"
+          >查看</a
+          >
+        </template>
+        <!-- end -->
+        <template #serveAddress="{ row }">
+          <div class="description">
+            <span>{{ row.serveAddress }}</span>
+            <span v-if="row.serveAddress.length > 36" class="hover">{{
                 row.serveAddress
               }}</span>
-            </div>
-          </template>
-        </t-table>
+          </div>
+        </template>
+      </t-table>
     </div>
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { COLUMNS } from '../constants'
@@ -137,17 +137,21 @@ const onPageChange = (val) => {
     height: 64px !important;
   }
 }
+
 .headPortrait {
   display: flex;
   align-items: center;
 }
+
 :deep(.t-table__filter-icon) {
   display: none;
 }
-.updateTime{
+
+.updateTime {
   display: flex;
   align-items: center;
-  .linjin{
+
+  .linjin {
     margin-left: 6px;
     width: 17px;
     height: 17px;
@@ -155,15 +159,17 @@ const onPageChange = (val) => {
     background-size: 100% 100%;
   }
 }
-:deep(.t-table--column-fixed ){
-  .t-table__header{
-    .t-table__cell--fixed-right{
+
+:deep(.t-table--column-fixed ) {
+  .t-table__header {
+    .t-table__cell--fixed-right {
       padding-left: 25px;
       text-align: left;
     }
   }
-  .t-table__cell--fixed-right{
-      text-align: right;
-    }
+
+  .t-table__cell--fixed-right {
+    text-align: right;
+  }
 }
 </style>

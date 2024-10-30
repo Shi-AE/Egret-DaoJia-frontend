@@ -5,22 +5,22 @@
       <t-config-provider :global-config="globalLocale">
         <t-table
           ref="tableRef"
-          :data="data"
           :columns="regionCOLUMN"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          :disable-data-page="pagination.total <= 10"
-          :loading="dataLoading"
-          :sort="sort"
-          :hide-sort-tips="true"
+          :row-key="rowKey"
           :show-sort-column-bg-color="true"
-          table-layout="fixed"
-          @page-change="onPageChange"
+          :sort="sort"
           table-content-width="100%"
+          table-layout="fixed"
+          vertical-align="middle"
+          @page-change="onPageChange"
         >
           <!-- 空页面 -->
           <template #empty>
@@ -37,7 +37,7 @@
             <a
               class="font-bt btn-split-right"
               @click="handleClickSetHot(row)"
-              >{{ row.isHot === 0 ? '设置热门' : '取消热门' }}</a
+            >{{ row.isHot === 0 ? '设置热门' : '取消热门' }}</a
             >
             <a
               :class="
@@ -46,12 +46,12 @@
                   : 'btn-dl line'
               "
               @click="handleClickDelete(row)"
-              >删除</a
+            >删除</a
             >
             <a
               class="font-bt btn-split-left"
               @click="handleClickConfirm(row, row.saleStatus)"
-              >{{ row.saleStatus !== 2 ? '上架' : '下架' }}</a
+            >{{ row.saleStatus !== 2 ? '上架' : '下架' }}</a
             >
           </template>
           <!-- end -->
@@ -67,7 +67,7 @@ export default {
 }
 </script>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
 import { CaretDownSmallIcon } from 'tdesign-icons-vue-next'
 import { Input } from 'tdesign-vue-next'
@@ -160,7 +160,7 @@ const regionCOLUMN = computed(() => [
     minWidth: '70px',
     colKey: 'serveItemName'
   },
-  { title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName' },
+  {title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName'},
   {
     title: '参考价格',
     width: 150,
@@ -184,7 +184,7 @@ const regionCOLUMN = computed(() => [
         emit('handleEditPrice', context.newRowData)
       },
       rules: [
-        { required: true, message: '不能为空' },
+        {required: true, message: '不能为空'},
         {
           message: '必须为大于0,小于10000的数字，且保留两位小数',
           validator: (val) => {
@@ -212,7 +212,7 @@ const regionCOLUMN = computed(() => [
     title: '状态',
     colKey: 'saleStatus',
     minWidth: '120px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '草稿'
@@ -248,15 +248,18 @@ const regionCOLUMN = computed(() => [
 .baseList {
   padding-top: 0 !important;
 }
+
 .tableBoxs {
   margin: 20px 0 0 0;
 }
+
 :deep(
     .t-table--bordered.t-table__content--scrollable-to-right
       .t-table__cell--fixed-right-first::after
   ) {
   border: none;
 }
+
 :deep(.t-table:not(.t-table--row-edit) .t-table__cell--editable .t-icon) {
   margin-left: 10px;
   font-size: 14px !important;

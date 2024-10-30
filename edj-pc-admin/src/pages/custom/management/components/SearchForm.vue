@@ -4,13 +4,13 @@
     <t-form ref="form" :data="formData" :label-width="100">
       <t-row>
         <t-col>
-          <t-form-item label="客户姓名：" name="nickname" :label-width="70">
+          <t-form-item :label-width="70" label="客户姓名：" name="nickname">
             <t-input
               v-model="formData.nickname"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -19,9 +19,9 @@
             <t-input
               v-model="formData.phone"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 // 表单数据
 const formData = ref({
@@ -50,7 +50,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleSearch', formData.value)
 }
 // 搜索表单

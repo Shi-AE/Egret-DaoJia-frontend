@@ -10,43 +10,43 @@
       </div>
       <!-- 服务列表 -->
       <regionTableList
+        :is-active="isActive"
         :list-data="listData"
         :pagination="pagination"
-        :is-active="isActive"
-        @handleClickSetHot="handleClickSetHot"
-        @handleBuild="handleBuild"
-        @handleClickDelete="handleClickDelete"
         @fetchData="fetchData"
-        @onPageChange="onPageChange"
+        @handleBuild="handleBuild"
         @handleClickConfirm="handleClickConfirm"
+        @handleClickDelete="handleClickDelete"
+        @handleClickSetHot="handleClickSetHot"
         @handleEditPrice="handleEditPrice"
+        @onPageChange="onPageChange"
       ></regionTableList>
       <!-- end -->
       <!-- 新增服务弹窗 -->
       <addServiceDialog
         ref="addService"
-        :visible="visible"
         :list-data="listData"
-        :service-type-data="serviceTypeData"
         :service-item-data="serviceItemData"
+        :service-type-data="serviceTypeData"
+        :visible="visible"
         @handleClose="handleClose"
-        @handleSubmit="handleSubmit"
         @handleServiceTypeChange="handleServiceTypeChange"
+        @handleSubmit="handleSubmit"
       ></addServiceDialog>
       <!-- end -->
       <!-- 删除弹窗 -->
       <Delete
-        :dialog-delete-visible="dialogDeleteVisible"
         :delete-text="deleteText"
+        :dialog-delete-visible="dialogDeleteVisible"
         @handle-delete="handleDelete"
         @handle-close="handleClose"
       ></Delete>
       <!-- end -->
       <!-- 设置热门 -->
       <Confirm
-        :title="confirmTitle"
-        :dialog-confirm-visible="dialogConfirmVisible"
         :confirm-text="confirmText"
+        :dialog-confirm-visible="dialogConfirmVisible"
+        :title="confirmTitle"
         @handle-confirm="handleConfirm"
         @handle-close="handleClose"
       ></Confirm>
@@ -54,22 +54,22 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+<script lang="ts" setup>
+import { onMounted, ref, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute } from 'vue-router'
 import {
   regionById,
-  serviceList,
-  serviceTypeSimpleList,
-  serviceItemList,
-  serviceAdd,
-  serviceEdit,
-  serviceOnHot,
-  serviceOffHot,
-  serviceDelete,
   serviceActiveStatus,
-  serviceInactiveStatus
+  serviceAdd,
+  serviceDelete,
+  serviceEdit,
+  serviceInactiveStatus,
+  serviceItemList,
+  serviceList,
+  serviceOffHot,
+  serviceOnHot,
+  serviceTypeSimpleList
 } from '@/api/service'
 import regionTableList from './components/regionTableList.vue' // 服务列表
 import addServiceDialog from './components/addServiceDialog.vue'
@@ -87,7 +87,7 @@ const flag = ref(0) // 是否是热门
 const deleteId = ref('') // 删除的id
 const addService = ref(null) // 新增服务弹窗
 const route = useRoute()
-const { id, isActive } = route.params
+const {id, isActive} = route.params
 const visible = ref(false) // 新增服务弹窗
 const editStatus = ref(0) // 判断是设置热门还是启用和禁用
 const requestData = ref({
@@ -387,30 +387,37 @@ watch(
 .contentBox {
   padding: 24px 20px 20px;
   min-height: 674px;
+
   .bodybox {
     .topBox {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       .cityBox {
         color: var(--color-bk3);
+
         span {
           color: var(--color-bk1);
           margin-left: 6px;
         }
       }
+
       .newButton {
         width: 88px;
       }
     }
+
     .regionService {
       margin-top: 26px;
     }
   }
 }
+
 :deep(.t-input.t-is-error) {
   margin-top: 6px;
 }
+
 :deep(.t-table td .t-input__tips) {
   margin-bottom: 6px;
 }

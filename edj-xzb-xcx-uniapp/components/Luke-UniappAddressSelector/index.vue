@@ -1,18 +1,21 @@
 <!-- 地址 -->
 <template>
-  <view class="page-index">
-    <UniAddressSelector
-      v-if="showUniAddressSelector"
-      :areaInfoSelected="areaInfoObj"
-      @cancel="handleCancel"
-      @confirm="handleConfirm"
-    >
-    </UniAddressSelector>
-  </view>
+    <view class="page-index">
+        <UniAddressSelector
+            v-if="showUniAddressSelector"
+            :areaInfoSelected="areaInfoObj"
+            @cancel="handleCancel"
+            @confirm="handleConfirm"
+        >
+        </UniAddressSelector>
+    </view>
 </template>
 
 <script>
-import 'UniAddressSelector' from './components/UniAddressSelector.vue';
+import 'UniAddressSelector'
+
+from
+'./components/UniAddressSelector.vue';
 
 export default {
     name: 'index',

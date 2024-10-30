@@ -7,10 +7,10 @@
           <t-form-item label="服务类型：" name="name">
             <t-select
               v-model="formData.edjServeTypeId"
-              class="form-item-content"
               :options="typeSelectList"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -19,9 +19,9 @@
             <t-input
               v-model="formData.contactsName"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -30,13 +30,13 @@
           <button class="bt wt-60" @click="handleSearch()">搜索</button>
         </t-col>
         <t-col class="citySelect">
-          <t-form-item label="" name="name" label-width="0">
+          <t-form-item label="" label-width="0" name="name">
             <t-select
               v-model="formData.edjCityId"
-              class="form-item-content"
               :options="citySelectList"
-              placeholder="请选择"
+              class="form-item-content"
               clearable
+              placeholder="请选择"
             />
           </t-form-item>
         </t-col>
@@ -45,10 +45,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watchEffect } from 'vue'
-import { forEach } from 'lodash'
-import { ORDER_STATUS } from '@/constants'
 
 const props = defineProps({
   typeSelect: {
@@ -89,7 +87,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   formData.value.edjCityId = props.cityList[0]?.edjCityId
   emit('handleSearch', formData.value)
 }
@@ -118,6 +116,7 @@ watchEffect(() => {
 <style lang="less" scoped>
 .formBox {
   position: relative;
+
   .citySelect {
     position: absolute;
     right: 8px;

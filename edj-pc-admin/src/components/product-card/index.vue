@@ -3,19 +3,20 @@
     <template #avatar>
       <t-avatar size="56px">
         <template #icon>
-          <shop-icon v-if="product.type === 1" />
-          <calendar-icon v-if="product.type === 2" />
-          <service-icon v-if="product.type === 3" />
-          <user-avatar-icon v-if="product.type === 4" />
-          <laptop-icon v-if="product.type === 5" />
+          <shop-icon v-if="product.type === 1"/>
+          <calendar-icon v-if="product.type === 2"/>
+          <service-icon v-if="product.type === 3"/>
+          <user-avatar-icon v-if="product.type === 4"/>
+          <laptop-icon v-if="product.type === 5"/>
         </template>
       </t-avatar>
     </template>
     <template #status>
       <t-tag
-        :theme="product.isSetup ? 'success' : 'default'"
         :disabled="!product.isSetup"
-        >{{ product.isSetup ? '已启用' : '已停用' }}</t-tag
+        :theme="product.isSetup ? 'success' : 'default'"
+      >{{ product.isSetup ? '已启用' : '已停用' }}
+      </t-tag
       >
     </template>
     <template #content>
@@ -23,11 +24,12 @@
       <p class="list-card-item_detail--desc">{{ product.description }}</p>
     </template>
     <template #footer>
-      <t-avatar-group cascading="left-up" :max="2">
+      <t-avatar-group :max="2" cascading="left-up">
         <t-avatar>{{ typeMap[product.type - 1] }}</t-avatar>
         <t-avatar
-          ><template #icon>
-            <add-icon />
+        >
+          <template #icon>
+            <add-icon/>
           </template>
         </t-avatar>
       </t-avatar-group>
@@ -35,7 +37,6 @@
     <template #actions>
       <t-dropdown
         :disabled="!product.isSetup"
-        trigger="click"
         :options="[
           {
             content: '管理',
@@ -48,20 +49,21 @@
             onClick: () => handleClickDelete(product)
           }
         ]"
+        trigger="click"
       >
         <t-button
-          theme="default"
           :disabled="!product.isSetup"
           shape="square"
+          theme="default"
           variant="text"
         >
-          <more-icon />
+          <more-icon/>
         </t-button>
       </t-dropdown>
     </template>
   </t-card>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { PropType } from 'vue'
 import {
   ShopIcon,

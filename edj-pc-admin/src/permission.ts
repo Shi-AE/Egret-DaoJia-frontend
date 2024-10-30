@@ -9,7 +9,7 @@ import {
   AUTHORIZATION_REFRESH_TOKEN
 } from '@/config/global'
 // 是否显示环形进度条
-NProgress.configure({ showSpinner: false })
+NProgress.configure({showSpinner: false})
 
 router.beforeEach(async (to, from, next) => {
   // 进度条开始
@@ -17,9 +17,9 @@ router.beforeEach(async (to, from, next) => {
 
   const userStore = getUserStore()
   const permissionStore = getPermissionStore()
-  const { whiteListRouters } = permissionStore
+  const {whiteListRouters} = permissionStore
 
-  const { authorizationAccessToken, authorizationRefreshToken } = userStore
+  const {authorizationAccessToken, authorizationRefreshToken} = userStore
 
   if (
     authorizationAccessToken &&
@@ -45,7 +45,7 @@ router.beforeEach(async (to, from, next) => {
       try {
         // await userStore.getUserInfo();
 
-        const { roles } = userStore
+        const {roles} = userStore
 
         await permissionStore.initRoutes(roles)
 
@@ -58,7 +58,7 @@ router.beforeEach(async (to, from, next) => {
         MessagePlugin.error(error)
         next({
           path: '/login',
-          query: { redirect: encodeURIComponent(to.fullPath) }
+          query: {redirect: encodeURIComponent(to.fullPath)}
         })
         NProgress.done()
       }
@@ -70,7 +70,7 @@ router.beforeEach(async (to, from, next) => {
   } else {
     next({
       path: '/login',
-      query: { redirect: encodeURIComponent(to.fullPath) }
+      query: {redirect: encodeURIComponent(to.fullPath)}
     })
   }
   // 进度条结束

@@ -1,41 +1,41 @@
 <!-- 首页 -->
 <template>
     <view class="homePage">
-        <NavBar title="云岚到家" :isShowBack="false"></NavBar>
+        <NavBar :isShowBack="false" title="云岚到家"></NavBar>
         <view class="homeBox">
             <view class="input-view">
-                <view @click="toCity()" class="city">
-                    <image src="/static/dw.png" mode="scaleToFill"/>
+                <view class="city" @click="toCity()">
+                    <image mode="scaleToFill" src="/static/dw.png"/>
                     <view class="address">{{ city.name ? city.name : '暂无' }}</view>
                 </view>
-                <image src="/static/ss.png" mode="scaleToFill" class="input-uni-icon"/>
+                <image class="input-uni-icon" mode="scaleToFill" src="/static/ss.png"/>
                 <input
-                    confirm-type="search"
-                    class="nav-bar-input"
-                    type="text"
                     v-model="searchVal"
-                    placeholder="日常保洁"
+                    class="nav-bar-input"
+                    confirm-type="search"
                     disabled
-                    @focus="handleSearch"
-                    @confirm="handleSearch"
-                    @click="handleSearch"
-                    @input="handleSearch"
+                    placeholder="日常保洁"
                     placeholder-style="color:#ccc ; font-size: 28rpx; align-items: center;margin-top: 3rpx;"
+                    type="text"
+                    @click="handleSearch"
+                    @confirm="handleSearch"
+                    @focus="handleSearch"
+                    @input="handleSearch"
                 />
             </view>
-            <image src="/static/banner.png" mode="scaleToFill" class="homeBanner"/>
+            <image class="homeBanner" mode="scaleToFill" src="/static/banner.png"/>
             <view class="tips">
                 <view>
-                    <image src="/static/smile.png" mode="scaleToFill"/>
+                    <image mode="scaleToFill" src="/static/smile.png"/>
                     <test> 云岚到家平台，给你贴心的 专业的上门服务</test>
                 </view>
                 <view>
-                    <image src="/static/yuan.png" mode="scaleToFill"/>
+                    <image mode="scaleToFill" src="/static/yuan.png"/>
                     <test> 标准定价 售后无忧</test>
                 </view>
             </view>
             <!-- 未选择城市或者城市下无服务时的显示 -->
-            <view class="empty-box" v-if="!city.name || menuData.length === 0">
+            <view v-if="!city.name || menuData.length === 0" class="empty-box">
                 <image src="../../static/zwnr@2x.png"></image>
                 <view v-if="!city.name">
                     用户当前未授权位置，请手动选择城市进行下单
@@ -49,23 +49,23 @@
             <view class="menu">
                 <view class="leftBox">
                     <view
-                        class="left"
-                        @click="toService(item.serveTypeId, 1)"
                         v-for="(item, index) in menuData"
                         :key="index"
+                        class="left"
+                        @click="toService(item.serveTypeId, 1)"
                     >
                         <image :src="item.serveTypeIcon" mode="scaleToFill"/>
                         <view>{{ item.serveTypeName }}</view>
                     </view>
                 </view>
                 <view class="rightBox">
-                    <view class="rights" v-for="(item, index) in menuData" :key="index">
+                    <view v-for="(item, index) in menuData" :key="index" class="rights">
                         <view class="leftLine"></view>
                         <view class="right">
                             <view
-                                class="card"
                                 v-for="(content, key) in item.serveResDTOList"
                                 :key="key"
+                                class="card"
                                 @click="toService(content.id, 2)"
                             >
                                 <image :src="content.serveItemIcon" mode="scaleToFill"/>
@@ -75,14 +75,13 @@
                     </view>
                 </view>
             </view>
-            <view class="title" v-if="hotData.length > 0">
-                <image src="/static/biao.png" mode="scaleToFill"/>
+            <view v-if="hotData.length > 0" class="title">
+                <image mode="scaleToFill" src="/static/biao.png"/>
                 精选推荐
             </view>
             <view class="recommend">
-                <view class="card" v-for="(item, index) in hotData" :key="index">
+                <view v-for="(item, index) in hotData" :key="index" class="card">
                     <view
-                        class="tag"
                         :class="
               (index + 1) % 3 === 1
                 ? 'tag1'
@@ -90,20 +89,21 @@
                 ? 'tag2'
                 : 'tag3'
             "
+                        class="tag"
                     >{{
-                            // (index + 1)/3 取余数
-                            (index + 1) % 3 === 1
-                                ? '专业、贴心的上门服务'
-                                : (index + 1) % 3 === 2
-                                    ? '标准定价，售后无忧'
-                                    : '云岚到家，您的不二选择'
+                        // (index + 1)/3 取余数
+                        (index + 1) % 3 === 1
+                        ? '专业、贴心的上门服务'
+                        : (index + 1) % 3 === 2
+                        ? '标准定价，售后无忧'
+                        : '云岚到家，您的不二选择'
                         }}
                     </view
                     >
                     <image
                         :src="item.serveItemImg"
-                        mode="scaleToFill"
                         class="cardImg"
+                        mode="scaleToFill"
                         @click="toService(item.id, 2)"
                     />
                     <view class="cardName">{{ item.serveItemName }}</view>
@@ -119,8 +119,8 @@
             </view>
         </view>
         <view class="foot">
-            <button @click="toLogin" class="agree-btn btn" v-if="false">登录</button>
-            <button @click="toEvaluate" class="agree-btn btn" v-if="false">
+            <button v-if="false" class="agree-btn btn" @click="toLogin">登录</button>
+            <button v-if="false" class="agree-btn btn" @click="toEvaluate">
                 评价
             </button>
         </view>
@@ -230,4 +230,4 @@ const handleSearch = () => {
     });
 };
 </script>
-<style src="./index.scss" lang="scss" scoped></style>
+<style lang="scss" scoped src="./index.scss"></style>

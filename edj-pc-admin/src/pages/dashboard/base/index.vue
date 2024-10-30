@@ -2,11 +2,11 @@
 <template>
   <div class="container home-wrapper">
     <!-- 顶部 card  -->
-    <top-panel :top-panel-data="topPanelData" />
+    <top-panel :top-panel-data="topPanelData"/>
     <!-- 经营分析 -->
-      <Operate
-      @fetchData="fetchData"
+    <Operate
       @exportStatistics="exportStatistics"
+      @fetchData="fetchData"
     ></Operate>
     <!-- end -->
     <!-- 分析 -->
@@ -21,7 +21,7 @@
                 <div class="description">
                   <span class="beizhu"></span>
                   <span class="hover"
-                    >在统计时间内，订单状态为已完成的订单数。（订单被取消、退款、关闭状态均不属于有效订单）</span
+                  >在统计时间内，订单状态为已完成的订单数。（订单被取消、退款、关闭状态均不属于有效订单）</span
                   >
                 </div>
               </div>
@@ -59,7 +59,7 @@
                 <div class="description">
                   <span class="beizhu"></span>
                   <span class="hover"
-                    >在统计时间内，平均每单实际支付额（不包含失效订单）</span
+                  >在统计时间内，平均每单实际支付额（不包含失效订单）</span
                   >
                 </div>
               </div>
@@ -76,7 +76,7 @@
                 <div class="description">
                   <span class="beizhu"></span>
                   <span class="hover"
-                    >在统计时间内，有效订单的总订单交易额</span
+                  >在统计时间内，有效订单的总订单交易额</span
                   >
                 </div>
               </div>
@@ -91,8 +91,8 @@
     </div>
     <!-- 中部图表  -->
     <middle-chart
-      class="row-container"
       :middle-chart-data="data?.ordersTrend"
+      class="row-container"
     />
     <!-- 用户分析 -->
     <div class="operate">
@@ -100,23 +100,24 @@
     </div>
     <!-- 用户分析-->
     <output-overview
-      class="row-container"
       :output-overview-data="outputOverviewData"
+      class="row-container"
     />
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import dayjs from 'dayjs'
-import { getDashBoardData, exportStatisticsData } from '@/api/detail'
+import { exportStatisticsData, getDashBoardData } from '@/api/detail'
 import TopPanel from './components/TopPanel.vue'
 import MiddleChart from './components/MiddleChart.vue'
 import OutputOverview from './components/OutputOverview.vue'
 import Operate from './components/operate.vue'
 
 import { MessagePlugin } from 'tdesign-vue-next'
+
 const route = useRoute()
 // 当月时间1号到最后一天
 const nowMonthTime = ref([

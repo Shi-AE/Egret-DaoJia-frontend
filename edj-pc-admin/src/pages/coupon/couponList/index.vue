@@ -5,18 +5,18 @@
   <div v-else class="base-up-wapper bgTable min-h">
     <!-- 搜索表单区域 -->
     <searchFormBox
+      :cityList="cityList"
       :initSearch="initSearch"
       :typeSelect="typeSelect"
-      :cityList="cityList"
-      @handleSearch="handleSearch"
       @handleReset="handleReset"
+      @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
+      :activeStatus="0"
       :list-data="listData"
       :pagination="pagination"
-      :activeStatus="0"
       @handleClickAssign="handleClickAssign"
       @handleClickCancel="handleClickCancel"
       @onPageChange="onPageChange"
@@ -25,34 +25,29 @@
   </div>
   <!-- 撤销优惠券 -->
   <Delete
-    :title="'确认撤销'"
-    :dialog-delete-visible="visible"
     :delete-text="'此操作将结束发放优惠券，未使用的优惠券将作废，用户将无法使用该优惠券'"
+    :dialog-delete-visible="visible"
+    :title="'确认撤销'"
     @handle-delete="handleSubmit"
     @handle-close="handleClose"
   ></Delete>
   <!-- end -->
   <!-- 指派弹窗 -->
   <assignDialog
-    :visible="assignDialogVisible"
-    :title="title"
+    :data="DialogFormData"
     :pagination="pagination2"
     :receiveData="receiveData"
-    :data="DialogFormData"
-    @onPageChange="onAssignPageChange"
-    @handleClose="handleClose"
+    :title="title"
+    :visible="assignDialogVisible"
     @fetchData="fetchData"
+    @handleClose="handleClose"
+    @onPageChange="onAssignPageChange"
   />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch, watchEffect } from 'vue'
-import {
-  getCouponList,
-  getCouponRecordList,
-  deleteCoupon,
-  getCouponDetail
-} from '@/api/coupon'
+import { deleteCoupon, getCouponDetail, getCouponList, getCouponRecordList } from '@/api/coupon'
 import { useRoute } from 'vue-router'
 import { MessagePlugin } from 'tdesign-vue-next'
 
@@ -60,6 +55,7 @@ import tableList from './components/TableList.vue' // 表格
 import Delete from '@/components/Delete/index.vue' // 删除弹层
 import searchFormBox from './components/SearchForm.vue' // 搜索框表单
 import assignDialog from './components/assignDialog.vue'
+
 const url = ref('') // 当前路由
 
 const visible = ref(false) // 新增，编辑弹窗

@@ -1,27 +1,23 @@
 <template>
   <t-row :gutter="16" class="row-container">
-    <t-col :xs="12" :xl="12">
-      <t-card title="订单数趋势" class="dashboard-chart-card">
+    <t-col :xl="12" :xs="12">
+      <t-card class="dashboard-chart-card" title="订单数趋势">
         <div
           id="monitorContainer"
           ref="monitorContainer"
-          class="dashboard-chart-container"
           :style="{ width: '99.6%', height: `${resizeTime * 326}px` }"
+          class="dashboard-chart-container"
         />
       </t-card>
     </t-col>
   </t-row>
 </template>
 
-<script setup lang="ts">
-import { onMounted, ref, onUnmounted, nextTick, computed, watch } from 'vue'
+<script lang="ts" setup>
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 
 import * as echarts from 'echarts/core'
-import {
-  TooltipComponent,
-  LegendComponent,
-  GridComponent
-} from 'echarts/components'
+import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components'
 import { LineChart } from 'echarts/charts'
 import { CanvasRenderer } from 'echarts/renderers'
 import { useSettingStore } from '@/store'
@@ -66,7 +62,7 @@ const renderMonitorChart = () => {
   }
   monitorChart = echarts.init(monitorContainer)
   monitorChart.setOption(
-    getLineChartDataSet({ dateTime: dataTime[0].time, ...chartColors.value })
+    getLineChartDataSet({dateTime: dataTime[0].time, ...chartColors.value})
   )
 }
 
@@ -97,7 +93,7 @@ watch(
   () => {
     const count = (props.middleChartData as { count: number }[]).map((item) => item.count)
     const countDate = (props.middleChartData as { dateTime: string }[]).map((item) => item.dateTime)
-    onCurrencyChange(count , countDate)
+    onCurrencyChange(count, countDate)
   }
 )
 onMounted(() => {
@@ -105,7 +101,7 @@ onMounted(() => {
   const countDate = (props.middleChartData as { dateTime: string }[]).map((item) => item.dateTime)
   // 初始化图表
   renderMonitorChart()
-  onCurrencyChange(count , countDate)
+  onCurrencyChange(count, countDate)
   nextTick(() => {
     // 初始化图表大小
     updateContainer()
@@ -139,7 +135,7 @@ onUnmounted(() => {
 // 内容变化
 const onCurrencyChange = (count: string[] | number[], countDate: string[]) => {
   monitorChart.setOption(
-    getLineChartDataSet({ count, countDate, ...chartColors.value })
+    getLineChartDataSet({count, countDate, ...chartColors.value})
   )
 }
 
@@ -162,13 +158,16 @@ const onCurrencyChange = (count: string[] | number[], countDate: string[]) => {
     margin-right: 0;
   }
 }
+
 .rightHead {
   display: flex;
   align-items: center;
+
   .active {
     background-color: var(--color-main) !important;
     color: var(--color-white) !important;
   }
+
   .card {
     margin-right: 20px;
     font-size: 14px;
@@ -178,15 +177,18 @@ const onCurrencyChange = (count: string[] | number[], countDate: string[]) => {
     white-space: nowrap;
     color: var(--color-bk3);
     cursor: pointer;
+
     &:hover {
       background-color: var(--color-main);
       color: var(--color-white);
     }
   }
 }
+
 :deep(.t-card__body) {
   padding: 0;
 }
+
 :deep(.t-card__subtitle) {
   font-size: 16px;
 }

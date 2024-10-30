@@ -9,8 +9,8 @@ import path from 'path'
 const CWD = process.cwd()
 
 // https://vitejs.dev/config/
-export default ({ mode }: ConfigEnv): UserConfig => {
-  const { VITE_BASE_URL } = loadEnv(mode, CWD)
+export default ({mode}: ConfigEnv): UserConfig => {
+  const {VITE_BASE_URL} = loadEnv(mode, CWD)
   return {
     base: VITE_BASE_URL,
     define: {},

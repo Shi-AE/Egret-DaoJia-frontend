@@ -6,56 +6,56 @@
     <searchFormBox
       :initSearch="initSearch"
       :typeSelect="typeSelect"
-      @handleSearch="handleSearch"
       @handleReset="handleReset"
+      @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
+      :isActive="0"
       :list-data="listData"
       :pagination="pagination"
-      :isActive="0"
+      @fetchData="fetchData"
+      @handleApply="handleApply"
       @handleBuild="handleBuild"
       @handleClickFreeze="handleClickFreeze"
-      @fetchData="fetchData"
       @handleReject="handleReject"
-      @onPageChange="onPageChange"
       @handleSortChange="handleSortChange"
-      @handleApply="handleApply"
+      @onPageChange="onPageChange"
     ></tableList>
     <!-- end -->
     <!-- 驳回弹窗 -->
     <DialogForm
-      :visible="visible"
-      :title="title"
-      :data="DialogFormData"
       ref="dialogForm"
-      @handleClose="handleClose"
+      :data="DialogFormData"
+      :title="title"
+      :visible="visible"
       @fetchData="fetchData"
+      @handleClose="handleClose"
       @handleSubmit="handleFreeze"
     />
     <!-- end -->
     <!-- 通过弹窗 -->
     <Delete
-      :title="title"
-      :dialog-delete-visible="dialogFreezeVisible"
       :delete-text="deleteText"
+      :dialog-delete-visible="dialogFreezeVisible"
+      :title="title"
       @handle-delete="handleThaw"
       @handle-close="handleClose"
     ></Delete>
     <!-- end -->
     <!-- 申请弹窗 -->
     <ApplyDialog
-      :visible="applyVisible"
-      title="申请记录"
       :data="applyData"
       :pagination="pagination"
+      :visible="applyVisible"
+      title="申请记录"
       @handleClose="handleClose"
     ></ApplyDialog>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, onMounted, watchEffect } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute, useRouter } from 'vue-router'
@@ -158,7 +158,7 @@ const handleFreeze = async (val) => {
   await serviceInstitutionAudit({
     certificationStatus: 3,
     rejectReason: val.selectName
-  },freezeId.value).then((res) => {
+  }, freezeId.value).then((res) => {
     if (res.data.code === 200) {
       dialogFreezeVisible.value = false
       MessagePlugin.success('驳回成功')
@@ -208,7 +208,7 @@ const handleThaw = async () => {
   await serviceInstitutionAudit({
     rejectReason: '',
     certificationStatus: 2
-  },freezeId.value).then((res) => {
+  }, freezeId.value).then((res) => {
     if (res.data.code === 200) {
       dialogFreezeVisible.value = false
       MessagePlugin.success('通过成功')

@@ -1,7 +1,7 @@
 <template>
-  <img :class="className" :src="url" />
+  <img :class="className" :src="url"/>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -13,7 +13,7 @@ const props = defineProps({
 })
 
 const className = computed(() => {
-  const { type } = props
+  const {type} = props
   return [
     'thumbnail-container',
     {

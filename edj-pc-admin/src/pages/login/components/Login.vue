@@ -13,14 +13,14 @@
       <t-form-item name="username">
         <t-input
           v-model="formData.username"
-          size="large"
-          placeholder="账户"
-          autocomplete="both"
           :format="formataccount"
+          autocomplete="both"
           clearable
+          placeholder="账户"
+          size="large"
         >
           <template #prefix-icon>
-            <t-icon name="user" />
+            <t-icon name="user"/>
           </template>
         </t-input>
       </t-form-item>
@@ -28,23 +28,23 @@
       <t-form-item name="password">
         <t-input
           v-model="formData.password"
-          size="large"
-          :type="showPsw ? 'text' : 'password'"
-          clearable
-          placeholder="密码"
           :format="formataccount"
-          onkeyup="this.value=this.value.replace(/[^\w_]/g,'');"
+          :type="showPsw ? 'text' : 'password'"
           autocomplete="both"
+          clearable
+          onkeyup="this.value=this.value.replace(/[^\w_]/g,'');"
+          placeholder="密码"
+          size="large"
         >
           <template #prefix-icon>
-            <t-icon name="lock-on" />
+            <t-icon name="lock-on"/>
           </template>
         </t-input>
       </t-form-item>
     </template>
 
     <t-form-item class="btn-container">
-      <t-loading v-if="loadSt" indicator class="bt load"></t-loading>
+      <t-loading v-if="loadSt" class="bt load" indicator></t-loading>
       <button v-else class="bt" type="submit">登录</button>
       <div class="tips">
         仅用于IT培训教学使用，为保障您的个人信息安全，请勿向平台录入任何个人敏感信息
@@ -54,7 +54,7 @@
   </t-form>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { FormInstanceFunctions, FormRule } from 'tdesign-vue-next'
@@ -72,20 +72,20 @@ const INITIAL_DATA = {
 }
 
 const FORM_RULES: Record<string, FormRule[]> = {
-  account: [{ required: true, message: '账号必填', type: 'error' }],
-  password: [{ required: true, message: '密码必填', type: 'error' }]
+  account: [{required: true, message: '账号必填', type: 'error'}],
+  password: [{required: true, message: '密码必填', type: 'error'}]
 }
 
 const type = ref(2)
 
 const form = ref<FormInstanceFunctions>()
-const formData = ref({ ...INITIAL_DATA })
+const formData = ref({...INITIAL_DATA})
 const showPsw = ref(false)
 
 const router = useRouter()
 const route = useRoute()
 
-const onSubmit = async ({ validateResult }) => {
+const onSubmit = async ({validateResult}) => {
   if (validateResult === true) {
     loadSt.value = true
     // 登录相关

@@ -8,7 +8,7 @@ export const COLUMNS = [
     minWidth: '250px',
     colKey: 'id'
   },
-  { title: '客户姓名', width: 150, minWidth: '150px', colKey: 'nickname' },
+  {title: '客户姓名', width: 150, minWidth: '150px', colKey: 'nickname'},
   {
     title: '手机号码',
     minWidth: '200px',
@@ -21,14 +21,14 @@ export const COLUMNS = [
     colKey: 'createTime',
     sorter: true,
     sortType: 'all',
-    cell: (h, { row }) => h('span',row.createTime ? dayjs(row.createTime).format('YYYY-MM-DD HH:mm') : '-')
+    cell: (h, {row}) => h('span', row.createTime ? dayjs(row.createTime).format('YYYY-MM-DD HH:mm') : '-')
   },
   {
     title: '状态',
     colKey: 'status',
     width: 120,
     minWidth: '120px',
-    cell: (h, { row }) => {
+    cell: (h, {row}) => {
       const statusList = {
         0: {
           label: '正常'

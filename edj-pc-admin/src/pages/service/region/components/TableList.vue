@@ -7,21 +7,21 @@
       </div>
       <t-config-provider :global-config="globalLocale">
         <t-table
-          :data="data"
           :columns="COLUMNS"
-          :row-key="rowKey"
-          vertical-align="middle"
+          :data="data"
+          :disable-data-page="pagination.total <= 10"
+          :hide-sort-tips="true"
           :hover="true"
+          :loading="dataLoading"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
           "
-          :disable-data-page="pagination.total <= 10"
+          :row-key="rowKey"
           :selected-row-keys="selectedRowKeys"
-          :loading="dataLoading"
-          :sort="sort"
-          :hide-sort-tips="true"
           :show-sort-column-bg-color="true"
+          :sort="sort"
           table-content-width="100%"
+          vertical-align="middle"
           @page-change="onPageChange"
           @sort-change="sortChange"
           @select-change="rehandleSelectChange"
@@ -34,36 +34,37 @@
           <template #updateTime="{ row }">
             <div>
               <div>
-                {{ row.updateTime ? formatDateTimeToDateTimeString(new Date(row.updateTime)) : '-'}}
+                {{ row.updateTime ? formatDateTimeToDateTimeString(new Date(row.updateTime)) : '-' }}
               </div>
             </div>
           </template>
           <!-- end -->
           <!-- 在操作栏添加删除、编辑、查看三种操作 -->
           <template #op="{ row }">
-            <a :class="row.activeStatus !== 0 ? 'text-forbidden btn-dl btn-split-right' : 'btn-dl btn-split-right'" @click="handleClickDelete(row)"
-              >删除</a
+            <a :class="row.activeStatus !== 0 ? 'text-forbidden btn-dl btn-split-right' : 'btn-dl btn-split-right'"
+               @click="handleClickDelete(row)"
+            >删除</a
             >
             <a class="font-bt line" @click="handleClickEdit(row)">编辑</a>
             <a
               class=" font-bt line btn-split-left"
               @click="handleClickBusiness(row)"
-              >调度配置</a
+            >调度配置</a
             >
             <a
               class="font-bt line btn-split-left"
               @click="handleClickDetail(row)"
-              >设置服务</a
+            >设置服务</a
             >
             <a
               class="font-bt line btn-split-left"
               @click="handleClickStart(row, row.activeStatus)"
-              >{{ row.activeStatus === 2 ? '禁用' : '启用' }}</a
+            >{{ row.activeStatus === 2 ? '禁用' : '启用' }}</a
             >
             <a
               class="font-bt btn-split-left"
               @click="handleRefreshCache(row)"
-              >缓存刷新</a
+            >缓存刷新</a
             >
           </template>
           <!-- end -->
@@ -73,7 +74,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { CaretDownSmallIcon } from 'tdesign-icons-vue-next'

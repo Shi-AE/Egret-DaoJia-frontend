@@ -2,30 +2,30 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
-    :header="title"
-    :width="628"
     :footer="false"
+    :header="title"
     :on-close="onClickCloseBtn"
+    :width="628"
   >
     <template #body>
       <!-- 表单内容 -->
       <t-form
         ref="form"
         :data="formData"
+        :reset-type="resetType"
         :rules="rules"
         on-cancel="onClickCloseBtn"
-        :reset-type="resetType"
         @submit="onSubmit"
       >
         <t-form-item label="地区选择：" name="edjCityId">
           <t-cascader
             v-model="formData.edjCityId"
-            class="form-item-content wt-400"
-            placeholder="请选择"
             :disabled="edit"
-            :style="{ minWidth: '134px' }"
-            clearable
             :options="options"
+            :style="{ minWidth: '134px' }"
+            class="form-item-content wt-400"
+            clearable
+            placeholder="请选择"
             @change="(value, context) => onChangeCity(value, context)"
           />
         </t-form-item>
@@ -33,8 +33,8 @@
           <t-input
             v-model="formData.managerName"
             class="wt-400"
-            placeholder="请输入"
             clearable
+            placeholder="请输入"
           >
           </t-input>
         </t-form-item>
@@ -42,8 +42,8 @@
           <t-input
             v-model="formData.managerPhone"
             class="wt-400"
-            placeholder="请输入"
             clearable
+            placeholder="请输入"
           >
           </t-input>
         </t-form-item>
@@ -51,7 +51,7 @@
           <div class="bt bt-grey btn-submit" @click="onClickCloseBtn">
             <span>取消</span>
           </div>
-          <button theme="primary" type="submit" class="bt btn-submit">
+          <button class="bt btn-submit" theme="primary" type="submit">
             <span>保存</span>
           </button>
         </t-form-item>
@@ -60,10 +60,10 @@
   </t-dialog>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { ValidateResultContext } from 'tdesign-vue-next'
-import { validateText10, validatePhone } from '@/utils/validate'
+import { validatePhone, validateText10 } from '@/utils/validate'
 
 const props = defineProps({
   visible: {
@@ -209,6 +209,7 @@ defineExpose({
   z-index: 100;
   color: var(--color-bk4);
 }
+
 :deep(.t-textarea__limit) {
   color: var(--color-bk4);
   right: 10px;

@@ -6,6 +6,7 @@ export function getProjectList() {
     url: '/get-detail-list'
   })
 }
+
 // 首页数据
 export function getDashBoardData(params) {
   return request.get({
@@ -13,6 +14,7 @@ export function getDashBoardData(params) {
     params
   })
 }
+
 // 导出统计数据
 export function exportStatisticsData(params) {
   return request.get({

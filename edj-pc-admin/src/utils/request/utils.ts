@@ -16,7 +16,7 @@ export function joinTimestamp(join: boolean, restful = false): string | object {
   if (restful) {
     return `?_t=${now}`
   }
-  return { _t: now }
+  return {_t: now}
 }
 
 // 格式化提交参数时间

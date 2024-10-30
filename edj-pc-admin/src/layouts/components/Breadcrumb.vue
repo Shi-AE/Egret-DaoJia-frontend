@@ -5,8 +5,8 @@
       <t-breadcrumbItem
         v-for="item in crumbs"
         :key="item.to"
-        :to="item.to"
         :replace="true"
+        :to="item.to"
         class="breadcrumbItem"
         @click="() => $router.push(item.to)"
       >
@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, nextTick } from 'vue' // 从vue中引入computed
 import { getCurrentInstance } from 'vue'
 import { useRoute, useRouter } from 'vue-router' // 从vue-router中引入useRoute
@@ -61,34 +61,42 @@ const handleRefresh = () => {
   })
 }
 </script>
-<style scoped lang="less">
+<style lang="less" scoped>
 .tdesign-breadcrumb {
   margin-bottom: 24px;
 }
+
 .breadcrumbItem {
   /* 将第一项设置为不可点击 */
+
   &:first-child {
     pointer-events: none;
+
     :deep(.t-breadcrumb--text-overflow .t-breadcrumb__inner-text) {
       color: var(--color-bk4);
     }
   }
+
   // 因为当前不存在三级页面，第二级页面即是当前页面故不需要点击跳转功能，先进行禁用，后续有三级页面时再进行开启
   &:last-child {
     pointer-events: none;
+
     :deep(.t-breadcrumb--text-overflow .t-breadcrumb__inner-text) {
       color: var(--color-bk3);
     }
   }
 }
+
 .bread {
   display: flex;
   justify-content: space-between;
+
   .fresh {
     display: flex;
     align-items: center;
     cursor: pointer;
     height: 22px;
+
     span {
       display: inline-block;
       width: 14px;

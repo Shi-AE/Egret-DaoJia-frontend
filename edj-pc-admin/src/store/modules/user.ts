@@ -17,7 +17,7 @@ export const useUserStore = defineStore('user', {
       localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN) || '',
     authorizationRefreshToken:
       localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN) || '',
-    userInfo: { ...InitUserInfo }
+    userInfo: {...InitUserInfo}
   }),
   getters: {
     roles: (state) => {
@@ -39,7 +39,7 @@ export const useUserStore = defineStore('user', {
       localStorage.removeItem(AUTHORIZATION_REFRESH_TOKEN)
       this.authorizationAccessToken = ''
       this.authorizationRefreshToken = ''
-      this.userInfo = { ...InitUserInfo }
+      this.userInfo = {...InitUserInfo}
     },
     async removeToken() {
       this.authorizationAccessToken = ''

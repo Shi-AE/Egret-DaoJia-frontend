@@ -6,13 +6,13 @@
       :key="index"
       :class="{ title: true, line: currentId == item.id }"
       @click="changeId(item.id)"
-      >{{ item.name
+    >{{ item.name
       }}<span v-if="item.value" class="value">{{ item.value }}</span></span
     >
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 import Type from './type'
 
@@ -40,13 +40,16 @@ const changeId = (id) => {
   font-weight: 400;
   font-size: 16px;
   color: var(--color-bk3);
+
   .title {
     margin-right: 40px;
     position: relative;
     cursor: pointer;
   }
+
   .line {
     color: var(--color-main);
+
     &::before {
       position: absolute;
       left: 50%;
@@ -60,6 +63,7 @@ const changeId = (id) => {
     }
   }
 }
+
 .value {
   margin-left: 5px;
 }

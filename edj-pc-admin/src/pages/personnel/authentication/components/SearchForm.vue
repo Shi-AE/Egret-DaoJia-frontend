@@ -8,9 +8,9 @@
             <t-input
               v-model="formData.name"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -19,9 +19,9 @@
             <t-input
               v-model="formData.idCardNo"
               class="form-item-content"
-              type="search"
-              placeholder="请输入"
               clearable
+              placeholder="请输入"
+              type="search"
             />
           </t-form-item>
         </t-col>
@@ -52,9 +52,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
-import { AUTH_STATUS , AUDIT_STATUS } from '@/constants'
+import { AUTH_STATUS, AUDIT_STATUS } from '@/constants'
+
 const props = defineProps({
   initSearch: {
     type: Number,
@@ -88,7 +89,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = { ...searchForm }
+  formData.value = {...searchForm}
   emit('handleSearch', formData.value)
 }
 // 搜索表单

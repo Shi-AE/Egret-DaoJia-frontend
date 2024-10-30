@@ -11,11 +11,11 @@
     <tableList
       :list-data="listData"
       :pagination="pagination"
-      @handleEdit="handleEdit"
+      @fetchData="fetchData"
       @handleBuild="handleBuild"
       @handleClickDelete="handleClickDelete"
-      @fetchData="fetchData"
       @handleDisable="handleDisable"
+      @handleEdit="handleEdit"
       @handleSortChange="handleSortChange"
       @onPageChange="onPageChange"
     ></tableList>
@@ -23,27 +23,27 @@
     <!-- 新增，编辑弹窗 -->
     <DialogForm
       ref="dialogForm"
-      :visible="visible"
-      :title="title"
       :data="formData"
-      @handleClose="handleClose"
+      :title="title"
+      :visible="visible"
       @fetchData="fetchData"
+      @handleClose="handleClose"
       @handleSubmit="handleSubmit"
     />
     <!-- end -->
     <!-- 删除弹窗 -->
     <Delete
-      :dialog-delete-visible="dialogDeleteVisible"
       :delete-text="deleteText"
+      :dialog-delete-visible="dialogDeleteVisible"
       @handle-delete="handleDelete"
       @handle-close="handleClose"
     ></Delete>
     <!-- end -->
     <!-- 禁用/启用弹窗 -->
     <Confirm
-      :title="confirmTitle"
-      :dialog-confirm-visible="dialogConfirmVisible"
       :confirm-text="confirmText"
+      :dialog-confirm-visible="dialogConfirmVisible"
+      :title="confirmTitle"
       @handle-confirm="handleConfirm"
       @handle-close="handleClose"
     ></Confirm>
@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref, watch, watchEffect } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute } from 'vue-router'

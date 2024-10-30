@@ -1,9 +1,12 @@
 # 云岚到家-机构端
+
 #### 项目简介
+
 > 当代人们的生活节奏越来越快，很多人因为工作和其他事情没有时间去处理家务事，因此需要家政服务来帮助他们解决日常生活中的问题。云岚到家家政项目是一种在线服务，将家政服务与互联网技术相结合，为用户提供更加便捷的家政服务。
 
 项目迭代日志：
 23年3月30 - 合并更新 处理无法合并问题
+
 #### 研发规范遵循：
 
 - 主体使用驼峰命名
@@ -13,19 +16,22 @@
 - 组件使用大写开头命名
 
 #### 产品原型及设计
+
 - 设计稿： https://codesign.qq.com/app/design/P4VlZMr6dzjq6wL/board?team_id=6dqN292MdajaBXe
 - 产品原型： https://codesign.qq.com/app/prototype/a4Jd0NaP739AMkb/detail
 
 #### 运行环境 - 初始开发环境及工具
 
-- 项目开发环境: win10 + node: v16.19.0 + npm: 8.12.1 || pnpm: 6.32.8 
+- 项目开发环境: win10 + node: v16.19.0 + npm: 8.12.1 || pnpm: 6.32.8
 
 #### 访问地址
 
-
 #### 技术栈应用
+
 Vue 3 + TypeScript +Tdesign + Vite + pinia
+
 #### 项目结构
+
 ```html
 ├── commitlint.config.js              - commintlint 规范
 ├── docker                            - docker 部署配置文件
@@ -135,6 +141,7 @@ Vue 3 + TypeScript +Tdesign + Vite + pinia
 ├── README.md                         - 说明文档  
 └── vite.config.js                    - vite 配置文件
 ```
+
 #### 安装运行
 
 ``` bash
@@ -153,34 +160,36 @@ npm run start
 npm run build
 
 ```
+
 #### 插件
-nprogress 进度条 
+
+nprogress 进度条
 
 viteMockServe vite 的数据模拟插件
 
-vueJsx 
+vueJsx
 > 使用jsx 语法 jsx语法可以更好地跟Typescript结合 在阅读UI框架源码时，发现在知名UI组件库Ant Design Vue跟Naive UI皆使用tsx语法开发
-vite-svg-loader
-
-
+> vite-svg-loader
 
 #### 参考
 
 vite
 vue3
-pinia 中文文档 :类vuex 
+pinia 中文文档 :类vuex
 vue-router
 Tdesign
 Tdesign-cli
 
-tsconfig.json配置 
+tsconfig.json配置
+
 #### 文档
+
 tsconfig.json 配置整理
 vite.config.js vite配置文件
 
 src/config/proxy.ts 后端地址配置，
 
-​	release：生成环境下的后端地址，使用npm run build有效 ，
+​ release：生成环境下的后端地址，使用npm run build有效 ，
 
 vite.config.ts：配置npm run dev的代理地址	
 
