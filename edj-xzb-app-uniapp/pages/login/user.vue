@@ -14,9 +14,9 @@
                             placeholder="请输入手机号"
                         />
                     </uni-forms-item>
-                    <uni-forms-item class="pwdBox" name="veriryCode">
+                    <uni-forms-item class="pwdBox" name="verifyCode">
                         <uni-easyinput
-                            v-model="fromInfo.veriryCode"
+                            v-model="fromInfo.verifyCode"
                             :clearable="false"
                             class="item"
                             placeholder="请输入验证码"
@@ -28,12 +28,12 @@
                 <view class="btnBox">
                     <button
                         :class="
-              fromInfo.phone.length === 0 || fromInfo.veriryCode.length === 0
+              fromInfo.phone.length === 0 || fromInfo.verifyCode.length === 0
                 ? 'disabled'
                 : ''
             "
                         :disabled="
-              fromInfo.phone.length === 0 || fromInfo.veriryCode.length === 0
+              fromInfo.phone.length === 0 || fromInfo.verifyCode.length === 0
             "
                         class="btn-default"
                         type="primary"
@@ -80,7 +80,7 @@ const reason = ref('');
 // 表单数据
 let fromInfo = reactive({
     phone: '15066699132', //账号
-    veriryCode: '', // 密码
+    verifyCode: '', // 密码
     userType: 2,
 });
 // 表单校验
@@ -103,7 +103,7 @@ const customRules = reactive({
             },
         ],
     },
-    veriryCode: {
+    verifyCode: {
         rules: [
             {
                 required: true,
@@ -190,7 +190,7 @@ const handlePwd = async () => {
         phone: fromInfo.phone,
     })
         .then((res) => {
-            fromInfo.veriryCode = '123456';
+            fromInfo.verifyCode = '123456';
         })
         .catch((err) => {
             uni.showToast({

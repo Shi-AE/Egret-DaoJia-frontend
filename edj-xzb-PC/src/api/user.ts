@@ -5,7 +5,7 @@ import type { loginResult, userInfoResult } from '@/api/model/userModel'
 // 账号登录
 export const userLogins = (params) =>
   request.post<loginResult>({
-    url: `/customer/open/login/worker`,
+    url: `/edj-user/open/institution/login`,
     data: params
   })
 

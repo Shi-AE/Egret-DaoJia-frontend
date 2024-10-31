@@ -3,7 +3,7 @@ import { request } from "../../utils/request.js"
 // 手机号登录
 export const phoneLogins = (params) =>
     request({
-        url: `/customer/open/login/worker`,
+        url: `/edj-user/open/worker/login`,
         method: 'post',
         params
     })
