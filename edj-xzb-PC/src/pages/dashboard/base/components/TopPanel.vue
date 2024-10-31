@@ -5,7 +5,7 @@
         <div class="title">总收入</div>
         <div class="left-content">
           <div class="num">
-            <img src="../../../../assets/default/leijidingdan@2x.png"/>
+            <img src="../../../../assets/default/leijidingdan@2x.png" />
             <div class="text">12.56</div>
           </div>
           <div class="tips">累计订单金额（万元）</div>
@@ -15,7 +15,7 @@
         <div class="title">总退款</div>
         <div class="left-content">
           <div class="num">
-            <img src="../../../../assets/default/icon-daizhifu@2x.png"/>
+            <img src="../../../../assets/default/icon-daizhifu@2x.png" />
             <div class="text">12.56</div>
           </div>
           <div class="tips">累计订单金额（万元）</div>
@@ -25,7 +25,7 @@
         <div class="title">订单总数</div>
         <div class="left-content">
           <div class="num">
-            <img src="../../../../assets/default/icon-guanbi@2x.png"/>
+            <img src="../../../../assets/default/icon-guanbi@2x.png" />
             <div class="text">12.56</div>
           </div>
           <div class="tips">累计订单金额（万元）</div>
@@ -36,15 +36,15 @@
       <div class="title">基础设置</div>
       <div class="right-content">
         <div class="right-item" @click="handleServiceSkill">
-          <img src="../../../../assets/default/btn_top_fwjn.png"/>
+          <img src="../../../../assets/default/btn_top_fwjn.png" />
           <div class="tips">服务技能设置</div>
         </div>
         <div class="right-item" @click="handleServiceRange">
-          <img src="../../../../assets/default/btn_top_fwfw.png"/>
+          <img src="../../../../assets/default/btn_top_fwfw.png" />
           <div class="tips">服务范围设置</div>
         </div>
         <div class="right-item" @click="handleAccount">
-          <img src="../../../../assets/default/btn_top_zhanghu.png"/>
+          <img src="../../../../assets/default/btn_top_zhanghu.png" />
           <div class="tips">账户设置</div>
         </div>
       </div>
@@ -146,7 +146,7 @@ const getAccountInfoFunc = () => {
     formData.value.branch = res.data.branch
     formData.value.account = res.data.account
     formData.value.accountCertification = [
-      {url: res.data.accountCertification, name: ''}
+      { url: res.data.accountCertification, name: '' }
     ]
   })
 }

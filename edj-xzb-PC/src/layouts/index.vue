@@ -7,11 +7,11 @@
       <template v-if="setting.layout.value === 'side'">
         <t-layout key="side" :class="mainLayoutCls">
           <t-aside>
-            <layout-side-nav/>
+            <layout-side-nav />
           </t-aside>
           <t-layout>
             <t-content>
-              <layout-content-side/>
+              <layout-content-side />
             </t-content>
           </t-layout>
         </t-layout>
@@ -47,7 +47,7 @@ const appendNewRoute = () => {
   const {
     path,
     query,
-    meta: {title},
+    meta: { title },
     name
   } = route
   tabsRouterStore.appendTabRouterList({
@@ -71,7 +71,7 @@ watch(
     appendNewRoute()
     document
       .querySelector(`.${prefix}-layout`)
-      .scrollTo({top: 0, behavior: 'smooth'})
+      .scrollTo({ top: 0, behavior: 'smooth' })
   }
 )
 </script>

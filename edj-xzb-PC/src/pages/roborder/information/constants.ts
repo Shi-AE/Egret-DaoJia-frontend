@@ -7,7 +7,7 @@ export const COLUMNS = [
     minWidth: '100px',
     width: 100,
     colKey: 'id',
-    cell: (h, {row, rowIndex}) => h('span', rowIndex + 1)
+    cell: (h, { row, rowIndex }) => h('span', rowIndex + 1)
   },
   {
     title: '服务类型',
@@ -31,14 +31,14 @@ export const COLUMNS = [
     title: '预约时间',
     minWidth: '200px',
     colKey: 'serveStartTime',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.serveStartTime)))
   },
   {
     title: '服务费用（元）',
     minWidth: '150px',
     colKey: 'ordersAmount',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatNumber(row.ordersAmount * 0.997 * 0.3))
   },
   {

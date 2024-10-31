@@ -1,7 +1,7 @@
 <!-- 公用空数据页组件 -->
 <template>
   <div class="noData">
-    <img src="@/assets/default/zwnr@2x.png"/>
+    <img src="@/assets/default/zwnr@2x.png" />
     <p>{{ content || '暂无内容哦～' }}</p>
   </div>
 </template>

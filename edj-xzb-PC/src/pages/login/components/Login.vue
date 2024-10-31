@@ -20,7 +20,7 @@
           size="large"
         >
           <template #prefix-icon>
-            <t-icon class="phone"/>
+            <t-icon class="phone" />
           </template>
         </t-input>
       </t-form-item>
@@ -37,7 +37,7 @@
           size="large"
         >
           <template #prefix-icon>
-            <t-icon class="password"/>
+            <t-icon class="password" />
           </template>
         </t-input>
       </t-form-item>
@@ -100,13 +100,13 @@ const FORM_RULES: Record<string, FormRule[]> = {
       trigger: 'change'
     }
   ],
-  password: [{required: true, message: '密码必填', type: 'error'}]
+  password: [{ required: true, message: '密码必填', type: 'error' }]
 }
 
 const type = ref(2)
 
 const form = ref<FormInstanceFunctions>()
-const formData = ref({...INITIAL_DATA})
+const formData = ref({ ...INITIAL_DATA })
 const showPsw = ref(false)
 
 const router = useRouter()
@@ -116,7 +116,7 @@ const route = useRoute()
 const openForgetPwd = () => {
   emit('openForgetPwd')
 }
-const onSubmit = async ({validateResult}) => {
+const onSubmit = async ({ validateResult }) => {
   if (validateResult === true) {
     loadSt.value = true
     // 登录相关

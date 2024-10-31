@@ -45,8 +45,8 @@ export function constructInitDashboardDataset(type: string) {
           symbolSize: 0,
           markPoint: {
             data: [
-              {type: 'max', name: '最大值'},
-              {type: 'min', name: '最小值'}
+              { type: 'max', name: '最大值' },
+              { type: 'min', name: '最小值' }
             ]
           },
           lineStyle: {
@@ -229,7 +229,7 @@ export function getLineChartDataSet({
     color: getChartListColor(),
     tooltip: {
       trigger: 'axis',
-      formatter: function (params) {
+      formatter: function(params) {
         var data0 =
           '<div style="display:flex;justify-content:space-between;height:14px;line-height:14px;">' +
           '<span style="margin-right:15px">' +
@@ -292,7 +292,7 @@ export function getLineChartDataSet({
       orient: 'horizontal', // legend 横向布局。
       data: ['有效订单', '订单总数'],
       // 修改图例文字的的内容，在后面加上（个）
-      formatter: function (name) {
+      formatter: function(name) {
         return name + '（个）'
       },
       textStyle: {
@@ -358,7 +358,7 @@ export function getLineChartDataSet({
         symbol: 'circle',
         color: '#F74346',
         symbolSize: 6 // 设置拐点的大小
-      },
+      }
     ]
   }
   return dataSet

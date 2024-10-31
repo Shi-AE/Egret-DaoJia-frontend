@@ -67,7 +67,7 @@
         </t-form>
       </t-row>
       <div v-if="certificationStatus === 3" class="authFail">
-        <img src="../../../../src/assets/default/img_weitongguo@2x.png"/>
+        <img src="../../../../src/assets/default/img_weitongguo@2x.png" />
         <div class="content">
           <p>提交的认证审核末通过</p>
           <p>原因：{{ reason }}</p>
@@ -124,7 +124,7 @@ const handleResetAuth = () => {
 }
 //图片上传成功
 const handleSuccess = (params) => {
-  formData.value.businessLicense = [{url: params.response.data.url, name: ''}]
+  formData.value.businessLicense = [{ url: params.response.data.url, name: '' }]
 }
 // 触发父级事件
 const emit = defineEmits([

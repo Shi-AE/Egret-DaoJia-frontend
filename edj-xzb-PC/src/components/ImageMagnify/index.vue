@@ -3,7 +3,7 @@
   <div class="picBox">
     <t-dialog v-model:visible="dialogPicVisible" :on-close="handleClose">
       <div class="close" @click="handleClose"></div>
-      <div class="pic"><img :src="pic"/></div>
+      <div class="pic"><img :src="pic" /></div>
     </t-dialog>
   </div>
 </template>

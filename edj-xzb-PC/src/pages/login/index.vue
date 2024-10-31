@@ -6,7 +6,7 @@
         <div class="login-container">
           <div class="title-container">
             <h1 class="title">
-              <img alt="" class="logo" src="@/assets/test-img/logofull.png"/>
+              <img alt="" class="logo" src="@/assets/test-img/logofull.png" />
             </h1>
           </div>
           <login
@@ -155,7 +155,7 @@ const FORM_RULES: Record<string, FormRule[]> = {
     }
   ],
   password: [
-    {required: true, message: '密码必填', type: 'error'},
+    { required: true, message: '密码必填', type: 'error' },
     {
       min: 8,
       message: '输入密码最少8位',
@@ -163,11 +163,11 @@ const FORM_RULES: Record<string, FormRule[]> = {
       trigger: 'change'
     }
   ],
-  verifyCode: [{required: true, message: '验证码必填', type: 'error'}]
+  verifyCode: [{ required: true, message: '验证码必填', type: 'error' }]
 }
 const [countDown, handleCounter] = useCounter()
 // 提交，修改密码
-const onSubmit = async ({validateResult}) => {
+const onSubmit = async ({ validateResult }) => {
   if (validateResult === true) {
     // 登录相关
     resetPwd(dialogForm)

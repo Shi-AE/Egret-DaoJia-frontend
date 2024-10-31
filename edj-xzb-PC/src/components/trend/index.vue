@@ -15,7 +15,7 @@
           stroke="currentColor"
           stroke-width="1.5"
         />
-        <path d="M8 11L8 4" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 11L8 4" stroke="currentColor" stroke-width="1.5" />
       </svg>
       <svg
         v-else
@@ -30,7 +30,7 @@
           stroke="currentColor"
           stroke-width="1.5"
         />
-        <path d="M8 5V12" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 5V12" stroke="currentColor" stroke-width="1.5" />
       </svg>
     </span>
     <span>{{ describe }}</span>
@@ -49,7 +49,7 @@ const props = defineProps({
 })
 
 const containerCls = computed(() => {
-  const {isReverseColor, type} = props
+  const { isReverseColor, type } = props
   return [
     'trend-container',
     {

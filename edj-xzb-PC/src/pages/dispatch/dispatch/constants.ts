@@ -15,7 +15,7 @@ export const COLUMNS = [
     sortType: 'all',
     colKey: 'id'
   },
-  {title: '服务类型', width: 200, minWidth: '200px', colKey: 'serveTypeName'},
+  { title: '服务类型', width: 200, minWidth: '200px', colKey: 'serveTypeName' },
   {
     title: '服务名称',
     minWidth: '200px',
@@ -26,7 +26,7 @@ export const COLUMNS = [
     width: 250,
     minWidth: '250px',
     colKey: 'ordersAmount',
-    cell: (h, {row}) => h('span', formatNumber(row.ordersAmount * 0.997 * 0.3))
+    cell: (h, { row }) => h('span', formatNumber(row.ordersAmount * 0.997 * 0.3))
   },
   {
     title: '预约时间',
@@ -35,7 +35,7 @@ export const COLUMNS = [
     colKey: 'serveStartTime',
     sorter: true,
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.serveStartTime)))
   },
   {

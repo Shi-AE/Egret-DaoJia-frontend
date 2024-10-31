@@ -125,7 +125,7 @@ export const formatJson = (jsonObj, callback) => {
   jsonString = jsonString.replace(/\r\n\,/g, ',')
   // 特殊处理双引号中的内容
   jsonArray = jsonString.split('\r\n')
-  jsonArray.forEach(function (node, index) {
+  jsonArray.forEach(function(node, index) {
     // 获取当前字符串段中"的数量
     const num = node.match(/\"/g) ? node.match(/\"/g).length : 0
     // 判断num是否为奇数来确定是否需要特殊处理
@@ -146,7 +146,7 @@ export const formatJson = (jsonObj, callback) => {
     }
   })
   // 开始处理双引号中的内容，将多余的"去除
-  _index.reverse().forEach(function (item, index) {
+  _index.reverse().forEach(function(item, index) {
     const newArray = jsonArray.slice(item.start, item.end + 1)
     jsonArray.splice(item.start, item.end + 1 - item.start, newArray.join(''))
   })
@@ -159,7 +159,7 @@ export const formatJson = (jsonObj, callback) => {
   // 将上述转换后的字符串再次以\r\n分割成数组
   jsonArray = jsonString.split('\r\n')
   // 将转换完成的字符串根据PADDING值来组合成最终的形态
-  jsonArray.forEach(function (item, index) {
+  jsonArray.forEach(function(item, index) {
     let i = 0
     // 表示缩进的位数，以tab作为计数单位
     let indent = 0
@@ -225,13 +225,13 @@ export function toBaiduMap(lng, lat) {
 export function formatNumber(number) {
   if (number >= 0.1) {
     // 数字大于等于0时，保留两位小数
-    return number.toFixed(2);
+    return number.toFixed(2)
   } else if (number < 0.1 && number > 0.01) {
-    const fixedNumber = parseFloat(number.toFixed(3));
-    return fixedNumber.toFixed(3);
+    const fixedNumber = parseFloat(number.toFixed(3))
+    return fixedNumber.toFixed(3)
   } else {
     // 只舍不入
-    const fixedNumber = parseFloat(number.toFixed(4));
-    return fixedNumber.toFixed(4);
+    const fixedNumber = parseFloat(number.toFixed(4))
+    return fixedNumber.toFixed(4)
   }
 }

@@ -1,7 +1,7 @@
 <!-- 公共服务器出错 -->
 <template>
   <div class="serviceError">
-    <img src="@/assets/default/500@2x.png"/>
+    <img src="@/assets/default/500@2x.png" />
     <p>抱歉，服务器出错啦～</p>
   </div>
 </template>

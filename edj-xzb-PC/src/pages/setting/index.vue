@@ -3,12 +3,12 @@
   <div class="setting">
     <!-- 引导词 -->
     <div class="guide">
-      <img src="../../assets/default/settingBg.png"/>
+      <img src="../../assets/default/settingBg.png" />
     </div>
     <!-- 具体步骤 -->
     <div class="step">
       <div class="stepOne stepItem">
-        <img src="../../assets/default/stepOne.png"/>
+        <img src="../../assets/default/stepOne.png" />
         <div class="stepBox">
           <div class="stepContent">
             <div class="setpTitle">资质认证</div>
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="stepTwo stepItem">
-        <img src="../../assets/default/stepTwo.png"/>
+        <img src="../../assets/default/stepTwo.png" />
         <div class="stepBox">
           <div class="stepContent">
             <div class="setpTitle">服务技能设置</div>
@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="stepThree stepItem">
-        <img src="../../assets/default/stepThree.png"/>
+        <img src="../../assets/default/stepThree.png" />
         <div class="stepBox">
           <div class="stepContent">
             <div class="setpTitle">服务范围设置</div>
@@ -72,13 +72,13 @@
         </div>
       </div>
       <div class="stepFour stepItem">
-        <img src="../../assets/default/stepFour.png"/>
+        <img src="../../assets/default/stepFour.png" />
         <div class="stepBox">
           <div class="stepContent">
             <div class="setpTitle">接单设置</div>
             <div class="setpIntroduce">开启接单后，方可进行接单哦</div>
           </div>
-          <t-switch :value="canPickUp" @change="handlePickUpStatus"/>
+          <t-switch :value="canPickUp" @change="handlePickUpStatus" />
         </div>
       </div>
     </div>

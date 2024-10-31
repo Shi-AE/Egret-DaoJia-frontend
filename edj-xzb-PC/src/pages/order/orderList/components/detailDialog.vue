@@ -173,7 +173,7 @@
                             class="tdesign-demo-image-viewer__ui-image--hover"
                             @click="open"
                           >
-                            <span><ZoomInIcon size="1.8em"/> </span>
+                            <span><ZoomInIcon size="1.8em" /> </span>
                           </div>
                         </div>
                       </template>
@@ -214,7 +214,7 @@
                             class="tdesign-demo-image-viewer__ui-image--hover"
                             @click="open"
                           >
-                            <span><ZoomInIcon size="1.8em"/> </span>
+                            <span><ZoomInIcon size="1.8em" /> </span>
                           </div>
                         </div>
                       </template>

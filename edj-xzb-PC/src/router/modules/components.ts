@@ -2,7 +2,6 @@ import Layout from '@/layouts/index.vue'
 import orderIcon from '@/assets/test-img/icon_ddgl.svg'
 import seizeIcon from '@/assets/test-img/icon_ddgl_nor.svg'
 import personnelIcon from '@/assets/test-img/icon_fwry_nor.svg'
-import dispatchIcon from '@/assets/test-img/icon_pdgl_nor.svg'
 
 const normalRouter = [
   {
@@ -105,7 +104,7 @@ const normalRouter = [
           title: '服务人员管理',
           // 用来修改当出现子菜单在active状态不会激活父元素的active状态
           singles: true
-        },
+        }
       }
     ]
   }

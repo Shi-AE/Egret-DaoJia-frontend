@@ -15,9 +15,9 @@ export const COLUMNS = [
     sortType: 'all',
     colKey: 'name'
   },
-  {title: '服务人员手机', width: 200, minWidth: '200px', colKey: 'phone'},
-  {title: '身份证号', width: 250, minWidth: '250px', colKey: 'idCardNo'},
-  {title: '证明资料', minWidth: '150px', colKey: 'certificationImgs'},
+  { title: '服务人员手机', width: 200, minWidth: '200px', colKey: 'phone' },
+  { title: '身份证号', width: 250, minWidth: '250px', colKey: 'idCardNo' },
+  { title: '证明资料', minWidth: '150px', colKey: 'certificationImgs' },
   {
     title: '创建时间',
     width: 200,
@@ -25,7 +25,7 @@ export const COLUMNS = [
     colKey: 'createTime',
     sorter: true,
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.createTime)))
   },
   {

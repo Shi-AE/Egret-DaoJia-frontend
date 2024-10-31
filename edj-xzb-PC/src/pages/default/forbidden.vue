@@ -1,7 +1,7 @@
 <!-- 公共无权限 -->
 <template>
   <div class="netWorkAnomaly">
-    <img src="@/assets/default/noAuthority@2x.png"/>
+    <img src="@/assets/default/noAuthority@2x.png" />
     <p>您没有权限访问该页面～</p>
   </div>
 </template>

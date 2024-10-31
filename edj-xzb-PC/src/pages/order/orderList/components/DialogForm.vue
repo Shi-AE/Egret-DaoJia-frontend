@@ -136,7 +136,7 @@ const formatResponse = (res) => {
   if (res.code === 200) {
     return res.data
   } else {
-    return {name: 'null', error: '上传失败，请重试'};
+    return { name: 'null', error: '上传失败，请重试' }
   }
 }
 // 上传图片失败
@@ -146,7 +146,7 @@ const handleFail = (file) => {
 }
 // 超过大小或者文件格式错误报错提示
 const onValidate = (params) => {
-  const {files, type} = params
+  const { files, type } = params
   console.log('onValidate', type, files)
   const messageMap = {
     FILE_OVER_SIZE_LIMIT: files[0].response.error,

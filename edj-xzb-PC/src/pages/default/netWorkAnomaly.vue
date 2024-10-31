@@ -1,7 +1,7 @@
 <!-- 公共网络崩溃 -->
 <template>
   <div class="netWorkAnomaly">
-    <img src="@/assets/default/duanwang@2x.png"/>
+    <img src="@/assets/default/duanwang@2x.png" />
     <p>网络崩溃了～</p>
   </div>
 </template>

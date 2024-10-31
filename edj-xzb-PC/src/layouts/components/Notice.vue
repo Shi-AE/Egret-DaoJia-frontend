@@ -60,7 +60,7 @@
     </template>
     <t-badge :count="unreadMsg.length" :offset="[12, 8]">
       <t-button shape="square" theme="default" variant="text">
-        <t-icon name="mail"/>
+        <t-icon name="mail" />
       </t-button>
     </t-badge>
   </t-popup>
@@ -75,7 +75,7 @@ import type { NotificationItem } from '@/types/interface'
 const router = useRouter()
 const store = useNotificationStore()
 // msgData，通知数据
-const {msgData, unreadMsg} = storeToRefs(store)
+const { msgData, unreadMsg } = storeToRefs(store)
 // setRead，设置已读
 const setRead = (type: string, item?: NotificationItem) => {
   // changeMsg，修改后的数据

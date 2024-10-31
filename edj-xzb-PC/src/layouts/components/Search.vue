@@ -8,7 +8,7 @@
       @focus="changeSearchFocus(true)"
     >
       <template #prefix-icon>
-        <t-icon class="icon" name="search" size="16"/>
+        <t-icon class="icon" name="search" size="16" />
       </template>
     </t-input>
   </div>
@@ -21,7 +21,7 @@
       variant="text"
       @click="changeSearchFocus(true)"
     >
-      <t-icon name="search"/>
+      <t-icon name="search" />
     </t-button>
     <t-input
       v-model="searchData"
@@ -31,7 +31,7 @@
       @blur="changeSearchFocus(false)"
     >
       <template #prefix-icon>
-        <t-icon name="search" size="16"/>
+        <t-icon name="search" size="16" />
       </template>
     </t-input>
   </div>

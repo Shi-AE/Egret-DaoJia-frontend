@@ -76,7 +76,7 @@ const props = defineProps({
     default: () => {
       return []
     }
-  },
+  }
 })
 // 重置表单
 const resetType = ref('empty')
@@ -91,7 +91,7 @@ const formVisible = ref(false)
 // 表单数据
 const formData = ref({
   selectName: null,
-  selectId: null,
+  selectId: null
 })
 // 弹窗标题
 const title = ref()

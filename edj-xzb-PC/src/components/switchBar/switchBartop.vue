@@ -7,7 +7,7 @@
         :key="index"
         :class="{ title: true, line: currentId == item.id }"
         @click="changeId(item.id)"
-      >{{ item.name
+        >{{ item.name
         }}<span v-if="item.value" class="value">{{ item.value }}</span></span
       >
     </div>
@@ -22,7 +22,7 @@ import Type from './type'
 const props = defineProps({
   data: {
     type: Array as () => Type[],
-    default: () => [],
+    default: () => []
   }
 })
 // 触发父组件事件

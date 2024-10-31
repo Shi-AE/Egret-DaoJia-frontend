@@ -17,14 +17,14 @@ export const allocationCOLUMNS = [
     minWidth: '200px',
     colKey: 'id'
   },
-  {title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName'},
-  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
+  { title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName' },
+  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
   {
     title: '服务费用（元）',
     minWidth: '170px',
     sortType: 'all',
     colKey: 'ordersAmount',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatNumber(row.ordersAmount * 0.997 * 0.3))
   },
   {
@@ -33,7 +33,7 @@ export const allocationCOLUMNS = [
     sortType: 'all',
     colKey: 'serveStartTime',
     sorter: true,
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.serveStartTime)))
   },
   {
@@ -72,7 +72,7 @@ export const allocationCOLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         0: {
           label: '待分配'
@@ -135,14 +135,14 @@ export const doorCOLUMNS = [
     minWidth: '200px',
     colKey: 'id'
   },
-  {title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName'},
-  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
+  { title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName' },
+  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
   {
     title: '服务费用（元）',
     minWidth: '170px',
     sortType: 'all',
     colKey: 'ordersAmount',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatNumber(row.ordersAmount * 0.997 * 0.3))
   },
   {
@@ -151,7 +151,7 @@ export const doorCOLUMNS = [
     sortType: 'all',
     colKey: 'serveStartTime',
     sorter: true,
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.serveStartTime)))
   },
   {
@@ -190,7 +190,7 @@ export const doorCOLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         0: {
           label: '待分配'
@@ -254,14 +254,14 @@ export const successCOLUMNS = [
     minWidth: '200px',
     colKey: 'id'
   },
-  {title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName'},
-  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
+  { title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName' },
+  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
   {
     title: '服务费用（元）',
     minWidth: '170px',
     sortType: 'all',
     colKey: 'ordersAmount',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatNumber(row.ordersAmount * 0.997 * 0.3))
   },
   {
@@ -270,7 +270,7 @@ export const successCOLUMNS = [
     sortType: 'all',
     colKey: 'realServeStartTime',
     sorter: true,
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
         formatDateTimeToDateTimeString(new Date(row.realServeStartTime))
@@ -312,7 +312,7 @@ export const successCOLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         0: {
           label: '待分配'
@@ -376,14 +376,14 @@ export const finishCOLUMNS = [
     minWidth: '200px',
     colKey: 'id'
   },
-  {title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName'},
-  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
+  { title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName' },
+  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
   {
     title: '服务费用（元）',
     minWidth: '170px',
     sortType: 'all',
     colKey: 'ordersAmount',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatNumber(row.ordersAmount * 0.997 * 0.3))
   },
   {
@@ -392,7 +392,7 @@ export const finishCOLUMNS = [
     sortType: 'all',
     colKey: 'realServeEndTime',
     sorter: true,
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.realServeEndTime)))
   },
   {
@@ -431,7 +431,7 @@ export const finishCOLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         0: {
           label: '待分配'
@@ -495,14 +495,14 @@ export const allCOLUMNS = [
     minWidth: '200px',
     colKey: 'id'
   },
-  {title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName'},
-  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
+  { title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName' },
+  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
   {
     title: '服务费用（元）',
     minWidth: '170px',
     sortType: 'all',
     colKey: 'ordersAmount',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatNumber(row.ordersAmount * 0.997 * 0.3))
   },
   {
@@ -511,7 +511,7 @@ export const allCOLUMNS = [
     sortType: 'all',
     colKey: 'serveStartTime',
     sorter: true,
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.serveStartTime)))
   },
   {
@@ -550,7 +550,7 @@ export const allCOLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         0: {
           label: '待分配'
@@ -613,21 +613,21 @@ export const historyCOLUMNS = [
     minWidth: '200px',
     colKey: 'id'
   },
-  {title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName'},
-  {title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName'},
+  { title: '服务类型', width: 150, minWidth: '150px', colKey: 'serveTypeName' },
+  { title: '服务名称', width: 150, minWidth: '150px', colKey: 'serveItemName' },
   {
     title: '服务费用（元）',
     minWidth: '170px',
     sortType: 'all',
     colKey: 'ordersAmount',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatNumber(row.ordersAmount * 0.997 * 0.3))
   },
   {
     title: '预约时间',
     minWidth: '250px',
     colKey: 'serveStartTime',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', formatDateTimeToDateTimeString(new Date(row.serveStartTime)))
   },
   {
@@ -666,7 +666,7 @@ export const historyCOLUMNS = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         0: {
           label: '待分配'

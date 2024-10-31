@@ -17,15 +17,15 @@ export function register(params) {
   })
 }
 
-//获取验证码
+// 获取验证码
 export function getCode(params) {
   return request.post<any>({
-    url: '/publics/sms-code/send',
+    url: '/edj-publics/sms/code/send',
     data: params
   })
 }
 
-//修改密码
+// 修改密码
 export function resetPwd(params) {
   return request.post<any>({
     url: '/customer/agency/serve-provider/institution/resetPassword',

@@ -81,7 +81,7 @@ export function serviceOrderAssign(value) {
 // 机构下属服务人员列表
 export function servicePersonItemAllList() {
   return request.get({
-    url: '/customer/agency/institution-staff/queryInstitutionStaffList',
+    url: '/customer/agency/institution-staff/queryInstitutionStaffList'
   })
 }
 

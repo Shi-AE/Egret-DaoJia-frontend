@@ -53,7 +53,7 @@ const searchForm = {
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = {...searchForm}
+  formData.value = { ...searchForm }
   emit('handleSearch', formData.value)
 }
 // 搜索表单

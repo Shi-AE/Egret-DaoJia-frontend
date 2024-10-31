@@ -1,6 +1,6 @@
 <!-- 趋势图 -->
 <template>
-  <img :class="className" :src="url"/>
+  <img :class="className" :src="url" />
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue'
@@ -14,7 +14,7 @@ const props = defineProps({
 })
 
 const className = computed(() => {
-  const {type} = props
+  const { type } = props
   return [
     'thumbnail-container',
     {

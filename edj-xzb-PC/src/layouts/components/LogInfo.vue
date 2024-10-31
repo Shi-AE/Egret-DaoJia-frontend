@@ -166,8 +166,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import type { PropType } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSettingStore } from '@/store'
@@ -226,7 +226,7 @@ const changeCollapsed = () => {
 const handleLogout = () => {
   router.push({
     path: '/login',
-    query: {redirect: encodeURIComponent(router.currentRoute.value.fullPath)}
+    query: { redirect: encodeURIComponent(router.currentRoute.value.fullPath) }
   })
 }
 </script>

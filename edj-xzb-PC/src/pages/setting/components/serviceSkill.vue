@@ -45,7 +45,7 @@
           @change="handleSearch"
         >
           <template #suffixIcon>
-            <search-icon/>
+            <search-icon />
           </template>
         </t-input>
         <NoData v-if="rightItem.data?.length === 0"></NoData>

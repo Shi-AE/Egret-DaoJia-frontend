@@ -3,11 +3,11 @@
     <template #avatar>
       <t-avatar size="56px">
         <template #icon>
-          <shop-icon v-if="product.type === 1"/>
-          <calendar-icon v-if="product.type === 2"/>
-          <service-icon v-if="product.type === 3"/>
-          <user-avatar-icon v-if="product.type === 4"/>
-          <laptop-icon v-if="product.type === 5"/>
+          <shop-icon v-if="product.type === 1" />
+          <calendar-icon v-if="product.type === 2" />
+          <service-icon v-if="product.type === 3" />
+          <user-avatar-icon v-if="product.type === 4" />
+          <laptop-icon v-if="product.type === 5" />
         </template>
       </t-avatar>
     </template>
@@ -15,9 +15,8 @@
       <t-tag
         :disabled="!product.isSetup"
         :theme="product.isSetup ? 'success' : 'default'"
-      >{{ product.isSetup ? '已启用' : '已停用' }}
-      </t-tag
-      >
+        >{{ product.isSetup ? '已启用' : '已停用' }}
+      </t-tag>
     </template>
     <template #content>
       <p class="list-card-item_detail--name">{{ product.name }}</p>
@@ -26,10 +25,9 @@
     <template #footer>
       <t-avatar-group :max="2" cascading="left-up">
         <t-avatar>{{ typeMap[product.type - 1] }}</t-avatar>
-        <t-avatar
-        >
+        <t-avatar>
           <template #icon>
-            <add-icon/>
+            <add-icon />
           </template>
         </t-avatar>
       </t-avatar-group>
@@ -57,7 +55,7 @@
           theme="default"
           variant="text"
         >
-          <more-icon/>
+          <more-icon />
         </t-button>
       </t-dropdown>
     </template>

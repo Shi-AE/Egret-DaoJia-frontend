@@ -76,7 +76,7 @@ const props = defineProps({
     default: () => {
       return []
     }
-  },
+  }
 })
 // 重置表单
 const resetType = ref('empty')
@@ -151,7 +151,7 @@ const rules = {
       message: '请选择',
       type: 'error',
       trigger: 'change'
-    },
+    }
   ]
 }
 </script>

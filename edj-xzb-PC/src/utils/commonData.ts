@@ -10,13 +10,13 @@ export const tabData = [
   }
 ]
 export const bankList = [
-  {value: '1', label: '中国工商银行'},
-  {value: '2', label: '中国建设银行'},
-  {value: '3', label: '中国邮政储蓄银行'},
-  {value: '4', label: '中国农业银行'},
-  {value: '5', label: '北京银行'},
-  {value: '6', label: '北京农商银行'},
-  {value: '7', label: '招商银行'}
+  { value: '1', label: '中国工商银行' },
+  { value: '2', label: '中国建设银行' },
+  { value: '3', label: '中国邮政储蓄银行' },
+  { value: '4', label: '中国农业银行' },
+  { value: '5', label: '北京银行' },
+  { value: '6', label: '北京农商银行' },
+  { value: '7', label: '招商银行' }
 ]
 export const cityData = [
   [

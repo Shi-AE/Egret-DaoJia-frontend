@@ -1,7 +1,7 @@
 <!-- 公共404 -->
 <template>
   <div class="netWorkAnomaly">
-    <img src="@/assets/default/404@2x.png"/>
+    <img src="@/assets/default/404@2x.png" />
     <p>页面好像走丢了，再试一次！</p>
     <button class="bt newBoxbutton" @click="toHome()">返回首页</button>
   </div>
@@ -15,7 +15,7 @@ const router = useRouter()
 function toHome() {
   router.push({
     path: '/dashboard/base',
-    query: {redirect: encodeURIComponent(router.currentRoute.value.fullPath)}
+    query: { redirect: encodeURIComponent(router.currentRoute.value.fullPath) }
   })
 }
 </script>

@@ -96,8 +96,8 @@ const props = defineProps({
   }
 })
 const FORM_RULES = {
-  cityCode: [{required: true, message: '城市必选'}],
-  intentionScope: [{required: true, message: '区域范围必填'}]
+  cityCode: [{ required: true, message: '城市必选' }],
+  intentionScope: [{ required: true, message: '区域范围必填' }]
 }
 const mapRef = ref(null)
 let center = reactive({
@@ -127,7 +127,7 @@ const title = ref('服务范围设置')
 const formVisible = ref(false)
 
 //地图初始化
-const ready = ({BMap, map}) => {
+const ready = ({ BMap, map }) => {
   mapRef.value = map
 }
 const handleDragend = () => {
@@ -194,7 +194,7 @@ watch(
       ? props.serviceRangeR.location.split(',')[0]
       : '116.40404711388975'
     typeSelectList = props.openCity.map((item: any) => {
-      return {value: item.cityCode, label: item.name}
+      return { value: item.cityCode, label: item.name }
     })
     if (props.serviceRangeR.location)
       center = toBaiduMap(center.lng, center.lat)

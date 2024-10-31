@@ -1,7 +1,7 @@
 <!-- 公共网络超时 -->
 <template>
   <div class="netWorkAnomaly">
-    <img src="@/assets/default/wuwang@2x.png"/>
+    <img src="@/assets/default/wuwang@2x.png" />
     <p>网络开小差了～</p>
   </div>
 </template>

@@ -16,7 +16,7 @@
           size="large"
         >
           <template #prefix-icon>
-            <t-icon class="phone"/>
+            <t-icon class="phone" />
           </template>
         </t-input>
       </t-form-item>
@@ -30,7 +30,7 @@
           size="large"
         >
           <template #prefix-icon>
-            <t-icon class="verifyCode"/>
+            <t-icon class="verifyCode" />
           </template
           >
         </t-input>
@@ -52,7 +52,7 @@
         size="large"
       >
         <template #prefix-icon>
-          <t-icon class="password"/>
+          <t-icon class="password" />
         </template>
         <template #suffix-icon>
           <t-icon
@@ -93,7 +93,7 @@ import { register } from '@/api/user'
 
 const FORM_RULES = {
   phone: [
-    {required: true, message: '手机号必填', type: 'error'},
+    { required: true, message: '手机号必填', type: 'error' },
     {
       validator: validatePhone,
       message: '请输入正确格式的账号',
@@ -102,7 +102,7 @@ const FORM_RULES = {
     }
   ],
   password: [
-    {required: true, message: '密码必填', type: 'error'},
+    { required: true, message: '密码必填', type: 'error' },
     {
       min: 8,
       message: '输入密码最少8位',
@@ -110,7 +110,7 @@ const FORM_RULES = {
       trigger: 'change'
     }
   ],
-  verifyCode: [{required: true, message: '验证码必填', type: 'error'}]
+  verifyCode: [{ required: true, message: '验证码必填', type: 'error' }]
 }
 
 const type = ref('phone')
@@ -140,7 +140,7 @@ const handleCounterFunc = async () => {
   formData.verifyCode = code
 }
 // 提交注册
-const onSubmit = ({validateResult, firstError, e}) => {
+const onSubmit = ({ validateResult, firstError, e }) => {
   e.preventDefault()
 
   if (validateResult === true) {

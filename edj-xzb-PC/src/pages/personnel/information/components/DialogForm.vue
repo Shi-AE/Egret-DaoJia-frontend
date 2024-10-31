@@ -185,12 +185,12 @@ const formatResponse = (res) => {
   if (res.code === 200) {
     return res.data
   } else {
-    return {name: 'null', error: '上传失败，请重试'};
+    return { name: 'null', error: '上传失败，请重试' }
   }
 }
 // 超过大小或者文件格式错误报错提示
 const onValidate = (params) => {
-  const {files, type} = params
+  const { files, type } = params
   const messageMap = {
     FILE_OVER_SIZE_LIMIT: files[0].response.error,
     FILES_OVER_LENGTH_LIMIT: '文件数量超出限制，仅上传未超出数量的文件',

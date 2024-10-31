@@ -6,7 +6,7 @@
     </div>
     <div class="result-title">{{ title }}</div>
     <div class="result-tip">{{ tip }}</div>
-    <slot/>
+    <slot />
   </div>
 </template>
 <script lang="ts" setup>

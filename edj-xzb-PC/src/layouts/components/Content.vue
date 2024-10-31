@@ -4,7 +4,7 @@
     <transition mode="out-in" name="fade">
       <keep-alive :include="aliveViews">
         <div>
-          <component :is="Component"/>
+          <component :is="Component" />
         </div>
       </keep-alive>
     </transition>
@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
 import type { ComputedRef } from 'vue'
+import { computed } from 'vue'
 import { useTabsRouterStore } from '@/store'
 
 // <suspense>标签属于实验性功能，请谨慎使用
@@ -30,14 +30,14 @@ import { useTabsRouterStore } from '@/store'
 // aliveViews是一个数组，里面存放的是当前页面的name
 const aliveViews = computed(() => {
   const tabsRouterStore = useTabsRouterStore()
-  const {tabRouters} = tabsRouterStore
+  const { tabRouters } = tabsRouterStore
 
   return tabRouters.filter((route) => route.isAlive).map((route) => route.name)
 }) as ComputedRef<string[]>
 // isRefreshing是一个布尔值，用来判断是否正在刷新页面
 const isRefreshing = computed(() => {
   const tabsRouterStore = useTabsRouterStore()
-  const {refreshing} = tabsRouterStore
+  const { refreshing } = tabsRouterStore
   return refreshing
 })
 </script>

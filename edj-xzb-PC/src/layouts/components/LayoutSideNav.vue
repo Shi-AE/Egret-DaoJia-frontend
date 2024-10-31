@@ -17,7 +17,7 @@ import LSideNav from '../simpleComponents/SideNav.vue' // 侧边栏
 
 const permissionStore = usePermissionStore()
 const settingStore = useSettingStore()
-const {routers: menuRouters} = storeToRefs(permissionStore)
+const { routers: menuRouters } = storeToRefs(permissionStore)
 // sideMenu是侧边栏的菜单路由
 const sideMenu = computed(() => {
   const newMenuRouters = menuRouters.value

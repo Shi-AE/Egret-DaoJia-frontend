@@ -153,7 +153,7 @@
         // ts(2367)
         "vue/v-on-event-hyphenation": "off",
         // 事件名中横线
-        "vue/no-dupe-keys": "true"
+        "vue/no-dupe-keys": 2
         // 禁止出现重复的属性
       }
     }

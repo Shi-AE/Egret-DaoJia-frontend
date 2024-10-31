@@ -124,7 +124,7 @@ import axios from 'axios'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useSettingStore } from '@/store'
 import { setObjToUrlParams } from '@/utils/request/utils'
-import { getUrlParams, formatJson } from '@/utils/index'
+import { formatJson, getUrlParams } from '@/utils/index'
 
 const settingStore = useSettingStore()
 const requestData = reactive({

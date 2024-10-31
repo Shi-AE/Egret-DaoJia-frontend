@@ -24,25 +24,25 @@
       <div class="body">
         <div class="left">
           <div class="card">
-            <img alt="" src="@/assets/leijidingdan@2x.png"/>
+            <img alt="" src="@/assets/leijidingdan@2x.png" />
             <div>待分配<span>6</span></div>
           </div>
           <div class="card">
-            <img alt="" src="../../../../assets/daiwangong.png"/>
+            <img alt="" src="../../../../assets/daiwangong.png" />
             <div>待完工<span>4</span></div>
           </div>
           <div class="card">
-            <img alt="" src="@/assets/allorder.png"/>
+            <img alt="" src="@/assets/allorder.png" />
             <div>全部订单<span>21</span></div>
           </div>
         </div>
         <div class="right">
           <div class="card">
-            <img alt="" src="@/assets/daishangmen.png"/>
+            <img alt="" src="@/assets/daishangmen.png" />
             <div>待上门<span>6</span></div>
           </div>
           <div class="card">
-            <img alt="" src="@/assets/yiwancheng.png"/>
+            <img alt="" src="@/assets/yiwancheng.png" />
             <div>已完成<span>5</span></div>
           </div>
         </div>
@@ -86,7 +86,7 @@ const renderMonitorChart = () => {
     monitorContainer = document.getElementById('monitorContainer') // 图表容器,如果没有就创建一个
   }
   monitorChart = echarts.init(monitorContainer) // 初始化图表实例
-  monitorChart.setOption(getLineChartDataSet({...chartColors.value})) // 设置图表数据
+  monitorChart.setOption(getLineChartDataSet({ ...chartColors.value })) // 设置图表数据
 }
 
 const renderCharts = () => {

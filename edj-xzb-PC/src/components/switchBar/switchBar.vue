@@ -20,7 +20,7 @@ import Type from './type'
 const props = defineProps({
   data: {
     type: Array as () => Type[],
-    default: () => [],
+    default: () => []
   }
 })
 // 触发父组件事件

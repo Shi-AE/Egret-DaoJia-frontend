@@ -2,9 +2,9 @@
 <template>
   <div class="container home-wrapper">
     <!-- 顶部 card  -->
-    <top-panel class="row-container"/>
+    <top-panel class="row-container" />
     <!-- 中部图表  -->
-    <middle-chart class="row-container"/>
+    <middle-chart class="row-container" />
     <!-- 订单信息 -->
     <div class="orderInfo">
       <div class="title">

@@ -6,10 +6,10 @@ export default defineConfig({
         uni()
     ],
     server: {
-        "port": 8080,
+        "port": 3351,
         proxy: {
             "/api": {
-                target: 'http://192.168.101.1:11500',
+                target: 'http://localhost:33500',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, "")
             }

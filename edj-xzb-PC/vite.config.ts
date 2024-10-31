@@ -1,17 +1,16 @@
-import { ConfigEnv, UserConfig, loadEnv } from 'vite'
+import { ConfigEnv, loadEnv, UserConfig } from 'vite'
 import { viteMockServe } from 'vite-plugin-mock'
 import createVuePlugin from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import svgLoader from 'vite-svg-loader'
 
 import path from 'path'
-import { withScopeId } from 'vue'
 
 const CWD = process.cwd()
 
 // https://vitejs.dev/config/
-export default ({mode}: ConfigEnv): UserConfig => {
-  const {VITE_BASE_URL} = loadEnv(mode, CWD)
+export default ({ mode }: ConfigEnv): UserConfig => {
+  const { VITE_BASE_URL } = loadEnv(mode, CWD)
   return {
     base: VITE_BASE_URL,
     define: {},
@@ -53,13 +52,13 @@ export default ({mode}: ConfigEnv): UserConfig => {
     ],
 
     server: {
-      port: 6001,
+      port: 3352,
       host: '0.0.0.0',
       open: false,
       hmr: true,
       proxy: {
         '/api': {
-          target: 'http://localhost:11500',
+          target: 'http://localhost:33500',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
           // https://jzo2o-institution-test.itheima.net/api
