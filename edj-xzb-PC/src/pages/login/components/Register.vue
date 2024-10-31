@@ -31,8 +31,7 @@
         >
           <template #prefix-icon>
             <t-icon class="verifyCode" />
-          </template
-          >
+          </template>
         </t-input>
         <t-button
           :disabled="countDown > 0"
@@ -121,7 +120,7 @@ const formData = reactive({
   password: '',
   verifyCode: ''
 }) as any
-let debounce = ref(false)
+const debounce = ref(false)
 
 const showPsw = ref(false)
 

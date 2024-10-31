@@ -10,7 +10,7 @@ export const phoneLogins = (params) =>
 // 发送短信验证码
 export const getsmsCode = (params) =>
     request({
-        url: `/publics/sms-code/send`,
+        url: `/edj-publics/sms/code/send`,
         method: 'post',
         params
     })
