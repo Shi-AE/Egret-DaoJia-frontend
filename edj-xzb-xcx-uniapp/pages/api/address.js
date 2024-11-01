@@ -4,13 +4,13 @@ import {
 // 获取当前开通的城市列表
 export const getCityList = () =>
     request({
-        url: `/foundations/consumer/region/activeRegionList`,
+        url: `/edj-foundations/consumer/region/active`,
         method: 'get',
     })
 // 根据经纬度获取城市
 export const getAddress = (params) =>
     request({
-        url: `/publics/map/regeo`,
+        url: `/edj-publics/map/regeo`,
         method: 'get',
         params
     })
