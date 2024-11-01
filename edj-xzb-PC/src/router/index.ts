@@ -1,4 +1,9 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw, useRoute } from 'vue-router'
+import {
+  createRouter,
+  createWebHashHistory,
+  RouteRecordRaw,
+  useRoute
+} from 'vue-router'
 // 去重
 import uniq from 'lodash/uniq'
 

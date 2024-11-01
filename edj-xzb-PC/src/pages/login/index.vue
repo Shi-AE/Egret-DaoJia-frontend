@@ -122,24 +122,24 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
+import type { FormRule } from 'tdesign-vue-next'
+import { MessagePlugin } from 'tdesign-vue-next'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 import { useCounter } from '@/hooks' // 倒计时
-import type { FormRule } from 'tdesign-vue-next'
-import { MessagePlugin } from 'tdesign-vue-next'
 import { validatePhone } from '@/utils/validate'
 import { resetPwd } from '@/api/user'
 
-const dialogVisible = ref(false) //账号冻结弹窗
+const dialogVisible = ref(false) // 账号冻结弹窗
 const forgetPwdDialog = ref(false)
-const frozenReason = ref('') //账号冻结原因
+const frozenReason = ref('') // 账号冻结原因
 const type = ref('login')
 const dialogForm = reactive({
   phone: '',
   password: '',
   verifyCode: ''
 }) as any
-const showPsw = ref(false) //是否显示密码
+const showPsw = ref(false) // 是否显示密码
 const FORM_RULES: Record<string, FormRule[]> = {
   phone: [
     {
@@ -184,7 +184,7 @@ const onSubmit = async ({ validateResult }) => {
       })
   }
 }
-//获取验证码
+// 获取验证码
 const handleCounterFunc = async () => {
   if (!dialogForm.phone) {
     return MessagePlugin.error('手机号不能为空')
@@ -195,7 +195,7 @@ const handleCounterFunc = async () => {
   })
   dialogForm.verifyCode = code
 }
-//打开忘记密码弹窗
+// 打开忘记密码弹窗
 const openForgetPwd = () => {
   forgetPwdDialog.value = true
 }
@@ -208,7 +208,7 @@ const handleClose = () => {
 const handleTo = (val) => {
   type.value = val
 }
-//弹出冻结弹窗
+// 弹出冻结弹窗
 const handleFrozen = (val) => {
   frozenReason.value = val
   dialogVisible.value = true

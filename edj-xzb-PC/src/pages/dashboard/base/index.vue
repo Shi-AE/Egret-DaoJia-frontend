@@ -12,11 +12,11 @@
         <switchBar :data="tableBar" @changeId="changeId"></switchBar>
       </div>
       <tableList
-        :COLUMNS="COLUMNS"
+        :c-o-l-u-m-n-s="COLUMNS"
         :list-data="listData"
         :pagination="pagination"
         :sort="sort"
-        listName="base"
+        list-name="base"
         @fetchData="fetchData"
         @handleClickCancel="handleClickCancel"
         @handleClickPeople="handleClickPeople"
@@ -52,7 +52,7 @@
         :data="cancelDialogData"
         :label="label"
         :title="title"
-        :typeSelect="typeSelectData"
+        :type-select="typeSelectData"
         :visible="cancelDialogVisible"
         @fetchData="fetchData"
         @handleClose="handleClose"
@@ -65,9 +65,10 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
+import { MessagePlugin } from 'tdesign-vue-next'
+import { forEach } from 'lodash'
 import TopPanel from './components/TopPanel.vue' // 顶部卡片
 import MiddleChart from './components/MiddleChart.vue' // 中部图表
-import { MessagePlugin } from 'tdesign-vue-next'
 import {
   serviceOrderAssign,
   serviceOrderCancel,
@@ -78,8 +79,11 @@ import {
   serviceOrderStart,
   servicePersonItemAllList
 } from '@/api/service'
-import { forEach } from 'lodash'
-import { allocationCOLUMNS, doorCOLUMNS, successCOLUMNS } from '@/pages/order/orderList/constants' // 表格头部
+import {
+  allocationCOLUMNS,
+  doorCOLUMNS,
+  successCOLUMNS
+} from '@/pages/order/orderList/constants' // 表格头部
 // 基础统计数据
 import switchBar from '@/components/switchBar/switchBar.vue' // 切换tab
 import DialogForm from '@/pages/order/orderList/components/DialogForm.vue' // 新增,编辑弹窗.
@@ -101,7 +105,7 @@ const cancelDialogData = ref({}) // 取消订单弹窗数
 const detailId = ref('') // 订单信息弹窗id
 const status = ref() // 订单信息弹窗状态
 const serviceId = ref('') // 订单信息弹窗服务id
-const people = ref(true) //判断是人员分配还是取消订单
+const people = ref(true) // 判断是人员分配还是取消订单
 const typeSelectData = ref([]) // 人员下拉框数据
 const COLUMNS = ref()
 // 排序
@@ -347,7 +351,7 @@ const tableBar = ref([
 ])
 // 切换tab
 const changeId = (val: number) => {
-  if (val == 0) {
+  if (val === 0) {
     COLUMNS.value = []
     COLUMNS.value = allocationCOLUMNS
     sort.value = [
@@ -356,7 +360,7 @@ const changeId = (val: number) => {
       }
     ]
     changeTab(val, 'serveStartTime')
-  } else if (val == 1) {
+  } else if (val === 1) {
     COLUMNS.value = []
     COLUMNS.value = doorCOLUMNS
     ;(sort.value = [
@@ -365,7 +369,7 @@ const changeId = (val: number) => {
       }
     ]),
       changeTab(val, 'serveStartTime')
-  } else if (val == 2) {
+  } else if (val === 2) {
     COLUMNS.value = []
     COLUMNS.value = successCOLUMNS
     ;(sort.value = [

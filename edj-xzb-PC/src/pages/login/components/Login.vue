@@ -81,8 +81,8 @@ const userStore = useUserStore()
 const loadSt = ref(false)
 
 const INITIAL_DATA = {
-  phone: '15896123123',
-  password: '888itcast.CN764%...',
+  phone: '19330439536',
+  password: 'admin123',
   userType: 3
 }
 
@@ -112,7 +112,7 @@ const showPsw = ref(false)
 const router = useRouter()
 const route = useRoute()
 
-//打开忘记密码弹窗
+// 打开忘记密码弹窗
 const openForgetPwd = () => {
   emit('openForgetPwd')
 }
