@@ -1,5 +1,5 @@
 <template>
-  <router-view :class="[mode]"/>
+  <router-view :class="[mode]" />
 </template>
 
 <script lang="ts" setup>
@@ -16,7 +16,7 @@ const mode = computed(() => {
 watch(
   () => route.path,
   () => {
-    const {back} = window.history.state
+    const { back } = window.history.state
     if (!back) return
     // 其中从登录页跳转之后的api也需要保留
     if (back.indexOf('/login?') === -1) {

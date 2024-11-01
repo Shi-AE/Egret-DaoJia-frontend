@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+import { ref, reactive, onMounted } from 'vue';
+import { onLoad,onShow } from '@dcloudio/uni-app';
+import { useStore } from 'vuex';
+</script>
 
 <style lang="scss">
 /*每个页面公共css */
@@ -8,14 +12,13 @@
 @import '@/styles/expressage.scss';
 
 page {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
-
 /* #endif */
 .example-info {
-    font-size: 14px;
-    color: #333;
-    padding: 10px;
+  font-size: 14px;
+  color: #333;
+  padding: 10px;
 }
 
 </style>
