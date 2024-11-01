@@ -12,7 +12,7 @@ export const userLogins = (params) =>
 // 注册
 export function register(params) {
   return request.post<any>({
-    url: '/customer/open/serve-provider/institution/register',
+    url: '/edj-user/open/institution/register',
     data: params
   })
 }
