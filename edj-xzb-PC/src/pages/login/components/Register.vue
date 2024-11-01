@@ -38,7 +38,7 @@
           variant="outline"
           @click="handleCounterFunc"
         >
-          {{ countDown == 0 ? '获取验证码' : `${countDown}秒后可重发` }}
+          {{ countDown === 0 ? '获取验证码' : `${countDown}秒后可重发` }}
         </t-button>
       </t-form-item>
     </template>
