@@ -3,7 +3,7 @@ import { request } from "../../utils/request"
 // 首页服务图标
 export const getHomeService = (params) => {
     return request({
-        url: `/foundations/customer/serve/firstPageServeList`,
+        url: `/edj-foundations/consumer/serve/category`,
         method: 'get',
         params
     })
