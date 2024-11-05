@@ -11,7 +11,7 @@ export const getHomeService = (params) => {
 // 首页热门服务
 export const getHotServe = (params) => {
     return request({
-        url: `/foundations/customer/serve/hotServeList`,
+        url: `/edj-foundations/consumer/serve/hot`,
         method: 'get',
         params
     })
