@@ -63,7 +63,7 @@
             <view class="leftLine"></view>
             <view class="right">
               <view
-                v-for="(content, key) in item.serveResDTOList"
+                v-for="(content, key) in item.serveIconVOList"
                 :key="key"
                 class="card"
                 @click="toService(content.id, 2)"
