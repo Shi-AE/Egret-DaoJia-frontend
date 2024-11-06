@@ -129,7 +129,7 @@ const decryptPhoneNumber = (e) => {
                 success(val) {
                     login({
                         code: res.code,
-                        avatar: 'https://yjy-oss-videos.oss-accelerate.aliyuncs.com/tx.png',
+                        avatar: 'https://patchwiki.biligame.com/images/wukong/thumb/7/73/t82zkeepma4ani56u4xu1qt9rwu18yw.png/427px-%E4%BA%BA%E7%89%A9-%E5%A4%A7%E5%9C%A3%E6%AE%8B%E8%BA%AF-%E5%BD%B1%E7%A5%9E%E5%9B%BE.png',
                         nickname: val.userInfo.nickName,
                     }).then((res) => {
                         if (res.data.code === 200) {

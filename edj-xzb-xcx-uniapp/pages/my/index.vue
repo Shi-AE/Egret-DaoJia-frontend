@@ -5,7 +5,7 @@
         <!-- end -->
         <view :style="{ paddingTop: capsuleBottom + 'px' }" class="main">
             <view class="head" @click="handleClick">
-                <image src="https://yjy-oss-videos.oss-accelerate.aliyuncs.com/tx.png"></image>
+                <image src="https://patchwiki.biligame.com/images/wukong/thumb/7/73/t82zkeepma4ani56u4xu1qt9rwu18yw.png/427px-%E4%BA%BA%E7%89%A9-%E5%A4%A7%E5%9C%A3%E6%AE%8B%E8%BA%AF-%E5%BD%B1%E7%A5%9E%E5%9B%BE.png"></image>
                 <view class="text">{{
                     accessToken && nickName ? nickName : '立即登录'
                     }}
