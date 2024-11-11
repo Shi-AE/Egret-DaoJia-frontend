@@ -85,7 +85,7 @@ const reason = ref('')
 const countDown = ref(0)
 // 表单数据
 let fromInfo = reactive({
-  phone: '15066699132', //账号
+  phone: '19330439536', //账号
   verifyCode: '', // 密码
   userType: 2
 })
@@ -130,6 +130,12 @@ const handleSubmit = async () => {
     // 登录接口
     // 网络慢的时候添加按钮loading
 
+    uni.redirectTo({
+      url: '/pages/setting/index'
+    })
+
+    return
+
     uni.showLoading({
       title: 'loading',
       mask: true
@@ -143,7 +149,8 @@ const handleSubmit = async () => {
         // clearInterval(t);
         if (res.code === 200) {
           // 存储token
-          uni.setStorageSync('token', res.data.token)
+          uni.setStorageSync('accessToken', res.data.accessToken)
+          uni.setStorageSync('refreshToken', res.data.refreshToken)
           store.commit('user/setToken', res.data.token)
           await getUserSetting().then((res) => {
             if (Boolean(res.data.settingsStatus)) {
