@@ -11,7 +11,7 @@ export const getUserSetting = (params) =>
 //修改接单设置
 export const setPickUpStatus = (params) =>
     request({
-        url: `/customer/worker/serve-settings/pick-up`,
+        url: `/edj-customer/worker/serve/settings/pick/up`,
         method: 'put',
         params
     })

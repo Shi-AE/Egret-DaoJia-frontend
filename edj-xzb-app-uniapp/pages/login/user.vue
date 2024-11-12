@@ -130,10 +130,10 @@ const handleSubmit = async () => {
     // 登录接口
     // 网络慢的时候添加按钮loading
 
+    // 调试用
     uni.redirectTo({
       url: '/pages/setting/index'
     })
-
     return
 
     uni.showLoading({
