@@ -185,15 +185,15 @@
                 "ad" : {},
                 "maps" : {
                     "amap" : {
-                        "appkey_ios" : "d13a000c4dfcc030cda54f0df127d029",
-                        "appkey_android" : "44f8933b35d616864e010a1d127daafd"
+                        "appkey_ios" : "6a193d48dc1fb99f7deea1a80441a75d",
+                        "appkey_android" : "6a193d48dc1fb99f7deea1a80441a75d"
                     }
                 },
                 "geolocation" : {
                     "amap" : {
                         "__platform__" : [ "android" ],
-                        "appkey_ios" : "d13a000c4dfcc030cda54f0df127d029",
-                        "appkey_android" : "44f8933b35d616864e010a1d127daafd"
+                        "appkey_ios" : "6a193d48dc1fb99f7deea1a80441a75d",
+                        "appkey_android" : "6a193d48dc1fb99f7deea1a80441a75d"
                     }
                 }
             },
@@ -255,7 +255,17 @@
         }
     },
     "vueVersion" : "3",
-    "h5" : {},
+    "h5" : {
+        "sdkConfigs" : {
+            "maps" : {
+                "amap" : {
+                    "key" : "d4d9fdee2f4211a9be06c0d4aff99958",
+                    "securityJsCode" : "beefd0a46e4936b55fcef532f5f942c3",
+                    "serviceHost" : ""
+                }
+            }
+        }
+    },
     "fallbackLocale" : "zh-Hans"
 }
 // "devServer" : {

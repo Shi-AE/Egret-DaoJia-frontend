@@ -54,7 +54,7 @@ export const getSettingInfo = (params) =>
 //获取开通城市列表
 export const getOpenCity = (params) =>
     request({
-        url: `/foundations/worker/region/activeRegionList`,
+        url: `/edj-foundations/consumer/region/active`,
         method: 'get',
         params
     })
