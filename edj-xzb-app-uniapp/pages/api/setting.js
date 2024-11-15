@@ -47,7 +47,7 @@ export const updateServiceSkill = (params) =>
 //获取配置详细信息
 export const getSettingInfo = (params) =>
     request({
-        url: `/customer/worker/serve-settings`,
+        url: `/edj-customer/worker/serve/settings`,
         method: 'get',
         params
     })
