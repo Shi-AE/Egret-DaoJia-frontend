@@ -128,8 +128,8 @@ const getSetting = () => {
       if (res.code === 200) {
         canPickUp.value = res.data.canPickUp
         settingsStatus.value = res.data.settingsStatus
-        serveRangeStatus.value = res.data.serveScopeSetted
-        serveSkillStatus.value = res.data.serveSkillSetted
+        serveRangeStatus.value = res.data.serveScopeHasSet
+        serveSkillStatus.value = res.data.serveSkillHasSet
         certificationStatus.value = res.data.certificationStatus
       }
     })
