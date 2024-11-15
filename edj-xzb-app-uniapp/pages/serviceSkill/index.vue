@@ -71,10 +71,10 @@ onMounted(() => {
 const getServiceSkillAllFunc = () => {
     getServiceSkillAll()
         .then((res) => {
-            if (res.code == 200) {
+            if (res.code === 200) {
                 serviceSkill.data = res.data;
                 activeId.value = res.data[0].serveTypeId;
-                rightItem.data = serviceSkill.data[0].serveSkillItemResDTOList;
+                rightItem.data = serviceSkill.data[0].serveSkillItemVOList;
             }
         })
         .catch((err) => {
@@ -89,8 +89,8 @@ const getServiceSkillAllFunc = () => {
 //点击服务技能项
 const handleSelect = (active) => {
     if (status.value === 'read') return;
-    (serviceSkill.data[activeIndex.value].serveSkillItemResDTOList =
-        serviceSkill.data[activeIndex.value].serveSkillItemResDTOList.map(
+    (serviceSkill.data[activeIndex.value].serveSkillItemVOList =
+        serviceSkill.data[activeIndex.value].serveSkillItemVOList.map(
             (item) => {
                 if (active.serveItemId === item.serveItemId) {
                     return Object.assign({}, item, {isSelected: !item.isSelected});
@@ -100,7 +100,7 @@ const handleSelect = (active) => {
             }
         )),
         (rightItem.data = [
-            ...serviceSkill.data[activeIndex.value].serveSkillItemResDTOList,
+            ...serviceSkill.data[activeIndex.value].serveSkillItemVOList,
         ]);
 };
 //点击保存
@@ -108,7 +108,7 @@ const handleSubmit = () => {
     const selectedList = [];
     const arr = [];
     serviceSkill.data.forEach((item) => {
-        item.serveSkillItemResDTOList.forEach((item1) => {
+        item.serveSkillItemVOList.forEach((item1) => {
             if (item1.isSelected) {
                 selectedList.push({
                     serveItemId: item1.serveItemId,
@@ -149,7 +149,7 @@ const tabChange = (item, index) => {
     activeId.value = item.serveTypeId;
     activeIndex.value = index;
     rightItem.data =
-        serviceSkill.data[activeIndex.value].serveSkillItemResDTOList;
+        serviceSkill.data[activeIndex.value].serveSkillItemVOList;
 };
 
 // 返回上一页

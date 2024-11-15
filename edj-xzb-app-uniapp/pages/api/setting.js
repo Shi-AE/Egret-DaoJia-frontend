@@ -33,14 +33,14 @@ export const getServiceSkillByClassify = (params) =>
 //获取服务技能及其下的服务技能所有数据
 export const getServiceSkillAll = (params) =>
     request({
-        url: `/customer/worker/serve-skill/category`,
+        url: `/edj-customer/worker/serve/skill/category`,
         method: 'get',
         params
     })
 //修改服务技能
 export const updateServiceSkill = (params) =>
     request({
-        url: `/customer/worker/serve-skill/batchUpsert`,
+        url: `/edj-customer/worker/serve/skill/batch`,
         method: 'post',
         params
     })
@@ -61,7 +61,7 @@ export const getOpenCity = (params) =>
 //修改服务范围
 export const setServiceSetting = (params) =>
     request({
-        url: `/customer/worker/serve-settings/serve-scope`,
+        url: `/edj-customer/worker/serve/settings/scope`,
         method: 'put',
         params
     })
