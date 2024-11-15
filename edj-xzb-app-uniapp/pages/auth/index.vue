@@ -108,7 +108,7 @@ const handleDelete = (type) => {
 const handleSelect = (e, type) => {
   const item = e.tempFiles[0]
   uni.uploadFile({
-    url: `${baseUrl}` + '/publics/storage/upload',
+    url: `${baseUrl}` + '/edj-publics/storage/upload',
     files: [
       {
         name: 'file',

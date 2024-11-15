@@ -31,10 +31,10 @@
               certificationStatus === 2
                 ? '已完成'
                 : certificationStatus === 1
-                  ? '认证中'
-                  : certificationStatus === 3
-                    ? '认证失败'
-                    : '去认证'
+                ? '认证中'
+                : certificationStatus === 3
+                ? '认证失败'
+                : '去认证'
             }}
           </div>
         </div>
@@ -92,20 +92,20 @@
       进入首页
     </button>
     <serviceSkill
-      :serviceData="serviceSkillP.data"
+      :service-data="serviceSkillP.data"
       :visible="visible"
       @handleClose="handleClose"
       @handleSubmit="handleSubmit"
     ></serviceSkill>
     <serviceRange
-      :openCity="openCity.data"
-      :serviceRangeR="serviceRangeR"
+      :open-city="openCity.data"
+      :service-range-r="serviceRangeR"
       :visible="rangeVisible"
       @handleClose="handleClose"
       @handleSubmit="handleRange"
     ></serviceRange>
     <Auth
-      :certificationStatus="certificationStatus"
+      :certification-status="certificationStatus"
       :visible="authVisible"
       @handleClose="handleClose"
       @handleSubmit="handleAuth"
@@ -116,6 +116,7 @@
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { MessagePlugin } from 'tdesign-vue-next'
 import serviceSkill from './components/serviceSkill.vue'
 import serviceRange from './components/serviceRange.vue'
 import Auth from './components/auth.vue'
@@ -130,16 +131,15 @@ import {
   updateServiceSkill
 } from '@/api/setting'
 import { useUserStore } from '@/store'
-import { MessagePlugin } from 'tdesign-vue-next'
 
 const visible = ref(false) // 选择服务技能弹窗
 const rangeVisible = ref(false) // 选择服务范围弹窗
-const authVisible = ref(false) //资质认证弹窗
-const canPickUp = ref(false) //是否开启接单
-const settingsStatus = ref(false) //是否配置完成
-const serveRangeStatus = ref(false) //是否配置服务范围
-const serveSkillStatus = ref(false) //是否配置服务技能
-const certificationStatus = ref(0) //是否实名认证
+const authVisible = ref(false) // 资质认证弹窗
+const canPickUp = ref(false) // 是否开启接单
+const settingsStatus = ref(false) // 是否配置完成
+const serveRangeStatus = ref(false) // 是否配置服务范围
+const serveSkillStatus = ref(false) // 是否配置服务技能
+const certificationStatus = ref(0) // 是否实名认证
 const serviceSkillP = reactive({
   data: []
 })
@@ -166,7 +166,7 @@ const toIndex = () => {
     router.push('/dashboard')
   }
 }
-//获取当前设置的服务范围信息
+// 获取当前设置的服务范围信息
 const getSettingInfoFunc = () => {
   getSettingInfo().then((res) => {
     serviceRangeR.intentionScope = res.data.intentionScope
@@ -174,19 +174,19 @@ const getSettingInfoFunc = () => {
     serviceRangeR.location = res.data.location
   })
 }
-//获取开通城市列表
+// 获取开通城市列表
 const getOpenCityFunc = () => {
   getOpenCity().then((res) => {
     openCity.data = res.data
   })
 }
-//获取服务技能及其下的服务技能所有数据
+// 获取服务技能及其下的服务技能所有数据
 const getServiceSkillAllFunc = () => {
   getServiceSkillAll().then((res) => {
     serviceSkillP.data = res.data
   })
 }
-//修改接单状态
+// 修改接单状态
 const handlePickUpStatus = () => {
   canPickUp.value = !canPickUp.value
   setPickUpStatus({
@@ -196,10 +196,9 @@ const handlePickUpStatus = () => {
       getSettingStatusFunc()
       MessagePlugin.success('设置成功')
     })
-    .catch((err) => {
-    })
+    .catch((err) => {})
 }
-//获取设置状态
+// 获取设置状态
 const getSettingStatusFunc = async () => {
   await getSettingStatus()
     .then((res) => {
@@ -214,7 +213,7 @@ const getSettingStatusFunc = async () => {
       console.log(err)
     })
 }
-//上传资质认证
+// 上传资质认证
 const handleAuth = (params) => {
   postAuth(params)
     .then((res) => {
@@ -225,7 +224,7 @@ const handleAuth = (params) => {
       MessagePlugin.error('提交失败')
     })
 }
-//提交服务范围
+// 提交服务范围
 const handleRange = (params) => {
   setServiceRanges(params).then((res) => {
     handleClose()
@@ -233,7 +232,7 @@ const handleRange = (params) => {
     MessagePlugin.success('设置成功')
   })
 }
-//提交服务技能选择
+// 提交服务技能选择
 const handleSubmit = (val) => {
   const params = val.map((item) => {
     return {
@@ -249,17 +248,17 @@ const handleSubmit = (val) => {
     MessagePlugin.success('设置成功')
   })
 }
-//打开资质认证弹窗
+// 打开资质认证弹窗
 const handleServiceAuth = () => {
   if (certificationStatus.value === 0 || certificationStatus.value === 3) {
     authVisible.value = true
   }
 }
-//打开服务范围弹窗
+// 打开服务范围弹窗
 const handleServiceRange = () => {
   rangeVisible.value = true
 }
-//打开服务技能弹窗
+// 打开服务技能弹窗
 const handleServiceSkill = () => {
   visible.value = true
 }

@@ -3,7 +3,7 @@ import { request } from "../../utils/request.js"
 //获取配置状态
 export const getUserSetting = (params) =>
     request({
-        url: `/customer/worker/serve-settings/status`,
+        url: `/edj-customer/worker/serve/settings/status`,
         method: 'get',
         params
     })
@@ -68,7 +68,7 @@ export const setServiceSetting = (params) =>
 //提交实名认证
 export const postAuth = (params) =>
     request({
-        url: `/customer/worker/worker-certification-audit`,
+        url: `/edj-customer/worker/certification/audit`,
         method: 'post',
         params
     })

@@ -114,7 +114,7 @@ const canPickUp = ref(false) //是否开启接单
 const settingsStatus = ref(false) //是否配置完成
 const serveRangeStatus = ref(false) //是否配置服务范围
 const serveSkillStatus = ref(false) //是否配置服务技能
-const certificationStatus = ref(false) //是否实名认证
+const certificationStatus = ref(0) //是否实名认证
 
 onShow(() => {
   getSetting()
@@ -162,6 +162,7 @@ const handlePickUpStatus = (e) => {
 }
 //实名认证
 const handleToAuth = () => {
+  console.log(certificationStatus.value)
   if (certificationStatus.value === 0) {
     uni.navigateTo({
       url: '/pages/auth/index'
