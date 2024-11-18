@@ -75,7 +75,7 @@ const props = defineProps({
 const formData = ref({
   name: '',
   idCardNo: '',
-  auditStatus: 2,
+  auditStatus: 0,
   certificationStatus: 1
 })
 // 触发父组件的方法
@@ -84,12 +84,12 @@ const emit: Function = defineEmits(['handleSearch', 'handleReset'])
 const searchForm = {
   name: '',
   idCardNo: '',
-  auditStatus: 2,
+  auditStatus: 0,
   certificationStatus: 1
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = {...searchForm}
+  formData.value = { ...searchForm }
   emit('handleSearch', formData.value)
 }
 // 搜索表单

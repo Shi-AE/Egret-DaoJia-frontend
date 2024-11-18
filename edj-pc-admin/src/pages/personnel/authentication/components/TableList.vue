@@ -67,7 +67,7 @@
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em"/></span>
+                      <span><ZoomInIcon size="1.8em" /></span>
                     </div>
                   </div>
                 </template>
@@ -91,7 +91,7 @@
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em"/></span>
+                      <span><ZoomInIcon size="1.8em" /></span>
                     </div>
                   </div>
                 </template>
@@ -115,7 +115,7 @@
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em"/></span>
+                      <span><ZoomInIcon size="1.8em" /></span>
                     </div>
                   </div>
                 </template>
@@ -139,7 +139,7 @@
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em"/></span>
+                      <span><ZoomInIcon size="1.8em" /></span>
                     </div>
                   </div>
                 </template>
@@ -154,13 +154,13 @@
               :class="row.certificationStatus !== 1 ? 'text-forbidden' : ''"
               class="font-bt btn-split-right"
               @click="handleReject(row)"
-            >通过</a
+              >通过</a
             >
             <a
               :class="row.certificationStatus !== 1 ? 'text-forbidden' : ''"
               class="font-bt line"
               @click="handleClickFreeze(row)"
-            >驳回</a
+              >驳回</a
             >
           </template>
           <!-- end -->
@@ -172,7 +172,6 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
 import { CaretDownSmallIcon, ZoomInIcon } from 'tdesign-icons-vue-next'
 import { COLUMNS, Apply_DATA } from '../constants'
 import NoData from '@/components/noData/index.vue'
@@ -210,13 +209,15 @@ const height = ref('auto') // 表格高度
 const scroll = ref(null) // 表格滚动
 // 监听器赋值，切换tab
 watch(props, () => {
-  if (props.isActive == 0) {
+  if (props.isActive === 0) {
     data.value = props.listData
     pagination.value = props.pagination
     pagination.value.current =
-      props.pagination.defaultCurrent == 1 ? 1 : props.pagination.defaultCurrent
+      props.pagination.defaultCurrent === 1
+        ? 1
+        : props.pagination.defaultCurrent
     pagination.value.pageSize =
-      props.pagination.defaultPageSize == 1
+      props.pagination.defaultPageSize === 1
         ? 1
         : props.pagination.defaultPageSize
     dataLoading.value = false

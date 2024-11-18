@@ -303,9 +303,9 @@ export function serviceInstitutionAuditList(value) {
 
 // 服务人员认证审核信息分页查询
 export function servicePersonAuditList(value) {
-  return request.get({
-    url: '/customer/operation/worker-certification-audit/page',
-    params: value
+  return request.post({
+    url: '/edj-customer/operation/worker/certification/audit/page',
+    data: value
   })
 }
 

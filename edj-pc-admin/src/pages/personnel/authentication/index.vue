@@ -3,15 +3,15 @@
   <div class="base-up-wapper bgTable min-h">
     <!-- 搜索表单区域 -->
     <searchFormBox
-      :initSearch="initSearch"
-      :typeSelect="typeSelect"
+      :init-search="initSearch"
+      :type-select="typeSelect"
       @handleReset="handleReset"
       @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
-      :isActive="0"
+      :is-active="0"
       :list-data="listData"
       :pagination="pagination"
       @fetchData="fetchData"
@@ -54,11 +54,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, watchEffect, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute, useRouter } from 'vue-router'
-import { servicePersonAuditList, servicePersonAudit } from '@/api/service'
 import { forEach } from 'lodash'
+import { servicePersonAudit, servicePersonAuditList } from '@/api/service'
 import DialogForm from './components/DialogForm.vue' // 新增,编辑弹窗.
 import tableList from './components/TableList.vue' // 表格
 import Delete from '@/components/Delete/index.vue' // 解冻弹层
@@ -90,26 +90,20 @@ const pagination = ref({
   defaultCurrent: 1 // 默认当前页
 })
 const requestData = ref({
-  isAsc1: false,
-  orderBy1: 'createTime',
-  orderBy2: null,
-  isAsc2: null,
+  orderByList: [],
   pageNo: 1,
   pageSize: 10,
   name: null,
-  auditStatus: null,
+  auditStatus: 0,
   certificationStatus: null,
   idCardNo: null
 }) // 请求参数
 const resetData = ref({
-  isAsc1: false,
-  orderBy1: 'createTime',
-  orderBy2: null,
-  isAsc2: null,
+  orderByList: [],
   pageNo: 1,
   pageSize: 10,
   name: null,
-  auditStatus: null,
+  auditStatus: 0,
   certificationStatus: null,
   idCardNo: null
 }) // 请求参数
@@ -192,19 +186,9 @@ const handleClickFreeze = (row) => {
 // 排序
 const handleSortChange = (val) => {
   forEach(val, (item) => {
-    if (item.sortBy === 'createTime') {
-      if (item.descending === true) {
-        requestData.value.isAsc1 = false
-      } else {
-        requestData.value.isAsc1 = true
-      }
-    } else {
-      requestData.value.orderBy2 = item.sortBy
-      if (item.descending === true) {
-        requestData.value.isAsc2 = false
-      } else {
-        requestData.value.isAsc2 = true
-      }
+    requestData.value.orderByList[0] = {
+      orderBy: item.sortBy,
+      isAsc: !item.descending
     }
   })
   fetchData(requestData.value)
