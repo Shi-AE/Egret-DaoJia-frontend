@@ -324,7 +324,7 @@ export function serviceInstitutionAudit(value, id) {
 export function servicePersonAudit(value, id) {
   return request.put({
     url:
-      `/customer/operation/worker-certification-audit/audit/${id}?` +
+      `/edj-customer/operation/worker/certification/audit/audit/${id}?` +
       `rejectReason=${value.rejectReason}&` +
       `certificationStatus=${value.certificationStatus}`,
     data: value
