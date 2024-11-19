@@ -1,4 +1,9 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse
+} from 'axios'
 import { stringify } from 'qs'
 import isFunction from 'lodash/isFunction'
 import cloneDeep from 'lodash/cloneDeep'
@@ -107,8 +112,8 @@ export class VAxios {
     const settingStore = useSettingStore()
     const url = this.options.requestOptions.urlPrefix
       ? window.location.origin +
-      this.options.requestOptions.urlPrefix +
-      config.url
+        this.options.requestOptions.urlPrefix +
+        config.url
       : window.location.origin + config.url
     // 组装所需接口数据
     settingStore.addRequestList({
@@ -129,7 +134,7 @@ export class VAxios {
     const opt: RequestOptions = { ...requestOptions, ...options }
 
     const { beforeRequestHook, requestCatchHook, transformRequestHook } =
-    transform || {}
+      transform || {}
     if (beforeRequestHook && isFunction(beforeRequestHook)) {
       conf = beforeRequestHook(conf, opt)
     }

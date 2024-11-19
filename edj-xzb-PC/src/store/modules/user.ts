@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia'
-import { TOKEN_NAME } from '@/config/global'
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
 import { store, usePermissionStore } from '@/store'
 
 const InitUserInfo = {
@@ -8,7 +11,10 @@ const InitUserInfo = {
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    token: localStorage.getItem(TOKEN_NAME), // 默认token不走权限
+    authorizationAccessToken:
+      localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN) || '',
+    authorizationRefreshToken:
+      localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN) || '',
     userInfo: { ...InitUserInfo },
     canPickUp: true,
     settingsStatus: false
@@ -19,20 +25,25 @@ export const useUserStore = defineStore('user', {
     }
   },
   actions: {
-    async login(token: string) {
-      this.token = token
-      localStorage.setItem(TOKEN_NAME, token)
+    async login(accessToken: string, refreshToken: string) {
+      this.authorizationAccessToken = accessToken
+      this.authorizationRefreshToken = refreshToken
+      localStorage.setItem(AUTHORIZATION_ACCESS_TOKEN, accessToken)
+      localStorage.setItem(AUTHORIZATION_REFRESH_TOKEN, refreshToken)
     },
     async setUserInfo(data: any) {
       this.userInfo = data
     },
     async logout() {
-      localStorage.removeItem(TOKEN_NAME)
-      this.token = ''
+      localStorage.removeItem(AUTHORIZATION_ACCESS_TOKEN)
+      localStorage.removeItem(AUTHORIZATION_REFRESH_TOKEN)
+      this.authorizationAccessToken = ''
+      this.authorizationRefreshToken = ''
       this.userInfo = { ...InitUserInfo }
     },
     async removeToken() {
-      this.token = ''
+      this.authorizationAccessToken = ''
+      this.authorizationRefreshToken = ''
     }
   },
   persist: {

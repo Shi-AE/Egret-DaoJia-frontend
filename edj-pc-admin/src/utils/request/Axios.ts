@@ -35,7 +35,7 @@ export class VAxios {
 
   // 获取数据处理
   private getTransform() {
-    const {transform} = this.options
+    const { transform } = this.options
     return transform
   }
 
@@ -76,7 +76,7 @@ export class VAxios {
 
     // 请求配置处理
     this.instance.interceptors.request.use((config: any) => {
-      const {headers: any} = config
+      const { headers: any } = config
       // const ignoreRepeat = ignoreRepeatRequest ?? this.options.requestOptions?.ignoreRepeatRequest;
       const ignoreRepeat = ''
       if (!ignoreRepeat) axiosCanceler.addPending(config)
@@ -128,7 +128,7 @@ export class VAxios {
 
     return {
       ...config,
-      data: stringify(config.data, {arrayFormat: 'brackets'})
+      data: stringify(config.data, { arrayFormat: 'brackets' })
     }
   }
 
@@ -136,35 +136,35 @@ export class VAxios {
     config: AxiosRequestConfig,
     options?: RequestOptions
   ): Promise<T> {
-    return this.request({...config, method: 'GET'}, options)
+    return this.request({ ...config, method: 'GET' }, options)
   }
 
   post<T = any>(
     config: AxiosRequestConfig,
     options?: RequestOptions
   ): Promise<T> {
-    return this.request({...config, method: 'POST'}, options)
+    return this.request({ ...config, method: 'POST' }, options)
   }
 
   put<T = any>(
     config: AxiosRequestConfig,
     options?: RequestOptions
   ): Promise<T> {
-    return this.request({...config, method: 'PUT'}, options)
+    return this.request({ ...config, method: 'PUT' }, options)
   }
 
   delete<T = any>(
     config: AxiosRequestConfig,
     options?: RequestOptions
   ): Promise<T> {
-    return this.request({...config, method: 'DELETE'}, options)
+    return this.request({ ...config, method: 'DELETE' }, options)
   }
 
   patch<T = any>(
     config: AxiosRequestConfig,
     options?: RequestOptions
   ): Promise<T> {
-    return this.request({...config, method: 'PATCH'}, options)
+    return this.request({ ...config, method: 'PATCH' }, options)
   }
 
   // 请求
@@ -176,8 +176,8 @@ export class VAxios {
     const settingStore = useSettingStore()
     const url = this.options.requestOptions.urlPrefix
       ? window.location.origin +
-      this.options.requestOptions.urlPrefix +
-      config.url
+        this.options.requestOptions.urlPrefix +
+        config.url
       : window.location.origin + config.url
     // console.log(this.options, config, config.url.indexOf('?'), '----')
     // 组装所需接口数据
@@ -186,7 +186,7 @@ export class VAxios {
       url,
       type: config.method,
       headers: this.options.headers,
-      body: config.data ? {...toRaw(config.data)} : {},
+      body: config.data ? { ...toRaw(config.data) } : {},
       params: getUrlParams(url),
       label:
         config.url.indexOf('?') !== -1 ? config.url.split('?')[0] : config.url
@@ -194,12 +194,12 @@ export class VAxios {
     let conf: CreateAxiosOptions = cloneDeep(config)
     const transform = this.getTransform()
 
-    const {requestOptions} = this.options
+    const { requestOptions } = this.options
 
-    const opt: RequestOptions = {...requestOptions, ...options}
+    const opt: RequestOptions = { ...requestOptions, ...options }
 
-    const {beforeRequestHook, requestCatchHook, transformRequestHook} =
-    transform || {}
+    const { beforeRequestHook, requestCatchHook, transformRequestHook } =
+      transform || {}
     if (beforeRequestHook && isFunction(beforeRequestHook)) {
       conf = beforeRequestHook(conf, opt)
     }

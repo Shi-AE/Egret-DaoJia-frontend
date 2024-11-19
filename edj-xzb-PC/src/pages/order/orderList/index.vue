@@ -4,7 +4,7 @@
   <div v-else class="base-up-wapper bgTable min-h">
     <!-- 搜索表单区域 -->
     <searchFormBox
-      :typeSelect="typeSelect"
+      :type-select="typeSelect"
       @handleReset="handleReset"
       @handleSearch="handleSearch"
     ></searchFormBox>
@@ -13,7 +13,7 @@
     <tableList
       :list-data="listData"
       :pagination="pagination"
-      :tabData="tabData"
+      :tab-data="tabData"
       @changeTab="changeTab"
       @fetchData="fetchData"
       @handleClickCancel="handleClickCancel"
@@ -52,7 +52,7 @@
       :data="cancelDialogData"
       :label="label"
       :title="title"
-      :typeSelect="typeSelectData"
+      :type-select="typeSelectData"
       :visible="cancelDialogVisible"
       @fetchData="fetchData"
       @handleClose="handleClose"
@@ -76,6 +76,7 @@
 import { onMounted, reactive, ref, watchEffect } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { useRoute } from 'vue-router'
+import { forEach } from 'lodash'
 import {
   serviceOrderAssign,
   serviceOrderAssignDelete,
@@ -88,14 +89,14 @@ import {
   servicePersonItemAllList,
   servicePersonItemSkill
 } from '@/api/service'
-import { forEach } from 'lodash'
 import Delete from '@/components/Delete/index.vue' // 删除弹层
 // 基础统计数据
 import DialogForm from './components/DialogForm.vue' // 新增,编辑弹窗.
 import detailDialog from './components/detailDialog.vue' // 订单信息弹窗.
 import tableList from './components/TableList.vue' // 表格
 import searchFormBox from './components/SearchForm.vue' // 搜索框表单
-import cancelDialog from './components/cancelDialog.vue' // 取消订单弹窗
+import cancelDialog from './components/cancelDialog.vue'
+// 取消订单弹窗
 const route = useRoute()
 const visible = ref(false) // 新增，编辑弹窗
 const listData = ref([]) // 列表数据
@@ -114,7 +115,7 @@ const cancelDialogData = ref({}) // 取消订单弹窗数据
 const detailId = ref('') // 订单信息弹窗id
 const status = ref() // 订单信息弹窗状态
 const serviceId = ref('') // 订单信息弹窗服务id
-const people = ref(true) //判断是人员分配还是取消订单
+const people = ref(true) // 判断是人员分配还是取消订单
 const typeSelectData = ref([]) // 人员下拉框数据
 // 分页
 const pagination = ref({
@@ -143,7 +144,7 @@ const resetRequestData = ref({
   id: null,
   serveItemId: null,
   serveStatus: 0
-})// 重置请求参数，切换tab时使用，不然会出现请求参数累加的情况
+}) // 重置请求参数，切换tab时使用，不然会出现请求参数累加的情况
 const tabData = reactive({
   noServed: '0',
   serving: '0',
@@ -158,8 +159,8 @@ const handleSearch = (val) => {
   requestData.value.serveItemId = val.serveItemId
   requestData.value.id = val.id
   if (val.updateTime.length > 0) {
-    requestData.value.minServeStartTime = val.updateTime[0] + ' 00:00:00'
-    requestData.value.maxServeStartTime = val.updateTime[1] + ' 23:59:59'
+    requestData.value.minServeStartTime = `${val.updateTime[0]} 00:00:00`
+    requestData.value.maxServeStartTime = `${val.updateTime[1]} 23:59:59`
   } else {
     requestData.value.minServeStartTime = null
     requestData.value.maxServeStartTime = null

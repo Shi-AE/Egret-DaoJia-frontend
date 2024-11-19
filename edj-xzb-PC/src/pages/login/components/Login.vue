@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { FormInstanceFunctions, FormRule } from 'tdesign-vue-next'
 import { MessagePlugin } from 'tdesign-vue-next'
@@ -73,6 +73,10 @@ import { useUserStore } from '@/store'
 import { userLogins } from '@/api/user'
 import { validatePhone } from '@/utils/validate'
 import { getSettingStatus } from '@/api/setting'
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
 // 发送事件给父组件
 const emit = defineEmits(['handleFrozen', 'handleTo', 'openForgetPwd'])
 // tab切换数据
@@ -124,10 +128,10 @@ const onSubmit = async ({ validateResult }) => {
       .then(async (res: any) => {
         loadSt.value = false
         if (res.code === 200) {
-          await userStore.login(res.data.token)
+          await userStore.login(res.data.accessToken, res.data.refreshToken)
 
           // 登录成功， 转入首页
-          MessagePlugin.success('登录成功')
+          await MessagePlugin.success('登录成功')
           const redirect = route.query.redirect as string
           const redirectUrl = redirect
             ? decodeURIComponent(redirect)
@@ -144,7 +148,7 @@ const onSubmit = async ({ validateResult }) => {
         } else if (res.data.code === 605) {
           emit('handleFrozen', res.data.msg)
         } else {
-          MessagePlugin.error(res.data.msg || '登录失败')
+          await MessagePlugin.error(res.data.msg || '登录失败')
         }
       })
       .catch((err) => {
@@ -159,6 +163,30 @@ const toRegister = () => {
 const formataccount = (val: string) => {
   return val.replace(/\s/g, '')
 }
+
+// onMounted(() => {
+//   const authorizationAccessToken = localStorage.getItem(
+//     AUTHORIZATION_ACCESS_TOKEN
+//   )
+//   const authorizationRefreshToken = localStorage.getItem(
+//     AUTHORIZATION_REFRESH_TOKEN
+//   )
+//
+//   if (authorizationAccessToken && authorizationRefreshToken) {
+//     MessagePlugin.success('登录成功')
+//     const redirect = route.query.redirect as string
+//     const redirectUrl = redirect ? decodeURIComponent(redirect) : '/dashboard'
+//     // console.log(route, redirectUrl, redirect, 'redirect')
+//     getSettingStatus().then((res) => {
+//       userStore.settingsStatus = res.data.settingsStatus
+//       if (res.data.settingsStatus) {
+//         router.push(redirectUrl)
+//       } else {
+//         router.push('/setting')
+//       }
+//     })
+//   }
+// })
 </script>
 
 <style lang="less" scoped>

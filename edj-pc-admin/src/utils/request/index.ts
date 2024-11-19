@@ -21,7 +21,7 @@ const transform: AxiosTransform = {
   // 处理请求数据。如果数据不是预期格式，可直接抛出错误
   // eslint-disable-next-line consistent-return
   transformRequestHook: (res, options) => {
-    const {isTransformResponse, isReturnNativeResponse} = options
+    const { isTransformResponse, isReturnNativeResponse } = options
 
     // 如果204无内容直接返回
     const method = res.config.method?.toLowerCase()
@@ -40,13 +40,13 @@ const transform: AxiosTransform = {
     }
 
     // 错误的时候返回
-    const {data} = res
+    const { data } = res
     if (!data) {
       throw new Error('请求接口错误')
     }
 
     //  这里 code为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
-    const {code} = data
+    const { code } = data
 
     // 这里逻辑可以根据项目进行修改
     const hasSuccess = data && code === 200
@@ -174,7 +174,7 @@ const transform: AxiosTransform = {
 
   // 响应错误处理
   responseInterceptorsCatch: (error: any) => {
-    const {config} = error
+    const { config } = error
     if (!config || !config.requestOptions.retry) return Promise.reject(error)
 
     config.retryCount = config.retryCount || 0
@@ -209,7 +209,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
         // 携带Cookie
         withCredentials: true,
         // 头信息
-        headers: {'Content-Type': 'application/json;charset=UTF-8'},
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         // 数据处理方式
         transform, // transform,是对响应数据的处理
         // 配置项，下面的选项都可以在独立的接口请求中覆盖

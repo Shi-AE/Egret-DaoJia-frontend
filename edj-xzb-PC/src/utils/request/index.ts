@@ -5,11 +5,11 @@ import type { AxiosTransform, CreateAxiosOptions } from './AxiosTransform'
 import { VAxios } from './Axios'
 import proxy from '@/config/proxy'
 import { formatRequestDate, joinTimestamp, setObjToUrlParams } from './utils'
-import { TOKEN_NAME } from '@/config/global'
-import { useUserStore } from '@/store'
-import router from '@/router/index'
-
-// const router = useRouter()
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
+import { urlPrefix } from '@/config/configuration'
 
 const env = import.meta.env.MODE || 'development'
 
@@ -19,6 +19,7 @@ const host = env === 'mock' || !proxy.isRequestProxy ? '' : proxy[env].host
 // 数据处理，方便区分多种处理方式
 const transform: AxiosTransform = {
   // 处理请求数据。如果数据不是预期格式，可直接抛出错误
+  // eslint-disable-next-line consistent-return
   transformRequestHook: (res, options) => {
     const { isTransformResponse, isReturnNativeResponse } = options
 
@@ -46,22 +47,19 @@ const transform: AxiosTransform = {
 
     //  这里 code为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
     const { code } = data
+
     // 这里逻辑可以根据项目进行修改
     const hasSuccess = data && code === 200
     if (hasSuccess) {
       return data
-    } else {
-      return res
     }
     // 添加数据流的处理
     if (res && !code) {
       return res
     }
-    //605账号冻结
-    if (code === 605) {
+    if (code >= 400 && code <= 604) {
       return res
     }
-    console.log(res, 'res')
     // throw new Error(`请求接口错误, 错误码: ${code}`)
   },
 
@@ -136,25 +134,40 @@ const transform: AxiosTransform = {
   // 请求拦截器处理
   requestInterceptors: (config, options) => {
     // 请求之前处理config
-    const token = localStorage.getItem(TOKEN_NAME)
+    const authorizationAccessToken = localStorage.getItem(
+      AUTHORIZATION_ACCESS_TOKEN
+    )
+    const authorizationRefreshToken = localStorage.getItem(
+      AUTHORIZATION_REFRESH_TOKEN
+    )
 
-    if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
+    if (
+      authorizationAccessToken &&
+      authorizationRefreshToken &&
+      (config as Recordable)?.requestOptions?.withToken !== false
+    ) {
       // jwt token
-      ;(config as Recordable).headers.Authorization =
-        options.authenticationScheme
-          ? `${options.authenticationScheme} ${token}`
-          : token
+      ;(config as Recordable).headers[AUTHORIZATION_ACCESS_TOKEN] =
+        authorizationAccessToken
+      ;(config as Recordable).headers[AUTHORIZATION_REFRESH_TOKEN] =
+        authorizationRefreshToken
     }
     return config
   },
 
   // 响应拦截器处理
   responseInterceptors: (res) => {
-    //账号冻结
-    if ([605, 403].includes(res.data.code)) {
-      const userStore = useUserStore()
-      userStore.logout()
-      router.push('/login')
+    const authorizationAccessToken =
+      res.headers[AUTHORIZATION_ACCESS_TOKEN.toLowerCase()]
+    const authorizationRefreshToken =
+      res.headers[AUTHORIZATION_REFRESH_TOKEN.toLowerCase()]
+
+    if (authorizationRefreshToken && authorizationAccessToken) {
+      localStorage.setItem(AUTHORIZATION_ACCESS_TOKEN, authorizationAccessToken)
+      localStorage.setItem(
+        AUTHORIZATION_REFRESH_TOKEN,
+        authorizationRefreshToken
+      )
     }
     return res
   },
@@ -207,7 +220,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           isJoinPrefix: true,
           // 接口前缀
           // 例如: https://www.baidu.com/api
-          urlPrefix: '/api',
+          urlPrefix,
           // urlPrefix: '',
           // 是否返回原生响应头 比如：需要获取响应头时使用该属性
           isReturnNativeResponse: false,

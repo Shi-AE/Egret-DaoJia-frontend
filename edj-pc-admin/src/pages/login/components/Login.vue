@@ -20,7 +20,7 @@
           size="large"
         >
           <template #prefix-icon>
-            <t-icon name="user"/>
+            <t-icon name="user" />
           </template>
         </t-input>
       </t-form-item>
@@ -37,7 +37,7 @@
           size="large"
         >
           <template #prefix-icon>
-            <t-icon name="lock-on"/>
+            <t-icon name="lock-on" />
           </template>
         </t-input>
       </t-form-item>
@@ -72,20 +72,20 @@ const INITIAL_DATA = {
 }
 
 const FORM_RULES: Record<string, FormRule[]> = {
-  account: [{required: true, message: '账号必填', type: 'error'}],
-  password: [{required: true, message: '密码必填', type: 'error'}]
+  account: [{ required: true, message: '账号必填', type: 'error' }],
+  password: [{ required: true, message: '密码必填', type: 'error' }]
 }
 
 const type = ref(2)
 
 const form = ref<FormInstanceFunctions>()
-const formData = ref({...INITIAL_DATA})
+const formData = ref({ ...INITIAL_DATA })
 const showPsw = ref(false)
 
 const router = useRouter()
 const route = useRoute()
 
-const onSubmit = async ({validateResult}) => {
+const onSubmit = async ({ validateResult }) => {
   if (validateResult === true) {
     loadSt.value = true
     // 登录相关
