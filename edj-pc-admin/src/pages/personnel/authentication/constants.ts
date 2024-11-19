@@ -38,7 +38,7 @@ export const COLUMNS = [
     title: '审核状态',
     colKey: 'auditStatus',
     minWidth: '120px',
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         0: {
           label: '待审核'
@@ -63,7 +63,7 @@ export const COLUMNS = [
     width: 120,
     minWidth: '120px',
     // 添加筛选
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         1: {
           label: '待认证'
@@ -90,7 +90,7 @@ export const COLUMNS = [
     width: 250,
     minWidth: '200px',
     colKey: 'rejectReason',
-    cell: (h, {row}) => h('span', row.rejectReason ? row.rejectReason : '-')
+    cell: (h, { row }) => h('span', row.rejectReason ? row.rejectReason : '-')
   },
   {
     title: '申请时间',
@@ -99,7 +99,7 @@ export const COLUMNS = [
     colKey: 'createTime',
     sorter: true,
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
         row.createTime
@@ -112,8 +112,8 @@ export const COLUMNS = [
     align: 'left',
     width: 150,
     minWidth: '150px',
-    colKey: 'auditorName	',
-    cell: (h, {row}) => h('span', row.auditorName ? row.auditorName : '-')
+    colKey: 'auditName	',
+    cell: (h, { row }) => h('span', row.auditName ? row.auditName : '-')
   },
   {
     title: '审核时间',
@@ -122,7 +122,7 @@ export const COLUMNS = [
     colKey: 'auditTime',
     sorter: true,
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
         row.auditTime
@@ -172,7 +172,7 @@ export const Apply_DATA = [
       ],
       showConfirmAndReset: true
     },
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         0: {
           label: '-'
@@ -202,14 +202,14 @@ export const Apply_DATA = [
     width: 184,
     minWidth: '184px',
     colKey: 'nam',
-    cell: (h, {row}) => h('span', row.nam ? row.nam : '-')
+    cell: (h, { row }) => h('span', row.nam ? row.nam : '-')
   },
   {
     title: '申请时间',
     minWidth: '155px',
     colKey: 'updateTime',
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
         row.updateTime
@@ -222,7 +222,7 @@ export const Apply_DATA = [
     minWidth: '155px',
     colKey: 'auditTime',
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
         row.auditTime
