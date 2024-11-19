@@ -75,7 +75,7 @@ export const postAuth = (params) =>
 //获取实名认证驳回原因
 export const getAuthFail = () =>
     request({
-        url: `/customer/worker/worker-certification-audit/rejectReason`,
+        url: `/edj-customer/worker/certification/audit/reject/reason`,
         method: 'get',
     })
 //提交账户设置
