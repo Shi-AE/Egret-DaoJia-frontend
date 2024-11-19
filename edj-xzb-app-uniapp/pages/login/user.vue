@@ -77,6 +77,7 @@ import { useStore } from 'vuex'
 // 接口
 import { getsmsCode, phoneLogins } from '../api/user.js'
 import { getUserSetting } from '../api/setting.js'
+import { onShow } from '@dcloudio/uni-app'
 // ------定义变量------
 const store = useStore() //vuex获取储存数据
 const customForm = ref() //表单校验
@@ -145,7 +146,7 @@ const handleSubmit = async () => {
           // 存储token
           uni.setStorageSync('accessToken', res.data.accessToken)
           uni.setStorageSync('refreshToken', res.data.refreshToken)
-          store.commit('user/setToken', res.data.token)
+          store.commit('user/setToken', res.data.accessToken)
           await getUserSetting().then((res) => {
             if (Boolean(res.data.settingsStatus)) {
               // 跳转到首页
@@ -223,6 +224,29 @@ const handlePwd = async () => {
       })
     })
 }
+
+// 存在凭证自动登录
+onShow(() => {
+  const accessToken = uni.getStorageSync('accessToken')
+  const refreshToken = uni.getStorageSync('refreshToken')
+
+  if (accessToken && refreshToken) {
+    store.commit('user/setToken', accessToken)
+    getUserSetting().then((res) => {
+      if (Boolean(res.data.settingsStatus)) {
+        // 跳转到首页
+        uni.redirectTo({
+          url: '/pages/index/index'
+        })
+      } else {
+        // 跳转到业务配置
+        uni.redirectTo({
+          url: '/pages/setting/index'
+        })
+      }
+    })
+  }
+})
 </script>
 
 <style lang="scss" src="./index.scss"></style>
