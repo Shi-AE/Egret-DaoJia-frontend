@@ -81,7 +81,7 @@ const userStore = useUserStore()
 const loadSt = ref(false)
 
 const INITIAL_DATA = {
-  phone: '19330439536',
+  phone: '19875447806',
   password: 'admin123',
   userType: 3
 }
