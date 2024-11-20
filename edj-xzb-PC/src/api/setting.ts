@@ -13,12 +13,12 @@ export const setPickUpStatus = (params) =>
 // 获取服务技能及其下的服务技能所有数据
 export const getServiceSkillAll = () =>
   request.get<any>({
-    url: `/customer/agency/serve-skill/category`
+    url: `/edj-customer/agency/serve/skill/category`
   })
 // 修改服务技能
 export const updateServiceSkill = (params) =>
   request.post<any>({
-    url: `/customer/agency/serve-skill/batchUpsert`,
+    url: `/edj-customer/agency/serve/skill/batch`,
     data: params
   })
 // 获取开通城市列表

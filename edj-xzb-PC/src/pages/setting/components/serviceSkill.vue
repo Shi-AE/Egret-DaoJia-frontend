@@ -67,7 +67,10 @@
       </div>
       <div class="rightBox">
         <div class="title">已选服务（{{ activeItems.length }}）</div>
-        <NoData v-if="activeItems.length === 0" content="暂无已选服务技能"></NoData>
+        <NoData
+          v-if="activeItems.length === 0"
+          content="暂无已选服务技能"
+        ></NoData>
         <div v-if="activeItems.length > 0" class="cardBox">
           <div v-for="(item, index) in activeItems" :key="index" class="card">
             <span>{{ item.serveItemName }}</span>
@@ -109,14 +112,14 @@ const props = defineProps({
 })
 const serviceData = reactive({
   data: []
-}) //当前所有数据
-const activeId = ref(1) //左侧活跃项id
+}) // 当前所有数据
+const activeId = ref(1) // 左侧活跃项id
 const rightItem = reactive({
   data: []
-}) //右侧服务技能项数据
+}) // 右侧服务技能项数据
 const rightItemNoChange = reactive({
   data: []
-}) //右侧服务技能项不变数据（用于搜索）
+}) // 右侧服务技能项不变数据（用于搜索）
 
 let typeItems = []
 const typeItem = ref([])
@@ -153,8 +156,8 @@ const onClickCloseBtn = () => {
 // 切换选中类型
 const handleSwitchTab = (id, index) => {
   activeId.value = id
-  rightItem.data = serviceData.data[index].serveSkillItemResDTOList
-  rightItemNoChange.data = serviceData.data[index].serveSkillItemResDTOList
+  rightItem.data = serviceData.data[index].serveSkillItemVOList
+  rightItemNoChange.data = serviceData.data[index].serveSkillItemVOList
   searchKeyword.value = ''
   // emit('handleServiceTypeChange', id)
 }
@@ -182,15 +185,15 @@ const removeCard = (item) => {
     if (item1.serveTypeId === item.serveTypeId) {
       serveTypeIndex = index
     }
-    item1.serveSkillItemResDTOList.filter((item2, index1) => {
+    item1.serveSkillItemVOList.filter((item2, index1) => {
       if (item.serveItemId === item2.serveItemId) {
         serveItemIndex = index1
       }
     })
   })
-  serviceData.data[serveTypeIndex].serveSkillItemResDTOList[
+  serviceData.data[serveTypeIndex].serveSkillItemVOList[
     serveItemIndex
-    ].isSelected = false
+  ].isSelected = false
   activeItems.value = activeItems.value.filter(
     (i) => i.serveItemId !== item.serveItemId
   )
@@ -230,7 +233,7 @@ const scollBottom = () => {
 }
 // 提交
 const handleSubmit = () => {
-  let result = activeItems.value.map((item) => {
+  const result = activeItems.value.map((item) => {
     return {
       serveItemId: item.serveItemId,
       serveItemName: item.serveItemName,
@@ -242,7 +245,6 @@ const handleSubmit = () => {
   })
   if (activeItems.value.length === 0) {
     MessagePlugin.warning('请选择服务')
-    return
   } else {
     emit('handleSubmit', result)
     // 重置表单
@@ -262,23 +264,23 @@ watch(
       typeItem.value = typeItems.slice(0, 9)
 
       serviceData.data = props.serviceData
-      //根据接口要求需要重新组装数据
+      // 根据接口要求需要重新组装数据
       serviceData.data.forEach((item, index) => {
-        item.serveSkillItemResDTOList.forEach((item1, index1) => {
+        item.serveSkillItemVOList.forEach((item1, index1) => {
           item1.serveTypeId = item.serveTypeId
         })
       })
       activeItems.value = []
       serviceData.data.forEach((item, index) => {
-        item.serveSkillItemResDTOList.forEach((item1, index1) => {
+        item.serveSkillItemVOList.forEach((item1, index1) => {
           if (item1.isSelected) {
             activeItems.value.push(item1)
           }
         })
       })
       activeId.value = serviceData.data[0].serveTypeId
-      rightItem.data = serviceData.data[0].serveSkillItemResDTOList
-      rightItemNoChange.data = serviceData.data[0].serveSkillItemResDTOList
+      rightItem.data = serviceData.data[0].serveSkillItemVOList
+      rightItemNoChange.data = serviceData.data[0].serveSkillItemVOList
     }
   }
 )
