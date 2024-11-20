@@ -164,29 +164,29 @@ const formataccount = (val: string) => {
   return val.replace(/\s/g, '')
 }
 
-// onMounted(() => {
-//   const authorizationAccessToken = localStorage.getItem(
-//     AUTHORIZATION_ACCESS_TOKEN
-//   )
-//   const authorizationRefreshToken = localStorage.getItem(
-//     AUTHORIZATION_REFRESH_TOKEN
-//   )
-//
-//   if (authorizationAccessToken && authorizationRefreshToken) {
-//     MessagePlugin.success('登录成功')
-//     const redirect = route.query.redirect as string
-//     const redirectUrl = redirect ? decodeURIComponent(redirect) : '/dashboard'
-//     // console.log(route, redirectUrl, redirect, 'redirect')
-//     getSettingStatus().then((res) => {
-//       userStore.settingsStatus = res.data.settingsStatus
-//       if (res.data.settingsStatus) {
-//         router.push(redirectUrl)
-//       } else {
-//         router.push('/setting')
-//       }
-//     })
-//   }
-// })
+onMounted(() => {
+  const authorizationAccessToken = localStorage.getItem(
+    AUTHORIZATION_ACCESS_TOKEN
+  )
+  const authorizationRefreshToken = localStorage.getItem(
+    AUTHORIZATION_REFRESH_TOKEN
+  )
+
+  if (authorizationAccessToken && authorizationRefreshToken) {
+    MessagePlugin.success('登录成功')
+    const redirect = route.query.redirect as string
+    const redirectUrl = redirect ? decodeURIComponent(redirect) : '/dashboard'
+    // console.log(route, redirectUrl, redirect, 'redirect')
+    getSettingStatus().then((res) => {
+      userStore.settingsStatus = res.data.settingsStatus
+      if (res.data.settingsStatus) {
+        router.push(redirectUrl)
+      } else {
+        router.push('/setting')
+      }
+    })
+  }
+})
 </script>
 
 <style lang="less" scoped>
