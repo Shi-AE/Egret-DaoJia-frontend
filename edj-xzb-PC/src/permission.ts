@@ -1,9 +1,12 @@
 import { MessagePlugin } from 'tdesign-vue-next'
 import NProgress from 'nprogress' // progress bar//每次刷新页面或者重新进入页面的时候最顶部的进度条
 import 'nprogress/nprogress.css' // progress bar style
-
 import { getPermissionStore, getUserStore } from '@/store'
 import router from '@/router'
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
 // 是否显示环形进度条
 NProgress.configure({ showSpinner: false })
 
@@ -15,16 +18,17 @@ router.beforeEach(async (to, from, next) => {
   const permissionStore = getPermissionStore()
   const { whiteListRouters } = permissionStore
 
-  const { token, settingsStatus } = userStore
+  const { authorizationAccessToken, authorizationRefreshToken } = userStore
 
-  if (token) {
+  if (
+    authorizationAccessToken &&
+    authorizationRefreshToken &&
+    localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN) &&
+    localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN)
+  ) {
     if (to.path === '/login') {
       next()
       return
-    }
-    // 没有设置完则会重定向到设置页面
-    if (!settingsStatus && to.path !== '/setting') {
-      router.push('/setting')
     }
 
     // 在路由权限里需要借助roles进行过来 这块先留着后面需要改掉
@@ -74,9 +78,10 @@ router.beforeEach(async (to, from, next) => {
 })
 
 router.afterEach((to) => {
-  const userStore = getUserStore()
-  const permissionStore = getPermissionStore()
   if (to.path === '/login') {
+    const userStore = getUserStore()
+    const permissionStore = getPermissionStore()
+
     userStore.logout()
     permissionStore.restore()
   }
