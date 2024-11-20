@@ -40,13 +40,13 @@ export const getSettingInfo = () =>
 // 提交实名认证
 export const postAuth = (params) =>
   request.post<any>({
-    url: `/customer/agency/agency-certification-audit`,
+    url: `/edj-customer/agency/certification/audit`,
     data: params
   })
 // 获取实名认证驳回原因
 export const getAuthFail = () =>
   request.get<any>({
-    url: `/customer/agency/agency-certification-audit/rejectReason`
+    url: `/edj-customer/agency/certification/audit/reject/reason`
   })
 // 提交账户设置
 export const postAccount = (params) =>
