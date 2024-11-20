@@ -106,6 +106,10 @@
 import { ref, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { getAuthFail } from '@/api/setting'
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
 
 const props = defineProps({
   visible: {

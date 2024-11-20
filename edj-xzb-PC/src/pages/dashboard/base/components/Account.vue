@@ -105,6 +105,10 @@
 import { onMounted, ref, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { areaData, cityData, provinceData } from '@/utils/commonData'
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
 
 const props = defineProps({
   visible: {

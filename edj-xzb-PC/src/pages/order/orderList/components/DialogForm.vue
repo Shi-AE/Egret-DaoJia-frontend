@@ -68,6 +68,10 @@
 import { ref, watch } from 'vue'
 import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
 import { forEach } from 'lodash'
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
 
 const props = defineProps({
   visible: {

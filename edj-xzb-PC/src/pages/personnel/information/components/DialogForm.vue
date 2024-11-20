@@ -85,6 +85,10 @@ import { ref, watch } from 'vue'
 import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
 import { forEach } from 'lodash'
 import { validateIdCard, validatePhone } from '@/utils/validate'
+import {
+  AUTHORIZATION_ACCESS_TOKEN,
+  AUTHORIZATION_REFRESH_TOKEN
+} from '@/config/global'
 
 const props = defineProps({
   visible: {
@@ -146,6 +150,7 @@ const onClickCloseBtn = () => {
   formVisible.value = false
   emit('handleClose')
 }
+
 const accessToken = localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN)
 const refreshToken = localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN)
 // 监听器，监听父级传递的visible值，控制弹窗显示隐藏
