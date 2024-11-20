@@ -23,14 +23,15 @@
             ref="uploadRef1"
             v-model="formData.certificationImgs"
             :allow-upload-duplicate-file="true"
-            :formatResponse="(e) =>formatResponse(e)"
+            :format-response="(e) => formatResponse(e)"
             :headers="{
-              Authorization: token
+              AuthorizationAccessToken: accessToken,
+              AuthorizationRefreshToken: refreshToken
             }"
             :max="3"
-            :sizeLimit="5120"
+            :size-limit="5120"
             accept="image/*"
-            action="/api/publics/storage/upload"
+            action="/api/edj-publics/storage/upload"
             class="wt-400"
             multiple
             theme="image"
@@ -41,8 +42,7 @@
           >
           </t-upload>
         </t-form-item>
-        <t-form-item :label-width="100" label="补充说明：" name="description"
-        >
+        <t-form-item :label-width="100" label="补充说明：" name="description">
           <t-textarea
             v-model="formData.description"
             :maxlength="50"
@@ -92,7 +92,8 @@ const props = defineProps({
 // 重置表单
 const resetType = ref('empty')
 const formLabel = ref('退款原因：')
-const token = localStorage.getItem('xzb')
+const accessToken = localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN)
+const refreshToken = localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN)
 // 表单
 const form = ref()
 // 触发父级事件
@@ -135,9 +136,8 @@ const handleSuccess = (params) => {
 const formatResponse = (res) => {
   if (res.code === 200) {
     return res.data
-  } else {
-    return { name: 'null', error: '上传失败，请重试' }
   }
+  return { name: 'null', error: '上传失败，请重试' }
 }
 // 上传图片失败
 const handleFail = (file) => {
@@ -176,7 +176,6 @@ watch(
     formData.value = JSON.parse(JSON.stringify(val)) // 深拷贝
   }
 )
-
 
 // 表单校验
 const rules = {

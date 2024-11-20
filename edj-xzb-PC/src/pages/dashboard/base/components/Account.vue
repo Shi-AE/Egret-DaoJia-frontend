@@ -72,12 +72,13 @@
             <t-upload
               v-model="formData.accountCertification"
               :headers="{
-                Authorization: token
+                AuthorizationAccessToken: accessToken,
+                AuthorizationRefreshToken: refreshToken
               }"
               :max="1"
-              :sizeLimit="5120"
+              :size-limit="5120"
               accept="image/*"
-              action="/api/publics/storage/upload"
+              action="/api/edj-publics/storage/upload"
               class="wt-400"
               theme="image"
               tips="请上传1张jpg/png文件，在5MB以内"
@@ -112,11 +113,11 @@ const props = defineProps({
   },
   formData: {
     type: Object,
-    default: () => {
-    }
+    default: () => {}
   }
 })
-const token = localStorage.getItem('xzb')
+const accessToken = localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN)
+const refreshToken = localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN)
 const bankList = ref([
   { value: '1', label: '中国工商银行' },
   { value: '2', label: '中国建设银行' },
@@ -128,12 +129,11 @@ const bankList = ref([
 ] as any)
 const provinceIndex = ref(null)
 const cityIndex = ref(null)
-const cityList = ref([] as any) //市
-const areaList = ref([]) //区
+const cityList = ref([] as any) // 市
+const areaList = ref([]) // 区
 const form = ref(null)
-onMounted(() => {
-})
-//选择省份回显市
+onMounted(() => {})
+// 选择省份回显市
 const handleSelectProvince = (e) => {
   provinceIndex.value = provinceData.findIndex((item) => item.code === e)
   cityList.value = cityData[provinceIndex.value]
@@ -141,7 +141,7 @@ const handleSelectProvince = (e) => {
   formData.value.city = ''
   formData.value.district = ''
 }
-//选择市回显区
+// 选择市回显区
 const handleSelectCity = (e) => {
   cityIndex.value = cityData[provinceIndex.value].findIndex(
     (item) => item.value === e
@@ -149,15 +149,14 @@ const handleSelectCity = (e) => {
   formData.value.district = ''
   areaList.value = areaData[provinceIndex.value][cityIndex.value]
 }
-//选择区
-const handleSelectArea = (e) => {
-}
+// 选择区
+const handleSelectArea = (e) => {}
 // 上传图片失败
 const handleFail = (file) => {
   console.log(file)
   MessagePlugin.error(`文件上传失败`)
 }
-//上传成功
+// 上传成功
 const handleSuccess = (params) => {
   formData.value.accountCertification = [
     { url: params.response.data.url, name: '' }
@@ -186,19 +185,26 @@ const formVisible = ref(false)
 const handleSubmit = (result) => {
   if (!formData.value.city) {
     return MessagePlugin.error('请选择城市')
-  } else if (!formData.value.district) {
+  }
+  if (!formData.value.district) {
     return MessagePlugin.error('请选择区域')
-  } else if (!formData.value.province) {
+  }
+  if (!formData.value.province) {
     return MessagePlugin.error('请选择省')
-  } else if (!formData.value.name) {
+  }
+  if (!formData.value.name) {
     return MessagePlugin.error('请填写户名')
-  } else if (!formData.value.bankName) {
+  }
+  if (!formData.value.bankName) {
     return MessagePlugin.error('请选择银行')
-  } else if (!formData.value.branch) {
+  }
+  if (!formData.value.branch) {
     return MessagePlugin.error('请填写网点')
-  } else if (!formData.value.account) {
+  }
+  if (!formData.value.account) {
     return MessagePlugin.error('请填写银行账号')
-  } else if (!formData.value.accountCertification.length) {
+  }
+  if (!formData.value.accountCertification.length) {
     return MessagePlugin.error('请上传开户证明')
   }
   // 重置表单
@@ -216,10 +222,10 @@ const handleSubmit = (result) => {
     ...formData.value,
     accountCertification: formData.value.accountCertification[0].url,
     bankName:
-    bankList.value[
-      bankList.value.findIndex(
-        (item) => item.value === formData.value.bankName
-      )
+      bankList.value[
+        bankList.value.findIndex(
+          (item) => item.value === formData.value.bankName
+        )
       ].label
   })
 }
@@ -288,7 +294,7 @@ const rules = {
     //   message: '统一社会信用代码最多18个字'
     // }
   ],
-  //法人代表姓名
+  // 法人代表姓名
   branch: [
     {
       required: true,

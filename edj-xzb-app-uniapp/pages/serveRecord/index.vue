@@ -73,7 +73,7 @@ const uploadImage = async () => {
   const promises = fileList.value.map((item) => {
     return new Promise((resolve, reject) => {
       uni.uploadFile({
-        url: `${baseUrl}` + '/publics/storage/upload',
+        url: `${baseUrl}` + '/edj-publics/storage/upload',
         files: [
           {
             name: 'file',

@@ -50,12 +50,13 @@
               ref="uploadRef1"
               v-model="formData.businessLicense"
               :headers="{
-                Authorization: token
+                AuthorizationAccessToken: accessToken,
+                AuthorizationRefreshToken: refreshToken
               }"
               :max="1"
-              :sizeLimit="5120"
+              :size-limit="5120"
               accept="image/*"
-              action="/api/publics/storage/upload"
+              action="/api/edj-publics/storage/upload"
               class="wt-400"
               theme="image"
               tips="请上传1张jpg/png文件，在5MB以内"
@@ -117,12 +118,13 @@ const props = defineProps({
   }
 })
 const certificationStatus = ref(0)
-const token = localStorage.getItem('xzb')
-//重新认证
+const accessToken = localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN)
+const refreshToken = localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN)
+// 重新认证
 const handleResetAuth = () => {
   certificationStatus.value = 0
 }
-//图片上传成功
+// 图片上传成功
 const handleSuccess = (params) => {
   formData.value.businessLicense = [{ url: params.response.data.url, name: '' }]
 }
@@ -146,7 +148,7 @@ const formData = ref<any>({
 })
 // 弹窗标题
 const title = ref('资质认证')
-//拒绝原因
+// 拒绝原因
 const reason = ref('')
 // 弹窗
 const formVisible = ref(false)
@@ -154,13 +156,17 @@ const formVisible = ref(false)
 const handleSubmit = () => {
   if (!formData.value.name) {
     return MessagePlugin.error('请填写企业名称')
-  } else if (!formData.value.idNumber) {
+  }
+  if (!formData.value.idNumber) {
     return MessagePlugin.error('请填写统一社会信用代码：')
-  } else if (!formData.value.legalPersonName) {
+  }
+  if (!formData.value.legalPersonName) {
     return MessagePlugin.error('请填写法人代表姓名：')
-  } else if (!formData.value.legalPersonIdCardNo) {
+  }
+  if (!formData.value.legalPersonIdCardNo) {
     return MessagePlugin.error('请填写身份证号：')
-  } else if (!formData.value.businessLicense.length) {
+  }
+  if (!formData.value.businessLicense.length) {
     return MessagePlugin.error('请上传营业执照：')
   }
   // 重置表单
@@ -198,7 +204,7 @@ const rules = {
       trigger: 'blur'
     }
   ],
-  //法人代表姓名
+  // 法人代表姓名
   legalPersonName: [
     {
       required: true,
@@ -222,7 +228,7 @@ const onClickCloseBtn = () => {
   formVisible.value = false
   emit('handleClose')
 }
-//获取审核未通过原因
+// 获取审核未通过原因
 const getAuthFailFunc = () => {
   getAuthFail().then((res) => {
     reason.value = res.data.rejectReason

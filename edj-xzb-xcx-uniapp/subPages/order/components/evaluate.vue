@@ -421,7 +421,7 @@ const uploadImage = (result) => {
     };
     for (let i = 0; i < tempFilePaths.length; i++) {
         const uploadTask = uni.uploadFile({
-            url: 'https://jzo2o-api-test.itheima.net/publics/storage/upload', // 替换为你的服务器上传接口地址
+            url: '/api/edj-publics/storage/upload', // 替换为你的服务器上传接口地址
             filePath: tempFilePaths[i],
             name: 'file', // 与服务器端点的文件字段名称匹配
             formData: formData,

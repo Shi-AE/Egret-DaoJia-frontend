@@ -21,7 +21,7 @@
         <t-form-item label="服务人员姓名：" name="name">
           <t-input
             v-model="formData.name"
-            :onChange="(value)=>WordLimit(5 ,value)"
+            :on-change="(value) => WordLimit(5, value)"
             class="wt-400"
             clearable
             placeholder="请输入服务人员姓名"
@@ -48,14 +48,15 @@
             ref="uploadRef1"
             v-model="formData.certificationImgs"
             :allow-upload-duplicate-file="true"
-            :formatResponse="(e) =>formatResponse(e)"
+            :format-response="(e) => formatResponse(e)"
             :headers="{
-              Authorization: token,
+              AuthorizationAccessToken: accessToken,
+              AuthorizationRefreshToken: refreshToken
             }"
             :max="3"
-            :sizeLimit="5120"
+            :size-limit="5120"
             accept="image/*"
-            action="/api/publics/storage/upload"
+            action="/api/edj-publics/storage/upload"
             class="wt-400"
             multiple
             theme="image"
@@ -82,8 +83,8 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
-import { validateIdCard, validatePhone } from '@/utils/validate'
 import { forEach } from 'lodash'
+import { validateIdCard, validatePhone } from '@/utils/validate'
 
 const props = defineProps({
   visible: {
@@ -145,12 +146,13 @@ const onClickCloseBtn = () => {
   formVisible.value = false
   emit('handleClose')
 }
-const token = localStorage.getItem('xzb')
+const accessToken = localStorage.getItem(AUTHORIZATION_ACCESS_TOKEN)
+const refreshToken = localStorage.getItem(AUTHORIZATION_REFRESH_TOKEN)
 // 监听器，监听父级传递的visible值，控制弹窗显示隐藏
 watch(
   () => props.visible,
   () => {
-    let data = JSON.parse(JSON.stringify(props.data))
+    const data = JSON.parse(JSON.stringify(props.data))
     formData.value.name = data.name
     formData.value.phone = data.phone
     formData.value.idCardNo = data.idCardNo
@@ -184,9 +186,8 @@ const handleFail = (file) => {
 const formatResponse = (res) => {
   if (res.code === 200) {
     return res.data
-  } else {
-    return { name: 'null', error: '上传失败，请重试' }
   }
+  return { name: 'null', error: '上传失败，请重试' }
 }
 // 超过大小或者文件格式错误报错提示
 const onValidate = (params) => {
@@ -275,7 +276,8 @@ defineExpose({
 }
 
 :deep(.t-upload__card-item) {
-  .t-upload__card-content, .t-upload__card-container {
+  .t-upload__card-content,
+  .t-upload__card-container {
     margin-right: 20.9px;
 
     &:last-child {
