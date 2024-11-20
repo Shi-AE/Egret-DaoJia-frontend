@@ -24,7 +24,7 @@ export const updateServiceSkill = (params) =>
 // 获取开通城市列表
 export const getOpenCity = () =>
   request.get<any>({
-    url: `/foundations/agency/region/activeRegionList`
+    url: `/edj-foundations/consumer/region/active`
   })
 // 服务范围设置
 export const setServiceRanges = (params) =>

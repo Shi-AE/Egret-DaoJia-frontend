@@ -3,6 +3,7 @@
   <t-dialog
     v-model:visible="formVisible"
     :header="title"
+    placement="center"
     :on-close="onClickCloseBtn"
     :width="960"
   >
@@ -57,7 +58,7 @@
             />
           </bm-marker> -->
           <bm-local-search
-            :autoViewport="true"
+            :auto-viewport="true"
             :keyword="formData.intentionScope"
             :map-click="false"
             :panel="false"
@@ -126,7 +127,7 @@ const title = ref('服务范围设置')
 // 弹窗
 const formVisible = ref(false)
 
-//地图初始化
+// 地图初始化
 const ready = ({ BMap, map }) => {
   mapRef.value = map
 }
@@ -153,7 +154,8 @@ const handleMoveend = (val) => {
 const handleSubmit = () => {
   if (!formData.value.cityCode) {
     return MessagePlugin.error('请选择城市')
-  } else if (!formData.value.intentionScope) {
+  }
+  if (!formData.value.intentionScope) {
     return MessagePlugin.error('请选择区域')
   }
   // 重置表单
@@ -163,7 +165,7 @@ const handleSubmit = () => {
   emit('handleSubmit', {
     cityCode: formData.value.cityCode,
     intentionScope: formData.value.intentionScope,
-    location: String(params.longitude) + ',' + String(params.latitude),
+    location: `${String(params.longitude)},${String(params.latitude)}`,
     cityName: typeSelectList.filter(
       (item) => item.value === formData.value.cityCode
     )[0].label
