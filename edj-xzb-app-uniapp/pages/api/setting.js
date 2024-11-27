@@ -81,7 +81,7 @@ export const getAuthFail = () =>
 //提交账户设置
 export const postAccount = (params) =>
     request({
-        url: `/customer/worker/bank-account`,
+        url: `/edj-customer/worker/bank/account`,
         method: 'post',
         params
     })
