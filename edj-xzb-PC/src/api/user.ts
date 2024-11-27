@@ -28,7 +28,7 @@ export function getCode(params) {
 // 修改密码
 export function resetPwd(params) {
   return request.post<any>({
-    url: '/customer/agency/serve-provider/institution/resetPassword',
+    url: '/edj-user/open/institution/reset/password',
     data: params
   })
 }
