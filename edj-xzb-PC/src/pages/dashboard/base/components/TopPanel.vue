@@ -51,7 +51,7 @@
     </div>
     <!-- 服务技能弹窗 -->
     <serviceSkill
-      :serviceData="serviceSkillP.data"
+      :service-data="serviceSkillP.data"
       :visible="visible"
       @handleClose="handleClose"
       @handleSubmit="handleSubmit"
@@ -59,8 +59,8 @@
     <!-- end -->
     <!-- 服务范围 -->
     <serviceRange
-      :openCity="openCity.data"
-      :serviceRangeR="serviceRangeR"
+      :open-city="openCity.data"
+      :service-range-r="serviceRangeR"
       :visible="rangeVisible"
       @handleClose="handleClose"
       @handleSubmit="handleRange"
@@ -68,7 +68,7 @@
     <!-- end -->
     <!-- 账户设置 -->
     <Account
-      :formData="formData"
+      :form-data="formData"
       :visible="accountVisible"
       @handleClose="handleClose"
       @handleSubmit="handleAccountSubmit"
@@ -85,6 +85,7 @@ export default {
 
 <script lang="ts" setup>
 import { onMounted, ref, reactive } from 'vue'
+import { MessagePlugin } from 'tdesign-vue-next'
 import serviceSkill from '@/pages/setting/components/serviceSkill.vue'
 import serviceRange from '@/pages/setting/components/serviceRange.vue'
 import Account from './Account.vue'
@@ -98,7 +99,6 @@ import {
   getAccountInfo
 } from '@/api/setting'
 import { bankList } from '@/utils/commonData'
-import { MessagePlugin } from 'tdesign-vue-next'
 
 onMounted(() => {
   getServiceSkillAllFunc()
@@ -106,7 +106,7 @@ onMounted(() => {
   getSettingInfoFunc()
   getAccountInfoFunc()
 })
-const accountVisible = ref(false) //账户设置弹窗
+const accountVisible = ref(false) // 账户设置弹窗
 const visible = ref(false) // 选择服务技能弹窗
 const rangeVisible = ref(false) // 选择服务范围弹窗
 // 服务技能
@@ -124,7 +124,7 @@ const serviceRangeR = reactive({
   location: ''
 })
 const formData = ref({} as any)
-//获取当前设置的服务范围信息
+// 获取当前设置的服务范围信息
 const getSettingInfoFunc = () => {
   getSettingInfo().then((res) => {
     serviceRangeR.intentionScope = res.data.intentionScope
@@ -132,14 +132,14 @@ const getSettingInfoFunc = () => {
     serviceRangeR.location = res.data.location
   })
 }
-//获取账户设置信息
+// 获取账户设置信息
 const getAccountInfoFunc = () => {
   getAccountInfo().then((res) => {
     formData.value.name = res.data.name
     formData.value.bankName =
       bankList[
         bankList.findIndex((item) => item.label === res.data.bankName)
-        ].value
+      ].value
     formData.value.province = res.data.province
     formData.value.city = res.data.city
     formData.value.district = res.data.district
@@ -150,13 +150,13 @@ const getAccountInfoFunc = () => {
     ]
   })
 }
-//获取开通城市列表
+// 获取开通城市列表
 const getOpenCityFunc = () => {
   getOpenCity().then((res) => {
     openCity.data = res.data
   })
 }
-//获取服务技能及其下的服务技能所有数据
+// 获取服务技能及其下的服务技能所有数据
 const getServiceSkillAllFunc = () => {
   getServiceSkillAll().then((res) => {
     serviceSkillP.data = res.data
@@ -171,21 +171,21 @@ const handleClose = () => {
   getSettingInfoFunc()
   getAccountInfoFunc()
 }
-//提交账户设置
+// 提交账户设置
 const handleAccountSubmit = (params) => {
   postAccount(params).then((res) => {
     handleClose()
     MessagePlugin.success('提交成功')
   })
 }
-//提交服务范围
+// 提交服务范围
 const handleRange = (params) => {
   setServiceRanges(params).then((res) => {
     handleClose()
     MessagePlugin.success('设置成功')
   })
 }
-//提交服务技能选择
+// 提交服务技能选择
 const handleSubmit = (val) => {
   const params = val.map((item) => {
     return {
@@ -201,15 +201,15 @@ const handleSubmit = (val) => {
     MessagePlugin.success('设置成功')
   })
 }
-//打开服务技能弹窗
+// 打开服务技能弹窗
 const handleServiceSkill = () => {
   visible.value = true
 }
-//打开服务范围弹窗
+// 打开服务范围弹窗
 const handleServiceRange = () => {
   rangeVisible.value = true
 }
-//打开账户设置弹窗
+// 打开账户设置弹窗
 const handleAccount = () => {
   accountVisible.value = true
 }

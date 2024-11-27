@@ -2,6 +2,7 @@
 <template>
   <t-dialog
     v-model:visible="formVisible"
+    placement="center"
     :header="title"
     :on-close="onClickCloseBtn"
   >

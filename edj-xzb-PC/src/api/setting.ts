@@ -51,11 +51,11 @@ export const getAuthFail = () =>
 // 提交账户设置
 export const postAccount = (params) =>
   request.post<any>({
-    url: `/customer/agency/bank-account`,
+    url: `/edj-customer/agency/bank/account`,
     data: params
   })
 // 获取账户设置信息
 export const getAccountInfo = () =>
   request.get<any>({
-    url: `/customer/agency/bank-account/currentUserBankAccount`
+    url: `/edj-customer/agency/bank/account`
   })
