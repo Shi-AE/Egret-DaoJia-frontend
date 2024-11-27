@@ -293,10 +293,10 @@ export function regionRefreshCache(id) {
   })
 }
 
-// 机构认真审核信息分页查询
+// 机构认证审核信息分页查询
 export function serviceInstitutionAuditList(value) {
-  return request.get({
-    url: '/customer/operation/agency-certification-audit/page',
+  return request.post({
+    url: '/edj-customer/operation/agency/certification/audit/page',
     params: value
   })
 }
@@ -313,7 +313,7 @@ export function servicePersonAuditList(value) {
 export function serviceInstitutionAudit(value, id) {
   return request.put({
     url:
-      `/customer/operation/agency-certification-audit/audit/${id}?` +
+      `/edj-customer/operation/agency/certification/audit/audit/${id}?` +
       `rejectReason=${value.rejectReason}&` +
       `certificationStatus=${value.certificationStatus}`,
     data: value

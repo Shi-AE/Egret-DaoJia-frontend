@@ -15,7 +15,11 @@
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item :label-width="115" label="法定代表人姓名：" name="legalPersonName">
+          <t-form-item
+            :label-width="115"
+            label="法定代表人姓名："
+            name="legalPersonName"
+          >
             <t-input
               v-model="formData.legalPersonName"
               class="form-item-content"
@@ -35,7 +39,11 @@
           </t-form-item>
         </t-col>
         <t-col>
-          <t-form-item :label-width="70" label="认证状态：" name="certificationStatus">
+          <t-form-item
+            :label-width="70"
+            label="认证状态："
+            name="certificationStatus"
+          >
             <t-radio-group v-model="formData.certificationStatus">
               <t-radio :value="1">全部</t-radio>
               <t-radio :value="2">认证通过</t-radio>
@@ -54,7 +62,6 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { AUTH_STATUS, AUDIT_STATUS } from '@/constants'
 
 const props = defineProps({
   initSearch: {
@@ -74,7 +81,7 @@ const props = defineProps({
 // 表单数据
 const formData = ref({
   name: '',
-  auditStatus: 2,
+  auditStatus: 0,
   certificationStatus: 1,
   legalPersonName: ''
 })
@@ -83,13 +90,13 @@ const emit: Function = defineEmits(['handleSearch', 'handleReset'])
 // 表单数据
 const searchForm = {
   name: '',
-  auditStatus: 2,
+  auditStatus: 0,
   certificationStatus: 1,
   legalPersonName: ''
 }
 // 重置表单
 const handleReset = () => {
-  formData.value = {...searchForm}
+  formData.value = { ...searchForm }
   emit('handleSearch', formData.value)
 }
 // 搜索表单
