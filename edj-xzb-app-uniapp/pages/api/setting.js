@@ -88,6 +88,6 @@ export const postAccount = (params) =>
 //获取账户设置信息
 export const getAccountInfo = () =>
     request({
-        url: `/customer/worker/bank-account/currentUserBankAccount`,
+        url: `/edj-customer/worker/bank/account`,
         method: 'get',
     })
