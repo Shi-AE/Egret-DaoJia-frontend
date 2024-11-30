@@ -3,7 +3,7 @@ import { request } from '../../utils/request';
 // 获取服务分类
 export const getServeCategory = (params) => {
     return request({
-        url: '/foundations/customer/serve/serveTypeList',
+        url: '/edj-foundations/consumer/serve/type',
         method: 'get',
         params
     })
