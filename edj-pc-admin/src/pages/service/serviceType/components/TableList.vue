@@ -60,7 +60,7 @@
                       class="tdesign-demo-image-viewer__ui-image--hover"
                       @click="open"
                     >
-                      <span><ZoomInIcon size="1.8em"/></span>
+                      <span><ZoomInIcon size="1.8em" /></span>
                     </div>
                   </div>
                 </template>
@@ -84,22 +84,17 @@
                   : 'btn-dl btn-split-right'
               "
               @click="handleClickDelete(row)"
-            >删除</a
+              >删除</a
             >
             <a
               :class="'font-bt btn-split-right line'"
               @click="handleViewServices(row)"
-            >查看服务项</a
+              >查看服务项</a
             >
-            <a
-              :class="row.activeStatus === 2 ? 'text-forbidden' : ''"
-              class="font-bt line"
-              @click="handleEdit(row)"
-            >编辑</a
-            >
+            <a class="font-bt line" @click="handleEdit(row)">编辑</a>
             <a class="font-bt btn-split-left" @click="handleDisable(row)">{{
-                row.activeStatus === 2 ? '禁用' : '启用'
-              }}</a>
+              row.activeStatus === 2 ? '禁用' : '启用'
+            }}</a>
           </template>
           <!-- end -->
         </t-table>
