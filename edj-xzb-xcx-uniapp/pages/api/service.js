@@ -19,7 +19,7 @@ export const getServeList = (params) => {
 // 根据id查询服务
 export const getServeById = (id) => {
     return request({
-        url: `/foundations/customer/serve/${id}`,
+        url: `/edj-foundations/consumer/serve/${id}`,
         method: 'get',
     })
 }
