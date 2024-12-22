@@ -12,6 +12,13 @@ export const getAddress = (params) =>
     method: 'get',
     params
   })
+// 根据城市编号获取系统id
+export const getIdByCityCode = (params) =>
+  request({
+    url: `/edj-foundations/open/city/id`,
+    method: 'get',
+    params
+  })
 // 地址薄分页查询
 export const getAddressBook = (params) =>
   request({

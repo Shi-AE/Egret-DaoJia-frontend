@@ -19,7 +19,7 @@ export const getHotServe = (params) => {
 // 首页服务搜索
 export const getServeSearch = (params) => {
     return request({
-        url: `/foundations/customer/serve/search`,
+        url: `/edj-foundations/consumer/serve/search`,
         method: 'get',
         params
     })
