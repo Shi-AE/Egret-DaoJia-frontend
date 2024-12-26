@@ -26,7 +26,7 @@ export const getServeById = (id) => {
 // 预约服务，下单
 export const addOrder = (params) => {
     return request({
-        url: `/orders-manager/consumer/orders/place`,
+        url: `/edj-orders-manager/consumer/orders/place`,
         method: 'post',
         params
     })
