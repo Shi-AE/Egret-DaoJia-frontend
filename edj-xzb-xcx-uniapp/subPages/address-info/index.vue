@@ -253,7 +253,19 @@ const handleLocation = () => {
           cityName.value = city ? city : province
           countyName.value = district ? district : ''
           areaLabel.value = provinceName.value + ' ' + cityName.value + ' ' + countyName.value
-          formAddressInfo.value = fullAddress
+          const t = [countyName.value, cityName.value, provinceName.value]
+          let address = fullAddress
+          for (let x of t) {
+            if (x !== '') {
+              const index = fullAddress.indexOf(x)
+              console.log(index)
+              if (index !== -1) {
+                address = fullAddress.slice(index + x.length)
+                break
+              }
+            }
+          }
+          formAddressInfo.value = address
         }
       })
     }
