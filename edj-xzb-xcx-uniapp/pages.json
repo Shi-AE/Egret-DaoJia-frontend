@@ -5,7 +5,7 @@
       "path": "pages/index/index",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "云岚到家",
+        "navigationBarTitleText": "白鹭到家",
         "enablePullDownRefresh": true,
         "backgroundTextStyle": "dark"
       }
@@ -188,7 +188,7 @@
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "云岚到家",
+    "navigationBarTitleText": "白鹭到家",
     // "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8",
     "onReachBottomDistance": 50,

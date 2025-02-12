@@ -142,7 +142,7 @@ export function getOrderScroll(params) {
 // 查询订单支付结果
 export function getOrderPayResult(id) {
   return request({
-    url: `/orders-manager/consumer/orders/pay/${id}/result`,
+    url: `/edj-orders-manager/consumer/orders/pay/${id}/result`,
     method: 'get'
   })
 }

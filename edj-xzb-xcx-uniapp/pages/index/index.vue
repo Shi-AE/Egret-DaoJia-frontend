@@ -1,7 +1,7 @@
 <!-- 首页 -->
 <template>
   <view class="homePage">
-    <NavBar :isShowBack="false" title="云岚到家"></NavBar>
+    <NavBar :isShowBack="false" title="白鹭到家"></NavBar>
     <view class="homeBox">
       <view class="input-view">
         <view class="city" @click="toCity()">
@@ -27,7 +27,7 @@
       <view class="tips">
         <view>
           <image mode="scaleToFill" src="/static/smile.png" />
-          <test> 云岚到家平台，给你贴心的 专业的上门服务</test>
+          <test> 白鹭到家平台，给你贴心的 专业的上门服务</test>
         </view>
         <view>
           <image mode="scaleToFill" src="/static/yuan.png" />
@@ -96,7 +96,7 @@
                 ? '专业、贴心的上门服务'
                 : (index + 1) % 3 === 2
                   ? '标准定价，售后无忧'
-                  : '云岚到家，您的不二选择'
+                  : '白鹭到家，您的不二选择'
             }}
           </view
           >

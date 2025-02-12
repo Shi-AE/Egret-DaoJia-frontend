@@ -46,10 +46,6 @@
     <t-form-item class="btn-container">
       <t-loading v-if="loadSt" class="bt load" indicator></t-loading>
       <button v-else class="bt" type="submit">登录</button>
-      <div class="tips">
-        仅用于IT培训教学使用，为保障您的个人信息安全，请勿向平台录入任何个人敏感信息
-        (如手机号、身份证号等) !
-      </div>
     </t-form-item>
   </t-form>
 </template>

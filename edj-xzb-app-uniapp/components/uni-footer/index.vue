@@ -79,7 +79,7 @@ const changeTab = (item, index) => {
         });
     } else {
         uni.showToast({
-            title: '当前功能非教学版本！',
+            title: '开发中',
             duration: 1000,
             icon: 'none',
         });

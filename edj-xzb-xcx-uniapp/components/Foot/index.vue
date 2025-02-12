@@ -88,7 +88,7 @@ const changeTab = (item, index) => {
       //  点击消息时
       if (item.pagePath === '/pages/message/index') {
         uni.showToast({
-          title: '当前功能非教学版本！',
+          title: '开发中',
           icon: 'none'
         })
       } else {
