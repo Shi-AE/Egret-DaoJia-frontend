@@ -133,7 +133,7 @@ export function setReport(value) {
 // 订单滚动分页查询
 export function getOrderScroll(params) {
   return request({
-    url: `/orders-manager/consumer/orders/consumerQueryList`,
+    url: `/edj-orders-manager/consumer/orders/list`,
     method: 'get',
     params
   })
