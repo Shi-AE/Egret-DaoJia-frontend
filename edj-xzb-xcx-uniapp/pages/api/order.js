@@ -12,7 +12,7 @@ export function getOrderList(params) {
 // 获取订单详情
 export function getOrderDetail(id) {
   return request({
-    url: `/orders-manager/consumer/orders/${id}`,
+    url: `/edj-orders-manager/consumer/orders/${id}`,
     method: 'get'
   })
 }
