@@ -240,7 +240,7 @@ const handleToOrder = () => {
   clearInterval(rocallStatus.value)
   store.commit('user/setOrderStatus', '')
   store.commit('user/setBackLike', 'pay')
-  uni.navigateTo({
+  uni.redirectTo({
     url: '/subPages/order/index'
   })
 }
