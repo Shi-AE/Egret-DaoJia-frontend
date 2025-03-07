@@ -20,7 +20,7 @@ export function getOrderDetail(id) {
 // 取消订单
 export function cancelOrder(value) {
   return request({
-    url: `/orders-manager/consumer/orders/cancel`,
+    url: `/edj-orders-manager/consumer/orders/cancel`,
     method: 'put',
     params: value
   })
