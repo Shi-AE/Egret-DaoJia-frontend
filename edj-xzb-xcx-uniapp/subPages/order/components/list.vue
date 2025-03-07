@@ -226,16 +226,15 @@ const handleNavigate = (id, num) => {
 
 // 去支付
 const handlePay = (val) => {
-  let cheapPrice = 0
-  cheapPrice = val.price - val.realPayAmount
+  let cheapPrice = val.totalAmount - val.realPayAmount
   uni.navigateTo({
     url:
       '/pages/pay/index?id=' +
       val.id +
-      '&price=' +
-      val.price +
       '&time=' +
       val.createTime +
+      '&price=' +
+      val.realPayAmount +
       '&cheapPrice=' +
       cheapPrice
   })

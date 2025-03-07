@@ -21,7 +21,7 @@
         </view>
         <view v-if="cheapPrice !== 0" class="tag">
           <view>优惠金额</view>
-          <view class="cheap">-{{ cheapPrice == 0 ? 0 : cheapPrice.toFixed(2) }}元</view>
+          <view class="cheap">-{{ cheapPrice === 0 ? 0 : cheapPrice.toFixed(2) }}元</view>
         </view>
         <view class="tag">
           <view>待付金额</view>
@@ -121,6 +121,7 @@ const range = ref([
 // ------定义方法------
 //胶囊底部距离头部的距离
 onLoad((option) => {
+  console.log(option)
   clearInterval(rocallStatus.value)
   id.value = option.id
   price.value = Number(option.price)
