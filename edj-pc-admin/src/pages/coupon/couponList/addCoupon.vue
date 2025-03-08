@@ -184,6 +184,13 @@ const onSubmit = (result: ValidateResultContext<FormData>) => {
     requestData.value.distributeStartTime = formData.value.distributeTime[0]
     requestData.value.validityDays = formData.value.validityDays
     requestData.value.totalNum = formData.value.totalNum
+
+    if (requestData.value.type === 1) {
+      requestData.value.discountRate = null
+    } else if (requestData.value.type === 2) {
+      requestData.value.discountAmount = null
+    }
+
     updateData(requestData.value)
   } else {
     MessagePlugin.error('请检查输入项')
