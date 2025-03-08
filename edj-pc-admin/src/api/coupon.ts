@@ -27,7 +27,7 @@ export function saveCoupon(data) {
 // 查询活动详情
 export function getCouponDetail(id) {
   return request.get({
-    url: `/market/operation/activity/${id}`
+    url: `/edj-market/operation/activity/${id}`
   })
 }
 
