@@ -3,7 +3,7 @@ import { request } from '@/utils/request'
 // 运营端分页查询活动优惠券
 export function getCouponList(data) {
   return request.get({
-    url: '/market/operation/activity/page',
+    url: '/edj-market/operation/activity/page',
     params: data
   })
 }
