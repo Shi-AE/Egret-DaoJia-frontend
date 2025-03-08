@@ -19,7 +19,7 @@ export function getCouponRecordList(data) {
 // 活动保存
 export function saveCoupon(data) {
   return request.post({
-    url: '/market/operation/activity/save',
+    url: '/edj-market/operation/activity/save',
     data
   })
 }
@@ -27,13 +27,13 @@ export function saveCoupon(data) {
 // 查询活动详情
 export function getCouponDetail(id) {
   return request.get({
-    url: '/market/operation/activity/' + id,
+    url: `/market/operation/activity/${id}`
   })
 }
 
 // 活动撤销，即删除优惠券
 export function deleteCoupon(id) {
   return request.post({
-    url: '/market/operation/activity/revoke/' + id,
+    url: `/market/operation/activity/revoke/${id}`
   })
 }
