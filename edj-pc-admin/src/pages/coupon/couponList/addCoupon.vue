@@ -120,12 +120,12 @@
 import { onMounted, ref, watch } from 'vue'
 import { MessagePlugin, ValidateResultContext } from 'tdesign-vue-next'
 import { useRoute, useRouter } from 'vue-router'
-import { validateNumber100, validateNumber1440, } from '@/utils/validate'
+import { validateNumber100, validateNumber1440 } from '@/utils/validate'
 import { getCouponDetail, saveCoupon } from '@/api/coupon'
 
 const route = useRoute()
 const router = useRouter()
-const {id} = route.params
+const { id } = route.params
 // 表单数据
 const formData = ref({
   discountRate: null,
@@ -136,7 +136,7 @@ const formData = ref({
   distributeTime: [],
   validityDays: null,
   totalNum: null,
-  id: id ? id : null
+  id: id || null
 })
 // 更新调度配置数据
 const requestData = ref({
@@ -149,7 +149,7 @@ const requestData = ref({
   distributeStartTime: null,
   validityDays: null,
   totalNum: null,
-  id: id ? id : null
+  id: id || null
 })
 
 // 获取接口数据
@@ -210,15 +210,15 @@ const updateData = async (val) => {
     })
 }
 const rules = {
-  name: [{required: true, message: '请输入活动名称', trigger: 'blur'}],
+  name: [{ required: true, message: '请输入活动名称', trigger: 'blur' }],
   amountCondition: [
-    {required: true, message: '请输入满额限制', trigger: 'blur'}
+    { required: true, message: '请输入满额限制', trigger: 'blur' }
   ],
   discountAmount: [
-    {required: true, message: '请输入抵扣金额', trigger: 'blur'}
+    { required: true, message: '请输入抵扣金额', trigger: 'blur' }
   ],
   discountRate: [
-    {required: true, message: '请输入折扣率', trigger: 'blur'},
+    { required: true, message: '请输入折扣率', trigger: 'blur' },
     {
       validator: validateNumber100,
       trigger: 'blur',
@@ -226,17 +226,17 @@ const rules = {
     }
   ],
   distributeTime: [
-    {required: true, message: '请选择发放时间', trigger: 'change'}
+    { required: true, message: '请选择发放时间', trigger: 'change' }
   ],
   validityDays: [
-    {required: true, message: '请输入使用期限', trigger: 'blur'},
+    { required: true, message: '请输入使用期限', trigger: 'blur' },
     {
       validator: validateNumber1440,
       trigger: 'blur',
       message: '请输入1-1440之间整数'
     }
   ],
-  totalNum: [{required: true, message: '请输入发放数量', trigger: 'blur'}]
+  totalNum: [{ required: true, message: '请输入发放数量', trigger: 'blur' }]
 }
 
 // 返回上一级
