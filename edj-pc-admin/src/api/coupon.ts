@@ -11,7 +11,7 @@ export function getCouponList(data) {
 // 根据活动id查询活动优惠券领取记录
 export function getCouponRecordList(data) {
   return request.get({
-    url: '/market/operation/coupon/page',
+    url: '/edj-market/operation/coupon/page',
     params: data
   })
 }
