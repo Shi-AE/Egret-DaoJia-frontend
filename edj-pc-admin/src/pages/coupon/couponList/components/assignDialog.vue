@@ -12,7 +12,9 @@
       <div class="statistics">
         <div class="card">
           <div class="body">
-            <div class="num">{{ receiveData.totalNum }}</div>
+            <div class="num">
+              {{ receiveData.totalNum === 0 ? '无限制' : receiveData.totalNum }}
+            </div>
             <div class="title">发放数量（张）</div>
           </div>
           <div class="line"></div>
@@ -61,9 +63,9 @@
       </div>
       <div class="tableBox">
         <TableList
-          :AssignPagination="pagination"
-          :DialogFormData="listData"
-          :activeStatus="1"
+          :assign-pagination="pagination"
+          :dialog-form-data="listData"
+          :active-status="1"
           @onPageChange="onPageChange"
         ></TableList>
       </div>
@@ -321,7 +323,7 @@ defineExpose({
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #D8D8D8;
+      background-color: #d8d8d8;
     }
   }
 }

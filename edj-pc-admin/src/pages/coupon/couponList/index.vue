@@ -5,16 +5,16 @@
   <div v-else class="base-up-wapper bgTable min-h">
     <!-- 搜索表单区域 -->
     <searchFormBox
-      :cityList="cityList"
-      :initSearch="initSearch"
-      :typeSelect="typeSelect"
+      :city-list="cityList"
+      :init-search="initSearch"
+      :type-select="typeSelect"
       @handleReset="handleReset"
       @handleSearch="handleSearch"
     ></searchFormBox>
     <!-- end -->
     <!-- 表格 -->
     <tableList
-      :activeStatus="0"
+      :active-status="0"
       :list-data="listData"
       :pagination="pagination"
       @handleClickAssign="handleClickAssign"
@@ -36,7 +36,7 @@
   <assignDialog
     :data="DialogFormData"
     :pagination="pagination2"
-    :receiveData="receiveData"
+    :receive-data="receiveData"
     :title="title"
     :visible="assignDialogVisible"
     @fetchData="fetchData"
@@ -47,9 +47,14 @@
 
 <script lang="ts" setup>
 import { ref, watch, watchEffect } from 'vue'
-import { deleteCoupon, getCouponDetail, getCouponList, getCouponRecordList } from '@/api/coupon'
 import { useRoute } from 'vue-router'
 import { MessagePlugin } from 'tdesign-vue-next'
+import {
+  deleteCoupon,
+  getCouponDetail,
+  getCouponList,
+  getCouponRecordList
+} from '@/api/coupon'
 
 import tableList from './components/TableList.vue' // 表格
 import Delete from '@/components/Delete/index.vue' // 删除弹层
@@ -81,7 +86,7 @@ const pagination2 = ref({
   defaultPageSize: 10,
   total: 0,
   defaultCurrent: 1 // 默认当前页
-}) //领取记录分页
+}) // 领取记录分页
 const requestData = ref({
   id: null,
   name: null,
@@ -198,7 +203,7 @@ const handleClickCancel = (row) => {
 const handleSubmit = async () => {
   await deleteCoupon(refundId.value)
     .then((res) => {
-      if (res.code === 200) {
+      if (res.data.code === 200) {
         MessagePlugin.success('撤销成功')
         visible.value = false
         fetchData(requestData.value)

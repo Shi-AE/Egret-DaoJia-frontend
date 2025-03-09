@@ -33,7 +33,7 @@ export function getCouponDetail(id) {
 
 // 活动撤销，即删除优惠券
 export function deleteCoupon(id) {
-  return request.post({
-    url: `/market/operation/activity/revoke/${id}`
+  return request.put({
+    url: `/edj-market/operation/activity/revoke/${id}`
   })
 }
