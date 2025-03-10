@@ -3,7 +3,7 @@ import { request } from '../../utils/request.js'
 // 用户端抢券列表分页接口
 export const getCouponList = (params) =>
   request({
-    url: '/market/consumer/activity/list',
+    url: '/edj-market/consumer/activity/list',
     method: 'get',
     params
   })
