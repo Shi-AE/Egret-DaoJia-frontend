@@ -10,7 +10,7 @@ export const getCouponList = (params) =>
 // 抢券接口
 export const addCoupon = (params) =>
   request({
-    url: '/market/consumer/coupon/seize',
+    url: '/edj-market/consumer/coupon/grab',
     method: 'post',
     params
   })
