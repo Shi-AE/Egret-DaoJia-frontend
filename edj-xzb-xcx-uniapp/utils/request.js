@@ -105,11 +105,10 @@ export function request({
                     duration: 10000,
                     success: () => {
                         setTimeout(() => {
-                            uni.navigateTo({
+                            uni.reLaunch({
                                 url: '/pages/login/index'
                             });
                         }, 2000)
-
                     },
                     fail: () => {
                     }
