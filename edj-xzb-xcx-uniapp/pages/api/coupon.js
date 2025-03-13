@@ -24,7 +24,7 @@ export const getMyCouponList = (params) =>
 // 下单页可用优惠券列表
 export const getOrderCouponList = (params) =>
   request({
-    url: '/orders-manager/consumer/orders/getAvailableCoupons',
+    url: '/edj-orders-manager/consumer/orders/available/coupon',
     method: 'get',
     params
   })
