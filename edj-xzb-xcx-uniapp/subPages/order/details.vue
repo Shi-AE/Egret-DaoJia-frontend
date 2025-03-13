@@ -69,15 +69,15 @@
                 </text
                 >
               </view>
-              <view class="projectFee"> ￥{{ baseData.price }}</view>
+              <view class="projectFee"> ￥{{ (baseData.price * baseData.purNum).toFixed(2) }}</view>
             </view>
           </view>
           <view
-            v-if="baseData.price - baseData.realPayAmount > 0"
+            v-if="(baseData.price * baseData.purNum - baseData.realPayAmount).toFixed(2) > 0"
             class="foot foot1"
           >优惠金额
             <text class="red"
-            >¥{{ (baseData.price - baseData.realPayAmount).toFixed(2) }}
+            >¥{{ (baseData.price * baseData.purNum - baseData.realPayAmount).toFixed(2) }}
             </text
             >
           </view
