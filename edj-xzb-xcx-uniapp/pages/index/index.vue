@@ -160,6 +160,7 @@ onShow(() => {
     // 延时获取城市，防止城市未获取到
     setTimeout(() => {
       city.value = uni.getStorageSync('city')
+      console.log(city.value)
       if (city.value) {
         getHomeServiceData()
         getHotServeData()
@@ -213,6 +214,8 @@ const getHomeServiceData = async () => {
         menuData.value = res.data.data
       }
     })
+  } else {
+    menuData.value = []
   }
 }
 // 获取热门服务
@@ -225,6 +228,8 @@ const getHotServeData = async () => {
         hotData.value = res.data.data
       }
     })
+  } else {
+    hotData.value = []
   }
 }
 // 搜索
