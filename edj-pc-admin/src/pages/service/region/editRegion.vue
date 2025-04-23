@@ -87,7 +87,7 @@ const flag = ref(0) // 是否是热门
 const deleteId = ref('') // 删除的id
 const addService = ref(null) // 新增服务弹窗
 const route = useRoute()
-const {id, isActive} = route.params
+const { id, isActive } = route.params
 const visible = ref(false) // 新增服务弹窗
 const editStatus = ref(0) // 判断是设置热门还是启用和禁用
 const requestData = ref({
@@ -154,7 +154,8 @@ const fetchRegionData = async () => {
 }
 // 获取服务类型数据
 const fetchServiceTypeData = async () => {
-  await serviceTypeSimpleList()
+  // 获取已启用的数据类型
+  await serviceTypeSimpleList({ activeStatus: 2 })
     .then((res) => {
       if (res.code === 200) {
         serviceTypeData.value = res.data
