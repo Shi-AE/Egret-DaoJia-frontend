@@ -187,11 +187,12 @@ const getWarpWeft = () => {
   wx.getSetting({
     success(res) {
       // 2. 判断用户是否已经授权地理位置
+      console.log(res)
       if (res.authSetting['scope.userLocation']) {
         // 用户已经授权地理位置，直接调用获取地理位置接口
         // 获取定位
         uni.getLocation({
-          type: 'gcj02',
+          type: '',
           success: function(res) {
             position.value = res
             getCity(position.value)

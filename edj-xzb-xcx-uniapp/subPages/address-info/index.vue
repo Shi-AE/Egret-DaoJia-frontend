@@ -241,6 +241,7 @@ const handleToLink = () => {
 }
 // 定位
 const handleLocation = () => {
+  console.log('get')
   uni.chooseLocation({
     success: async function(res) {
       location.value = res.longitude + ',' + res.latitude
@@ -268,6 +269,9 @@ const handleLocation = () => {
           formAddressInfo.value = address
         }
       })
+    },
+    fail(res) {
+      console.log(res)
     }
   })
 }

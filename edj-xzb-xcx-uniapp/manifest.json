@@ -238,6 +238,7 @@
             "minified" : true
         },
         "usingComponents" : true,
+        "requiredPrivateInfos" : [ "getLocation", "chooseLocation" ],
         "permission" : {
             "scope.userLocation" : {
                 "desc" : "获取您的位置信息"
