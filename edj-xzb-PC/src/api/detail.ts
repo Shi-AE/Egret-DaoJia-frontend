@@ -15,15 +15,15 @@ export function getPersonnelDetailList(params) {
   })
 }
 
-//抢单管理列表
+// 抢单管理列表
 export function getRobOrderList(params) {
   return request.get({
-    url: '/orders-seize/agency',
+    url: '/edj-orders-grab/provider/orders/garb',
     params
   })
 }
 
-//抢单
+// 抢单
 export function robOrder(params) {
   return request.post({
     url: '/orders-seize/agency',

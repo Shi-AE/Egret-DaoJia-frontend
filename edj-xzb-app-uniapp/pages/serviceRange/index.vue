@@ -51,7 +51,6 @@ import { onMounted, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
 import { onShow } from '@dcloudio/uni-app'
 import { getSettingInfo, setServiceSetting } from '../api/setting.js'
-import { data } from '../../utils/h5Data.js'
 // 导航组件
 import UniNav from '@/components/uni-nav/index.vue'
 
@@ -86,7 +85,7 @@ const handleChooseRange = () => {
     latitude: location.latitude,
     longitude: location.longitude,
     success: function(res) {
-      address.value = res.name
+      address.value = res.address
       location.latitude = res.latitude
       location.longitude = res.longitude
       markers.data.latitude = res.latitude
@@ -143,37 +142,24 @@ onShow(() => {
       console.log(process.env.VUE_APP_PLATFORM, 'process.env.VUE_APP_PLATFORM')
       //没有设置位置则获取当前位置
       if (!res.data.cityCode) {
-        if (process.env.VUE_APP_PLATFORM === 'h5') {
-          location.latitude = data.latitude
-          location.longitude = data.longitude
-          markers.data.latitude = data.latitude
-          markers.data.longitude = data.longitude
-          cityName.value = data.city
-          address.value = data.address
-
-          store.commit('user/setCityCode', data.cityCode)
-          store.commit('user/setCityName', data.city)
-          store.commit('user/setAddress', data.address)
-          store.commit('user/setLocation', location)
-        } else {
-          uni.getLocation({
-            type: 'gcj02',
-            geocode: true,
-            success: function(res) {
-              location.latitude = res.latitude
-              location.longitude = res.longitude
-              markers.data.latitude = res.latitude
-              markers.data.longitude = res.longitude
-            },
-            fail: (err) => {
-              location.latitude = 39.909187
-              location.longitude = 116.397455
-              markers.data.latitude = 39.909187
-              markers.data.longitude = 116.397455
-            }
-          })
-          cityName.value = users.cityName
-        }
+        uni.getLocation({
+          type: 'gcj02',
+          geocode: false,
+          success: function(res) {
+            location.latitude = res.latitude
+            location.longitude = res.longitude
+            markers.data.latitude = res.latitude
+            markers.data.longitude = res.longitude
+          },
+          fail: (err) => {
+            uni.showToast({
+              title: err.msg || '接口调用失败',
+              duration: 1500,
+              icon: 'none'
+            })
+          }
+        })
+        cityName.value = users.cityName
       } else {
         store.commit('user/setCityCode', users.cityCode || res.data.cityCode)
         store.commit(

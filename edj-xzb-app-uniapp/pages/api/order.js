@@ -16,7 +16,7 @@ export const getDispatchOrderInfo = (params) =>
 //获取抢单列表
 export const getRobOrder = (params) =>
     request({
-        url: params ? `/orders-seize/worker?${typeof params === 'number' ? 'serveDistance' : 'serveTypeId'}=${params}` : '/orders-seize/worker',
+        url: params ? `/edj-orders-grab/provider/orders/garb?${typeof params === 'number' ? 'serveDistance' : 'serveTypeId'}=${params}` : '/edj-orders-grab/provider/orders/garb',
         method: 'get',
     })
 //获取首页服务类型筛选数据

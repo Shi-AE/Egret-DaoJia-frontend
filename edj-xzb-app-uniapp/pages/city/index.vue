@@ -15,7 +15,7 @@
         <!-- 定位模块 -->
         <view class="position top">
           <view class="position_city">
-            <view class="position_city_one">
+            <view class="position_city_one" @click="selectCity(currentCity)">
               {{ currentCity ? currentCity.name : '定位失败' }}
             </view>
             <view class="WarpWeft" @click="getWarpWeft">
@@ -89,11 +89,10 @@
 // 导航组件
 import UniNav from '@/components/uni-nav/index.vue'
 import { useStore } from 'vuex'
-import { getOpenCity } from '../api/setting.js'
+import { getAddress, getOpenCity } from '../api/setting.js'
 import { Citys } from '@/pages/city/city.js'
 import { getCurrentInstance, onMounted, ref, watch } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
-import { data } from '../../utils/h5Data.js'
 // import { getAddress } from '../api/address';
 const store = useStore() //vuex获取、储存数据
 const address = ref('')
@@ -189,48 +188,44 @@ onMounted(() => {
 })
 // 定位
 const getWarpWeft = () => {
-  if (process.env.VUE_APP_PLATFORM === 'h5') {
-    currentCity.value = {
-      name: data.city
-    }
-    activeId.value = data.cityCode
-  } else {
-    po_tips.value = '定位中...'
-    // 获取定位
-    uni.getLocation({
-      type: 'gcj02',
-      geocode: true,
-      success: function(res) {
-        currentCity.value = {
-          name: res.address.city
+  po_tips.value = '定位中...'
+  // 获取定位
+  uni.getLocation({
+    type: 'gcj02',
+    geocode: false,
+    success: function(res) {
+      getAddress({
+        location: res.longitude + ',' + res.latitude
+      }).then((res) => {
+        if (res.code === 200) {
+          const data = res.data
+
+          currentCity.value = {
+            name: data.city,
+            cityCode: data.cityCode
+          }
+
+          activeId.value = data.cityCode
         }
-        activeId.value = res.address.cityCode
-        // console.log(res, activeId.value, 'resres');
-        // position.value = res;
-        // getCity(position.value);
+
         // 延时500毫秒，保证效果，展现出定位中的过程
         setTimeout(() => {
           po_tips.value = '重新定位'
         }, 500)
-      },
-      fail: function() {
-        setTimeout(() => {
-          po_tips.value = '定位失败'
-        }, 500)
-        disPosition.value = true
-      }
-    })
-  }
+      })
+    },
+    fail: function() {
+      setTimeout(() => {
+        po_tips.value = '定位失败'
+      }, 500)
+      disPosition.value = true
+    }
+  })
 }
 const selectCity = (city) => {
-  console.log(city)
   currentCity.value = city
   store.commit('user/setCityCode', city.cityCode)
   store.commit('user/setCityName', city.name)
-  if (process.env.VUE_APP_PLATFORM === 'h5') {
-      store.commit('user/setCityCode', data.city);
-      store.commit('user/setCityName', data.cityCode);
-  }
   uni.navigateBack()
 }
 watch(list, () => {
