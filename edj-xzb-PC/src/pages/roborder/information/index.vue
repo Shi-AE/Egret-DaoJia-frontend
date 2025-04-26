@@ -26,7 +26,6 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { MessagePlugin } from 'tdesign-vue-next'
 import searchFormBox from './components/SearchForm.vue' // 搜索框表单
 import { getRobOrderList, robOrder } from '@/api/detail'
 import tableList from './components/TableList.vue' // 表格
@@ -52,16 +51,15 @@ onMounted(() => {
 // 抢单
 const handleClickRob = (val) => {
   robOrder(val).then((res) => {
+    console.log(res)
     if (res.code === 200) {
       isRob.value = true
       title.value = '抢单成功'
       visible.value = true
-    } else if (res.data.code === 608) {
+    } else {
       isRob.value = false
       title.value = res.data.msg
       visible.value = true
-    } else {
-      MessagePlugin.error(res.data.msg || '抢单失败')
     }
   })
 }
