@@ -51,7 +51,6 @@ onMounted(() => {
 // 抢单
 const handleClickRob = (val) => {
   robOrder(val).then((res) => {
-    console.log(res)
     if (res.code === 200) {
       isRob.value = true
       title.value = '抢单成功'
@@ -69,6 +68,7 @@ const fetchData = async (val) => {
   await getRobOrderList({ ...requestData.value, ...val })
     .then((res) => {
       if (res.code === 200) {
+        console.log(res)
         listData.value = res.data || []
         dataLoading.value = false
         table.value.isCanFetch()
@@ -76,7 +76,6 @@ const fetchData = async (val) => {
     })
     .catch((err) => {
       table.value.isCanFetch()
-      console.log(err)
     })
 }
 // 关闭弹窗

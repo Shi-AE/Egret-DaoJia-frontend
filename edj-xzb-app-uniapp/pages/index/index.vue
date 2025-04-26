@@ -112,6 +112,19 @@ const getSetting = () => {
     })
 }
 const getList = () => {
+  const param = {
+    // 查询距离条件
+    serveDistance: serveId.value,
+    // 最后一条数据的id
+    lastId: null,
+    // 最后一条数据的距离
+    lastRealDistance: null
+  }
+  const length = homeList.data.length
+  if (length > 0) {
+    param.lastId = homeList.data[length - 1].id
+    param.lastRealDistance = homeList.data[length - 1].realDistance
+  }
   getRobOrderList(serveId.value)
 }
 //获取抢单列表

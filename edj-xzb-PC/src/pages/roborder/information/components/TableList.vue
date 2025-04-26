@@ -38,15 +38,15 @@
           <div class="description">
             <span>{{ row.serveAddress }}</span>
             <span v-if="row.serveAddress.length > 36" class="hover">{{
-                row.serveAddress
-              }}</span>
+              row.serveAddress
+            }}</span>
           </div>
         </template>
         <!-- 服务费用 -->
         <template #ordersAmount="{ row }">
           <span>{{
-              ((row.ordersAmount - row.ordersAmount * 0.003) * 0.3).toFixed(2)
-            }}</span>
+            ((row.ordersAmount - row.ordersAmount * 0.003) * 0.3).toFixed(2)
+          }}</span>
         </template>
         <!-- end -->
         <!-- 在操作栏添加抢单三种操作 -->
@@ -55,7 +55,7 @@
             class="font-bt line"
             style="padding-left: 0px"
             @click="handleClickRob(row.id)"
-          >抢单</a
+            >抢单</a
           >
         </template>
         <!-- end -->
@@ -79,7 +79,7 @@ import { COLUMNS } from '../constants'
 import NoData from '@/components/noData/index.vue'
 import { useUserStore } from '@/store'
 
-const userStore = useUserStore() //是否开启接单
+const userStore = useUserStore() // 是否开启接单
 // 接收父组件传递的值
 const props = defineProps({
   listData: {
@@ -114,18 +114,19 @@ const fetchData = () => {
   canFetch.value = false
   emit('fetchData')
 }
-//下一页
+// 下一页
 const nextPage = () => {
   // console.log(data, data.length - 1, '----')
   emit('fetchData', {
-    lastRealDistance: data.value[data.value.length - 1]?.realDistance
+    lastRealDistance: data.value[data.value.length - 1]?.realDistance,
+    lastId: data.value[data.value.length - 1]?.id
   })
 }
 // 编辑
 const handleClickRob = (val) => {
   emit('handleClickRob', val)
 }
-//是否可以点击刷新
+// 是否可以点击刷新
 const isCanFetch = () => {
   canFetch.value = true
 }
