@@ -29,9 +29,8 @@ export const getHomeFilter = () =>
 //抢单
 export const robOrder = (params) =>
   request({
-    url: `/orders-seize/worker`,
+    url: `/edj-orders-grab/provider/orders/garb/${params}`,
     method: 'post',
-    params
   })
 //获取订单列表
 export const getOrder = (params, id) =>

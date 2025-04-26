@@ -76,15 +76,9 @@ const handleTime = (val) => {
 };
 //抢单
 const handleRob = (id) => {
-    robOrder({
-        id: id,
-    })
+    robOrder(id)
         .then((res) => {
-            if (res.code === 200) {
-                isRob.value = true;
-            } else {
-                isRob.value = false;
-            }
+            isRob.value = res.code === 200;
             alertDialog.value.open();
         })
         .catch((err) => {

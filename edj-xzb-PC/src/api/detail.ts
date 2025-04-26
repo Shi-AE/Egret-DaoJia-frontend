@@ -26,7 +26,6 @@ export function getRobOrderList(params) {
 // 抢单
 export function robOrder(params) {
   return request.post({
-    url: '/orders-seize/agency',
-    data: params
+    url: `/edj-orders-grab/provider/orders/garb/${params}`
   })
 }

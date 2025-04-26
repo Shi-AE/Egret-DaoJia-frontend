@@ -51,7 +51,7 @@ onMounted(() => {
 })
 // 抢单
 const handleClickRob = (val) => {
-  robOrder({ id: val }).then((res) => {
+  robOrder(val).then((res) => {
     if (res.code === 200) {
       isRob.value = true
       title.value = '抢单成功'
