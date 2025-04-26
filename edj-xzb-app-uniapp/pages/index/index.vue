@@ -116,8 +116,8 @@ const getList = () => {
 }
 //获取抢单列表
 const getRobOrderList = (params) => {
-  getRobOrder(params).then((res) => {
-    homeList.data = res.data.ordersSeizes || []
+  getRobOrder({ serveDistance: params }).then((res) => {
+    homeList.data = res.data || []
   })
 }
 //获取首页顶部筛选服务项数据

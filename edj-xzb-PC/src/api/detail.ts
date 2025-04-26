@@ -17,9 +17,9 @@ export function getPersonnelDetailList(params) {
 
 // 抢单管理列表
 export function getRobOrderList(params) {
-  return request.get({
+  return request.post({
     url: '/edj-orders-grab/provider/orders/garb',
-    params
+    data: params
   })
 }
 

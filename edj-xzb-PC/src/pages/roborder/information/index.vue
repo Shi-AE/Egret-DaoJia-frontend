@@ -14,7 +14,7 @@
     <!-- end -->
     <!-- 抢单成功/失败弹窗 -->
     <DialogForm
-      :isRob="isRob"
+      :is-rob="isRob"
       :title="title"
       :visible="visible"
       @fetchData="fetchData"
@@ -35,7 +35,7 @@ import DialogForm from './components/DialogForm.vue' // 抢单结果弹窗
 const title = ref('') // 条转过来的携带数据
 const listData = ref([]) // 列表数据
 const dataLoading = ref(false) // 列表数据加载loading
-const isRob = ref(true) //是否抢单成功
+const isRob = ref(true) // 是否抢单成功
 const visible = ref(false) // 抢单结果弹窗
 const table = ref(null) // 表格实例
 // 请求参数
@@ -49,7 +49,7 @@ const requestData = ref({
 onMounted(() => {
   fetchData(requestData.value)
 })
-//抢单
+// 抢单
 const handleClickRob = (val) => {
   robOrder({ id: val }).then((res) => {
     if (res.code === 200) {
@@ -71,7 +71,7 @@ const fetchData = async (val) => {
   await getRobOrderList({ ...requestData.value, ...val })
     .then((res) => {
       if (res.code === 200) {
-        listData.value = res.data.ordersSeizes || []
+        listData.value = res.data || []
         dataLoading.value = false
         table.value.isCanFetch()
       }
@@ -91,8 +91,8 @@ const handleSearch = (val) => {
   requestData.value.keyWord = val.keyWord
   requestData.value.serveDistance = val.serveDistance
   if (val.updateTime.length > 0) {
-    requestData.value.minServeStartTime = val.updateTime[0] + ' 00:00:00'
-    requestData.value.maxServeStartTime = val.updateTime[1] + ' 23:59:59'
+    requestData.value.minServeStartTime = `${val.updateTime[0]} 00:00:00`
+    requestData.value.maxServeStartTime = `${val.updateTime[1]} 23:59:59`
   } else {
     requestData.value.minServeStartTime = null
     requestData.value.maxServeStartTime = null
