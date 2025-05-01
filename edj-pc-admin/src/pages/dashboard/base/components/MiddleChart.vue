@@ -17,7 +17,11 @@
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 
 import * as echarts from 'echarts/core'
-import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components'
+import {
+  GridComponent,
+  LegendComponent,
+  TooltipComponent
+} from 'echarts/components'
 import { LineChart } from 'echarts/charts'
 import { CanvasRenderer } from 'echarts/renderers'
 import { useSettingStore } from '@/store'
@@ -36,7 +40,15 @@ const props = defineProps({
   middleChartData: {
     type: Array,
     default: () => {
-      return []
+      return [
+        { count: 3, dateTime: '2025-01-01' },
+        { count: 5, dateTime: '2025-01-02' },
+        { count: 10, dateTime: '2025-01-03' },
+        { count: 3, dateTime: '2025-01-04' },
+        { count: 6, dateTime: '2025-01-05' },
+        { count: 4, dateTime: '2025-01-06' },
+        { count: 8, dateTime: '2025-01-07' }
+      ]
     }
   }
 })
@@ -54,7 +66,6 @@ const chartColors = computed(() => store.chartColors)
 let monitorContainer: HTMLElement // 监控图表容器
 let monitorChart: echarts.ECharts // 监控图表实例
 
-
 // 获取图表实例，初始化图表
 const renderMonitorChart = () => {
   if (!monitorContainer) {
@@ -62,7 +73,7 @@ const renderMonitorChart = () => {
   }
   monitorChart = echarts.init(monitorContainer)
   monitorChart.setOption(
-    getLineChartDataSet({dateTime: dataTime[0].time, ...chartColors.value})
+    getLineChartDataSet({ dateTime: dataTime[0].time, ...chartColors.value })
   )
 }
 
@@ -91,14 +102,22 @@ const updateContainer = () => {
 watch(
   () => props.middleChartData,
   () => {
-    const count = (props.middleChartData as { count: number }[]).map((item) => item.count)
-    const countDate = (props.middleChartData as { dateTime: string }[]).map((item) => item.dateTime)
+    const count = (props.middleChartData as { count: number }[]).map(
+      (item) => item.count
+    )
+    const countDate = (props.middleChartData as { dateTime: string }[]).map(
+      (item) => item.dateTime
+    )
     onCurrencyChange(count, countDate)
   }
 )
 onMounted(() => {
-  const count = (props.middleChartData as { count: number }[]).map((item) => item.count)
-  const countDate = (props.middleChartData as { dateTime: string }[]).map((item) => item.dateTime)
+  const count = (props.middleChartData as { count: number }[]).map(
+    (item) => item.count
+  )
+  const countDate = (props.middleChartData as { dateTime: string }[]).map(
+    (item) => item.dateTime
+  )
   // 初始化图表
   renderMonitorChart()
   onCurrencyChange(count, countDate)
@@ -135,10 +154,9 @@ onUnmounted(() => {
 // 内容变化
 const onCurrencyChange = (count: string[] | number[], countDate: string[]) => {
   monitorChart.setOption(
-    getLineChartDataSet({count, countDate, ...chartColors.value})
+    getLineChartDataSet({ count, countDate, ...chartColors.value })
   )
 }
-
 </script>
 
 <style lang="less" scoped>

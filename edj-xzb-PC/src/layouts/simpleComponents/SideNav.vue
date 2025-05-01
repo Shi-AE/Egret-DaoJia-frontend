@@ -172,8 +172,8 @@ const goHome = () => {
 }
 
 .logofull {
-  width: 150px;
-  height: 70px;
+  width: 186px;
+  height: 75px;
 }
 
 .logo {

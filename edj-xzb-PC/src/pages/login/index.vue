@@ -266,8 +266,8 @@ const handleFrozen = (val) => {
 }
 
 .logo {
-  width: 150px;
-  height: 70px;
+  width: 186px;
+  height: 75px;
 }
 
 :deep(.t-input .t-input__prefix > .t-icon) {

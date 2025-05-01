@@ -2,7 +2,7 @@
 <template>
   <div class="container home-wrapper">
     <!-- 顶部 card  -->
-    <top-panel :top-panel-data="topPanelData"/>
+    <top-panel :top-panel-data="topPanelData" />
     <!-- 经营分析 -->
     <Operate
       @exportStatistics="exportStatistics"
@@ -21,12 +21,12 @@
                 <div class="description">
                   <span class="beizhu"></span>
                   <span class="hover"
-                  >在统计时间内，订单状态为已完成的订单数。（订单被取消、退款、关闭状态均不属于有效订单）</span
+                    >在统计时间内，订单状态为已完成的订单数。（订单被取消、退款、关闭状态均不属于有效订单）</span
                   >
                 </div>
               </div>
               <div class="num">
-                {{ data?.effectiveOrderNum }}<span>笔</span>
+                {{ data?.effectiveOrderNum || 0 }}<span>笔</span>
               </div>
             </div>
             <div class="line"></div>
@@ -43,7 +43,9 @@
           <div class="card">
             <div class="body">
               <div class="title">关闭订单数</div>
-              <div class="num">{{ data?.closeOrderNum }}<span>笔</span></div>
+              <div class="num">
+                {{ data?.closeOrderNum || 0 }}<span>笔</span>
+              </div>
             </div>
             <div class="line"></div>
           </div>
@@ -59,12 +61,12 @@
                 <div class="description">
                   <span class="beizhu"></span>
                   <span class="hover"
-                  >在统计时间内，平均每单实际支付额（不包含失效订单）</span
+                    >在统计时间内，平均每单实际支付额（不包含失效订单）</span
                   >
                 </div>
               </div>
               <div class="num">
-                {{ data?.realPayAveragePrice }}<span>元</span>
+                {{ data?.realPayAveragePrice || 0 }}<span>元</span>
               </div>
             </div>
             <div class="line"></div>
@@ -76,12 +78,12 @@
                 <div class="description">
                   <span class="beizhu"></span>
                   <span class="hover"
-                  >在统计时间内，有效订单的总订单交易额</span
+                    >在统计时间内，有效订单的总订单交易额</span
                   >
                 </div>
               </div>
               <div class="num">
-                {{ data?.effectiveOrderTotalAmount }}<span>元</span>
+                {{ data?.effectiveOrderTotalAmount || 0 }}<span>元</span>
               </div>
             </div>
             <div class="line"></div>
@@ -110,13 +112,12 @@
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import dayjs from 'dayjs'
+import { MessagePlugin } from 'tdesign-vue-next'
 import { exportStatisticsData, getDashBoardData } from '@/api/detail'
 import TopPanel from './components/TopPanel.vue'
 import MiddleChart from './components/MiddleChart.vue'
 import OutputOverview from './components/OutputOverview.vue'
 import Operate from './components/operate.vue'
-
-import { MessagePlugin } from 'tdesign-vue-next'
 
 const route = useRoute()
 // 当月时间1号到最后一天
@@ -124,11 +125,17 @@ const nowMonthTime = ref([
   dayjs().startOf('month').format('YYYY-MM-DD'),
   dayjs().subtract(1, 'day').format('YYYY-MM-DD')
 ])
-const data = ref() // 日期
+const data = ref({
+  effectiveOrderNum: 23,
+  cancelOrderNum: 5,
+  closeOrderNum: 17,
+  realPayAveragePrice: 5,
+  effectiveOrderTotalAmount: 115
+}) // 日期
 const dateRange = ref([
-  dayjs().subtract(1, 'month').format('YYYY-MM-DD') + ' 00:00:00',
+  `${dayjs().subtract(1, 'month').format('YYYY-MM-DD')} 00:00:00`,
 
-  dayjs().subtract(0, 'day').format('YYYY-MM-DD') + ' 23:59:59'
+  `${dayjs().subtract(0, 'day').format('YYYY-MM-DD')} 23:59:59`
 ])
 
 const topPanelData = ref({
@@ -157,8 +164,8 @@ watch(
 // 获取数据
 const fetchData = async (val) => {
   if (val[0].length <= 10) {
-    val[0] = val[0] + ' 00:00:00'
-    val[1] = val[1] + ' 23:59:59'
+    val[0] += ' 00:00:00'
+    val[1] += ' 23:59:59'
   }
   await getDashBoardData({
     maxTime: val[1],
@@ -178,14 +185,14 @@ const fetchData = async (val) => {
 // 导出统计数据
 const exportStatistics = async (val) => {
   if (val[0].length <= 10) {
-    val[0] = val[0] + ' 00:00:00'
-    val[1] = val[1] + ' 23:59:59'
+    val[0] += ' 00:00:00'
+    val[1] += ' 23:59:59'
   }
   await exportStatisticsData({
     maxTime: val[1],
     minTime: val[0]
   }).then((res) => {
-    let text = decodeURIComponent(res.headers['content-disposition'])
+    const text = decodeURIComponent(res.headers['content-disposition'])
     const parts = text.split("utf-8''")
     const blob = new Blob([res.data], {
       type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
@@ -198,7 +205,5 @@ const exportStatistics = async (val) => {
     URL.revokeObjectURL(objectUrl)
   })
 }
-
 </script>
 <style lang="less" scoped src="./index.less"></style>
-
