@@ -8,13 +8,13 @@ export const COLUMNS = [
     minWidth: '200px',
     colKey: 'id'
   },
-  {title: '活动名称', width: 180, minWidth: '180px', colKey: 'name'},
+  { title: '活动名称', width: 180, minWidth: '180px', colKey: 'name' },
   {
     title: '优惠券类型',
     minWidth: '180px',
     colKey: 'type',
     sortType: 'all',
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         1: {
           label: '满减'
@@ -31,7 +31,7 @@ export const COLUMNS = [
     colKey: 'amountCondition',
     width: 150,
     minWidth: '150px',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', row.amountCondition === 0 ? '无门槛' : row.amountCondition)
   },
   {
@@ -39,10 +39,10 @@ export const COLUMNS = [
     colKey: 'discountRate',
     width: 200,
     minWidth: '288px',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
-        row.type === 1 ? row.discountAmount + '元' : row.discountRate + '%'
+        row.type === 1 ? `${row.discountAmount}元` : `${row.discountRate}%`
       )
   },
   {
@@ -50,7 +50,7 @@ export const COLUMNS = [
     colKey: 'serveAddress',
     width: 130,
     minWidth: '130px',
-    cell: (h, {row}) => h('span', '全场通用')
+    cell: (h, { row }) => h('span', '全场通用')
   },
   {
     title: '适用对象',
@@ -64,12 +64,12 @@ export const COLUMNS = [
     minWidth: '320px',
     colKey: 'distributeStartTime',
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
-        dayjs(row.distributeStartTime).format(' YYYY-MM-DD HH:mm') +
-        ' ~ ' +
-        dayjs(row.distributeEndTime).format(' YYYY-MM-DD HH:mm')
+        `${dayjs(row.distributeStartTime).format(
+          ' YYYY-MM-DD HH:mm'
+        )} ~ ${dayjs(row.distributeEndTime).format(' YYYY-MM-DD HH:mm')}`
       )
   },
   {
@@ -83,7 +83,7 @@ export const COLUMNS = [
     colKey: 'totalNum',
     width: 150,
     minWidth: '150px',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h('span', row.totalNum === 0 ? '无限制' : row.totalNum)
   },
   {
@@ -99,7 +99,7 @@ export const COLUMNS = [
     width: 120,
     minWidth: '120px',
     // 添加筛选
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         2: {
           label: '进行中'
@@ -130,12 +130,10 @@ export const COLUMNS = [
     minWidth: '180px',
     colKey: 'createTime',
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
-        row.createTime
-          ? dayjs(row.createTime).format('YYYY-MM-DD HH:mm')
-          : '-'
+        row.createTime ? dayjs(row.createTime).format('YYYY-MM-DD HH:mm') : '-'
       )
   },
   {
@@ -149,24 +147,22 @@ export const COLUMNS = [
 ]
 export const PERSON_COLUMNS = [
   {
-    title: '用户手机号',
+    title: '用户名',
     align: 'left',
     width: 147,
     minWidth: '147px',
-    colKey: 'userPhone',
-    cell: (h, {row}) => h('span', row.userPhone || '-')
+    colKey: 'username',
+    cell: (h, { row }) => h('span', row.username || '-')
   },
   {
     title: '领取时间',
     minWidth: '180px',
     colKey: 'createTime',
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
-        row.createTime
-          ? dayjs(row.createTime).format('YYYY-MM-DD HH:mm')
-          : '-'
+        row.createTime ? dayjs(row.createTime).format('YYYY-MM-DD HH:mm') : '-'
       )
   },
   {
@@ -175,19 +171,17 @@ export const PERSON_COLUMNS = [
     width: 184,
     colKey: 'useTime',
     sortType: 'all',
-    cell: (h, {row}) =>
+    cell: (h, { row }) =>
       h(
         'span',
-        row.useTime
-          ? dayjs(row.useTime).format('YYYY-MM-DD HH:mm')
-          : '-'
+        row.useTime ? dayjs(row.useTime).format('YYYY-MM-DD HH:mm') : '-'
       )
   },
   {
     title: '优惠券状态',
     colKey: 'status',
     minWidth: '104px',
-    cell: (h, {row}) => {
+    cell: (h, { row }) => {
       const statusList = {
         1: {
           label: '待使用'
@@ -219,6 +213,6 @@ export const PERSON_COLUMNS = [
     width: 180,
     colKey: 'ordersId',
     sortType: 'all',
-    cell: (h, {row}) => h('span', row.ordersId || '-')
+    cell: (h, { row }) => h('span', row.ordersId || '-')
   }
 ]

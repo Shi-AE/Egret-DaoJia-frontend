@@ -133,6 +133,7 @@ watch(
 watch(
   () => props.data,
   (val) => {
+    console.log(val)
     listData.value = JSON.parse(JSON.stringify(val))
     if (pagination.value) return
     pagination.value = JSON.parse(JSON.stringify(props.pagination))

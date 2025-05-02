@@ -3,7 +3,13 @@
   <div class="baseList bg-wt min-h">
     <div class="tableBoxs">
       <div class="newBox">
-        <button v-if="activeStatus !== 1" class="bt newBoxbutton" @click="handleBuild">新增优惠券</button>
+        <button
+          v-if="activeStatus !== 1"
+          class="bt newBoxbutton"
+          @click="handleBuild"
+        >
+          新增优惠券
+        </button>
       </div>
       <t-config-provider :global-config="globalLocale">
         <t-table
@@ -13,7 +19,7 @@
           :hide-sort-tips="true"
           :hover="true"
           :loading="dataLoading"
-          :maxHeight="height"
+          :max-height="height"
           :multiple-sort="true"
           :pagination="
             pagination.total <= 10 || !pagination.total ? null : pagination
@@ -22,7 +28,7 @@
           :show-sort-column-bg-color="true"
           :sort="sort"
           select-on-row-click
-          showSizeChanger
+          show-size-changer
           table-content-width="100%"
           table-layout="fixed"
           vertical-align="middle"
@@ -31,8 +37,12 @@
         >
           <!-- 空页面 -->
           <template #empty>
-            <NoData :PhotoMb="props.activeStatus == 1 ? 0 : 30" :PhotoMt="props.activeStatus == 1 ? 0 : 60"
-                    :content="'暂无领取记录哦~'" :pMb="props.activeStatus == 1 ? 50 : 75"></NoData>
+            <NoData
+              :photo-mb="props.activeStatus == 1 ? 0 : 30"
+              :photo-mt="props.activeStatus == 1 ? 0 : 60"
+              :content="'暂无领取记录哦~'"
+              :p-mb="props.activeStatus == 1 ? 50 : 75"
+            ></NoData>
           </template>
           <!-- 在操作栏添加删除、编辑、查看三种操作 -->
           <template #op="{ row }">
@@ -43,7 +53,7 @@
                   : 'font-bt btn-split-right'
               "
               @click="handleClickCancel(row)"
-            >撤销</a
+              >撤销</a
             >
             <a
               :class="
@@ -52,10 +62,10 @@
                   : 'font-bt line'
               "
               @click="handleDetail(row)"
-            >编辑</a
+              >编辑</a
             >
             <a class="font-bt btn-split-left" @click="handleClickAssign(row)"
-            >领取记录</a
+              >领取记录</a
             >
           </template>
           <!-- end -->
@@ -64,8 +74,8 @@
             <div class="description">
               <span>{{ row.serveAddress }}</span>
               <span v-if="row.serveAddress.length > 36" class="hover">{{
-                  row.serveAddress
-                }}</span>
+                row.serveAddress
+              }}</span>
             </div>
           </template>
         </t-table>
@@ -83,7 +93,7 @@ export default {
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { CaretDownSmallIcon } from 'tdesign-icons-vue-next' //排序图表
+import { CaretDownSmallIcon } from 'tdesign-icons-vue-next' // 排序图表
 import { COLUMNS, PERSON_COLUMNS } from '../constants'
 import NoData from '@/components/noData/index.vue'
 // 接收父组件传递的值
@@ -100,13 +110,13 @@ const props = defineProps({
       return {}
     }
   },
-  DialogFormData: {
+  dialogFormData: {
     type: Object,
     default: () => {
       return {}
     }
   },
-  AssignPagination: {
+  assignPagination: {
     type: Object,
     default: () => {
       return {}
@@ -123,7 +133,7 @@ const emit = defineEmits([
   'handleClickCancel',
   'handleSortChange',
   'onPageChange',
-  'handleClickAssign',
+  'handleClickAssign'
 ])
 const height = ref('auto')
 // 监听器赋值
@@ -131,20 +141,32 @@ watch(props, () => {
   dataLoading.value = false
 
   // 弹窗里面的列表
-  if (props.activeStatus == 1) {
+  if (props.activeStatus === 1) {
     tableColumns.value = PERSON_COLUMNS
-    data.value = props.DialogFormData
-    pagination.value = props.AssignPagination
-    pagination.value.current = props.AssignPagination.defaultCurrent == 1 ? 1 : props.AssignPagination.defaultCurrent
-    pagination.value.pageSize = props.AssignPagination.defaultPageSize == 1 ? 1 : props.AssignPagination.defaultPageSize
+    data.value = props.dialogFormData
+    pagination.value = props.assignPagination
+    pagination.value.current =
+      props.assignPagination.defaultCurrent === 1
+        ? 1
+        : props.assignPagination.defaultCurrent
+    pagination.value.pageSize =
+      props.assignPagination.defaultPageSize === 1
+        ? 1
+        : props.assignPagination.defaultPageSize
     height.value = '335'
   } else {
     // 列表
     tableColumns.value = COLUMNS
     data.value = props.listData
     pagination.value = props.pagination
-    pagination.value.current = props.pagination.defaultCurrent == 1 ? 1 : props.pagination.defaultCurrent
-    pagination.value.pageSize = props.pagination.defaultPageSize == 1 ? 1 : props.pagination.defaultPageSize
+    pagination.value.current =
+      props.pagination.defaultCurrent === 1
+        ? 1
+        : props.pagination.defaultCurrent
+    pagination.value.pageSize =
+      props.pagination.defaultPageSize === 1
+        ? 1
+        : props.pagination.defaultPageSize
     height.value = 'auto'
   }
 })
@@ -182,7 +204,7 @@ const sortChange = (val) => {
 
 // 查看详情
 const handleDetail = (val) => {
-  router.push('/coupon/couponList/editCoupon/' + val.id)
+  router.push(`/coupon/couponList/editCoupon/${val.id}`)
 }
 // 点击取消，暂未开发使用
 const handleClickCancel = (row: { rowIndex: any }) => {
